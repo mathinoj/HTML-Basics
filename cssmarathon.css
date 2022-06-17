@@ -26,3 +26,7 @@ body{
     background-color: blue;
 }
 /* had to do as ID in label for this to work, couldnt use ID in input. Also tried as class, but no worky */
+
+input[type="password"]{
+    color: orangered;
+}
