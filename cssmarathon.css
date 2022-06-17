@@ -30,3 +30,15 @@ body{
 input[type="password"]{
     color: orangered;
 }
+
+button:hover{
+    background-color: yellow;
+}
+
+button:active{
+    background-color: brown;
+}
+
+p::selection{
+    background-color: aquamarine;
+}
