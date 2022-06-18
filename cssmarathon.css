@@ -53,6 +53,8 @@ p::selection{
 }
 
 #pad{
+    margin-top: 15px;
+/* before you had to add <HR> to create a break, cuz if not the button and this was on each other */
     border: 2px;
     border-color: black;
     border-style: solid;
@@ -60,4 +62,13 @@ p::selection{
     padding-right: 500px;
     text-align: center;
     border-radius: 25px;
+}
+
+#display{
+    height: 200px;
+    width: 200px;
+    background-color: blue;
+    border: solid black;
+    display: inline-block;
+    margin: 20px;
 }
