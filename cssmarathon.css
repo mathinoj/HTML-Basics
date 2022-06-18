@@ -72,3 +72,29 @@ p::selection{
     display: inline-block;
     margin: 20px;
 }
+
+section{
+    /* margin-top: 20px; */
+    background-color: royalblue;
+    width: 600px;
+    height: 600px;
+}
+
+#section{
+    background-color: orangered;
+    width: 50%;
+    height: 50%;
+}
+/* in the 'section' and '#section' example we see that '#section' takes percentage of the parent element ('section') */
+
+article{
+    font-size: 10px;
+}
+
+#emButton{
+    font-size: 1em;
+    padding: 0 1em;
+    border-radius: .05em;
+    background-color: yellowgreen;
+    color: brown;
+}
