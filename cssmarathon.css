@@ -98,3 +98,29 @@ article{
     background-color: yellowgreen;
     color: brown;
 }
+
+/* TRANSITIONS MODULE */
+.circle{
+    width: 100px;
+    height: 100px;
+    background-color: darkslateblue;
+    transition: 1s;
+}
+
+.circle:hover{
+    border-radius: 50%;
+    background-color: chocolate;
+}
+
+.circleTwo{
+    margin-top: 15px;
+    width: 150px;
+    height: 150px;
+    background-color: darkgreen;
+    transition: background-color 2s;
+}
+
+.circleTwo:hover{
+    background-color: chartreuse;
+    border-radius: 50%;
+}
