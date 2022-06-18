@@ -42,3 +42,9 @@ button:active{
 p::selection{
     background-color: aquamarine;
 }
+
+#firstName{
+    border-width: 2px;
+    border-style: dashed;
+    border-radius: 30px;
+}
