@@ -47,6 +47,9 @@ table {
 	border-spacing: 0;
 }
 
+
+/* THE ^^^^^^^TOP PART^^^^^^ is a 'CSS RESET */
+
 body{
 	background-color: #60a9ff;
 	display: flex;
