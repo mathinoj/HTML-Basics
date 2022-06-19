@@ -66,6 +66,8 @@ html{
 	padding: 15px 25px;
 	width: 100%;
 	max-width: 960px;
+	display: flex;
+	flex-direction: column;
 }
 
 .pricing-plan{
