@@ -1,0 +1,13 @@
+{
+  "folders": [
+	{
+		"path": "."
+	},
+	{
+		"path": "../PricingPanel"
+	}
+],
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": "PricingPanel"
+  }
+}
