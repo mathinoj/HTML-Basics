@@ -1,0 +1,126 @@
+h1{
+    color: rebeccapurple;
+    text-align: center;
+    text-decoration: green wavy underline;
+    padding-top: 30px;
+    background-color: burlywood;
+}
+
+button{
+    color: rosybrown;
+    background: black;
+}
+
+p{
+    font-family: fantasy;
+}
+
+body{
+    background-color: antiquewhite;
+}
+
+#noReg{
+    background-color: coral;
+    color: black;
+}
+
+#tenK{
+    background-color: blue;
+}
+/* had to do as ID in label for this to work, couldnt use ID in input. Also tried as class, but no worky */
+
+input[type="password"]{
+    color: orangered;
+}
+
+button:hover{
+    background-color: yellow;
+}
+
+button:active{
+    background-color: brown;
+}
+
+p::selection{
+    background-color: aquamarine;
+}
+
+#firstName{
+    border-width: 2px;
+    border-style: dashed;
+    border-radius: 30px;
+    border-color: brown;
+}
+
+#pad{
+    margin-top: 15px;
+/* before you had to add <HR> to create a break, cuz if not the button and this was on each other */
+    border: 2px;
+    border-color: black;
+    border-style: solid;
+    padding-left: 500px;
+    padding-right: 500px;
+    text-align: center;
+    border-radius: 25px;
+}
+
+#display{
+    height: 200px;
+    width: 200px;
+    background-color: blue;
+    border: solid black;
+    display: inline-block;
+    margin: 20px;
+}
+
+section{
+    /* margin-top: 20px; */
+    background-color: royalblue;
+    width: 600px;
+    height: 600px;
+}
+
+#section{
+    background-color: orangered;
+    width: 50%;
+    height: 50%;
+}
+/* in the 'section' and '#section' example we see that '#section' takes percentage of the parent element ('section') */
+
+article{
+    font-size: 10px;
+}
+
+#emButton{
+    font-size: 1em;
+    padding: 0 1em;
+    border-radius: .05em;
+    background-color: yellowgreen;
+    color: brown;
+}
+
+/* TRANSITIONS MODULE */
+.circle{
+    width: 100px;
+    height: 100px;
+    background-color: darkslateblue;
+    transition: 1s;
+}
+
+.circle:hover{
+    border-radius: 50%;
+    background-color: chocolate;
+}
+
+.circleTwo{
+    margin-top: 15px;
+    width: 150px;
+    height: 150px;
+    background-color: darkgreen;
+    transition: background-color 2s;
+}
+
+.circleTwo:hover{
+    background-color: chartreuse;
+    border-radius: 50%;
+}
