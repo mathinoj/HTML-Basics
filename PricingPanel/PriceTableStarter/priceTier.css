@@ -78,9 +78,9 @@ html{
 	border-bottom: 1px solid #e1f1ff;
 }
 
-/* .pricing-plan:last-child{
+.pricing-plan:last-child{
 	border-bottom: none;
-} */
+}
 /* THIS TAKES AWAY THE BORDER AT THE BOTTOM */
 
 .pricing-img{
@@ -105,7 +105,7 @@ html{
 	font-size: 12px;
 	line-height: 1.5;
 	padding: 15px 0;
-	border-top: 1ps solid #e1f1ff; 
+	border-top: 1px solid #e1f1ff; 
 }
 
 .pricing-features-item:last-child{
@@ -150,3 +150,17 @@ html{
 	width: 300px;
 	height: 300px;
 } */
+
+@media (min-width: 900px){
+	.panel{
+		flex-direction: row;
+	}
+	.pricing-plan{
+		border-bottom: none;
+		border-right: 1px solid #e1f1ff;
+		padding: 25px 50px;
+	}
+	.pricing-plan:last-child{
+		border-right: none;
+	}
+}
