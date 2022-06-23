@@ -30,13 +30,22 @@ if(even % 2 === 0){
 
 
     // ELSE IF ELSE
-    const age = prompt('Enter age:');
-    if (age <= 5){
-      console.log(age + " Free - baby");
-    } else if (age <= 10) {
-      console.log(age + " $10 - child");
-    } else if (age < 65){
-      console.log(age + " $15 - adult");
-    } else {
-      console.log(age + " $10 - senior");
-    }
+    // const age = prompt('Enter age:');
+    // if (age <= 5){
+    //   console.log(age + " Free - baby");
+    // } else if (age <= 10) {
+    //   console.log(age + " $10 - child");
+    // } else if (age < 65){
+    //   console.log(age + " $15 - adult");
+    // } else {
+    //   console.log(age + " $10 - senior");
+    // }
+
+let pword = prompt('Enter P-Word');
+if(pword.length >= 6 && pword.indexOf(' ') === -1){
+  console.log('Good Pword')
+} else {
+  console.log('Pword invalid')
+}
+
+// We did indexOf(' ') === -1 cuz having no spaces will give us a -1 index. Therefore when we run the indexOf(' ') it searches for a space in the pword. If user input a space then it will not equal to -1, cuz it would be true that they used a space. But if they does not input a space then it WILL equal to -1, which in this case is a good thing cuz we dont want pword to have spaces.
