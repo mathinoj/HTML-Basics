@@ -1,0 +1,20 @@
+section{
+    width: 75%;
+    height: 700px;
+    /* background-image: url("https://images.unsplash.com/photo-1562869929-bda0650edb1f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8b2F4YWNhfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=1400&q=60"); */
+    /* background: center/40% no-repeat url("https://images.unsplash.com/photo-1562869929-bda0650edb1f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8b2F4YWNhfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=1400&q=60"), blueviolet; */
+    background: center/cover url("https://images.unsplash.com/photo-1562869929-bda0650edb1f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8b2F4YWNhfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=1400&q=60");
+    /* background-size: cover; */
+    /* background-position: top; */
+    margin: 0 auto;
+}
+
+h1{
+    font-size: 80px;
+    color: blanchedalmond;
+    font-family: 'Fascinate', cursive;
+}
+
+p{
+    font-family: 'Shadows Into Light', cursive;
+}
