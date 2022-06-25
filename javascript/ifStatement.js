@@ -222,9 +222,15 @@ if (userPlay !== true) {
     alert("Bye Felicia");
 } else {
     let entra = prompt("Enter num");
+
+    // if (entra !== Number) {
+    //     prompt("Not a number. Try again:");
+    // }
+
     let convert = parseInt(entra);
     let hundo = 100;
     let added = hundo + convert;
+
     if (entra % 2 === 0 && entra > 0) {
         alert(
             "Your number is even and is positive. If we added 100 to your number, the new total would be : " +
@@ -243,10 +249,14 @@ if (userPlay !== true) {
                 added +
                 "."
         );
-    } else if (entra % 2 !== 0 && entra < 0)
+    } else if (entra % 2 !== 0 && entra < 0) {
         alert(
             "Your number is odd and is negative. If we added 100 to your number, the new total would be : " +
                 added +
                 "."
         );
+    } else {
+        entra !== Number;
+        alert("Not a number. You're out asshole!");
+    }
 }
