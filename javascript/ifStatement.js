@@ -60,3 +60,31 @@ if((age >= 0 && age < 5) || age >= 65){
 }else{
   console.log('Wrong number foo!')
 }
+
+// function analyzeColor(color){
+// var message;
+// if(color === 'blue'){
+//   console.log('sky')
+// } else if (color === 'red'){
+//   console.log('strawberry')
+// } else {
+//   console.log('No se')
+// }
+// return message;
+// }
+
+// let colorAsk = prompt('enter color');
+// if(colorAsk === 'blue'){
+//   console.log('sky')
+//   alert(colorAsk + ' is color of sky')
+// } else if (colorAsk === 'red'){
+//   console.log('strawberry')
+//   alert(colorAsk + ' is color of scrawberry')
+// } else if (colorAsk === 'cyan'){
+//   console.log('what?')
+//   alert(colorAsk + '? Is that some form of juice?')
+// } else {
+//   console.log('imma learn that color')
+//   alert(colorAsk + '? Imma haveta learn that one. ')
+// }
+
