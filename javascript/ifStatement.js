@@ -149,7 +149,9 @@ function calculateTool() {
         alert(
             "Your number is: " +
                 randomNumber +
-                ", which gives you 10% discount. Your total is: $" +
+                ", which gives you 10% discount. Current total is: $" +
+                totalCost +
+                ". Your new total is: $" +
                 (totalCost - 0.1 * totalCost) +
                 " ."
         );
@@ -157,7 +159,9 @@ function calculateTool() {
         alert(
             "Your number is: " +
                 randomNumber +
-                ", which gives you 25% discount. Your total is: $" +
+                ", which gives you 25% discount. Current total is: $" +
+                totalCost +
+                ". Your new total is: $" +
                 (totalCost - 0.25 * totalCost) +
                 " ."
         );
@@ -165,7 +169,9 @@ function calculateTool() {
         alert(
             "Your number is: " +
                 randomNumber +
-                ", which gives you 35% discount. Your total is: $" +
+                ", which gives you 35% discount. Current total is: $" +
+                totalCost +
+                ". Your new total is: $" +
                 (totalCost - 0.35 * totalCost) +
                 " ."
         );
@@ -173,7 +179,9 @@ function calculateTool() {
         alert(
             "Your number is: " +
                 randomNumber +
-                ", which gives you 50% discount. Your total is: $" +
+                ", which gives you 50% discount. Current total is: $" +
+                totalCost +
+                ". Your new total is: $" +
                 (totalCost - 0.5 * totalCost) +
                 " ."
         );
@@ -182,7 +190,9 @@ function calculateTool() {
         alert(
             "Your number is: " +
                 randomNumber +
-                ", which gives you 100% discount. Your total is: $" +
+                ", which gives you 100% discount. Current total is: $" +
+                totalCost +
+                ". Your new total is: $" +
                 0 +
                 " ."
         );
