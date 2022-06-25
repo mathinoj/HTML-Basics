@@ -132,73 +132,121 @@ if (luckyNum === 0) {
 // }
 // calculateTotal();
 
-function calculateTool() {
-    let numbers = ["0", "1", "2", "3", "4", "5"];
-    let randomNumber = numbers[Math.floor(Math.random() * numbers.length)];
+// function calculateTool() {
+//     let numbers = ["0", "1", "2", "3", "4", "5"];
+//     let randomNumber = numbers[Math.floor(Math.random() * numbers.length)];
 
-    let totalCost = prompt("How much your grocery?");
+//     let totalCost = prompt("How much your grocery?");
 
-    if (randomNumber === "0") {
-        alert(
-            "Your number is: " +
-                randomNumber +
-                ". Sorry no discount. Your total is still: $" +
-                totalCost
-        );
-    } else if (randomNumber === "1") {
-        alert(
-            "Your number is: " +
-                randomNumber +
-                ", which gives you 10% discount. Current total is: $" +
-                totalCost +
-                ". Your new total is: $" +
-                (totalCost - 0.1 * totalCost) +
-                " ."
-        );
-    } else if (randomNumber === "2") {
-        alert(
-            "Your number is: " +
-                randomNumber +
-                ", which gives you 25% discount. Current total is: $" +
-                totalCost +
-                ". Your new total is: $" +
-                (totalCost - 0.25 * totalCost) +
-                " ."
-        );
-    } else if (randomNumber === "3") {
-        alert(
-            "Your number is: " +
-                randomNumber +
-                ", which gives you 35% discount. Current total is: $" +
-                totalCost +
-                ". Your new total is: $" +
-                (totalCost - 0.35 * totalCost) +
-                " ."
-        );
-    } else if (randomNumber === "4") {
-        alert(
-            "Your number is: " +
-                randomNumber +
-                ", which gives you 50% discount. Current total is: $" +
-                totalCost +
-                ". Your new total is: $" +
-                (totalCost - 0.5 * totalCost) +
-                " ."
-        );
-    } else {
-        randomNumber === "5";
-        alert(
-            "Your number is: " +
-                randomNumber +
-                ", which gives you 100% discount. Current total is: $" +
-                totalCost +
-                ". Your new total is: $" +
-                0 +
-                " ."
-        );
-    }
+//     if (randomNumber === "0") {
+//         alert(
+//             "Your number is: " +
+//                 randomNumber +
+//                 ". Sorry no discount. Your total is still: $" +
+//                 totalCost
+//         );
+//     } else if (randomNumber === "1") {
+//         alert(
+//             "Your number is: " +
+//                 randomNumber +
+//                 ", which gives you 10% discount. Current total is: $" +
+//                 totalCost +
+//                 ". Your new total is: $" +
+//                 (totalCost - 0.1 * totalCost) +
+//                 " ."
+//         );
+//     } else if (randomNumber === "2") {
+//         alert(
+//             "Your number is: " +
+//                 randomNumber +
+//                 ", which gives you 25% discount. Current total is: $" +
+//                 totalCost +
+//                 ". Your new total is: $" +
+//                 (totalCost - 0.25 * totalCost) +
+//                 " ."
+//         );
+//     } else if (randomNumber === "3") {
+//         alert(
+//             "Your number is: " +
+//                 randomNumber +
+//                 ", which gives you 35% discount. Current total is: $" +
+//                 totalCost +
+//                 ". Your new total is: $" +
+//                 (totalCost - 0.35 * totalCost) +
+//                 " ."
+//         );
+//     } else if (randomNumber === "4") {
+//         alert(
+//             "Your number is: " +
+//                 randomNumber +
+//                 ", which gives you 50% discount. Current total is: $" +
+//                 totalCost +
+//                 ". Your new total is: $" +
+//                 (totalCost - 0.5 * totalCost) +
+//                 " ."
+//         );
+//     } else {
+//         randomNumber === "5";
+//         alert(
+//             "Your number is: " +
+//                 randomNumber +
+//                 ", which gives you 100% discount. Current total is: $" +
+//                 totalCost +
+//                 ". Your new total is: $" +
+//                 0 +
+//                 " ."
+//         );
+//     }
 
-    console.log(randomNumber);
-    console.log(totalCost);
+//     console.log(randomNumber);
+//     console.log(totalCost);
+// }
+// calculateTool();
+
+// function anotherOne() {
+//     let user = confirm("click one");
+//     if (user !== true) {
+//         alert("Bye");
+//     } else if (user === true) {
+//         let enterNum = prompt("Enter number");
+//     } else if (enterNum % 2 === 0) alert("good");
+//     // if (enterNum % 2 === 0) {
+//     //     console.log(enterNum);
+//     //     alert("Number is even");
+//     // }
+// }
+// anotherOne();
+
+let userPlay = confirm("Pick num?");
+if (userPlay !== true) {
+    alert("Bye Felicia");
+} else {
+    let entra = prompt("Enter num");
+    let convert = parseInt(entra);
+    let hundo = 100;
+    let added = hundo + convert;
+    if (entra % 2 === 0 && entra > 0) {
+        alert(
+            "Your number is even and is positive. If we added 100 to your number, the new total would be : " +
+                added +
+                "."
+        );
+    } else if (entra % 2 !== 0 && entra > 0) {
+        alert(
+            "Your number is odd and is positive. If we added 100 to your number, the new total would be : " +
+                added +
+                "."
+        );
+    } else if (entra % 2 === 0 && entra < 0) {
+        alert(
+            "Your number is even and is negative. If we added 100 to your number, the new total would be : " +
+                added +
+                "."
+        );
+    } else if (entra % 2 !== 0 && entra < 0)
+        alert(
+            "Your number is odd and is negative. If we added 100 to your number, the new total would be : " +
+                added +
+                "."
+        );
 }
-calculateTool();
