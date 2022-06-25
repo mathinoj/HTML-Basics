@@ -88,3 +88,39 @@ if((age >= 0 && age < 5) || age >= 65){
 //   alert(colorAsk + '? Imma haveta learn that one. ')
 // }
 
+
+var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
+var randomColor = colors[Math.floor(Math.random() * colors.length)];
+
+function randy(){
+  if (colors === randomColor);
+}
+console.log(randomColor);
+
+    // let even = (Math.random() * 100) + 1;
+
+
+let luckyNum = (Math.floor(Math.random() * 6)) + 0;
+console.log(luckyNum)
+// function promo(){
+  if(luckyNum === 0){
+    console.log(luckyNum + ' is your number. No discount')
+  } else if (luckyNum === 1){
+    console.log(luckyNum + ' is your number. 10% discount')
+  } else if (luckyNum === 2){
+    console.log(luckyNum + ' is your number. 25% discount')
+  } else if (luckyNum === 3){
+    console.log(luckyNum + ' is your number. 35% discount')
+  } else if (luckyNum === 4){
+    console.log(luckyNum + ' is your number. 50% discount')
+  } else{
+    console.log(luckyNum + ' is your number. Errthing is FREE')
+  }
+// }
+
+
+let grocery = prompt('How much grocery?')
+
+function calculateTotal (){
+  if (numDisc === 0)
+}
