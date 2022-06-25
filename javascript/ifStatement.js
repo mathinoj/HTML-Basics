@@ -41,11 +41,22 @@ if(even % 2 === 0){
     //   console.log(age + " $10 - senior");
     // }
 
-let pword = prompt('Enter P-Word');
-if(pword.length >= 6 && pword.indexOf(' ') === -1){
-  console.log('Good Pword')
-} else {
-  console.log('Pword invalid')
-}
+// let pword = prompt('Enter P-Word');
+// if(pword.length >= 6 && pword.indexOf(' ') === -1){
+//   console.log('Good Pword')
+// } else {
+//   console.log('Pword invalid')
+// }
 
 // We did indexOf(' ') === -1 cuz having no spaces will give us a -1 index. Therefore when we run the indexOf(' ') it searches for a space in the pword. If user input a space then it will not equal to -1, cuz it would be true that they used a space. But if they does not input a space then it WILL equal to -1, which in this case is a good thing cuz we dont want pword to have spaces.
+
+const age = 10000;
+if((age >= 0 && age < 5) || age >= 65){
+  console.log('Free')
+} else if ( age >= 5 && age < 10){
+  console.log('$10')
+} else if (age >= 10 && age < 65){
+  console.log('$20')
+}else{
+  console.log('Wrong number foo!')
+}
