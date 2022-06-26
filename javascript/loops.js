@@ -46,3 +46,13 @@ for (let i = 0; i < letters.length; i++) {
 // }
 // console.log("You got it correctly");
 // alert("You got it correctly!");
+
+// for (let i = 1; i < 10; i *= 2) {
+//     console.log(i);
+// }
+
+for (let i = 1; i < 10; i++) {
+    let num = i.toString(); // Converts var i (number) into string
+    // console.log(num);
+    console.log(num.repeat(i)); // Repeats string by var i and concatenates them together
+}
