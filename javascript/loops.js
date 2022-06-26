@@ -24,3 +24,17 @@ const people = ["Scooby", "Velma", "Daphne", "Shaggy", "Fred"]; //DONT TOUCH THI
 for (let i = 0; i < people.length; i++) {
     console.log(people[i].toUpperCase());
 }
+
+const letters = [
+    ["a", "b", "c"],
+    ["d", "e", "f"],
+    ["g", "h", "i"],
+];
+
+for (let i = 0; i < letters.length; i++) {
+    const row = letters[i];
+    console.log(`Row # ${i + 1}`);
+    for (let j = 0; j < row.length; j++) {
+        console.log(row[j]);
+    }
+}
