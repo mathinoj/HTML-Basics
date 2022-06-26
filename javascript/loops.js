@@ -38,3 +38,11 @@ for (let i = 0; i < letters.length; i++) {
         console.log(row[j]);
     }
 }
+
+// const secret = "code";
+// let guess = prompt("Enter the secret code: ");
+// while (guess !== secret) {
+//     guess = prompt("Wrong, keep guessing.");
+// }
+// console.log("You got it correctly");
+// alert("You got it correctly!");
