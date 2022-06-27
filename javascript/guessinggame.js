@@ -39,26 +39,6 @@ if (guessNow === "q") {
 } else {
     alert("You guessed rite. Your number of attempts is: " + attempts + ".");
 }
-// } else {
-//   guessNow === "q";
-//   {
-//       break;
-//   }
-
-// console.log("guessNow = " + guessNow);
-// if (guessNow === randomNum) {
-//     alert("You guessed right");
-// }
-
-// let input = prompt("Say sumthin");
-// while (true) {
-//     input = prompt(input);
-//     if (input.toLowerCase() === "stop copying me") {
-//         break;
-//     }
-// }
-// console.log("You win, ok!");
-// alert("You win ok!");
 
 // ENTER MAX NUMVER
 // RANDO NUM IS GENERATED BASED OFF USER Input
