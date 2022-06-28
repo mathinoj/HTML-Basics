@@ -57,5 +57,8 @@ while (commands.includes(userInput)) {
 }
 
 if (userInput === "quit") {
-    alert("You have exited ToDo App");
+    let youSure = confirm("You sure you wanto to exit the ToDo App?");
+    if (youSure === false) {
+        userInput = prompt("What would you like to do?").toLowerCase();
+    }
 }
