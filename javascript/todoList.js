@@ -12,37 +12,43 @@
 //TIP 7 - make sure each todo is assigned INDEX
 
 let commands = ["new", "list", "delete", "quit"];
+let todoArray = ["sell", "trade"];
 
-let userInput = prompt("What would you like to do?").toLowerCase();
-console.log(userInput);
+let userInput = prompt("What would you LYK to do?").toLowerCase();
+// console.log(userInput);
 
-while (!commands.includes(userInput)) {
+while (!commands.includes(userInput) || userInput !== "quit") {
     userInput = prompt("I did not recognize that. What would you like to do?");
-    console.log(userInput);
-}
+    //     console.log(userInput);
+    // }
 
-// let todoArray = [];
-// console.log(todoArray);
+    // console.log(todoArray);
 
-let userTodos = 1;
+    // let userTodos = 1;
 
-while (commands.includes(userInput)) {
-    if (userInput === "quit") break;
-    userTodos++;
+    // while (commands.includes(userInput)) {
+    //     if (userInput === "quit") break;
+    // userTodos++;
+
     if (userInput === "new") {
-        // let todoArray = [];
-        let newTodo = prompt(
-            "You want to enter a new ToDo. Go ahead"
-        ).toString();
-        let storeTodo = todoArray.pop(newTodo);
-        // let anotherTodo = todoArray.unshift(newTodo);
-        console.log(storeTodo);
-        // console.log(anotherTodo);
-    } else if (userInput === "list") {
+        // let todoArray = [""];
+
+        let newTodo = prompt("You want to enter a new ToDo. Go ahead");
+        console.log("LOOKY: " + newTodo);
+        let addedTo = todoArray.push(newTodo);
+        for (let i = 0; i < todoArray.length; i++);
+        console.log(addedTo);
+        console.log(todoArray);
+    }
+
+    if (userInput === "list") {
         let viewList = prompt(
             "Here is the list in the Console. What else would you like to do?"
         );
-        console.log(viewList);
+
+        for (let i = 0; i < todoArray.length; i++) {
+            console.log(i + " " + todoArray[i]);
+        }
     } else if (userInput === "delete") {
         let deleteTodo = prompt(
             "You want to delete. Choose a number from the Console that you want to delete and input it below"
@@ -52,13 +58,16 @@ while (commands.includes(userInput)) {
         //     let quitTodo = alert("Okay you quit");
         //     console.log(quitTodo);
     } else {
-        userInput = prompt("I do not recognize THAT STUFF, please try again");
+        userInput = prompt("What would you like to do THIS TIME?");
     }
+
+    // if (userInput === "quit") break;
 }
 
 if (userInput === "quit") {
     let youSure = confirm("You sure you wanto to exit the ToDo App?");
-    if (youSure === false) {
-        userInput = prompt("What would you like to do?").toLowerCase();
-    }
+    // } else if (youSure === false) {
+    //     userInput = prompt("What would you like to do?").toLowerCase();
+} else {
+    userInput = prompt("What would you like to do IS THIS IT?").toLowerCase();
 }
