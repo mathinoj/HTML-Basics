@@ -11,97 +11,69 @@
 //TIP 6 - conditional will be used inside loop
 //TIP 7 - make sure each todo is assigned INDEX
 
-let commands = ["new", "list", "delete", "quit"];
 let todoArray = ["sell", "trade"];
 
-let userInput = prompt("What would you LYK to do?").toLowerCase();
+let userInput = prompt("What would you like to do?").toLowerCase();
 console.log(userInput);
 if (userInput === "quit") {
     let youSure = confirm("You sure you wanto to exit the ToDo App?");
     console.log(youSure);
 
     if (youSure === false) {
-        userInput = prompt(
-            "What would you like to do IS THIS IT?"
-        ).toLowerCase();
+        userInput = prompt("What would you like to do?").toLowerCase();
         console.log(youSure);
     }
 }
 
 while (userInput !== "quit") {
     console.log(userInput);
-    // if (userInput === "quit") {
-    //     alert("You sure you wanto to exit the ToDo App?");
-    //     console.log(youSure);
-    //     console.log(userInput);
-    // }
 
     if (userInput === "new") {
         let newTodo = prompt("Enter a new ToDo.");
         let addedTo = todoArray.push(newTodo);
-        alert(newTodo + " has been added to the list.");
+        alert("Added to the list: " + newTodo);
         for (let i = 0; i < todoArray.length; i++);
         console.log(addedTo);
         console.log(todoArray);
     }
 
     if (userInput === "list") {
-        console.log("***************");
+        console.log("**********List**********");
 
         for (let i = 0; i < todoArray.length; i++) {
-            console.log(i + " " + todoArray[i]);
+            console.log(i + " - " + todoArray[i]);
         }
-        console.log("***************");
+        console.log("**********List**********");
         userInput = alert("Here is the list in the Console.");
     } else if (userInput === "delete") {
-        console.log("*******Delete********");
+        console.log("**********Delete**********");
         for (let i = 0; i < todoArray.length; i++) {
-            console.log(i + "-" + todoArray[i]);
+            console.log(i + " - " + todoArray[i]);
         }
-        console.log("*******Delete********");
+        console.log("**********Delete**********");
         let deleteTodo = parseInt(
             prompt(
-                "You want to delete. Choose a number from the Console that you want to delete and input it below"
+                "Choose a number from the console that you want to delete, and input it below: "
             )
         );
         console.log(deleteTodo);
 
-        // if (deleteTodo !== NaN && deleteTodo === "") {
-        // let erease = todoArray.splice(deleteTodo, 1);
-        // console.log("erase -- " + erease);
-        // alert("things have been deleted");
-        // for (let i = 0; i < todoArray.length; i++) {
-        //     console.log(i + " " + todoArray[i]);
-        // }
+        let eraseIndex = todoArray.splice(deleteTodo, 1);
+        console.log("eraseIndex -- " + eraseIndex);
 
-        // if (deleteTodo === NaN || deleteTodo !== null) {
-        //     let tryDeleteAgain = prompt("Please choose number from console.");
-        //     console.log(tryDeleteAgain);
-        //     let eraseAgain = todoArray.splice(tryDeleteAgain, 1);
-        //     console.log("eraseAgain -- " + eraseAgain);
-        //     alert("things have been deleted");
-        //     for (let i = 0; i < todoArray.length; i++) {
-        //         console.log(i + " " + todoArray[i]);
-        //     }
-        // } else {
-
-        let erease = todoArray.splice(deleteTodo, 1);
-        console.log("erase -- " + erease);
-        alert("things have been deleted");
+        alert(eraseIndex + " has been deleted.");
         for (let i = 0; i < todoArray.length; i++) {
-            console.log(i + " " + todoArray[i]);
+            console.log(i + " - " + todoArray[i]);
         }
     }
 
-    userInput = prompt("What would you like to do IS THIS IT?").toLowerCase();
+    userInput = prompt("What would you like to do?").toLowerCase();
     if (userInput === "quit") {
         let youSure = confirm("You sure you wanto to exit the ToDo App?");
         console.log(youSure);
 
         if (youSure === false) {
-            userInput = prompt(
-                "What would you like to do IS THIS IT?"
-            ).toLowerCase();
+            userInput = prompt("What would you like to do?").toLowerCase();
             console.log(youSure);
         }
     }
