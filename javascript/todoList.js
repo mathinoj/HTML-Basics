@@ -48,22 +48,44 @@ while (userInput !== "quit") {
             )
         );
         console.log(deleteTodo);
-        if (deleteTodo !== NaN) {
-            prompt("Please choose number from console.");
-        } else if (deleteTodo === 'quit'){
-          break;
-        }
-        } else {
-            // for (let i = 0; todoArray.length; i++) {}
 
-            //todoArray.pop(deleteTodo)
-            let erease = todoArray.splice(deleteTodo, 1);
-            console.log(erease);
+        let erease = todoArray.splice(deleteTodo, 1);
+        console.log("erase -- " + erease);
+        alert("things have been deleted");
+        for (let i = 0; i < todoArray.length; i++) {
+            console.log(i + " " + todoArray[i]);
+        }
+        // if (deleteTodo !== NaN) {
+        //     prompt("Please choose number from console.");
+        //     console.log(deleteTodo);
+        if (deleteTodo !== NaN && deleteTodo !== null) {
+            let tryDeleteAgain = prompt("Please choose number from console.");
+            console.log(tryDeleteAgain);
+            let eraseAgain = todoArray.splice(tryDeleteAgain, 1);
+            console.log("eraseAgain -- " + eraseAgain);
             alert("things have been deleted");
             for (let i = 0; i < todoArray.length; i++) {
                 console.log(i + " " + todoArray[i]);
             }
         }
+        // } else {
+        //     let erease = todoArray.splice(deleteTodo, 1);
+        //     console.log("erase " + erease);
+        //     alert("things have been deleted");
+        //     for (let i = 0; i < todoArray.length; i++) {
+        //         console.log(i + " " + todoArray[i]);
+        //     }
+        // }
+        // if (deleteTodo !== NaN) {
+        //     let tryDeleteAgain = prompt("Please choose number from console.");
+        //     console.log(tryDeleteAgain);
+        //     let eraseAgain = todoArray.splice(tryDeleteAgain, 1);
+        //     console.log(eraseAgain);
+        //     alert("things have been deleted");
+        //     for (let i = 0; i < todoArray.length; i++) {
+        //         console.log(i + " " + todoArray[i]);
+        //     }
+        // }
     }
     if (userInput === "quit") {
         userInput = prompt("What would you like to do THIS TIME?");
