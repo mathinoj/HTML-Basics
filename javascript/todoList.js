@@ -48,10 +48,22 @@ while (userInput !== "quit") {
             )
         );
         console.log(deleteTodo);
-        for (let i = 0; todoArray.length; i++) {
-            let;
+        if (deleteTodo !== NaN) {
+            prompt("Please choose number from console.");
+        } else if (deleteTodo === 'quit'){
+          break;
         }
-        //todoArray.pop(deleteTodo)
+        } else {
+            // for (let i = 0; todoArray.length; i++) {}
+
+            //todoArray.pop(deleteTodo)
+            let erease = todoArray.splice(deleteTodo, 1);
+            console.log(erease);
+            alert("things have been deleted");
+            for (let i = 0; i < todoArray.length; i++) {
+                console.log(i + " " + todoArray[i]);
+            }
+        }
     }
     if (userInput === "quit") {
         userInput = prompt("What would you like to do THIS TIME?");
