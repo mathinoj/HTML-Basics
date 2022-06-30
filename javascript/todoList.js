@@ -15,14 +15,31 @@ let commands = ["new", "list", "delete", "quit"];
 let todoArray = ["sell", "trade"];
 
 let userInput = prompt("What would you LYK to do?").toLowerCase();
-// console.log(userInput);
+console.log(userInput);
+if (userInput === "quit") {
+    let youSure = confirm("You sure you wanto to exit the ToDo App?");
+    console.log(youSure);
 
-// while (!commands.includes(userInput) || userInput !== "quit") {
+    if (youSure === false) {
+        userInput = prompt(
+            "What would you like to do IS THIS IT?"
+        ).toLowerCase();
+        console.log(youSure);
+    }
+}
+
 while (userInput !== "quit") {
+    console.log(userInput);
+    // if (userInput === "quit") {
+    //     alert("You sure you wanto to exit the ToDo App?");
+    //     console.log(youSure);
+    //     console.log(userInput);
+    // }
+
     if (userInput === "new") {
         let newTodo = prompt("Enter a new ToDo.");
-        console.log("LOOKY: " + newTodo);
         let addedTo = todoArray.push(newTodo);
+        alert(newTodo + " has been added to the list.");
         for (let i = 0; i < todoArray.length; i++);
         console.log(addedTo);
         console.log(todoArray);
@@ -30,7 +47,7 @@ while (userInput !== "quit") {
 
     if (userInput === "list") {
         console.log("***************");
-        //  prompt("Here is the list in the Console. What else would you like to do?");
+
         for (let i = 0; i < todoArray.length; i++) {
             console.log(i + " " + todoArray[i]);
         }
@@ -75,17 +92,17 @@ while (userInput !== "quit") {
             console.log(i + " " + todoArray[i]);
         }
     }
-    if (userInput === "quit") {
-        userInput = prompt("What would you like to do THIS TIME?");
-    }
 
+    userInput = prompt("What would you like to do IS THIS IT?").toLowerCase();
     if (userInput === "quit") {
         let youSure = confirm("You sure you wanto to exit the ToDo App?");
-        // } else if (youSure === false) {
-        //     userInput = prompt("What would you like to do?").toLowerCase();
-    } else {
-        userInput = prompt(
-            "What would you like to do IS THIS IT?"
-        ).toLowerCase();
+        console.log(youSure);
+
+        if (youSure === false) {
+            userInput = prompt(
+                "What would you like to do IS THIS IT?"
+            ).toLowerCase();
+            console.log(youSure);
+        }
     }
 }
