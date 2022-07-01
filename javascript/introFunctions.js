@@ -10,3 +10,34 @@ function rant(message) {
     console.log(message.toUpperCase());
     console.log(message.toUpperCase());
 }
+
+function repeat(str, numTimes) {
+    let result = " ";
+    for (let i = 0; i < numTimes; i++) {
+        result += str;
+    }
+    console.log(result);
+}
+
+function isSnakeEyes(dieOne, dieTwo) {
+    if (dieOne === 1 && dieTwo === 1) {
+        console.log("Snake Eyes!");
+    } else {
+        console.log("Not Snake Eyes!");
+    }
+}
+
+function isShortsWeather(temp) {
+    if (temp >= 75) {
+        return true;
+    }
+    return false;
+}
+
+//Function should return last element of array without removing element. If array is empty it should return null
+function lastElement(arr) {
+    if (arr.length < 1) {
+        return null;
+    }
+    return arr[arr.length - 1];
+}
