@@ -41,3 +41,10 @@ function lastElement(arr) {
     }
     return arr[arr.length - 1];
 }
+
+function capitalize(strAgain) {
+    let upper = strAgain[0].toUpperCase();
+    let restOf = strAgain.slice(1, strAgain.length);
+
+    return upper + restOf;
+}
