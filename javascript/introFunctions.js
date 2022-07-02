@@ -59,3 +59,25 @@ function sumArray(arrNums) {
     }
     return total;
 }
+
+//Function takes in one parameter and returns day of week. HINT: Store days of week in an array or use an object with numerical kewys. When function is called, plug the number into the array/object youve created to retrieve teh corresponding day name and then return that value.
+function returnDay(numDay) {
+    if (numDay < "1" || numDay > "7") {
+        return null;
+    } else if (numDay === 1) {
+        return "Monday";
+    } else if (numDay === 2) {
+        return "Tuesday";
+    } else if (numDay === 3) {
+        return "Wednesday";
+    } else if (numDay === 4) {
+        return "Thursday";
+    } else if (numDay === 5) {
+        return "Friday";
+    } else if (numDay === 6) {
+        return "Saturday";
+    } else {
+        return "Sunday";
+    }
+}
+// returnDay;
