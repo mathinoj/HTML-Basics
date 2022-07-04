@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title></title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <h1>Coffee!</h1>
+        <form>
+            <div id="search" type="search">
+                <input type="text" placeholder="Search.." id="userInput" />
+                <!-- <button id="search" type="search">Submit</button> -->
+                <!-- </div> -->
+                <label for="roast-selection"></label>
+                <select id="roast-selection">
+                    <option>light</option>
+                    <option>medium</option>
+                    <option>dark</option>
+                </select>
+                <input id="submit" type="submit" onclick="userSearch()" />
+            </div>
+        </form>
+
+        <!-- <table>
+            <thead>
+                <div>
+                    <th hidden>ID</th>
+                    <h2>NAME</h2>
+                    <p>ROAST</p>
+                </div>
+            </thead>
+            <tbody id="coffees"></tbody>
+        </table> -->
+
+        <div id="coffees">
+            <div>ID</div>
+            <div>
+                <h2>NAME</h2>
+
+                <p>ROAST</p>
+            </div>
+        </div>
+
+        <!-- Tables are a little old school, you need to refactor the code so that each coffee is displayed in a div that contains a heading displaying the coffee name, and the type of roast in a paragraph. Don't display the ids, these are only for our application's internal use -->
+
+        <script src="/javascript/coffeeProject.js"></script>
+    </body>
+</html>
