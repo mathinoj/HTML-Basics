@@ -58,6 +58,25 @@ tbody.innerHTML = renderCoffees(coffees);
 
 submitButton.addEventListener("click", updateCoffees);
 
+// var submitSearch = document.querySelector("#myText");
+// console.log(submitSearch);
+// submitSearch.addEventListener("click", updateCoffees);
+
+// function userSearch() {
+//     let save = document.getElementById("#submitSearch").value;
+//     console.log(save);
+//     // for (let i = 0; i < coffees.length; i++) {}
+// }
+
 function userSearch() {
-    let save = document.getElementById("userInput").value;
+    let searchCoff = document.getElementById("userInput").value;
+    console.log(searchCoff);
+
+    // let rez = coffees.filter();
+
+    for (let i = 0; i < coffees.length; i++) {
+        if (coffees[i].name.includes(searchCoff)) {
+            console.log(coffees[i]);
+        }
+    }
 }
