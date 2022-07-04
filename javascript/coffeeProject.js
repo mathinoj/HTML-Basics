@@ -32,7 +32,7 @@ function updateCoffees(e) {
 
 // from http://www.ncausa.org/About-Coffee/Coffee-Roasts-Guide
 var rev = [
-    { name: "Light City", roast: "light" },
+    { id: 1, name: "Light City", roast: "light" },
     { id: 2, name: "Half City", roast: "light" },
     { id: 3, name: "Cinnamon", roast: "light" },
     { id: 4, name: "City", roast: "medium" },
@@ -72,10 +72,16 @@ function userSearch() {
     let searchCoff = document.getElementById("userInput").value;
     console.log(searchCoff);
 
-    // let rez = coffees.filter();
+    // let upper = searchCoff.toUppeCase();
+    // let lower = searchCoff.toLowerCase();
+
+    // coffees.toLowerCase();
 
     for (let i = 0; i < coffees.length; i++) {
-        if (coffees[i].name.includes(searchCoff)) {
+        if (
+            coffees[i].name.includes(searchCoff.toLowerCase()) ||
+            coffees[i].name.includes(searchCoff.toUpperCase())
+        ) {
             console.log(coffees[i]);
         }
     }
