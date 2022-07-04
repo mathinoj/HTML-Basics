@@ -60,6 +60,9 @@ submitButton.addEventListener("click", updateCoffees);
 
 //SEARCH FUNCTION********************************
 
+var submitCoff = document.querySelector("#coffSearch");
+submitCoff.addEventListener("click", updateCoffees);
+
 function userSearch() {
     let searchCoff = document.getElementById("userInput").value;
     console.log(searchCoff);
