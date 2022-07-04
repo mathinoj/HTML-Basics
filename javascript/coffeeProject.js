@@ -58,29 +58,18 @@ tbody.innerHTML = renderCoffees(coffees);
 
 submitButton.addEventListener("click", updateCoffees);
 
-// var submitSearch = document.querySelector("#myText");
-// console.log(submitSearch);
-// submitSearch.addEventListener("click", updateCoffees);
-
-// function userSearch() {
-//     let save = document.getElementById("#submitSearch").value;
-//     console.log(save);
-//     // for (let i = 0; i < coffees.length; i++) {}
-// }
+//SEARCH FUNCTION********************************
 
 function userSearch() {
     let searchCoff = document.getElementById("userInput").value;
     console.log(searchCoff);
 
-    // let upper = searchCoff.toUppeCase();
-    // let lower = searchCoff.toLowerCase();
-
-    // coffees.toLowerCase();
-
     for (let i = 0; i < coffees.length; i++) {
+        let lowCoff = coffees[i].name.toLowerCase();
         if (
-            coffees[i].name.includes(searchCoff.toLowerCase()) ||
-            coffees[i].name.includes(searchCoff.toUpperCase())
+            lowCoff.includes(searchCoff.toLowerCase()) ||
+            lowCoff.includes(searchCoff.toUpperCase()) ||
+            lowCoff.includes(searchCoff)
         ) {
             console.log(coffees[i]);
         }
