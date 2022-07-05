@@ -15,9 +15,6 @@
                     id="userInput"
                     onkeyup="userSearch();"
                 />
-                <!-- <button id="coffSearch" type="button" onkeyup="userSearch();">
-                    Search
-                </button> -->
             </div>
             <div>
                 <label for="roast-selection"></label>
@@ -43,28 +40,10 @@
                     <option>Medium</option>
                     <option>Dark</option>
                 </select>
-                <!-- <input
-                    type="text"
-                    placeholder="Add Roast Style"
-                    id="addRoast"
-                    required
-                /> -->
-                <!-- <button id="coffAdd" type="button" onkeyup="addCoffee();"> -->
-                <button id="coffSubmit" type="button">Submit</button>
+                <!-- <button id="coffSubmit" type="button" onclick="addCoffee();"> -->
+                <button id="coffSubmit" type="button" value="">Submit</button>
             </div>
         </form>
-
-        <!-- <table>
-            <thead>
-                <div>
-                    <th hidden>ID</th>
-                    <h2>NAME</h2>
-                    <p>ROAST</p>
-                </div>
-            </thead>
-            <tbody id="coffees"></tbody>
-        </table> -->
-
         <div id="coffees">
             <div>ID</div>
             <div>
@@ -75,8 +54,6 @@
             <!-- <tbody id="coffees"></tbody> -->
         </div>
         <!-- <tbody id="coffees"></tbody> -->
-
-        <!-- Tables are a little old school, you need to refactor the code so that each coffee is displayed in a div that contains a heading displaying the coffee name, and the type of roast in a paragraph. Don't display the ids, these are only for our application's internal use -->
 
         <script src="/javascript/coffeeProject.js"></script>
     </body>

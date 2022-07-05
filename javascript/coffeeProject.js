@@ -22,8 +22,6 @@ function updateCoffees(e) {
     e.preventDefault(); // don't submit the form, we just want to update the data
     var selectedRoast = roastSelection.value;
     console.log(selectedRoast);
-    // let allCoffee = allThem.value;
-    // console.log(allCoffee);
     var filteredCoffees = [];
     coffees.forEach(function (coffee) {
         if (coffee.roast === selectedRoast) {
@@ -64,10 +62,6 @@ tbody.innerHTML = renderCoffees(coffees);
 submitButton.addEventListener("click", updateCoffees);
 
 //SEARCH FUNCTION********************************
-
-// var submitCoff = document.querySelector("#coffSearch");
-// submitCoff.addEventListener(onkeyup, updateCoffees);
-
 function userSearch() {
     let searchCoff = document.getElementById("userInput").value;
     console.log(searchCoff);
@@ -87,6 +81,7 @@ function userSearch() {
     }
 }
 
+//THIS ADDS A COFFEE BASED ON USER INPUTS*********************
 let addCoffButton = document.querySelector("#coffSubmit");
 addCoffButton.addEventListener("click", addCoffee);
 
@@ -99,7 +94,18 @@ function addCoffee() {
     console.log(addID);
     let addShow = [];
 
-    coffees.unshift({ id: addID, name: inputCoffee, roast: addRoast });
+    //ATTEMPT TO SAVE TO LOCAL STORAGE
+    let saveLocal = coffees.unshift({
+        id: addID,
+        name: inputCoffee,
+        roast: addRoast,
+    });
+    console.log(saveLocal);
+    localStorage.setItem("saveLocal", JSON.stringify(saveLocal));
+
+    let getSave = localStorage.getItem("saveLocal");
+    console.log("getSave: ", JSON.parse(getSave));
+    //ATTEMPT TO SAVE TO LOCAL STORAGE
 
     for (let i = 0; i < coffees.length; i++) {
         addShow.push(coffees[i]); // filterSrch.push(coffee)
