@@ -97,16 +97,13 @@ function addCoffee() {
     console.log(addRoast);
     let addID = coffees[0].id + 1;
     console.log(addID);
+    let addShow = [];
 
-    // inputCoffee.unshift(addRoast);
     coffees.unshift({ id: addID, name: inputCoffee, roast: addRoast });
 
     for (let i = 0; i < coffees.length; i++) {
-        // let addID = coffees[i].id + 1;
-        // console.log(addID);
-        // let newIndex = coffees[i];
-        // console.log(newIndex);
-        // let tryIndex = newIndex.id + 1;
-        // console.log(tryIndex);
+        addShow.push(coffees[i]); // filterSrch.push(coffee)
+        console.log(coffees[i]);
     }
+    tbody.innerHTML = renderCoffees(addShow);
 }
