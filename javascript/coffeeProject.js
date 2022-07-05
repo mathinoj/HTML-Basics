@@ -86,3 +86,13 @@ function userSearch() {
         tbody.innerHTML = renderCoffees(filterSrch);
     }
 }
+
+let addCoffButton = document.querySelector("#coffSubmit");
+addCoffButton.addEventListener("click", addCoffee);
+
+function addCoffee() {
+    let inputCoffee = document.getElementById("coffeeName").value;
+    console.log(inputCoffee);
+    let addRoast = document.getElementById("roastAdd").value;
+    console.log(addRoast);
+}
