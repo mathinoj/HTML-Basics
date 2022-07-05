@@ -58,7 +58,6 @@ var coffees = rev.reverse();
 var tbody = document.querySelector("#coffees");
 var submitButton = document.querySelector("#submit");
 var roastSelection = document.querySelector("#roast-selection");
-let allThem = document.querySelector("#allCoffz");
 
 tbody.innerHTML = renderCoffees(coffees);
 
