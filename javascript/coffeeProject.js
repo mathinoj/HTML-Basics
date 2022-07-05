@@ -95,4 +95,18 @@ function addCoffee() {
     console.log(inputCoffee);
     let addRoast = document.getElementById("roastAdd").value;
     console.log(addRoast);
+    let addID = coffees[0].id + 1;
+    console.log(addID);
+
+    // inputCoffee.unshift(addRoast);
+    coffees.unshift({ id: addID, name: inputCoffee, roast: addRoast });
+
+    for (let i = 0; i < coffees.length; i++) {
+        // let addID = coffees[i].id + 1;
+        // console.log(addID);
+        // let newIndex = coffees[i];
+        // console.log(newIndex);
+        // let tryIndex = newIndex.id + 1;
+        // console.log(tryIndex);
+    }
 }
