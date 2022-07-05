@@ -20,14 +20,16 @@ function renderCoffees(coffees) {
 
 function updateCoffees(e) {
     e.preventDefault(); // don't submit the form, we just want to update the data
-    var selectedRoast = roastSelection.value;
-    var filteredCoffees = [];
+    var selectedRoast = roastSelection.value; //disregard
+    var filteredCoffees = []; //THIS var filterSrch
     coffees.forEach(function (coffee) {
+        //THIS change func Name
         if (coffee.roast === selectedRoast) {
-            filteredCoffees.push(coffee);
+            //coffees[i] === lowCoff
+            filteredCoffees.push(coffee); // filterSrch.push(coffee)
         }
     });
-    tbody.innerHTML = renderCoffees(filteredCoffees);
+    tbody.innerHTML = renderCoffees(filteredCoffees); // renderCoffees(filtereSrch)
 }
 
 // from http://www.ncausa.org/About-Coffee/Coffee-Roasts-Guide
@@ -60,12 +62,13 @@ submitButton.addEventListener("click", updateCoffees);
 
 //SEARCH FUNCTION********************************
 
-var submitCoff = document.querySelector("#coffSearch");
-submitCoff.addEventListener("click", updateCoffees);
+// var submitCoff = document.querySelector("#coffSearch");
+// submitCoff.addEventListener(onkeyup, updateCoffees);
 
 function userSearch() {
     let searchCoff = document.getElementById("userInput").value;
     console.log(searchCoff);
+    let filterSrch = [];
 
     for (let i = 0; i < coffees.length; i++) {
         let lowCoff = coffees[i].name.toLowerCase();
@@ -74,7 +77,9 @@ function userSearch() {
             lowCoff.includes(searchCoff.toUpperCase()) ||
             lowCoff.includes(searchCoff)
         ) {
+            filterSrch.push(coffees[i]); // filterSrch.push(coffee)
             console.log(coffees[i]);
         }
+        tbody.innerHTML = renderCoffees(filterSrch);
     }
 }
