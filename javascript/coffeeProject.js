@@ -61,10 +61,8 @@ tbody.innerHTML = renderCoffees(coffees);
 submitButton.addEventListener("click", updateCoffees);
 
 //SEARCH FUNCTION********************************
-
 // var submitCoff = document.querySelector("#coffSearch");
 // submitCoff.addEventListener(onkeyup, updateCoffees);
-
 function userSearch() {
     let searchCoff = document.getElementById("userInput").value;
     console.log(searchCoff);
@@ -78,7 +76,7 @@ function userSearch() {
             lowCoff.includes(searchCoff)
         ) {
             filterSrch.push(coffees[i]); // filterSrch.push(coffee)
-            console.log(coffees[i]);
+            // console.log(coffees[i]);
         }
         tbody.innerHTML = renderCoffees(filterSrch);
     }
