@@ -12,7 +12,15 @@ body{
 }
 .coffee{
   color: #795663;
-  flex-direction: row;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
 }
+
+/* .coffeeCSS{
+  background-color: blue;
+flex-direction: column;
+justify-content: flex-end;
+align-items: flex-end;
+} */
