@@ -26,7 +26,7 @@
                 />
             </div>
 
-            <div class="container row input-group">
+            <!-- <div class="container row input-group">
                 <label for="roast-selection"></label>
                 <select
                     class="custom-select-outline-secondary col-6"
@@ -38,7 +38,8 @@
                     <option>Dark</option>
                     <option id="allCoffz">All</option>
                 </select>
-                <div class="input-group-append">
+                </div>
+                <div class="input-group-append" class="select col-4">
                     <button
                         id="submit"
                         class="btn btn-outline-secondary"
@@ -46,28 +47,24 @@
                     >
                         Submit
                     </button>
-                </div>
-            </div>
-            <!-- <div class="form-row">
-                <div class="form-group col-md-6">
-                    <input
-                        type="text"
-                        class="form-control"
-                        placeholder="Add Coffee Name"
-                        id="coffeeName"
-                        required
-                    />
-                    </div>
-                <div class="form-group col-md-4">
-                    <select id="roastAdd" class="form-control">
-                        <option selected>Choose Roast...</option>
-                        <option>Light</option>
-                        <option>Medium</option>
-                        <option>Dark</option>
-                    </select>
-                </div>
-            </div>
-            <button id="coffSubmit" type="submit" class="btn">Submit</button> -->
+                </div> -->
+
+                <div class="container row input-group">
+                  <label for="roast-selection"></label>
+                  <select id="roast-selection" class="custom-select-outline-secondary col-6">
+                      <option selected>Choose Roast...</option>
+                      <option>Light</option>
+                      <option>Medium</option>
+                      <option>Dark</option>
+                      <option id="allCoffz">All</option>
+                  </select>
+                  </div>
+                  <div class="input-group-append" class="select col-4">
+                      <button id="submit" class="btn btn-outline-secondary" type="submit">Submit
+                      </button>
+                  </div>
+
+              </div>
 
             <div class="container row input-group">
                 <input
@@ -88,9 +85,10 @@
                     <option>Medium</option>
                     <option>Dark</option>
                 </select>
+                </div>
                 <div class="input-group-append">
-                    <button id="coffSubmit" class="btn" type="button">
-                        Submits
+                    <button id="coffSubmit" class="btn col-4" type="button">
+                        Submit New Coffee
                     </button>
                 </div>
             </div>
