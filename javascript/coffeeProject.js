@@ -84,6 +84,11 @@ function userSearch() {
 //THIS ADDS A COFFEE BASED ON USER INPUTS*********************
 let addCoffButton = document.querySelector("#coffSubmit");
 addCoffButton.addEventListener("click", addCoffee);
+addCoffButton.addEventListener("click", alertAdd);
+
+function alertAdd() {
+    alert("Your coffee has been added to the list.");
+}
 
 function addCoffee() {
     let inputCoffee = document.getElementById("coffeeName").value;
