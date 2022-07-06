@@ -14,7 +14,7 @@
     <body>
         <h1 id="topCoff">Coffee!</h1>
         <form>
-            <div class="container row input-group mb-3">
+            <div class="container row">
                 <input
                     type="text"
                     class="form-control col-6"
@@ -48,28 +48,48 @@
                     </button>
                 </div>
             </div>
+            <!-- <div class="form-row">
+                <div class="form-group col-md-6">
+                    <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Add Coffee Name"
+                        id="coffeeName"
+                        required
+                    />
+                    </div>
+                <div class="form-group col-md-4">
+                    <select id="roastAdd" class="form-control">
+                        <option selected>Choose Roast...</option>
+                        <option>Light</option>
+                        <option>Medium</option>
+                        <option>Dark</option>
+                    </select>
+                </div>
+            </div>
+            <button id="coffSubmit" type="submit" class="btn">Submit</button> -->
 
-            <div class="container row input-group mb-3">
+            <div class="container row input-group">
                 <input
                     type="text"
-                    class="form-control col-6"
                     placeholder="Add Coffee Name"
+                    id="coffeeName"
+                    class="form-control col-6"
                     aria-label="Add Coffee Name"
                     aria-describedby="basic-addon2"
-                    id="coffeeName"
                     required
                 />
             </div>
             <div class="container row input-group">
                 <label for="roastAdd"></label>
-                <select class="custom-select col-6" id="roastAdd">
+                <select id="roastAdd" class="custom-select col-6">
                     <option selected>Choose Roast...</option>
                     <option>Light</option>
                     <option>Medium</option>
                     <option>Dark</option>
                 </select>
                 <div class="input-group-append">
-                    <button id="submit" class="btn" type="submit">
+                    <button id="coffSubmit" class="btn" type="button">
                         Submit
                     </button>
                 </div>
