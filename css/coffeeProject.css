@@ -1,3 +1,18 @@
 #topCoff{
   color: red;
 }
+
+body{
+  background-color: #F3DFC1;
+}
+
+.btn{
+  background-color: #937666;
+  color: black;
+}
+.coffee{
+  color: #795663;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}

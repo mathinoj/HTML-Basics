@@ -14,27 +14,24 @@
     <body>
         <h1 id="topCoff">Coffee!</h1>
         <form>
-            <div>
+            <div class="container row input-group mb-3">
                 <input
                     type="text"
+                    class="form-control col-6"
                     placeholder="Search Coffees..."
+                    aria-label="Search Coffees..."
+                    aria-describedby="basic-addon2"
                     id="userInput"
                     onkeyup="userSearch();"
                 />
             </div>
-            <!-- <div> -->
-            <!-- <label for="roast-selection"></label>
-                <select id="roast-selection">
-                    <option disabled selected value>Select</option>
-                    <option>Light</option>
-                    <option>Medium</option>
-                    <option>Dark</option>
-                    <option id="allCoffz">All</option>
-                </select> -->
 
             <div class="container row input-group">
                 <label for="roast-selection"></label>
-                <select class="custom-select col-3" id="roast-selection">
+                <select
+                    class="custom-select-outline-secondary col-6"
+                    id="roast-selection"
+                >
                     <option selected>Choose Roast...</option>
                     <option>Light</option>
                     <option>Medium</option>
@@ -51,33 +48,31 @@
                     </button>
                 </div>
             </div>
-            <!-- <input id="submit" type="submit" />
-            <!-- </div> -->
 
-            <div>
+            <div class="container row input-group mb-3">
                 <input
                     type="text"
+                    class="form-control col-6"
                     placeholder="Add Coffee Name"
+                    aria-label="Add Coffee Name"
+                    aria-describedby="basic-addon2"
                     id="coffeeName"
                     required
                 />
+            </div>
+            <div class="container row input-group">
                 <label for="roastAdd"></label>
-                <select id="roastAdd">
+                <select class="custom-select col-6" id="roastAdd">
+                    <option selected>Choose Roast...</option>
                     <option>Light</option>
                     <option>Medium</option>
                     <option>Dark</option>
                 </select>
-
-                <!-- <button id="coffSubmit" type="button" onclick="addCoffee();"> -->
-                <button
-                    type="button"
-                    class="btn btn-primary"
-                    id="coffSubmit"
-                    type="button"
-                    value=""
-                >
-                    Submit
-                </button>
+                <div class="input-group-append">
+                    <button id="submit" class="btn" type="submit">
+                        Submit
+                    </button>
+                </div>
             </div>
         </form>
 
