@@ -9,10 +9,13 @@
             integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
             crossorigin="anonymous"
         />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="/css/coffeeProject.css" />
     </head>
     <body>
-        <h1 id="topCoff">Coffee!</h1>
+        <h1 id="topCoff">Desert Coffee!</h1>
         <form>
             <div class="container row">
                 <input
@@ -51,7 +54,7 @@
 
                 <div class="container row input-group">
                   <label for="roast-selection"></label>
-                  <select id="roast-selection" class="custom-select-outline-secondary col-6">
+                  <select id="roast-selection" class="custom-select col-6">
                       <option selected>Choose Roast...</option>
                       <option>Light</option>
                       <option>Medium</option>
@@ -59,11 +62,14 @@
                       <option id="allCoffz">All</option>
                   </select>
                   </div>
-                  <div class="input-group-append" class="select col-4">
+                  <!-- <div class="input-group-append" class="select col-4">
                       <button id="submit" class="btn btn-outline-secondary" type="submit">Submit
                       </button>
-                  </div>
-
+                  </div> -->
+                  <div class="input-group-append">
+                    <button id="submit" class="btn col-4" type="submit">Submit
+                    </button>
+                </div>
               </div>
 
             <div class="container row input-group">
