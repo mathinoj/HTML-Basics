@@ -9,78 +9,93 @@
             integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
             crossorigin="anonymous"
         />
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap"
+            rel="stylesheet"
+        />
         <link rel="stylesheet" href="/css/coffeeProject.css" />
     </head>
     <body>
-        <!-- <h1 id="topCoff">Desert Coffee!</h1> -->
-        <form class="coffeeTry">
-          <div>
-                <input
-                    type="text"
-                    class="form-control col-6"
-                    placeholder="Search Coffees..."
-                    aria-label="Search Coffees..."
-                    aria-describedby="basic-addon2"
-                    id="userInput"
-                    onkeyup="userSearch();"
-                />
-                <!-- <div class="container row input-group"> -->
-                  <label for="roast-selection"></label>
-                  <select id="roast-selection" class="custom-select col-6">
-                      <option selected>Choose Roast...</option>
-                      <option>Light</option>
-                      <option>Medium</option>
-                      <option>Dark</option>
-                      <option id="allCoffz">All</option>
-                  </select>
-                  </div>
-
-                  <div class="input-group-append">
-                    <button id="submit" class="btn col-4" type="submit">Submit
-                    </button>
-                </div>
-
-
-
-            <div>
-                <input
-                    type="text"
-                    placeholder="Add Coffee Name"
-                    id="coffeeName"
-                    class="form-control col-6"
-                    aria-label="Add Coffee Name"
-                    aria-describedby="basic-addon2"
-                    required
-                />
+        <form class="coffeeTry container">
+            <div class="heading">
+                <h1 id="topCoff">Desert Coffee!</h1>
             </div>
-            <div class="container row input-group">
-                <label for="roastAdd"></label>
-                <select id="roastAdd" class="custom-select col-6">
-                    <option selected>Choose Roast...</option>
-                    <option>Light</option>
-                    <option>Medium</option>
-                    <option>Dark</option>
-                </select>
+            <div class="isThisIt container">
+                <div id="firstSection">
+                    <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Search Coffees..."
+                        aria-label="Search Coffees..."
+                        aria-describedby="basic-addon2"
+                        id="userInput"
+                        onkeyup="userSearch();"
+                    />
+                    <!-- <div class="container row input-group"> -->
+                    <select id="roast-selection" class="custom-select">
+                        <option selected>Choose Roast...</option>
+                        <option>Light</option>
+                        <option>Medium</option>
+                        <option>Dark</option>
+                        <option id="allCoffz">All</option>
+                    </select>
+                    <!-- </div> -->
+
+                    <div class="input-group-append">
+                        <button id="submit" class="btn col" type="submit">
+                            Submit
+                        </button>
+                    </div>
                 </div>
-                <div class="input-group-append">
-                    <button id="coffSubmit" class="btn col-4" type="button">
-                        Submit New Coffee
-                    </button>
+
+                <div id="secondSection">
+                    <input
+                        type="text"
+                        placeholder="Add Coffee Name"
+                        id="coffeeName"
+                        class="form-control"
+                        aria-label="Add Coffee Name"
+                        aria-describedby="basic-addon2"
+                        required
+                    />
+                    <!-- </div> -->
+                    <!-- <div class="isThisIt container"> -->
+                    <select id="roastAdd" class="custom-select">
+                        <option selected>Choose Roast...</option>
+                        <option>Light</option>
+                        <option>Medium</option>
+                        <option>Dark</option>
+                    </select>
+                    <!-- </div> -->
+                    <div class="input-group-append">
+                        <button id="coffSubmit" class="btn col" type="button">
+                            Submit New Coffee
+                        </button>
+                    </div>
                 </div>
             </div>
-          </div>
         </form>
 
-        <div class="coffeesGuy container" >
+        <div class="coffeesGuy">
             <!-- <div>ID</div> -->
             <!-- <div>
                 <h2>NAME</h2>
                 <p>ROAST</p>
             </div> -->
             <!-- <tbody id="coffees"></tbody> -->
+
+            <div class="card border-dark mb-3" style="max-width: 18rem">
+                <div class="card-header">Header</div>
+                <div class="card-body text-dark">
+                    <h5 class="card-title">Dark card title</h5>
+                    <p class="card-text">
+                        Some quick example text to build on the card title and
+                        make up the bulk of the card's content.
+                    </p>
+                </div>
+            </div>
         </div>
 
         <script src="/javascript/coffeeProject.js"></script>
