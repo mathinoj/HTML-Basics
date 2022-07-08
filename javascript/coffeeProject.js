@@ -1,7 +1,7 @@
 "use strict";
 
 function renderCoffee(coffee) {
-    var html = '<div class="coffee container">';
+    var html = '<div class="coffeeForm">';
     html += "<div hidden>" + coffee.id + "</div>";
     html += "<h2>" + coffee.name + "</h2>";
     html += "<p>" + coffee.roast + "</p>";
@@ -53,7 +53,7 @@ var rev = [
 
 var coffees = rev.reverse();
 
-var tbody = document.querySelector("#coffees");
+var tbody = document.querySelector(".coffeesGuy");
 var submitButton = document.querySelector("#submit");
 var roastSelection = document.querySelector("#roast-selection");
 

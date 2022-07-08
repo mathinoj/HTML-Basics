@@ -15,9 +15,9 @@
         <link rel="stylesheet" href="/css/coffeeProject.css" />
     </head>
     <body>
-        <h1 id="topCoff">Desert Coffee!</h1>
-        <form>
-            <div class="container row">
+        <!-- <h1 id="topCoff">Desert Coffee!</h1> -->
+        <form class="coffeeTry">
+          <div>
                 <input
                     type="text"
                     class="form-control col-6"
@@ -27,32 +27,7 @@
                     id="userInput"
                     onkeyup="userSearch();"
                 />
-            </div>
-
-            <!-- <div class="container row input-group">
-                <label for="roast-selection"></label>
-                <select
-                    class="custom-select-outline-secondary col-6"
-                    id="roast-selection"
-                >
-                    <option selected>Choose Roast...</option>
-                    <option>Light</option>
-                    <option>Medium</option>
-                    <option>Dark</option>
-                    <option id="allCoffz">All</option>
-                </select>
-                </div>
-                <div class="input-group-append" class="select col-4">
-                    <button
-                        id="submit"
-                        class="btn btn-outline-secondary"
-                        type="submit"
-                    >
-                        Submit
-                    </button>
-                </div> -->
-
-                <div class="container row input-group">
+                <!-- <div class="container row input-group"> -->
                   <label for="roast-selection"></label>
                   <select id="roast-selection" class="custom-select col-6">
                       <option selected>Choose Roast...</option>
@@ -62,17 +37,15 @@
                       <option id="allCoffz">All</option>
                   </select>
                   </div>
-                  <!-- <div class="input-group-append" class="select col-4">
-                      <button id="submit" class="btn btn-outline-secondary" type="submit">Submit
-                      </button>
-                  </div> -->
+
                   <div class="input-group-append">
                     <button id="submit" class="btn col-4" type="submit">Submit
                     </button>
                 </div>
-              </div>
 
-            <div class="container row input-group">
+
+
+            <div>
                 <input
                     type="text"
                     placeholder="Add Coffee Name"
@@ -98,14 +71,15 @@
                     </button>
                 </div>
             </div>
+          </div>
         </form>
 
-        <div id="coffees" class="coffeeCSS">
+        <div class="coffeesGuy container" >
             <!-- <div>ID</div> -->
-            <div id="coffAndRoast">
+            <!-- <div>
                 <h2>NAME</h2>
                 <p>ROAST</p>
-            </div>
+            </div> -->
             <!-- <tbody id="coffees"></tbody> -->
         </div>
 
