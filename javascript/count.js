@@ -1,15 +1,21 @@
-function upOne(add) {
-    // let startNum = 0;
-    return (add += 1);
+// function upOne() {
+//     // let start = 0;
+//     let clicked = wow;
+// }
+
+let upButton = document.querySelector("#upOneClick");
+upButton.addEventListener("click", alertAdd);
+
+upButton.addEventListener("click", alertAdd);
+
+function alertAdd() {
+    // alert("Your coffee has been added to the list.");
+    let start = 0;
+    let add = upButton.addEventListener("click", alertAdd);
+    // let now = 1;
+
+    console.log(add);
 }
 
-var upButton = document.querySelector("#upOne");
-upButton.addEventListener("click", upOne);
-// console.log(what);
-
-// var submitButton = document.querySelector("#submit");
-// var roastSelection = document.querySelector("#roast-selection");
-
-// tbody.innerHTML = renderCoffees(coffees);
-
-// submitButton.addEventListener("click", updateCoffees);
+// const yolo = document.querySelector("input, value");
+// console.log(yolo);
