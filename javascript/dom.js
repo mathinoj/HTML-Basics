@@ -21,8 +21,29 @@ const colors = ["red", "orange", "yellow", "green", "blue", "indigo", "violet"];
 //     allSpan[i].style.color = colors[i];
 // }
 
-const allLi = document.querySelectorAll("li");
-console.log(allLi);
-for (let i = 0; i < allLi.length; i++) {
-    allLi[i].classList.toggle("highlight");
+//EXERCISE 57 TOGGLE
+// const allLi = document.querySelectorAll("li");
+// console.log(allLi);
+// for (let i = 0; i < allLi.length; i++) {
+//     allLi[i].classList.toggle("highlight");
+// }
+
+//EXERCISE 58 - Add Buttons
+//Create exactly 100 new button elements. Add each button inside the container element provided in the HTML. Udemy software REQUIRES use of appendChild. Each button must be appended inside the container div. HINT*** Loop 100 times. Inside loop, create a new empty butotn element. Add some innerText^^^^^^ to the button. Use appendChild to add the button to the container.
+
+/////////////////THIS ONE WORKS -------------------
+for (let i = 0; i < 100; i++) {
+    const buttonz = document.createElement("button");
+    buttonz.append("yo");
+    const addIt = document.querySelector("div");
+    // console.log(addIt);
+    let check = addIt.insertAdjacentElement("afterbegin", buttonz);
+    // console.log(check);
+}
+//$$$$$$$$$$$$$$$$$BUT THIS IS THE ONE THAT GOT ACCEPTED
+for (let i = 0; i < 100; i++) {
+    const buttonz = document.createElement("button");
+    buttonz.innerText = "yo";
+    const addIt = document.querySelector("div");
+    addIt.insertAdjacentElement("afterbegin", buttonz);
 }
