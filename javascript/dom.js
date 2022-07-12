@@ -36,10 +36,9 @@ for (let i = 0; i < 100; i++) {
     const buttonz = document.createElement("button");
     buttonz.append("yo");
     const addIt = document.querySelector("div");
-    // console.log(addIt);
     let check = addIt.insertAdjacentElement("afterbegin", buttonz);
-    // console.log(check);
 }
+
 //$$$$$$$$$$$$$$$$$BUT THIS IS THE ONE THAT GOT ACCEPTED
 for (let i = 0; i < 100; i++) {
     const buttonz = document.createElement("button");
