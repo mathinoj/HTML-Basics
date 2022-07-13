@@ -6,16 +6,24 @@
 let upButton = document.querySelector("#upOneClick");
 upButton.addEventListener("click", alertAdd);
 
-upButton.addEventListener("click", alertAdd);
+// upButton.addEventListener("click", alertAdd);
 
 function alertAdd() {
     // alert("Your coffee has been added to the list.");
-    let start = 0;
+    let start = 1;
     let add = upButton.addEventListener("click", alertAdd);
-    // let now = 1;
-
-    console.log(add);
+    for (let i = 0; i < add; i++) {
+        let hell = add + 1;
+    }
+    // console.log(add);
+    console.log(start);
 }
 
-// const yolo = document.querySelector("input, value");
-// console.log(yolo);
+function sumArray(arrNums) {
+    let total = 0;
+    // let oneNum = arrNums.length;
+    for (let i = 0; i < arrNums.length; i++) {
+        total += arrNums[i];
+    }
+    return total;
+}
