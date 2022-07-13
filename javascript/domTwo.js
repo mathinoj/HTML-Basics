@@ -1,25 +1,28 @@
 let colorButt = document.querySelector("#changeColor");
-// addCoffButton.addEventListener("click", addCoffee);
 colorButt.addEventListener("click", colorChange);
 
 function colorChange() {
-    let r = Math.floor(Math.random() * 255) + 1;
-    let g = Math.floor(Math.random() * 255) + 1;
-    let b = Math.floor(Math.random() * 255) + 1;
+    let r = Math.floor(Math.random() * 255);
+    let g = Math.floor(Math.random() * 255);
+    let b = Math.floor(Math.random() * 255);
     let colory = [r, g, b];
-    console.log(colory);
     let stringy = colory.toString();
-    console.log(stringy);
     let thisWon = `rgb(${stringy})`;
     console.log(thisWon);
+    document.body.style.backgroundColor = thisWon;
 
-    let colorButter = document.querySelector("#changeColor");
-    colorButter.addEventListener("click", colorThang);
-    function colorThang() {
-        let colorWutt = document.getElementById("changeColor");
-        var matt = (colorWutt.style.color = `${thisWon}`);
-        console.log(matt);
-    }
+    // const addRGB = document.createElement("h1");
+    // addRGB.innerText = thisWon;
+    const placingRGB = document.querySelector("h1");
+    placingRGB.innerText = thisWon;
+
+    // let colorButter = document.querySelector("#changeColor");
+    // colorButter.addEventListener("click", colorThang);
+    // function colorThang() {
+    //     let colorWutt = document.getElementById("changeColor");
+    //     var matt = (colorWutt.style.backgroundColor = `${thisWon}`);
+    //     console.log(matt);
+    // }
 }
 // console.log(colorChange.colory);
 // let mat = (colorChange.style.color = colory);
