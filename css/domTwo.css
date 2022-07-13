@@ -1,0 +1,11 @@
+h1{
+  display: flex;
+  justify-content: center;
+}
+
+#divButton{
+  /* background-color: red; */
+  display: flex;
+  justify-content: center;
+
+}
