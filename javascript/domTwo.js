@@ -24,6 +24,3 @@ function colorChange() {
     //     console.log(matt);
     // }
 }
-// console.log(colorChange.colory);
-// let mat = (colorChange.style.color = colory);
-// console.log(mat);
