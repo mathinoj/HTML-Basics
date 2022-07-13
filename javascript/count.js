@@ -4,26 +4,18 @@
 // }
 
 let upButton = document.querySelector("#upOneClick");
-upButton.addEventListener("click", alertAdd);
+upButton.addEventListener("click", buttClick);
 
-// upButton.addEventListener("click", alertAdd);
+let start = 0;
 
-function alertAdd() {
-    // alert("Your coffee has been added to the list.");
-    let start = 1;
-    let add = upButton.addEventListener("click", alertAdd);
-    for (let i = 0; i < add; i++) {
-        let hell = add + 1;
-    }
-    // console.log(add);
-    console.log(start);
-}
+function buttClick() {
+    start++;
+    // let start = 1;
 
-function sumArray(arrNums) {
-    let total = 0;
-    // let oneNum = arrNums.length;
-    for (let i = 0; i < arrNums.length; i++) {
-        total += arrNums[i];
-    }
-    return total;
+    // document.getElementById("upOneClick").innerText = start;
+    const scored = document.querySelector("input");
+    let showScore = (scored.innerHTML = start);
+    console.log(showScore);
+
+    // return true;
 }
