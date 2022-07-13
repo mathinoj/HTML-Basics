@@ -13,8 +13,8 @@ function buttClick() {
     // let start = 1;
 
     // document.getElementById("upOneClick").innerText = start;
-    const scored = document.querySelector("input");
-    let showScore = (scored.innerHTML = start);
+    const scored = document.querySelector("h2");
+    let showScore = (scored.innerText = start);
     console.log(showScore);
 
     // return true;
