@@ -40,15 +40,40 @@ function colorChange() {
 //     console.log("form submitted");
 // });
 
-const form = document.querySelector("#shelterForm");
-const input = document.querySelector("#personName");
-const nameList = document.querySelector("#persons");
+// const form = document.querySelector("#shelterForm");
+// const input = document.querySelector("#personName");
+// const nameList = document.querySelector("#persons");
+// form.addEventListener("submit", function (e) {
+//     e.preventDefault();
+//     console.log("submitted");
+//     const personName = input.value;
+//     const newLI = document.createElement("li");
+//     newLI.innerText = personName;
+//     nameList.append(newLI);
+//     input.value = "";
+// });
+//******HAD TO BLOCK OUT LINE 2 FOR THIS TO WORK^^^^^^^^
+
+const form = document.querySelector("form");
+const inputProduct = document.querySelector("#product");
+const inputQty = document.querySelector("#qty");
 form.addEventListener("submit", function (e) {
     e.preventDefault();
-    console.log("submitted");
-    const personName = input.value;
-    const newLI = document.createElement("li");
-    newLI.innerText = personName;
-    nameList.append(newLI);
-    input.value = "";
+    const userInputProduct = form.elements.product;
+    const userInputQty = form.elements.qty;
+    addInputs(userInputProduct.value, userInputQty.value);
+    userInputProduct.value = "";
+    userInputQty.value = "";
 });
+
+const addInputs = (product, qty) => {
+    const newProduct = document.createElement("li");
+    // const newQty = document.createElement("li");
+    // newQty.append.product;
+    newProduct.append(`${qty} `, product);
+    // newProduct.appendChild.product;
+    // newQty.append("${qty}");
+    // newQty.appendChild.qty;
+
+    form.append(newProduct);
+};
