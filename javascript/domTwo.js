@@ -1,5 +1,6 @@
 let colorButt = document.querySelector("#changeColor");
-colorButt.addEventListener("click", colorChange);
+// colorButt.addEventListener("click", colorChange);
+// ^^^^Had to block out this so shelterForm could work starting at line44
 
 function colorChange() {
     let r = Math.floor(Math.random() * 255);
@@ -24,3 +25,30 @@ function colorChange() {
     //     console.log(matt);
     // }
 }
+
+//This wont work cuz the event will want to take you to a new page
+// const form = document.querySelector("#shelterForm");
+// form.addEventListener('submit', function (e){
+//   console.log('submitted');
+// })
+
+//e.preventDefault prevents the default behavior triggered by a given event, and in this case the event is to act like a form and submit the info and go to new page
+//
+// const form = document.querySelector("#shelterForm");
+// form.addEventListener("submit", function (e) {
+//     e.preventDefault();
+//     console.log("form submitted");
+// });
+
+const form = document.querySelector("#shelterForm");
+const input = document.querySelector("#personName");
+const nameList = document.querySelector("#persons");
+form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    console.log("submitted");
+    const personName = input.value;
+    const newLI = document.createElement("li");
+    newLI.innerText = personName;
+    nameList.append(newLI);
+    input.value = "";
+});
