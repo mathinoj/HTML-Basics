@@ -90,6 +90,7 @@ form.addEventListener("submit", function (e) {
     listUL.appendChild(newProduct);
     userInputProduct.value = "";
     userInputQty.value = "";
+    console.log(newProduct);
 });
 
 //REFACTORED Again!!!!!!!!
