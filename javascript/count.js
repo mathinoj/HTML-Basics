@@ -8,16 +8,18 @@ upButton.addEventListener("click", buttClick);
 
 let start = 0;
 
-function buttClick() {
-    start++;
-    // let start = 1;
+function buttClick(e) {
+    //  e.stopPropagation();
 
-    // document.getElementById("upOneClick").innerText = start;
-    const scored = document.querySelector("h2");
+    start++;
+    // console.log(e);
+    // let what = e.stopPropagation();
+    // console.log(`stopProp ${what}`);
+
+    const scored = document.querySelector("#one");
     let showScore = (scored.innerText = start);
     console.log(showScore);
-
-    // return true;
+    e.stopPropagation();
 
     let dButton = document.querySelector("#downOneClick");
     dButton.addEventListener("click", buttDownClick);
@@ -25,26 +27,48 @@ function buttClick() {
     let end = showScore;
     function buttDownClick() {
         end--;
-        // let start = 1;
 
-        // document.getElementById("upOneClick").innerText = start;
-        const scoreDown = document.querySelector("h2");
+        const scoreDown = document.querySelectorAll("span");
         let showScoreDown = (scoreDown.innerText = end);
         console.log(showScoreDown);
+        // }
+        // console.log(upButton);
+
+        // let newStart = showScoreDown;
+        // console.log(`newStart ${newStart}`);
+        // function buttClick() {
+        //     // let start = 1;
+        //     // document.getElementById("upOneClick").innerText = start;
+        //     const scoredAgain = document.querySelector("h2");
+        //     let showScoreAgain = (scoredAgain.innerText = newStart);
+        //     console.log(showScoreAgain);
     }
+    // return true;
 }
-// let dButton = document.querySelector("#downOneClick");
-// dButton.addEventListener("click", buttDownClick);
 
-// let end = 0;
-// function buttDownClick() {
-//     end--;
-//     // let start = 1;
+let upButton2 = document.querySelector("#upOneClick2");
+upButton2.addEventListener("click", buttClick2);
+let startToo = 0;
+function buttClick2(e) {
+    //  e.stopPropagation();
+    startToo++;
 
-//     // document.getElementById("upOneClick").innerText = start;
-//     const scoreDown = document.querySelector("h2");
-//     let showScoreDown = (scoreDown.innerText = end);
-//     console.log(showScoreDown);
+    const scored2 = document.querySelector("#two");
+    let showScore2 = (scored2.innerText = startToo);
+    console.log(showScore2);
+}
 
-//     // return true;
-// }
+var resetButt = document.querySelector("#resetClick");
+resetButt.addEventListener("click", resetClicker);
+let resetStart = 0;
+
+function resetClicker() {
+    // resetStart++;
+
+    const resetUno = document.querySelector("#one");
+    const resetTwo = document.querySelector("#two");
+    // let both = resetUno || resetTwo;
+
+    resetUno.innerHTML = resetStart;
+    resetTwo.innerHTML = resetStart;
+}
