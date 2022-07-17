@@ -10,22 +10,11 @@ let start = 0;
 
 function buttClick(e) {
     start++;
-    // e.stopPropagation();
 
     let showScoreThis = document.getElementById("one").innerHTML;
     console.log("NEED THIS one: " + showScoreThis);
-    // const scoreNow = document.querySelector("#one");
-    // scoreNow.textContent = showScoreThis;
     const scored = document.querySelector("#one");
-    var showScore = (scored.textContent = start);
-
-    // console.dir(showScore);
-    // e.stopPropagation();
-    // scored.innerText = showScoreThis;
-
-    // const scoreNow = document.querySelector("#one");
-    // scoreNow.textContent = showScoreThis;
-    upButton.removeEventListener("click", buttClick);
+    scored.textContent = start;
 }
 
 //THIS BRINGS SCORES DOWN
@@ -33,26 +22,18 @@ let dButton = document.querySelector("#downOneClick");
 
 dButton.addEventListener("click", function (e) {
     let showScore = document.getElementById("one").innerHTML;
-    // console.log(showScore);
 
     showScore--;
 
     const scoreDown = document.querySelector("#one");
     let showScoreDown = (scoreDown.innerText = showScore);
     console.log("You NEED this number " + showScoreDown);
-    // });
-
-    // let showScoreDown = document.getElementById("one").innerHTML;
-    // console.log("showThisWon " + showScoreDown);
 
     let upButtAgain = document.querySelector("#upOneClick");
-    // let showScore5 = document.getElementById("one").innerHTML;
-    // console.log("showScore5 " + showScore5);
-    console.log(upButtAgain);
     upButtAgain.addEventListener("click", function (e) {
         showScoreDown++;
         const scoring = document.querySelector("#one");
-        let showing = (scoring.innerText = showScoreDown);
+        scoring.innerText = showScoreDown;
     });
 });
 
