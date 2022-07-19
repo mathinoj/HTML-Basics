@@ -1,18 +1,18 @@
-let upButton = document.querySelector("#upOneClick");
-upButton.addEventListener("click", buttClick);
+//HAD THIS PART HERE BUT THIS IS WHAT WAS MESSING THINGS UP. REMOVED IT AND CHANGED A FEW OTHER THINGS JUST TO CLEAN UP, AND NOW THINGS WORK PROPERLY!!
+// let upButton = document.querySelector("#upOneClick");
+// upButton.addEventListener("click", buttClick);
 
-let start = 0;
+// let start = 0;
 
-function buttClick(e) {
-    //HAD THIS PART HERE BUT THIS IS WHAT WAS MESSING THINGS UP. REMOVED IT AND CHANGED A FEW OTHER THINGS JUST TO CLEAN UP, AND NOW THINGS WORK PROPERLY!!
-    // start++;
-    // // let showScoreThis = document.getElementById("one").innerHTML;
-    // // console.log("NEED THIS one: " + showScoreThis);
-    // const scored = document.querySelector("#one");
-    // // console.log("NEED THIS one: " + start);
-    // let matt = (scored.innerText = start);
-    // console.log("NEED THIS one: " + matt);
-}
+// function buttClick(e) {
+//     start++;
+//     // let showScoreThis = document.getElementById("one").innerHTML;
+//     // console.log("NEED THIS one: " + showScoreThis);
+//     const scored = document.querySelector("#one");
+//     // console.log("NEED THIS one: " + start);
+//     let matt = (scored.innerText = start);
+//     console.log("NEED THIS one: " + matt);
+// }
 
 //THIS BRINGS SCORES DOWN - P1
 let dButtonP1 = document.querySelector("#downOneClick");
@@ -71,8 +71,8 @@ let resetStart = 0;
 function resetClicker() {
     const resetUno = document.querySelector("#one");
     const resetTwo = document.querySelector("#two");
-    start = 0;
-    startToo = 0;
+    // start = 0;
+    // startToo = 0;
     resetUno.innerText = resetStart;
     resetTwo.innerText = resetStart;
     console.log("Reset Activated ");
