@@ -1,26 +1,21 @@
-// function upOne() {
-//     // let start = 0;
-//     let clicked = wow;
-// }
-
 let upButton = document.querySelector("#upOneClick");
 upButton.addEventListener("click", buttClick);
 
 let start = 0;
 
 function buttClick(e) {
-    start++;
-
-    // let showScoreThis = document.getElementById("one").innerHTML;
-    // console.log("NEED THIS one: " + showScoreThis);
-    const scored = document.querySelector("#one");
-    console.log("NEED THIS one: " + start);
-    scored.innerText = start;
+    //HAD THIS PART HERE BUT THIS IS WHAT WAS MESSING THINGS UP. REMOVED IT AND CHANGED A FEW OTHER THINGS JUST TO CLEAN UP, AND NOW THINGS WORK PROPERLY!!
+    // start++;
+    // // let showScoreThis = document.getElementById("one").innerHTML;
+    // // console.log("NEED THIS one: " + showScoreThis);
+    // const scored = document.querySelector("#one");
+    // // console.log("NEED THIS one: " + start);
+    // let matt = (scored.innerText = start);
+    // console.log("NEED THIS one: " + matt);
 }
 
-//THIS BRINGS SCORES DOWN
+//THIS BRINGS SCORES DOWN - P1
 let dButton = document.querySelector("#downOneClick");
-
 dButton.addEventListener("click", function (e) {
     let showScore = document.getElementById("one").innerText;
 
@@ -28,31 +23,22 @@ dButton.addEventListener("click", function (e) {
 
     const scoreDown = document.querySelector("#one");
     let showScoreDown = (scoreDown.innerText = showScore);
-    console.log("You NEED this number " + showScoreDown);
-
-    let upButtAgain = document.querySelector("#upOneClick");
-    upButtAgain.addEventListener("click", function (e) {
-        showScoreDown++;
-        const scoring = document.querySelector("#one");
-        let scoringz = (innerText = showScoreDown);
-
-        console.log("RESET THIS ONE: " + scoringz);
-    });
+    console.log("Down P1: " + showScoreDown);
 });
 
-//////////////////////////////////////////////////////////////////
-let upButton2 = document.querySelector("#upOneClick2");
-upButton2.addEventListener("click", buttClick2);
-let startToo = 0;
-function buttClick2(e) {
-    startToo++;
-    // let scored2 = document.querySelector("#two").innerHTML;
-    const scoredAgain = document.querySelector("#two");
-    scoredAgain.innerText = startToo;
-}
+//THIS BRINGS SCORES UP - P1
+let upButtAgain = document.querySelector("#upOneClick");
+upButtAgain.addEventListener("click", function (e) {
+    let willUp = document.getElementById("one").innerText;
 
+    willUp++;
+    const scoring = document.querySelector("#one");
+    let scoringz = (scoring.innerText = willUp);
+    console.log("Up P1: " + scoringz);
+});
+
+//THIS BRINGS SCORE DOWN - P2
 let dButton2 = document.querySelector("#downOneClick2");
-
 dButton2.addEventListener("click", function (e) {
     let showScore2 = document.getElementById("two").innerHTML;
 
@@ -60,41 +46,30 @@ dButton2.addEventListener("click", function (e) {
 
     const scoreDown2 = document.querySelector("#two");
     let showScoreDown2 = (scoreDown2.innerText = showScore2);
-    console.log("You NEED this number " + showScoreDown2);
-
-    let upButtAgain2 = document.querySelector("#upOneClick2");
-    upButtAgain2.addEventListener("click", function (e) {
-        showScoreDown2++;
-        const scoring = document.querySelector("#two");
-        scoring.innerText = showScoreDown2;
-    });
+    console.log("Down P2 " + showScoreDown2);
 });
 
+//THIS BRINGS SCORE UP - P2
+let upButtAgain2 = document.querySelector("#upOneClick2");
+upButtAgain2.addEventListener("click", function (e) {
+    let showScoreDown2Again = document.getElementById("two").innerText;
+    showScoreDown2Again++;
+    const scoring2 = document.querySelector("#two");
+    scoring2.innerText = showScoreDown2Again;
+    console.log("Up P2 " + showScoreDown2Again);
+});
+
+//THIS RESETS BOTH SCORES
 var resetButt = document.querySelector("#resetClick");
 resetButt.addEventListener("click", resetClicker);
 let resetStart = 0;
 
 function resetClicker() {
-    // resetStart++;
-
     const resetUno = document.querySelector("#one");
     const resetTwo = document.querySelector("#two");
-    // let both = resetUno || resetTwo;
     start = 0;
     startToo = 0;
     resetUno.innerText = resetStart;
     resetTwo.innerText = resetStart;
+    console.log("Reset Activated ");
 }
-// }
-// resetAll.addEventListener("change", function () {
-//     resetingAll = parseInt(this.value);
-// });
-// }
-// let upButton = document.querySelector("#upOneClick");
-// upButton.addEventListener("click", buttonUpTry);
-// let newerStart = showScoreDown;
-// function buttonUpTry() {
-//     newerStart++;
-
-//     const reScore = document.querySelector("#one");
-//     reScore.innerText = newerStart;
