@@ -15,53 +15,57 @@ function buttClick(e) {
 }
 
 //THIS BRINGS SCORES DOWN - P1
-let dButton = document.querySelector("#downOneClick");
-dButton.addEventListener("click", function (e) {
-    let showScore = document.getElementById("one").innerText;
+let dButtonP1 = document.querySelector("#downOneClick");
+dButtonP1.addEventListener("click", function (e) {
+    let subtractScore = document.getElementById("one").innerText;
 
-    showScore--;
+    subtractScore--;
 
-    const scoreDown = document.querySelector("#one");
-    let showScoreDown = (scoreDown.innerText = showScore);
-    console.log("Down P1: " + showScoreDown);
+    const scoreSubtract = document.querySelector("#one");
+    scoreSubtract.innerText = subtractScore;
+    console.log("Down P1: " + subtractScore);
 });
 
 //THIS BRINGS SCORES UP - P1
-let upButtAgain = document.querySelector("#upOneClick");
-upButtAgain.addEventListener("click", function (e) {
-    let willUp = document.getElementById("one").innerText;
+let upButtP1 = document.querySelector("#upOneClick");
+upButtP1.addEventListener("click", function (e) {
+    let addScore = document.getElementById("one").innerText;
 
-    willUp++;
-    const scoring = document.querySelector("#one");
-    let scoringz = (scoring.innerText = willUp);
-    console.log("Up P1: " + scoringz);
+    addScore++;
+
+    const scoringAdd = document.querySelector("#one");
+    scoringAdd.innerText = addScore;
+    console.log("Up P1: " + addScore);
 });
 
 //THIS BRINGS SCORE DOWN - P2
-let dButton2 = document.querySelector("#downOneClick2");
-dButton2.addEventListener("click", function (e) {
-    let showScore2 = document.getElementById("two").innerHTML;
+let dButtonP2 = document.querySelector("#downOneClick2");
+dButtonP2.addEventListener("click", function (e) {
+    let subtractScoreP2 = document.getElementById("two").innerText;
 
-    showScore2--;
+    subtractScoreP2--;
 
-    const scoreDown2 = document.querySelector("#two");
-    let showScoreDown2 = (scoreDown2.innerText = showScore2);
-    console.log("Down P2 " + showScoreDown2);
+    const scoreSubtractP2 = document.querySelector("#two");
+    scoreSubtractP2.innerText = subtractScoreP2;
+    console.log("Down P2 " + subtractScoreP2);
 });
 
 //THIS BRINGS SCORE UP - P2
-let upButtAgain2 = document.querySelector("#upOneClick2");
-upButtAgain2.addEventListener("click", function (e) {
-    let showScoreDown2Again = document.getElementById("two").innerText;
-    showScoreDown2Again++;
+let upButtP2 = document.querySelector("#upOneClick2");
+upButtP2.addEventListener("click", function (e) {
+    let addScoreP2 = document.getElementById("two").innerText;
+
+    addScoreP2++;
+
     const scoring2 = document.querySelector("#two");
-    scoring2.innerText = showScoreDown2Again;
-    console.log("Up P2 " + showScoreDown2Again);
+    scoring2.innerText = addScoreP2;
+    console.log("Up P2 " + addScoreP2);
 });
 
 //THIS RESETS BOTH SCORES
 var resetButt = document.querySelector("#resetClick");
 resetButt.addEventListener("click", resetClicker);
+
 let resetStart = 0;
 
 function resetClicker() {
