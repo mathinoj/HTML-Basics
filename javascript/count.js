@@ -15,14 +15,14 @@ function buttClick(e) {
     // console.log("NEED THIS one: " + showScoreThis);
     const scored = document.querySelector("#one");
     console.log("NEED THIS one: " + start);
-    scored.textContent = start;
+    scored.innerText = start;
 }
 
 //THIS BRINGS SCORES DOWN
 let dButton = document.querySelector("#downOneClick");
 
 dButton.addEventListener("click", function (e) {
-    let showScore = document.getElementById("one").innerHTML;
+    let showScore = document.getElementById("one").innerText;
 
     showScore--;
 
@@ -34,7 +34,9 @@ dButton.addEventListener("click", function (e) {
     upButtAgain.addEventListener("click", function (e) {
         showScoreDown++;
         const scoring = document.querySelector("#one");
-        scoring.innerText = showScoreDown;
+        let scoringz = (innerText = showScoreDown);
+
+        console.log("RESET THIS ONE: " + scoringz);
     });
 });
 
