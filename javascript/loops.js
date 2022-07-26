@@ -88,19 +88,23 @@ for (let i = 1; i < 10; i++) {
 // Prompt the user for an odd number between 1 and 50. Use a loop and a break statement to continue prompting the user if they enter invalid input.
 // Use a loop and the continue statement to output all the odd numbers between 1 and 50, except for the number the user entered.
 
-var askNum = parseInt(prompt("Input odd number between 1-50"));
-while (askNum % 2 === 0) {
-    askNum = parseInt(prompt(`You typed: ${askNum}. Please enter Odd number`));
-}
+// var askNum = parseInt(prompt("Input odd number between 1-50"));
+// while (askNum % 2 === 0) {
+//     askNum = parseInt(prompt(`You typed: ${askNum}. Please enter Odd number`));
+// }
 
-let userEnter = askNum;
+// let userEnter = askNum;
 
-console.log(`Number to skip is: ${userEnter}`);
+// console.log(`Number to skip is: ${userEnter}`);
 
-for (var i = 1; i < 50; i += 2) {
-    if (userEnter === i) {
-        console.log(`Yikes! Skipping number: ${userEnter}`);
-    } else {
-        console.log(`Here is an odd number: ${i}`);
-    }
+// for (var i = 1; i < 50; i += 2) {
+//     if (userEnter === i) {
+//         console.log(`Yikes! Skipping number: ${userEnter}`);
+//     } else {
+//         console.log(`Here is an odd number: ${i}`);
+//     }
+// }
+
+for (let i = 2; i <= 65536; i *= 2) {
+    console.log(i);
 }
