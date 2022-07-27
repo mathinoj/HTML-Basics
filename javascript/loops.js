@@ -105,6 +105,6 @@ for (let i = 1; i < 10; i++) {
 //     }
 // }
 
-for (let i = 2; i <= 65536; i *= 2) {
-    console.log(i);
-}
+// for (let i = 2; i <= 65536; i *= 2) {
+//     console.log(i);
+// }

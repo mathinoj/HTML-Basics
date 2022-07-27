@@ -77,3 +77,23 @@ function resetClicker() {
     resetTwo.innerText = resetStart;
     console.log("Reset Activated ");
 }
+
+const form = document.querySelector("form");
+const userInput = document.querySelector("#setPoint");
+const spanChange = document.querySelector("#reachPoint");
+form.addEventListener("click", function (e) {
+    e.preventDefault();
+    spanChange.innerText = `${userInput.value}`;
+    userInput.value = "";
+});
+
+// let dButtonP1 = document.querySelector("#downOneClick");
+// dButtonP1.addEventListener("click", function (e) {
+//     let subtractScore = document.getElementById("one").innerText;
+
+//     subtractScore--;
+
+//     const scoreSubtract = document.querySelector("#one");
+//     scoreSubtract.innerText = subtractScore;
+//     console.log("Down P1: " + subtractScore);
+// });
