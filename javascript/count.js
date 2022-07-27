@@ -80,6 +80,7 @@ function resetClicker() {
     console.log("Reset Activated ");
 }
 
+//FUNCTION to SET SCORE
 const form = document.querySelector("form");
 const userInput = document.querySelector("#setPoint");
 const spanChange = document.querySelector("#reachPoint");
@@ -89,13 +90,7 @@ form.addEventListener("click", function (e) {
     userInput.value = "";
 });
 
-// let blah = document.getElementById("one").innerText;
-
-// const boo = document.querySelector("#one").innerText;
-// boo.innerText = blah;
-// console.log(`BBB ${blah}`);
-// console.log(`BBB ${boo}`);
-
+//FUNCTION to SEE WHO GETS TO SET SCORE FIRST
 let setScoreP1 = document.querySelector("#upOneClick");
 setScoreP1.addEventListener("click", function (e) {
     let grabP1Score = document.getElementById("one").innerText;
@@ -111,13 +106,14 @@ setScoreP1.addEventListener("click", function (e) {
     }
 });
 
-let upButtP1Again4 = document.querySelector("#upOneClick2");
-upButtP1Again4.addEventListener("click", function (e) {
+//FUNCTION to SEE WHO GETS TO SET SCORE FIRST
+let setScoreP2 = document.querySelector("#upOneClick2");
+setScoreP2.addEventListener("click", function (e) {
     let grabP2Score = document.getElementById("two").innerText;
     console.log(grabP2Score);
 
-    const scoreFromP1Span = document.querySelector("#two");
-    scoreFromP1Span.innerText = grabP2Score;
+    const scoreFromP2Span = document.querySelector("#two");
+    scoreFromP2Span.innerText = grabP2Score;
 
     let getSetScore = document.querySelector("#reachPoint").innerText;
     console.log(getSetScore);
