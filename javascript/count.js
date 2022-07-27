@@ -72,11 +72,16 @@ function resetClicker() {
     const resetUno = document.querySelector("#one");
     const resetTwo = document.querySelector("#two");
     const resetSetScore = document.querySelector("#reachPoint");
+    const resetP1Name = document.querySelector("#oneName");
+    const resetP2Name = document.querySelector("#twoName");
+
     // start = 0;
     // startToo = 0;
     resetUno.innerText = resetStart;
     resetTwo.innerText = resetStart;
     resetSetScore.innerText = resetStart;
+    resetP1Name.innerText = "P1";
+    resetP2Name.innerText = "P2";
     console.log("Reset Activated ");
 }
 
@@ -90,7 +95,7 @@ form.addEventListener("click", function (e) {
     userInput.value = "";
 });
 
-//FUNCTION to SEE WHO GETS TO SET SCORE FIRST
+//FUNCTION to SEE WHO GETS TO SET SCORE FIRST - P1
 let setScoreP1 = document.querySelector("#upOneClick");
 setScoreP1.addEventListener("click", function (e) {
     let grabP1Score = document.getElementById("one").innerText;
@@ -106,20 +111,32 @@ setScoreP1.addEventListener("click", function (e) {
     }
 });
 
-//FUNCTION to SEE WHO GETS TO SET SCORE FIRST
+//FUNCTION to SEE WHO GETS TO SET SCORE FIRST - P2
 let setScoreP2 = document.querySelector("#upOneClick2");
 setScoreP2.addEventListener("click", function (e) {
     let grabP2Score = document.getElementById("two").innerText;
-    console.log(grabP2Score);
 
     const scoreFromP2Span = document.querySelector("#two");
     scoreFromP2Span.innerText = grabP2Score;
 
     let getSetScore = document.querySelector("#reachPoint").innerText;
-    console.log(getSetScore);
 
     if (grabP2Score === getSetScore) {
         alert("You win!");
         alert("Click 'Reset' to Start a New Game.");
     }
+});
+
+//FUNCTION TO SET PLAYER NAMES
+const playerForm = document.querySelector("#playerName");
+const nameInputP1 = document.querySelector("#setP1Name");
+const nameInputP2 = document.querySelector("#setP2Name");
+const nameSpanP1 = document.querySelector("#oneName");
+const nameSpanP2 = document.querySelector("#twoName");
+playerForm.addEventListener("click", function (e) {
+    e.preventDefault();
+    nameSpanP1.innerText = `${nameInputP1.value}`;
+    nameSpanP2.innerText = `${nameInputP2.value}`;
+    nameInputP1.value = "";
+    nameInputP2.value = "";
 });
