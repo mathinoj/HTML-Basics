@@ -96,26 +96,34 @@ form.addEventListener("click", function (e) {
 // console.log(`BBB ${blah}`);
 // console.log(`BBB ${boo}`);
 
-let upButtP1Again = document.querySelector("#upOneClick");
-upButtP1Again.addEventListener("click", function (e) {
-    let addScore3 = document.getElementById("one").innerText;
+let setScoreP1 = document.querySelector("#upOneClick");
+setScoreP1.addEventListener("click", function (e) {
+    let grabP1Score = document.getElementById("one").innerText;
 
-    const scoringAdd3 = document.querySelector("#one");
-    scoringAdd3.innerText = addScore3;
-    console.log("FOR THE RECORD: " + addScore3);
+    const scoreFromP1Span = document.querySelector("#one");
+    scoreFromP1Span.innerText = grabP1Score;
+
+    let getSetScore = document.querySelector("#reachPoint").innerText;
+
+    if (grabP1Score === getSetScore) {
+        alert("You win!");
+        alert("Click 'Reset' to Start a New Game.");
+    }
+});
+
+let upButtP1Again4 = document.querySelector("#upOneClick2");
+upButtP1Again4.addEventListener("click", function (e) {
+    let grabP2Score = document.getElementById("two").innerText;
+    console.log(grabP2Score);
+
+    const scoreFromP1Span = document.querySelector("#two");
+    scoreFromP1Span.innerText = grabP2Score;
 
     let getSetScore = document.querySelector("#reachPoint").innerText;
     console.log(getSetScore);
 
-    if (addScore3 === getSetScore) {
-        console.log("YOU WIN");
+    if (grabP2Score === getSetScore) {
         alert("You win!");
+        alert("Click 'Reset' to Start a New Game.");
     }
-
-    // var askNum = parseInt(prompt("Input odd number between 1-50"));
-    // while (askNum % 2 === 0) {
-    //     askNum = parseInt(
-    //         prompt(`You typed: ${askNum}. Please enter Odd number`)
-    //     );
-    // }
 });
