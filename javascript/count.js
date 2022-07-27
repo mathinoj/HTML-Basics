@@ -71,10 +71,12 @@ let resetStart = 0;
 function resetClicker() {
     const resetUno = document.querySelector("#one");
     const resetTwo = document.querySelector("#two");
+    const resetSetScore = document.querySelector("#reachPoint");
     // start = 0;
     // startToo = 0;
     resetUno.innerText = resetStart;
     resetTwo.innerText = resetStart;
+    resetSetScore.innerText = resetStart;
     console.log("Reset Activated ");
 }
 
@@ -109,4 +111,11 @@ upButtP1Again.addEventListener("click", function (e) {
         console.log("YOU WIN");
         alert("You win!");
     }
+
+    // var askNum = parseInt(prompt("Input odd number between 1-50"));
+    // while (askNum % 2 === 0) {
+    //     askNum = parseInt(
+    //         prompt(`You typed: ${askNum}. Please enter Odd number`)
+    //     );
+    // }
 });
