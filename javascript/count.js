@@ -72,21 +72,21 @@ function resetClicker() {
     const resetUno = document.querySelector("#one");
     const resetTwo = document.querySelector("#two");
     const resetSetScore = document.querySelector("#reachPoint");
-    const resetP1Name = document.querySelector("#oneName");
-    const resetP2Name = document.querySelector("#twoName");
+    // const resetP1Name = document.querySelector("#oneName");
+    // const resetP2Name = document.querySelector("#twoName");
 
     // start = 0;
     // startToo = 0;
     resetUno.innerText = resetStart;
     resetTwo.innerText = resetStart;
     resetSetScore.innerText = resetStart;
-    resetP1Name.innerText = "P1";
-    resetP2Name.innerText = "P2";
+    // resetP1Name.innerText = "P1";
+    // resetP2Name.innerText = "P2";
     console.log("Reset Activated ");
 }
 
 //FUNCTION to SET SCORE
-const form = document.querySelector("form");
+const form = document.querySelector("#scoreSet");
 const userInput = document.querySelector("#setPoint");
 const spanChange = document.querySelector("#reachPoint");
 form.addEventListener("click", function (e) {
@@ -133,10 +133,22 @@ const nameInputP1 = document.querySelector("#setP1Name");
 const nameInputP2 = document.querySelector("#setP2Name");
 const nameSpanP1 = document.querySelector("#oneName");
 const nameSpanP2 = document.querySelector("#twoName");
-playerForm.addEventListener("click", function (e) {
+playerForm.addEventListener("submit", function (e) {
     e.preventDefault();
     nameSpanP1.innerText = `${nameInputP1.value}`;
     nameSpanP2.innerText = `${nameInputP2.value}`;
     nameInputP1.value = "";
     nameInputP2.value = "";
 });
+
+var resetNameButt = document.querySelector("#resetNameClick");
+resetNameButt.addEventListener("click", resetNameClicker);
+function resetNameClicker() {
+    const resetP1Name = document.querySelector("#oneName");
+    const resetP2Name = document.querySelector("#twoName");
+    console.log(resetP1Name);
+
+    resetP1Name.innerText = "P1";
+    resetP2Name.innerText = "P2";
+    console.log("Reset Name Activated ");
+}
