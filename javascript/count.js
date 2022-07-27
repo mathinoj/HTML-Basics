@@ -87,13 +87,26 @@ form.addEventListener("click", function (e) {
     userInput.value = "";
 });
 
-// let dButtonP1 = document.querySelector("#downOneClick");
-// dButtonP1.addEventListener("click", function (e) {
-//     let subtractScore = document.getElementById("one").innerText;
+// let blah = document.getElementById("one").innerText;
 
-//     subtractScore--;
+// const boo = document.querySelector("#one").innerText;
+// boo.innerText = blah;
+// console.log(`BBB ${blah}`);
+// console.log(`BBB ${boo}`);
 
-//     const scoreSubtract = document.querySelector("#one");
-//     scoreSubtract.innerText = subtractScore;
-//     console.log("Down P1: " + subtractScore);
-// });
+let upButtP1Again = document.querySelector("#upOneClick");
+upButtP1Again.addEventListener("click", function (e) {
+    let addScore3 = document.getElementById("one").innerText;
+
+    const scoringAdd3 = document.querySelector("#one");
+    scoringAdd3.innerText = addScore3;
+    console.log("FOR THE RECORD: " + addScore3);
+
+    let getSetScore = document.querySelector("#reachPoint").innerText;
+    console.log(getSetScore);
+
+    if (addScore3 === getSetScore) {
+        console.log("YOU WIN");
+        alert("You win!");
+    }
+});
