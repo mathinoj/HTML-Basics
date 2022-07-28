@@ -15,6 +15,22 @@ app.get("/", (req, res) => {
     res.send("Homepage");
 });
 
+app.get("/r/:subreddit", (req, res) => {
+    // console.log("req.params");
+    const { subreddit } = req.params;
+    res.send(`<h1>Browsing the ${subreddit} portal(subreddit)</h1>`);
+    // res.send("This a subreddit!");
+});
+
+app.get("/r/:subreddit/:postId", (req, res) => {
+    // console.log("req.params");
+    const { subreddit, postId } = req.params;
+    res.send(
+        `<h1>Showing postId: ${postId} and Browsing the ${subreddit} portal(subreddit)</h1>`
+    );
+    // res.send("This a subreddit!");
+});
+
 app.post("/cats", (req, res) => {
     res.send("Post request to /cats. Diff from get request");
 });
