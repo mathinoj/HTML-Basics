@@ -1,2 +1,4 @@
-const math = require("./math");
-console.log(math);
+const math = require("./nodeMath");
+// const {PI, square} = require("./nodeMath");
+console.log(math.PI);
+console.log(math.square(4));
