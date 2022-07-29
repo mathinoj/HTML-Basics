@@ -14,3 +14,5 @@ app.listen(3000, () => {
 });
 
 //by default when we create a new express app and were using some 'view engine' express will assume that our views (templates) exist in a DIRECTORY called 'views' so in this case we have to 'mkdir views' in the terminal!!!
+
+//after that go to terminal and do touch 'views/home.ejs' which will add the file to the views director/folder. Keep in mind that you can name the 'views' director/folder anything, but the default that EJS will look for is 'views'
