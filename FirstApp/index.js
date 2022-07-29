@@ -12,7 +12,7 @@ const app = express();
 //anytime we have an incoming request ^callback will run
 
 app.get("/", (req, res) => {
-    res.send("Homepage");
+    res.send("Homepage is her");
 });
 
 app.get("/r/:subreddit", (req, res) => {
