@@ -1,12 +1,21 @@
 const express = require("express");
 const app = express();
+const path = require("path");
 
 app.set("view engine", "ejs");
 //after doing this we in terminal we installed 'npm i ejs'
 //by installing it and setting 'view engine', 'ejs' express behind the scenes will require the package called EJS that we just installed in terminal
+app.set("views", path.join(__dirname, "/views"));
 
 app.get("/", (req, res) => {
-    res.send("Hi matt dogg");
+    // res.send("Hi matt dogg");
+    res.render("home.ejs");
+    //default place it looks for is in views so we don't have to put 'views/home.ejs'
+});
+
+app.get("/rand", (req, res) => {
+    const num = Math.floor(Math.random() * 10) + 1;
+    res.render("random", { rand: num });
 });
 
 app.listen(3000, () => {
