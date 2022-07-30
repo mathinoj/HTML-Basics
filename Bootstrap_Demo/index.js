@@ -11,7 +11,7 @@ app.set("views", path.join(__dirname, "/views"));
 
 app.get("/", (req, res) => {
     // res.send("Hi matt dogg");
-    res.render("home.ejs");
+    res.render("home");
     //default place it looks for is in views so we don't have to put 'views/home.ejs'
 });
 
