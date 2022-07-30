@@ -8,5 +8,12 @@
     </head>
     <body>
         <h1>Your rando num is: <%= rand %></h1>
+        <% if(rand % 2 === 0){ %>
+        <h2>Even number</h2>
+        <% } else { %>
+        <h2>Odd number</h2>
+        <% } %>
+        <h3>Da num is <%= rand % 2 === 0 ? 'Even' : 'Odd' %></h3>
+        <!-- ternary operator^^^ ?(is the IF) and :(is the ELSE)-->
     </body>
 </html>
