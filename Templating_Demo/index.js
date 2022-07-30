@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const path = require("path");
 
+app.use(express.static(path.join(__dirname, "public")));
+
 app.set("view engine", "ejs");
 //after doing this we in terminal we installed 'npm i ejs'
 //by installing it and setting 'view engine', 'ejs' express behind the scenes will require the package called EJS that we just installed in terminal
