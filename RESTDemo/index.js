@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 const path = require("path");
+const { v4: uuid } = require("uuid");
+uuid();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -9,22 +11,22 @@ app.set("view engine", "ejs");
 
 const comments = [
     {
-        id: 1,
+        id: uuid(),
         username: "Todd",
         comment: "That funny",
     },
     {
-        id: 2,
+        id: uuid(),
         username: "Rodd",
         comment: "That funnier",
     },
     {
-        id: 3,
+        id: uuid(),
         username: "Maude",
         comment: "That funniest",
     },
     {
-        id: 4,
+        id: uuid(),
         username: "Elrod",
         comment: "That funniester",
     },
@@ -43,17 +45,23 @@ app.get("/comments/new", (req, res) => {
 app.post("/comments", (req, res) => {
     // console.log(req.body);
     const { username, comment } = req.body;
-    comments.push({ username, comment });
+    comments.push({ username, comment, id: uuid() });
     // res.send("Is twerking");
     res.redirect("/comments");
 });
 
 app.get("/comments/:id", (req, res) => {
     const { id } = req.params;
-    const comment = comments.find((c) => c.id === parseInt(id));
+    const comment = comments.find((c) => c.id === id);
     res.render("comments/show", { comment });
     //Instead of 'show' it can be named anything
 });
+
+// app.patch("/comments/:id", (req, res) => {
+//     // res.send("Updating sumtin");
+//     const { id } = req.params;
+//     const comment = comments.find((c) => c.id === id);
+// });
 
 app.get("/tacos", (req, res) => {
     res.send("Get /tacos response");
