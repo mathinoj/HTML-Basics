@@ -9,18 +9,22 @@ app.set("view engine", "ejs");
 
 const comments = [
     {
+        id: 1,
         username: "Todd",
         comment: "That funny",
     },
     {
+        id: 2,
         username: "Rodd",
         comment: "That funnier",
     },
     {
+        id: 3,
         username: "Maude",
         comment: "That funniest",
     },
     {
+        id: 4,
         username: "Elrod",
         comment: "That funniester",
     },
@@ -35,12 +39,20 @@ app.get("/comments/new", (req, res) => {
     res.render("comments/new");
 });
 
+// below displays the user input and who the author is
 app.post("/comments", (req, res) => {
     // console.log(req.body);
     const { username, comment } = req.body;
     comments.push({ username, comment });
     // res.send("Is twerking");
     res.redirect("/comments");
+});
+
+app.get("/comments/:id", (req, res) => {
+    const { id } = req.params;
+    const comment = comments.find((c) => c.id === parseInt(id));
+    res.render("comments/show", { comment });
+    //Instead of 'show' it can be named anything
 });
 
 app.get("/tacos", (req, res) => {
