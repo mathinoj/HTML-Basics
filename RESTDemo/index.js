@@ -30,6 +30,19 @@ app.get("/comments", (req, res) => {
     res.render("comments/index", { comments }); //dont have to do index
 });
 
+//below is the NEW /comments/new to GET - a Form to Create NEW comments
+app.get("/comments/new", (req, res) => {
+    res.render("comments/new");
+});
+
+app.post("/comments", (req, res) => {
+    // console.log(req.body);
+    const { username, comment } = req.body;
+    comments.push({ username, comment });
+    // res.send("Is twerking");
+    res.redirect("/comments");
+});
+
 app.get("/tacos", (req, res) => {
     res.send("Get /tacos response");
 });
