@@ -25,9 +25,9 @@ const comments = [
         comment: "That funniester",
     },
 ];
-//need to render these in a template so do next--->
+//need to render these^^ in a template so do next--->
 app.get("/comments", (req, res) => {
-    res.render("/comments/index"); //dont have to do index
+    res.render("comments/index", { comments }); //dont have to do index
 });
 
 app.get("/tacos", (req, res) => {
