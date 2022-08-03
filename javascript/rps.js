@@ -17,33 +17,33 @@ rpsForm.addEventListener("submit", function (e) {
         // console.log(rpsSpan.innerText);
         // rpsCompSpan.innerText = "ROCK";
         if (rpsSpan.innerText === "scissors") {
-            rpsCompSpan.innerText = `ROCK, beats ${rpsSpan.innerText}. You lose.`;
+            rpsCompSpan.innerText = `You chose ${rpsSpan.innerText}. The computer chose ROCK. ROCK, beats ${rpsSpan.innerText}. You lose.`;
         } else if (rpsSpan.innerText === "paper") {
-            rpsCompSpan.innerText = `${rpsSpan.innerText} beats ROCK. You WIN!`;
+            rpsCompSpan.innerText = `You chose ${rpsSpan.innerText}. The computer chose ROCK. ${rpsSpan.innerText} beats ROCK. You WIN!`;
         } else {
-            rpsCompSpan.innerText = `${rpsSpan.innerText} does not beat or lose to ROCK. It's a tie.`;
+            rpsCompSpan.innerText = `You chose ${rpsSpan.innerText}. The computer also chose ROCK. ${rpsSpan.innerText} does not beat or lose to ROCK. It's a tie.`;
         }
     } else if (rps === 2) {
         // console.log("paper");
         // console.log(rpsSpan.innerText);
         // rpsCompSpan.innerText = "PAPER";
         if (rpsSpan.innerText === "rock") {
-            rpsCompSpan.innerText = `PAPER, beats ${rpsSpan.innerText}. You lose.`;
+            rpsCompSpan.innerText = `You chose ${rpsSpan.innerText}. The computer chose PAPER. PAPER, beats ${rpsSpan.innerText}. You lose.`;
         } else if (rpsSpan.innerText === "scissors") {
-            rpsCompSpan.innerText = `${rpsSpan.innerText} beat PAPER. You WIN!`;
+            rpsCompSpan.innerText = `You chose ${rpsSpan.innerText}. The computer chose PAPER. ${rpsSpan.innerText} beat PAPER. You WIN!`;
         } else {
-            rpsCompSpan.innerText = `${rpsSpan.innerText} does not beat or lose to PAPER. It's a tie.`;
+            rpsCompSpan.innerText = `You chose ${rpsSpan.innerText}. The computer also chose PAPER. ${rpsSpan.innerText} does not beat or lose to PAPER. It's a tie.`;
         }
     } else {
         // console.log("scissors");
         // console.log(rpsSpan.innerText);
         // rpsCompSpan.innerText = "SCISSORS";
         if (rpsSpan.innerText === "paper") {
-            rpsCompSpan.innerText = `SCISSORS, beats ${rpsSpan.innerText}. You lose.`;
+            rpsCompSpan.innerText = `You chose ${rpsSpan.innerText}. The computer chose SCISSORS. SCISSORS, beats ${rpsSpan.innerText}. You lose.`;
         } else if (rpsSpan.innerText === "rock") {
-            rpsCompSpan.innerText = `${rpsSpan.innerText} beat SCISSORS. You WIN!`;
+            rpsCompSpan.innerText = `You chose ${rpsSpan.innerText}. The computer chose SCISSORS. ${rpsSpan.innerText} beat SCISSORS. You WIN!`;
         } else {
-            rpsCompSpan.innerText = `${rpsSpan.innerText} does not beat or lose to SCISSORS. It's a tie.`;
+            rpsCompSpan.innerText = `You chose ${rpsSpan.innerText}. The computer also chose SCISSORS. ${rpsSpan.innerText} does not beat or lose to SCISSORS. It's a tie.`;
         }
     }
 
