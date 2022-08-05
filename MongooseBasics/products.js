@@ -23,7 +23,7 @@ const productSchema = new mongoose.Schema({
     price: {
         type: Number,
         required: true,
-        min: 0,
+        min: [0, "Price must be POSITIVE"],
     },
     onSale: {
         type: Boolean,
@@ -40,31 +40,22 @@ const productSchema = new mongoose.Schema({
             default: 0,
         },
     },
+    size: {
+        type: String,
+        enum: ["S", "M", "L"],
+    },
 });
 //Doing it like this allows the REQUIRED validation
 
 const Product = mongoose.model("Product", productSchema);
 
-// const bike = new Product({
-//     name: "Bike Pump",
-//     price: 40,
-//     categories: ["Mountain", "Trail"],
-// });
-// bike.save()
-//     .then((data) => {
-//         console.log("It Worked");
-//         console.log(data);
-//     })
-//     .catch((err) => {
-//         console.log("Oh No Error");
-//         console.log(err);
-//     });
-
-Product.findOneAndUpdate(
-    { name: "Bike Pump" },
-    { price: -30.99 },
-    { new: true, runValidators: true }
-)
+const bike = new Product({
+    name: "Cycling Hat",
+    price: 22,
+    categories: ["Mountain", "Trail"],
+    size: "XL",
+});
+bike.save()
     .then((data) => {
         console.log("It Worked");
         console.log(data);
@@ -73,3 +64,17 @@ Product.findOneAndUpdate(
         console.log("Oh No Error");
         console.log(err);
     });
+
+// Product.findOneAndUpdate(
+//     { name: "Bike Pump" },
+//     { price: -30.99 },
+//     { new: true, runValidators: true }
+// )
+//     .then((data) => {
+//         console.log("It Worked");
+//         console.log(data);
+//     })
+//     .catch((err) => {
+//         console.log("Oh No Error");
+//         console.log(err);
+//     });
