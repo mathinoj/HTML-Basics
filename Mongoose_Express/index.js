@@ -22,8 +22,7 @@ app.get("/products", async (req, res) => {
     const products = await Product.find({});
     //^^this finds everything, matches every product
     // This async route handler where we await some mongoose operation, we will do this all the time. So await Product.find({}) await Product.findByIdAndUpdate({}), await Product.remove({}).
-    console.log(products);
-    res.send("All PRODUCTS her");
+    res.render("products/index", { products });
 });
 
 app.listen(3000, () => {
