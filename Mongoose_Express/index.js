@@ -26,10 +26,18 @@ app.use(methodOverride("_method"));
 const categories = ["fruit", "vegetable", "dairy"];
 
 app.get("/products", async (req, res) => {
-    const products = await Product.find({});
+    const { category } = req.query;
+    if (category) {
+        const products = await Product.find({ category });
+        res.render("products/index", { products, category });
+    } else {
+        const products = await Product.find({});
+        res.render("products/index", { products, category: "All" });
+    }
+    // const products = await Product.find({});
     //^^this finds everything, matches every product
     // This async route handler where we await some mongoose operation, we will do this all the time. So await Product.find({}) await Product.findByIdAndUpdate({}), await Product.remove({}).
-    res.render("products/index", { products });
+    // res.render("products/index", { products });
 });
 
 // we need an HTML form this should serve the form
