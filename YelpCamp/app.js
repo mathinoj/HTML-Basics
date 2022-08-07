@@ -23,17 +23,26 @@ app.set("view engine", "ejs"); //2
 app.set("views", path.join(__dirname, "views")); //2
 
 //1
-app.get("/makecampground", async (req, res) => {
-    //3
-    const camp = new Campground({
-        //3
-        title: "My B Yard",
-        description: "two trees to camp under",
-    });
-    await camp.save(); //3
-    // res.send("This be YELP camp");
-    // res.render("home");
-    res.send(camp); //3
+// app.get("/makecampground", async (req, res) => {
+//     //3
+//     const camp = new Campground({
+//         //3
+//         title: "My B Yard",
+//         description: "two trees to camp under",
+//     });
+//     await camp.save(); //3
+//     // res.send("This be YELP camp");
+//     // res.render("home");
+//     res.send(camp); //3
+// }); REMOVED IN SECTION 403!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+app.get("/", (req, res) => {
+    res.render("home");
+});
+
+app.get("/", async (req, res) => {
+    const campgrounds = await Campground.find({});
+    res.render("campground/index");
 });
 
 //1

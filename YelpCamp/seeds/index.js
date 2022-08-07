@@ -33,6 +33,6 @@ const seedDB = async () => {
 //set the loop to run 50 times to get a city
 
 seedDB().then(() => {
-    mongoose.connection.close;
+    mongoose.connection.close();
 });
 //close our database connection. seedDB returns a promise cuz its an async function. Call mongoose.connection.close to close.
