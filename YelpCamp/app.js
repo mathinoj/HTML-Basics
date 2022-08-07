@@ -79,6 +79,13 @@ app.put("/campgrounds/:id", async (req, res) => {
     res.redirect(`/campgrounds/${campground._id}`);
 });
 
+app.delete("/campgrounds/:id", async (req, res) => {
+    const { id } = req.params;
+    await Campground.findByIdAndDelete(id);
+    res.redirect("/campgrounds");
+});
+//After making delete we need to make a button to send the delete the request. Its a form that will send a post request to the "/campgroundS/:id" URL but its going to fake out express and make it think its a delete request cuz we have input the methodOverride
+
 //1
 app.listen(3000, () => {
     console.log("CONNECTED port 3000");
