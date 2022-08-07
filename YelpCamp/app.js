@@ -44,7 +44,7 @@ app.get("/", (req, res) => {
 
 app.get("/campgrounds", async (req, res) => {
     const campgrounds = await Campground.find({});
-    res.render("campgrounds/index", { campgrounds }); //added {campgrounds} 403
+    res.render("campgrounds/index", { campgrounds }); //added {campgrounds} 413
 });
 
 app.get("/campgrounds/new", (req, res) => {
@@ -60,6 +60,11 @@ app.post("/campgrounds", async (req, res) => {
 app.get("/campgrounds/:id", async (req, res) => {
     const campground = await Campground.findById(req.params.id);
     res.render("campgrounds/show", { campground });
+});
+
+app.get("/campgrounds/:id/edit", async (req, res) => {
+    const campground = await Campground.findById(req.params.id);
+    res.render("campgrounds/edit", { campground });
 });
 
 //1
