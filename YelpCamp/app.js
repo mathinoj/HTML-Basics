@@ -45,6 +45,11 @@ app.get("/campgrounds", async (req, res) => {
     res.render("campgrounds/index", { campgrounds }); //added {campgrounds} 403
 });
 
+app.get("/campgrounds/:id", async (req, res) => {
+    const campground = await Campground.findById(req.params.id);
+    res.render("campgrounds/show", { campground });
+});
+
 //1
 app.listen(3000, () => {
     console.log("CONNECTED port 3000");
