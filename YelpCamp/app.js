@@ -40,9 +40,9 @@ app.get("/", (req, res) => {
     res.render("home");
 });
 
-app.get("/", async (req, res) => {
+app.get("/campgrounds", async (req, res) => {
     const campgrounds = await Campground.find({});
-    res.render("campground/index");
+    res.render("campgrounds/index", { campgrounds }); //added {campgrounds} 403
 });
 
 //1
