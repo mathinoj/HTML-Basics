@@ -40,6 +40,22 @@ app.use("/dogs", (req, res, next) => {
     next();
 });
 
+// app.use((req, res, next) => {
+//     const { password } = req.query;
+//     if (password === "mattdogg") {
+//         next();
+//     }
+//     res.send("Need a p-word");
+// });
+
+const verifyPassword = (req, res, next) => {
+    const { password } = req.query;
+    if (password === "mattdogg") {
+        next();
+    }
+    res.send("Need a p-word");
+};
+
 app.get("/", (req, res) => {
     console.log(`Request date: ${req.requestTime}`);
     res.send("home page");
@@ -48,6 +64,10 @@ app.get("/", (req, res) => {
 app.get("/dogs", (req, res) => {
     console.log(`Request date: ${req.requestTime}`);
     res.send("Bark burk");
+});
+
+app.get("/secret", verifyPassword, (req, res) => {
+    res.send("What it do, SECRET boo.");
 });
 
 app.use((req, res) => {
