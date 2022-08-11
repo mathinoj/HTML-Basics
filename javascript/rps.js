@@ -6,10 +6,12 @@ const rpsCompSpan = document.querySelector("#showCompRPSSpan");
 
 rpsForm.addEventListener("submit", function (e) {
     e.preventDefault();
-    rpsSpan.innerText = `${rpsInput.value}`;
+    rpsSpan.innerText = `${rpsInput.value.toLowerCase()}`; //ADDED THIS JUST IN CASE USER TYPES IN ALL CAPS
     rpsInput.value = "";
 
     const rps = Math.floor(Math.random() * 3) + 1;
+
+    console.log(rpsSpan.innerText);
 
     // console.log(rps);
     if (rps === 1) {
