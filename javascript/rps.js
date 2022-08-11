@@ -11,25 +11,17 @@ rpsForm.addEventListener("submit", function (e) {
 
     const rps = Math.floor(Math.random() * 3) + 1;
 
-    console.log(rpsSpan.innerText);
-
-    // while (rpsSpan.innerText === "") {
-    //     const alerted = alert("keep trying");
-    //     break;
-    // }
-
     while (
         rpsSpan.innerText === "" ||
         rpsSpan.innerText >= 0 ||
         rpsSpan.innerText <= 0 ||
-        (rpsSpan.innerText !== "rock" &&
-            rpsSpan.innerText !== "paper" &&
-            rpsSpan.innerText !== "scissors")
+        (rpsSpan.innerText.toLowerCase() !== "rock" &&
+            rpsSpan.innerText.toLowerCase() !== "paper" &&
+            rpsSpan.innerText.toLowerCase() !== "scissors")
     ) {
         rpsSpan.innerText = prompt(
             "That's not a valid input. Please try again."
         );
-        console.log("22: " + rpsSpan.innerText);
     }
 
     // console.log(rps);
