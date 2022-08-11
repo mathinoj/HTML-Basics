@@ -18,7 +18,14 @@ rpsForm.addEventListener("submit", function (e) {
     //     break;
     // }
 
-    while (rpsSpan.innerText === "") {
+    while (
+        rpsSpan.innerText === "" ||
+        rpsSpan.innerText >= 0 ||
+        rpsSpan.innerText <= 0 ||
+        (rpsSpan.innerText !== "rock" &&
+            rpsSpan.innerText !== "paper" &&
+            rpsSpan.innerText !== "scissors")
+    ) {
         rpsSpan.innerText = prompt(
             "That's not a valid input. Please try again."
         );
