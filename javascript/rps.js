@@ -13,6 +13,18 @@ rpsForm.addEventListener("submit", function (e) {
 
     console.log(rpsSpan.innerText);
 
+    // while (rpsSpan.innerText === "") {
+    //     const alerted = alert("keep trying");
+    //     break;
+    // }
+
+    while (rpsSpan.innerText === "") {
+        rpsSpan.innerText = prompt(
+            "That's not a valid input. Please try again."
+        );
+        console.log("22: " + rpsSpan.innerText);
+    }
+
     // console.log(rps);
     if (rps === 1) {
         // console.log("rock");
