@@ -24,7 +24,16 @@ rpsForm.addEventListener("submit", function (e) {
         );
     }
 
-    // console.log(rps);
+    // const myTimeout = setTimeout(myGreeting, 2000);
+
+    // function myGreeting() {
+    //     document.getElementById("demo").innerHTML = "Happy Birthday!";
+    // }
+
+    // function myStopFunction() {
+    //     clearTimeout(myTimeout);
+    // }
+
     if (rps === 1) {
         // console.log("rock");
         // console.log(rpsSpan.innerText);
