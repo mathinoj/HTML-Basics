@@ -31,6 +31,16 @@ app.set("views", path.join(__dirname, "views")); //2
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method")); //ADDDDDEEEEED
 
+const validateCampground = (req, res, next) => {
+    const { error } = campgroundSchema.validate(req.body);
+    if (error) {
+        const msg = error.details.map((el) => el.message).join(",");
+        throw new ExpressError(msg, 400);
+    } else {
+        next();
+    }
+};
+
 //1
 // app.get("/makecampground", async (req, res) => {
 //     //3
@@ -63,9 +73,11 @@ app.get("/campgrounds/new", (req, res) => {
 
 app.post(
     "/campgrounds",
+    validateCampground,
     catchAsync(async (req, res, next) => {
-        if (!req.body.campground)
-            throw new ExpressError("Invalid camp data", 400);
+        // if (!req.body.campground)
+        //     throw new ExpressError("Invalid camp data", 400);
+
         const campground = new Campground(req.body.campground);
         await campground.save();
         res.redirect(`/campgrounds/${campground._id}`);
@@ -90,6 +102,7 @@ app.get(
 
 app.put(
     "/campgrounds/:id",
+    validateCampground,
     catchAsync(async (req, res) => {
         // res.send("it worked"); // this is a test!!
         const { id } = req.params;
