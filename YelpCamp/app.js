@@ -2,6 +2,7 @@ const express = require("express"); //1
 const path = require("path"); //2
 const mongoose = require("mongoose"); //3
 const ejsMate = require("ejs-mate");
+const Joi = require("joi");
 const catchAsync = require("./utils/catchAsync");
 const ExpressError = require("./utils/ExpressError");
 const methodOverride = require("method-override"); //ADDDDDEEEEED
