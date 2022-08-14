@@ -115,8 +115,9 @@ app.all("*", (req, res, next) => {
 //After making delete we need to make a button to send the delete the request. Its a form that will send a post request to the "/campgroundS/:id" URL but its going to fake out express and make it think its a delete request cuz we have input the methodOverride
 
 app.use((err, req, res, next) => {
-    const { statusCode = 500, message = "Sumtin went Wrong" } = err;
-    res.status(statusCode).send(message);
+    const { statusCode = 500 } = err;
+    if (!err.message) err.message = "Oh dang sometin went wrong!!!!!!";
+    res.status(statusCode).render("error", { err });
 });
 
 //1
