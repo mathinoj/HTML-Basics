@@ -131,6 +131,19 @@ app.delete(
     })
 );
 
+const handleValidationErr = (err) => {
+    // console.log(err);
+    console.dir(err);
+
+    return new AppError(`Validation Failed...${err.message}`, 400);
+};
+
+app.use((err, req, res, next) => {
+    console.log(err.name);
+    if (err.name === "ValidationError") err = handleValidationErr(err);
+    next(err);
+});
+
 app.use((err, req, res, next) => {
     const { status = 500, message = "Something wrong" } = err;
     res.status(status).send(message);

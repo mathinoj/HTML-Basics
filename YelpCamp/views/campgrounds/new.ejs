@@ -3,7 +3,12 @@
 <div class="row">
     <h1 class="text-center">New Camp</h1>
     <div class="col-6 offset-3">
-        <form action="/campgrounds" method="POST">
+        <form
+            action="/campgrounds"
+            method="POST"
+            novalidate
+            class="validated-form"
+        >
             <div class="mb-3">
                 <label class="form-label" for="title">Title</label>
                 <input
@@ -11,7 +16,9 @@
                     type="text"
                     id="title"
                     name="campground[title]"
+                    required
                 />
+                <div class="valid-feedback">That's Aight Name, Mayngs</div>
                 <!-- this [title] is done to group content together -->
             </div>
             <div class="mb-3">
@@ -21,7 +28,9 @@
                     type="text"
                     id="location"
                     name="campground[location]"
+                    required
                 />
+                <div class="valid-feedback">Like That Flava, Naybuh</div>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="image">Image URL</label>
@@ -30,7 +39,9 @@
                     type="text"
                     id="location"
                     name="campground[image]"
+                    required
                 />
+                <div class="valid-feedback">Gucci Pic</div>
             </div>
 
             <div class="mb-3">
@@ -47,7 +58,9 @@
                         aria-label="price"
                         aria-describedby="price-label"
                         name="campground[price]"
+                        required
                     />
+                    <div class="valid-feedback">Da Price is Right, Bobby!</div>
                 </div>
             </div>
 
@@ -60,7 +73,9 @@
                     type="text"
                     id="description"
                     name="campground[description]"
+                    required
                 ></textarea>
+                <div class="valid-feedback">Interesantay</div>
             </div>
             <div class="mb-3">
                 <button class="btn btn-success">Add Camp</button>
@@ -69,3 +84,34 @@
         <a href="/campgrounds">All Camps</a>
     </div>
 </div>
+
+<script>
+    (function () {
+        "use strict";
+        window.addEventListener(
+            "load",
+            function () {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName("validated-form");
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(
+                    forms,
+                    function (form) {
+                        form.addEventListener(
+                            "submit",
+                            function (event) {
+                                if (form.checkValidity() === false) {
+                                    event.preventDefault();
+                                    event.stopPropagation();
+                                }
+                                form.classList.add("was-validated");
+                            },
+                            false
+                        );
+                    }
+                );
+            },
+            false
+        );
+    })();
+</script>
