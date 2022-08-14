@@ -55,10 +55,14 @@ app.get("/campgrounds/new", (req, res) => {
     res.render("campgrounds/new");
 });
 
-app.post("/campgrounds", async (req, res) => {
-    const campground = new Campground(req.body.campground);
-    await campground.save();
-    res.redirect(`/campgrounds/${campground._id}`);
+app.post("/campgrounds", async (req, res, next) => {
+    try {
+        const campground = new Campground(req.body.campground);
+        await campground.save();
+        res.redirect(`/campgrounds/${campground._id}`);
+    } catch (e) {
+        next(e);
+    }
 });
 
 app.get("/campgrounds/:id", async (req, res) => {
@@ -87,6 +91,10 @@ app.delete("/campgrounds/:id", async (req, res) => {
     res.redirect("/campgrounds");
 });
 //After making delete we need to make a button to send the delete the request. Its a form that will send a post request to the "/campgroundS/:id" URL but its going to fake out express and make it think its a delete request cuz we have input the methodOverride
+
+app.use((err, req, res, next) => {
+    res.send("Oh nah, suttin went wrong");
+});
 
 //1
 app.listen(3000, () => {
