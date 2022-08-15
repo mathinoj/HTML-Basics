@@ -25,12 +25,18 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
 //FARM ROUTES
+app.get("/farms", async (req, res) => {
+    const farms = await Farm.find({});
+    res.render("farms/index", { farms });
+});
+
 app.get("/farms/new", (req, res) => {
     res.render("farms/new");
 });
 
 app.post("/farms", async (req, res) => {
-    res.send(req.body);
+    const farm = new Farm(req.body);
+    await farm.save();
 });
 
 //PRODUCT ROUTES
