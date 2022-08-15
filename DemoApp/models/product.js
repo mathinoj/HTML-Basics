@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { Schema } = mongoose;
 
 const productSchema = new mongoose.Schema({
     name: {
@@ -15,6 +16,10 @@ const productSchema = new mongoose.Schema({
         lowercase: true,
         enum: ["fruit", "vegetable", "dairy"],
         // An enum is a special "class" that represents a group of constants (unchangeable variables, like final variables).
+    },
+    farm: {
+        type: Schema.Types.ObjectId,
+        ref: "Farm",
     },
 });
 
