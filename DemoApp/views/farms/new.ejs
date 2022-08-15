@@ -4,29 +4,38 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>New Product</title>
+        <title>Add Farm</title>
     </head>
     <body>
-        <h1>Add a Product</h1>
-        <form action="/products" method="POST">
-            <label for="name">Product Name</label>
-            <input
-                type="text"
-                name="name"
-                id="name"
-                placeholder="Product Name"
-            />
-            <label for="price">Price</label>
-            <input type="number" name="price" id="price" placeholder="Price" />
-            <label for="category">Select Category</label>
-            <select name="category" id="category">
-                <% for (let category of categories) { %>
-                <option value="<%=category%>"><%=category%></option>
-                <% } %>
-                <!-- <option value="fruit">Fruit</option>
-                <option value="vegetable">Vegetable</option>
-                <option value="dairy">Dairy</option> -->
-            </select>
+        <h1>Add Farm</h1>
+        <form action="/farms" method="POST">
+            <div>
+                <label for="name">Farm Name</label>
+                <input
+                    type="text"
+                    name="name"
+                    id="name"
+                    placeholder="Farm Name"
+                />
+            </div>
+            <div>
+                <label for="name">City Name</label>
+                <input
+                    type="text"
+                    name="city"
+                    id="city"
+                    placeholder="City Name"
+                />
+            </div>
+            <div>
+                <label for="name">Email</label>
+                <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="Email"
+                />
+            </div>
             <button>Submit</button>
         </form>
     </body>
