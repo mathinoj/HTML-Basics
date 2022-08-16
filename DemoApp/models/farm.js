@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Product = require("./product");
 const { Schema } = mongoose;
 
 const farmSchema = Schema({
@@ -19,6 +20,18 @@ const farmSchema = Schema({
             ref: "Product",
         },
     ],
+});
+
+// farmSchema.pre("findOneAndDelete", async function (data) {
+//     console.log("PRE MIDDLE!!");
+//     console.log(data);
+// });
+
+farmSchema.post("findOneAndDelete", async function (farm) {
+    if (farm.products.length) {
+        const res = await Product.deleteMany({ _id: { $in: farm.products } });
+        console.log(res);
+    }
 });
 
 const Farm = mongoose.model("Farm", farmSchema);
