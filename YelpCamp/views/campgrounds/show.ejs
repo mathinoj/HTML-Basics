@@ -20,7 +20,7 @@
                 <li class="list-group-item">
                     $<%= campground.price %> per night
                 </li>
-                <li class="list-group-item">Vestibulum at eros</li>
+                <!-- <li class="list-group-item">Vestibulum at eros</li> -->
             </ul>
             <div class="card-body">
                 <a
@@ -41,6 +41,31 @@
                 <a href="/campgrounds">All Camps</a>
             </div>
         </div>
+        <h2>Leave a Review</h2>
+        <form action="" class="mb-3">
+            <div class="mb-3">
+                <label class="form-label" for="rating">Rating</label>
+                <input
+                    class="form-range"
+                    type="range"
+                    min="1"
+                    max="5"
+                    name="review[rating]"
+                    id="rating"
+                />
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="body">Review</label>
+                <textarea
+                    class="form-control"
+                    name="review[body]"
+                    id="body"
+                    cols="30"
+                    rows="3"
+                ></textarea>
+            </div>
+            <button class="btn btn-success">Submit</button>
+        </form>
     </div>
 </div>
 <!-- <footer>
