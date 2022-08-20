@@ -3,7 +3,7 @@ const path = require("path"); //2
 const mongoose = require("mongoose"); //3
 const ejsMate = require("ejs-mate");
 // const Joi = require("joi"); Got rid cuz were exporting our schema from schemas file, and that depends on joi
-const session = require("express-session");
+const session = require("express-session"); //492
 const { campgroundSchema, reviewSchema } = require("./schemas.js");
 const catchAsync = require("./utils/catchAsync");
 const ExpressError = require("./utils/ExpressError");
@@ -37,6 +37,20 @@ app.set("views", path.join(__dirname, "views")); //2
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method")); //ADDDDDEEEEED
 app.use(express.static(path.join(__dirname, "public"))); //491
+
+const sessionConfig = {
+    secret: "shouldbebettersecret",
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        httpOnly: true,
+        expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+        maxAge: 1000 * 60 * 60 * 24 * 7,
+    },
+
+    //we want to have an expiration cuz otherwise someone could log in and stay logged in forever just by signing in.
+};
+app.use(session(sessionConfig)); //492
 
 const validateCampground = (req, res, next) => {
     const { error } = campgroundSchema.validate(req.body);
