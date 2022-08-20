@@ -69,6 +69,9 @@ const validateReview = (req, res, next) => {
 //     res.send(camp); //3
 // }); REMOVED IN SECTION 403!!!!!!!!!!!!!!!!!!!!!!!!!!
 
+app.use("/campgrounds", campgrounds);
+//had to add router (ex /campgrounds) and a path to prefix them with which is campgrounds. So in campgrounds.js you gotta remove the campgrounds from /campgrounds in the campgrounds.js
+
 app.get("/", (req, res) => {
     res.render("home");
 });

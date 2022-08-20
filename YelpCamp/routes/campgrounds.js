@@ -2,19 +2,19 @@ const express = require("express");
 const router = express.Router();
 
 router.get(
-    "/campgrounds",
+    "/",
     catchAsync(async (req, res) => {
         const campgrounds = await Campground.find({});
         res.render("campgrounds/index", { campgrounds }); //added {campgrounds} 413
     })
 );
 
-router.get("/campgrounds/new", (req, res) => {
+router.get("/new", (req, res) => {
     res.render("campgrounds/new");
 });
 
 router.post(
-    "/campgrounds",
+    "/",
     validateCampground,
     catchAsync(async (req, res, next) => {
         // if (!req.body.campground)
@@ -27,7 +27,7 @@ router.post(
 );
 
 router.get(
-    "/campgrounds/:id",
+    "/:id",
     catchAsync(async (req, res) => {
         const campground = await Campground.findById(req.params.id).populate(
             "reviews"
@@ -38,7 +38,7 @@ router.get(
 );
 
 router.get(
-    "/campgrounds/:id/edit",
+    "/:id/edit",
     catchAsync(async (req, res) => {
         const campground = await Campground.findById(req.params.id);
         res.render("campgrounds/edit", { campground });
@@ -46,7 +46,7 @@ router.get(
 );
 
 router.put(
-    "/campgrounds/:id",
+    "/:id",
     validateCampground,
     catchAsync(async (req, res) => {
         // res.send("it worked"); // this is a test!!
@@ -60,7 +60,7 @@ router.put(
 );
 
 router.delete(
-    "/campgrounds/:id",
+    "/:id",
     catchAsync(async (req, res) => {
         const { id } = req.params;
         await Campground.findByIdAndDelete(id);
