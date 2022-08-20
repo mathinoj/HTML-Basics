@@ -10,6 +10,8 @@ const methodOverride = require("method-override"); //ADDDDDEEEEED
 const Campground = require("./models/campground"); //3
 const Review = require("./models/review");
 
+const campgrounds = require("./routes/campgrounds");
+
 //3
 mongoose.connect("mongodb://localhost:27017/yelp-camp", {
     // useNewUrlParser: true, HE DOES CUS HE HAS OLDER VERSION, u dnt need

@@ -67,3 +67,5 @@ router.delete(
         res.redirect("/campgrounds");
     })
 );
+
+module.exports = router;
