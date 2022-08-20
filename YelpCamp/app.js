@@ -3,6 +3,7 @@ const path = require("path"); //2
 const mongoose = require("mongoose"); //3
 const ejsMate = require("ejs-mate");
 // const Joi = require("joi"); Got rid cuz were exporting our schema from schemas file, and that depends on joi
+const session = require("express-session");
 const { campgroundSchema, reviewSchema } = require("./schemas.js");
 const catchAsync = require("./utils/catchAsync");
 const ExpressError = require("./utils/ExpressError");
