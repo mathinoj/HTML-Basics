@@ -54,25 +54,10 @@ const sessionConfig = {
 app.use(session(sessionConfig)); //492
 app.use(flash()); //493
 
-const validateCampground = (req, res, next) => {
-    const { error } = campgroundSchema.validate(req.body);
-    if (error) {
-        const msg = error.details.map((el) => el.message).join(",");
-        throw new ExpressError(msg, 400);
-    } else {
-        next();
-    }
-};
-
-const validateReview = (req, res, next) => {
-    const { error } = reviewSchema.validate(req.body);
-    if (error) {
-        const msg = error.details.map((el) => el.message).join(",");
-        throw new ExpressError(msg, 400);
-    } else {
-        next();
-    }
-};
+app.use((req, res, next) => {
+    res.locals.success = req.flash("success");
+    next();
+});
 
 //1
 // app.get("/makecampground", async (req, res) => {
