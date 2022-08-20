@@ -1,5 +1,5 @@
 const express = require("express");
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
 //routers get seperate params. Now all of the params from app.js will be merged from alongside the params in review.js (this file)
 //if we need accesss to the :id param in app.js ('/campgrounds/:id/reviews') or more params that we define in app.js when were using the route then we need to make sure we set mergeParams: true
 const Campground = require("../models/campground");

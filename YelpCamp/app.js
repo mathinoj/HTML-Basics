@@ -35,6 +35,7 @@ app.set("views", path.join(__dirname, "views")); //2
 
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method")); //ADDDDDEEEEED
+app.use(express.static(path.join(__dirname, "public"))); //491
 
 const validateCampground = (req, res, next) => {
     const { error } = campgroundSchema.validate(req.body);
