@@ -18,6 +18,17 @@ app.get("/viewcount", (req, res) => {
     res.send(`You have viewed this page this many times: ${req.session.count}`);
 });
 
+app.get("/register", (req, res) => {
+    const { username = "Unknown" } = req.query;
+    req.session.username = username;
+    res.redirect("/greet");
+});
+
+app.get("/greet", (req, res) => {
+    const { username } = req.session;
+    res.send(`Welcome back, ${username}`);
+});
+
 app.listen(3000, () => {
     console.log("Listen on 3000");
 });
