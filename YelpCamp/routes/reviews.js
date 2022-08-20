@@ -41,6 +41,7 @@ router.delete(
             $pull: { reviews: reviewId },
         });
         await Review.findByIdAndDelete(reviewId);
+        req.flash("success", "Successfully deleted review!");
         res.redirect(`/campgrounds/${id}`);
     })
 );
