@@ -71,6 +71,7 @@ router.put(
             ...req.body.campground,
         });
         //... is the spread operator. Spreads into the object {...req.body.campground}
+        req.flash("success", "Successfully updated camp!");
         res.redirect(`/campgrounds/${campground._id}`);
     })
 );
