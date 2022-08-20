@@ -11,6 +11,7 @@ const Campground = require("./models/campground"); //3
 const Review = require("./models/review");
 
 const campgrounds = require("./routes/campgrounds");
+const reviews = require("./routes/reviews");
 
 //3
 mongoose.connect("mongodb://localhost:27017/yelp-camp", {
@@ -70,6 +71,7 @@ const validateReview = (req, res, next) => {
 // }); REMOVED IN SECTION 403!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 app.use("/campgrounds", campgrounds);
+app.use("/campgrounds/:id/reviews", reviews);
 //had to add router (ex /campgrounds) and a path to prefix them with which is campgrounds. So in campgrounds.js you gotta remove the campgrounds from /campgrounds in the campgrounds.js
 
 app.get("/", (req, res) => {
