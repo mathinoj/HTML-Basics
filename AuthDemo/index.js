@@ -40,6 +40,10 @@ app.post("/register", async (req, res) => {
     res.redirect("/");
 });
 
+app.get("/login", (req, res) => {
+    res.render("login");
+});
+
 app.get("/secret", (req, res) => {
     res.send("This is a secret. Cant be seen unless logged in");
 });
