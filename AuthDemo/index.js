@@ -4,6 +4,7 @@ const app = express();
 const User = require("./models/user");
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+const session = require("express-session");
 
 mongoose
     .connect("mongodb://localhost:27017/authDemo")
