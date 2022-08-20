@@ -4,5 +4,24 @@
     "express": "^4.18.1",
     "mongoose": "^6.5.1",
     "morgan": "^1.10.0"
-  }
+  },
+  "name": "webdev_bc_2022",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mathinoj/WebDev-BC-2022.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mathinoj/WebDev-BC-2022/issues"
+  },
+  "homepage": "https://github.com/mathinoj/WebDev-BC-2022#readme",
+  "description": ""
 }
