@@ -1,5 +1,5 @@
 const express = require("express");
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
 const catchAsync = require("../utils/catchAsync");
 const { campgroundSchema, reviewSchema } = require("../schemas.js");
 
@@ -48,6 +48,10 @@ router.get(
         const campground = await Campground.findById(req.params.id).populate(
             "reviews"
         );
+        if (!campground) {
+            req.flash("error", "Can't find that camp!");
+            return res.redirect("/campgrounds");
+        }
         // console.log(campground); test to see reviews in terminal
         res.render("campgrounds/show", { campground });
     })
@@ -57,6 +61,10 @@ router.get(
     "/:id/edit",
     catchAsync(async (req, res) => {
         const campground = await Campground.findById(req.params.id);
+        if (!campground) {
+            req.flash("error", "Can't find that camp!");
+            return res.redirect("/campgrounds");
+        }
         res.render("campgrounds/edit", { campground });
     })
 );
