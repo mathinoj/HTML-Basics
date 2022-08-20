@@ -4,6 +4,7 @@ const mongoose = require("mongoose"); //3
 const ejsMate = require("ejs-mate");
 // const Joi = require("joi"); Got rid cuz were exporting our schema from schemas file, and that depends on joi
 const session = require("express-session"); //492
+const flash = require("connect-flash"); //493
 const { campgroundSchema, reviewSchema } = require("./schemas.js");
 const catchAsync = require("./utils/catchAsync");
 const ExpressError = require("./utils/ExpressError");
@@ -51,6 +52,7 @@ const sessionConfig = {
     //we want to have an expiration cuz otherwise someone could log in and stay logged in forever just by signing in.
 };
 app.use(session(sessionConfig)); //492
+app.use(flash()); //493
 
 const validateCampground = (req, res, next) => {
     const { error } = campgroundSchema.validate(req.body);
