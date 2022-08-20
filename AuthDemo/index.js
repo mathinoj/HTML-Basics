@@ -21,6 +21,7 @@ app.set("views", "views");
 
 app.use(express.urlencoded({ extended: true }));
 //req.body isnt being parsed so thats why we add this ^ so that we parse the req.body
+app.use(session({ secret: "notagoodsecret" }));
 
 app.get("/", (req, res) => {
     res.send("This be homepage");
@@ -38,6 +39,7 @@ app.post("/register", async (req, res) => {
         password: hash,
     });
     await user.save();
+    req.session.user_id = user._id; //505
     res.redirect("/");
 });
 
@@ -50,13 +52,17 @@ app.post("/login", async (req, res) => {
     const user = await User.findOne({ username });
     const validPassword = await bcrypt.compare(password, user.password);
     if (validPassword) {
-        res.send("Welcome");
+        req.session.user_id = user._id;
+        res.redirect("/secret");
     } else {
-        res.send("try try again");
+        res.redirect("/login");
     }
 });
 
 app.get("/secret", (req, res) => {
+    if (!req.session.user_id) {
+        res.redirect("/login");
+    }
     res.send("This is a secret. Cant be seen unless logged in");
 });
 
