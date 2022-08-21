@@ -15,8 +15,9 @@ const passport = require("passport"); //510
 const LocalStrategy = require("passport-local"); //511
 const User = require("./models/user");
 
-const campgrounds = require("./routes/campgrounds");
-const reviews = require("./routes/reviews");
+const userRoutes = require("./routes/users");
+const campgroundRoutes = require("./routes/campgrounds");
+const reviewRoutes = require("./routes/reviews");
 
 //3
 mongoose.connect("mongodb://localhost:27017/yelp-camp", {
@@ -96,8 +97,9 @@ app.use((req, res, next) => {
 //     res.send(newUser);
 // });
 
-app.use("/campgrounds", campgrounds);
-app.use("/campgrounds/:id/reviews", reviews);
+app.use("/", userRoutes);
+app.use("/campgrounds", campgroundRoutes);
+app.use("/campgrounds/:id/reviews", reviewRoutes);
 //had to add router (ex /campgrounds) and a path to prefix them with which is campgrounds. So in campgrounds.js you gotta remove the campgrounds from /campgrounds in the campgrounds.js
 
 app.get("/", (req, res) => {
