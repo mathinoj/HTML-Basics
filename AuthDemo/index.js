@@ -60,15 +60,17 @@ app.post("/login", async (req, res) => {
 });
 
 app.post("/logout", (req, res) => {
-    res.session.user_id = null;
+    // req.session.user_id = null; //THIS is the minimum that is needed
+    req.session.destroy(); //this destroys session entirely. useful if you want to get rid of all information that was stored in that session
     res.redirect("/login");
 });
 
 app.get("/secret", (req, res) => {
     if (!req.session.user_id) {
-        res.redirect("/login");
+        return res.redirect("/login"); //506
     }
-    res.send("This is a secret. Cant be seen unless logged in");
+    res.render("secret"); //506
+    // res.send("This is a secret. Cant be seen unless logged in");
 });
 
 app.listen(3000, () => {
