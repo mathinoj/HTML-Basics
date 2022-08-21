@@ -12,7 +12,7 @@ const methodOverride = require("method-override"); //ADDDDDEEEEED
 const Campground = require("./models/campground"); //3
 const Review = require("./models/review");
 const passport = require("passport"); //510
-const LocalStrategy = require("passport-local"); //510
+const LocalStrategy = require("passport-local"); //511
 const User = require("./models/user");
 
 const campgrounds = require("./routes/campgrounds");
@@ -90,11 +90,11 @@ app.use((req, res, next) => {
 //     res.send(camp); //3
 // }); REMOVED IN SECTION 403!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-app.get("/fakeUser", async (req, res) => {
-    const user = new User({ email: "matt@dogg.com", username: "mattdogg" });
-    const newUser = await User.register(user, "matt"); //checks if user name is unique
-    res.send(newUser);
-});
+// app.get("/fakeUser", async (req, res) => {
+//     const user = new User({ email: "matt@dogg.com", username: "mattdogg" });
+//     const newUser = await User.register(user, "matt"); //checks if user name is unique
+//     res.send(newUser);
+// });
 
 app.use("/campgrounds", campgrounds);
 app.use("/campgrounds/:id/reviews", reviews);
