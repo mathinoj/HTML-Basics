@@ -11,6 +11,9 @@ const ExpressError = require("./utils/ExpressError");
 const methodOverride = require("method-override"); //ADDDDDEEEEED
 const Campground = require("./models/campground"); //3
 const Review = require("./models/review");
+const passport = require("passport"); //510
+const LocalStrategy = require("passport-local"); //510
+const User = require("./models/user");
 
 const campgrounds = require("./routes/campgrounds");
 const reviews = require("./routes/reviews");
@@ -51,8 +54,21 @@ const sessionConfig = {
 
     //we want to have an expiration cuz otherwise someone could log in and stay logged in forever just by signing in.
 };
+
 app.use(session(sessionConfig)); //492
 app.use(flash()); //493
+
+app.use(passport.initialize()); //510
+app.use(passport.session()); //510 - needed if you want persistent login sessions
+passport.use(new LocalStrategy(User.authenticate()));
+// make sure this comes after app.use session
+//whats being said is that hello passport, we'd like you to use the LocalStrategy that we've downloaded and required, and for that LocalStrategy the authentication method is going to be located on our user model and its gonna be called authenticate. We didnt make a authenticate method, but one does come from the passport-local-mongoose and its one of the static methods that is automatic
+
+passport.serializeUser(User.serializeUser());
+//this tells passport how to serialize a user. serialization refers to how do we store a user in the session
+passport.deserializeUser(User.deserializeUser());
+//how do you get user out of that session
+//both methods are added in cuz of passport-local-mongoose
 
 app.use((req, res, next) => {
     res.locals.success = req.flash("success");
@@ -73,6 +89,12 @@ app.use((req, res, next) => {
 //     // res.render("home");
 //     res.send(camp); //3
 // }); REMOVED IN SECTION 403!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+app.get("/fakeUser", async (req, res) => {
+    const user = new User({ email: "matt@dogg.com", username: "mattdogg" });
+    const newUser = await User.register(user, "matt"); //checks if user name is unique
+    res.send(newUser);
+});
 
 app.use("/campgrounds", campgrounds);
 app.use("/campgrounds/:id/reviews", reviews);
