@@ -38,13 +38,21 @@ app.get("/register", (req, res) => {
     res.render("register");
 });
 
+// app.post("/register", async (req, res) => {
+//     const { password, username } = req.body;
+//     const hash = await bcrypt.hash(password, 12);
+//     const user = new User({
+//         username,
+//         password: hash,
+//     });
+//     await user.save();
+//     req.session.user_id = user._id; //505
+//     res.redirect("/");
+// });
+
 app.post("/register", async (req, res) => {
     const { password, username } = req.body;
-    const hash = await bcrypt.hash(password, 12);
-    const user = new User({
-        username,
-        password: hash,
-    });
+    const user = new User({ username, password });
     await user.save();
     req.session.user_id = user._id; //505
     res.redirect("/");
