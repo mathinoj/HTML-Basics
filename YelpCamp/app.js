@@ -72,9 +72,12 @@ passport.deserializeUser(User.deserializeUser());
 //both methods are added in cuz of passport-local-mongoose
 
 app.use((req, res, next) => {
+    res.locals.currentUser = req.user;
+    //^^with this we can go into the navbar.ejs and decide which ones we want to show depending on if there is a currentUser
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
     next();
+    //these are accessible in every template
 });
 
 //1
