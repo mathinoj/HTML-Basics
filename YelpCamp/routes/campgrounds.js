@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router({ mergeParams: true });
 const catchAsync = require("../utils/catchAsync");
 const { campgroundSchema, reviewSchema } = require("../schemas.js");
+const { isLoggedIn } = require("../middleware");
 
 const ExpressError = require("../utils/ExpressError");
 const Campground = require("../models/campground");
@@ -24,7 +25,7 @@ router.get(
     })
 );
 
-router.get("/new", (req, res) => {
+router.get("/new", isLoggedIn, (req, res) => {
     // if (!req.isAuthenticated()) {
     //     req.flash("error", "must be signed in");
     //     return res.redirect("/login");
