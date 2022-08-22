@@ -25,6 +25,10 @@ router.get(
 );
 
 router.get("/new", (req, res) => {
+    // if (!req.isAuthenticated()) {
+    //     req.flash("error", "must be signed in");
+    //     return res.redirect("/login");
+    // }
     res.render("campgrounds/new");
 });
 
