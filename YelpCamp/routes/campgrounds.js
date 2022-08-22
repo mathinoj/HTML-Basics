@@ -35,6 +35,7 @@ router.get("/new", isLoggedIn, (req, res) => {
 
 router.post(
     "/",
+    isLoggedIn,
     validateCampground,
     catchAsync(async (req, res, next) => {
         // if (!req.body.campground)
@@ -64,6 +65,7 @@ router.get(
 
 router.get(
     "/:id/edit",
+    isLoggedIn,
     catchAsync(async (req, res) => {
         const campground = await Campground.findById(req.params.id);
         if (!campground) {
@@ -76,6 +78,7 @@ router.get(
 
 router.put(
     "/:id",
+    isLoggedIn,
     validateCampground,
     catchAsync(async (req, res) => {
         // res.send("it worked"); // this is a test!!
@@ -91,6 +94,7 @@ router.put(
 
 router.delete(
     "/:id",
+    isLoggedIn,
     catchAsync(async (req, res) => {
         const { id } = req.params;
         await Campground.findByIdAndDelete(id);
