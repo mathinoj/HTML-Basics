@@ -69,10 +69,15 @@ router.get(
     "/:id/edit",
     isLoggedIn,
     catchAsync(async (req, res) => {
-        const campground = await Campground.findById(req.params.id);
+        const { id } = req.params;
+        const campground = await Campground.findById(id);
         if (!campground) {
             req.flash("error", "Can't find that camp!");
             return res.redirect("/campgrounds");
+        }
+        if (!campground.author.equals(req.user._id)) {
+            req.flash("error", "you aint allowed to does that!");
+            return res.redirect(`/campgrounds/${id}`);
         }
         res.render("campgrounds/edit", { campground });
     })
