@@ -85,7 +85,12 @@ router.put(
     catchAsync(async (req, res) => {
         // res.send("it worked"); // this is a test!!
         const { id } = req.params;
-        const campground = await Campground.findByIdAndUpdate(id, {
+        const campground = await Campground.findById(id);
+        if (!campground.author.equals(req.user._id)) {
+            req.flash("error", "you aint allowed to does that!");
+            return res.redirect(`/campgrounds/${id}`);
+        }
+        const camp = await Campground.findByIdAndUpdate(id, {
             ...req.body.campground,
         });
         //... is the spread operator. Spreads into the object {...req.body.campground}
