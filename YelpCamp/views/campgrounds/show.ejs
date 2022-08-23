@@ -26,6 +26,8 @@
                 </li>
                 <!-- <li class="list-group-item">Vestibulum at eros</li> -->
             </ul>
+
+            <% if(currentUser && campground.author.equals(currentUser._id)) {%>
             <div class="card-body">
                 <a
                     class="card-link btn btn-info"
@@ -40,6 +42,8 @@
                     <button class="btn btn-danger">Delete Camp</button>
                 </form>
             </div>
+            <% } %>
+
             <div class="card-footer text-muted">
                 2 days ago
                 <a href="/campgrounds">All Camps</a>
