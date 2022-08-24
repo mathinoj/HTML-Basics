@@ -3,7 +3,7 @@ const router = express.Router({ mergeParams: true });
 const catchAsync = require("../utils/catchAsync");
 // const { campgroundSchema, reviewSchema } = require("../schemas.js");
 const { isLoggedIn, isAuthor, validateCampground } = require("../middleware");
-//523^^ need to require
+//523^^ need to require author and validate
 
 // const ExpressError = require("../utils/ExpressError"); not using got rid 523
 const Campground = require("../models/campground");
