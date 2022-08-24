@@ -1,33 +1,12 @@
 const express = require("express");
 const router = express.Router({ mergeParams: true });
 const catchAsync = require("../utils/catchAsync");
-const { campgroundSchema, reviewSchema } = require("../schemas.js");
-const { isLoggedIn } = require("../middleware");
+// const { campgroundSchema, reviewSchema } = require("../schemas.js");
+const { isLoggedIn, isAuthor, validateCampground } = require("../middleware");
+//523^^ need to require
 
-const ExpressError = require("../utils/ExpressError");
+// const ExpressError = require("../utils/ExpressError"); not using got rid 523
 const Campground = require("../models/campground");
-
-const validateCampground = (req, res, next) => {
-    const { error } = campgroundSchema.validate(req.body);
-    if (error) {
-        const msg = error.details.map((el) => el.message).join(",");
-        throw new ExpressError(msg, 400);
-    } else {
-        next();
-    }
-};
-
-const isAuthor = async (req, res, next) => {
-    const { id } = req.params;
-    //^^ takes id from the url, and looks up the campground withat that ID
-    const campground = await Campground.findById(id);
-    //^^looks to see if the users ID, the user that is logged in at that time, equals the campgrounds authorID, if not we'll flash the error
-    if (!campground.author.equals(req.user._id)) {
-        req.flash("error", "you aint allowed to does that!");
-        return res.redirect(`/campgrounds/${id}`);
-    }
-    next();
-};
 
 router.get(
     "/",
@@ -80,7 +59,7 @@ router.get(
 router.get(
     "/:id/edit",
     isLoggedIn,
-    isAuthor,
+    isAuthor, //523
     catchAsync(async (req, res) => {
         const { id } = req.params;
         const campground = await Campground.findById(id);
@@ -88,9 +67,9 @@ router.get(
             req.flash("error", "Can't find that camp!");
             return res.redirect("/campgrounds");
         }
-        // if (!campground.author.equals(req.user._id)) {
-        //     req.flash("error", "you aint allowed to does that!");
-        //     return res.redirect(`/campgrounds/${id}`);
+        // if (!campground.author.equals(req.user._id)) { 523
+        //     req.flash("error", "you aint allowed to does that!"); 523
+        //     return res.redirect(`/campgrounds/${id}`); 523
         // }
         res.render("campgrounds/edit", { campground });
     })
@@ -99,6 +78,7 @@ router.get(
 router.put(
     "/:id",
     isLoggedIn,
+    isAuthor, //523
     validateCampground,
     catchAsync(async (req, res) => {
         // res.send("it worked"); // this is a test!!
@@ -108,7 +88,8 @@ router.put(
         //     req.flash("error", "you aint allowed to does that!");
         //     return res.redirect(`/campgrounds/${id}`);
         // }
-        const camp = await Campground.findByIdAndUpdate(id, {
+        const campground = await Campground.findByIdAndUpdate(id, {
+            //523
             ...req.body.campground,
         });
         //... is the spread operator. Spreads into the object {...req.body.campground}
@@ -120,6 +101,7 @@ router.put(
 router.delete(
     "/:id",
     isLoggedIn,
+    isAuthor, //523
     catchAsync(async (req, res) => {
         const { id } = req.params;
         await Campground.findByIdAndDelete(id);
