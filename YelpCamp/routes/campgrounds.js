@@ -17,6 +17,18 @@ const validateCampground = (req, res, next) => {
     }
 };
 
+const isAuthor = async (req, res, next) => {
+    const { id } = req.params;
+    //^^ takes id from the url, and looks up the campground withat that ID
+    const campground = await Campground.findById(id);
+    //^^looks to see if the users ID, the user that is logged in at that time, equals the campgrounds authorID, if not we'll flash the error
+    if (!campground.author.equals(req.user._id)) {
+        req.flash("error", "you aint allowed to does that!");
+        return res.redirect(`/campgrounds/${id}`);
+    }
+    next();
+};
+
 router.get(
     "/",
     catchAsync(async (req, res) => {
@@ -68,6 +80,7 @@ router.get(
 router.get(
     "/:id/edit",
     isLoggedIn,
+    isAuthor,
     catchAsync(async (req, res) => {
         const { id } = req.params;
         const campground = await Campground.findById(id);
@@ -75,10 +88,10 @@ router.get(
             req.flash("error", "Can't find that camp!");
             return res.redirect("/campgrounds");
         }
-        if (!campground.author.equals(req.user._id)) {
-            req.flash("error", "you aint allowed to does that!");
-            return res.redirect(`/campgrounds/${id}`);
-        }
+        // if (!campground.author.equals(req.user._id)) {
+        //     req.flash("error", "you aint allowed to does that!");
+        //     return res.redirect(`/campgrounds/${id}`);
+        // }
         res.render("campgrounds/edit", { campground });
     })
 );
@@ -90,11 +103,11 @@ router.put(
     catchAsync(async (req, res) => {
         // res.send("it worked"); // this is a test!!
         const { id } = req.params;
-        const campground = await Campground.findById(id);
-        if (!campground.author.equals(req.user._id)) {
-            req.flash("error", "you aint allowed to does that!");
-            return res.redirect(`/campgrounds/${id}`);
-        }
+        // const campground = await Campground.findById(id);
+        // if (!campground.author.equals(req.user._id)) {
+        //     req.flash("error", "you aint allowed to does that!");
+        //     return res.redirect(`/campgrounds/${id}`);
+        // }
         const camp = await Campground.findByIdAndUpdate(id, {
             ...req.body.campground,
         });
