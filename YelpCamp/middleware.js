@@ -1,6 +1,7 @@
 const { campgroundSchema, reviewSchema } = require("./schemas.js"); //523
 const ExpressError = require("./utils/ExpressError"); //523
 const Campground = require("./models/campground"); //523
+const Review = require("./models/review");
 
 module.exports.isLoggedIn = (req, res, next) => {
     // console.log("REQ.USER...", req.user);
@@ -21,6 +22,18 @@ module.exports.validateCampground = (req, res, next) => {
     } else {
         next();
     }
+};
+
+module.exports.isReviewAuthor = async (req, res, next) => {
+    const { id, reviewId } = req.params;
+    //^^ changed to reviewId cus its set that way on reviews.js
+    const review = await Review.findById(reviewId);
+    //^^looks to see if the users ID, the user that is logged in at that time, equals the campgrounds authorID, if not we'll flash the error
+    if (!review.author.equals(req.user._id)) {
+        req.flash("error", "you aint allowed to does that!");
+        return res.redirect(`/campgrounds/${id}`);
+    }
+    next();
 };
 
 module.exports.isAuthor = async (req, res, next) => {
