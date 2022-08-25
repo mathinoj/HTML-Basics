@@ -2,7 +2,8 @@ const express = require("express");
 const router = express.Router({ mergeParams: true });
 //routers get seperate params. Now all of the params from app.js will be merged from alongside the params in review.js (this file)
 //if we need accesss to the :id param in app.js ('/campgrounds/:id/reviews') or more params that we define in app.js when were using the route then we need to make sure we set mergeParams: true
-const { validateReview } = require("../middleware"); // added 523
+const { validateReview, isLoggedIn } = require("../middleware"); // added 523
+//^524
 const Campground = require("../models/campground");
 const Review = require("../models/review");
 const { reviewSchema } = require("../schemas.js");
@@ -21,11 +22,13 @@ const catchAsync = require("../utils/catchAsync");
 // };
 router.post(
     "/",
+    isLoggedIn,
     validateReview,
     catchAsync(async (req, res) => {
         // res.send("You MAYD it");
         const campground = await Campground.findById(req.params.id);
         const review = new Review(req.body.review);
+        review.author = req.user._id; //524
         campground.reviews.push(review);
         await review.save();
         await campground.save();
