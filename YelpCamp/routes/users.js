@@ -5,12 +5,27 @@ const catchAsync = require("../utils/catchAsync");
 const User = require("../models/user");
 const users = require("../controllers/users");
 
+router
+    .route("/register")
+    .get(users.renderRegister)
+    .post(catchAsync(users.register));
+
+router
+    .route("/login")
+    .get(users.renderLogin)
+    .post(
+        passport.authenticate("local", {
+            failureFlash: true,
+            failureRedirect: "/login",
+            keepSessionInfo: true,
+        }),
+        users.login
+    );
+
 // ORIGINAL BEFORE 527
 // router.get("/register", (req, res) => {
 //     res.render("users/register");
 // });
-
-router.get("/register", users.renderRegister);
 
 // ORIGINAL BEFORE 527
 // router.post(
@@ -37,14 +52,10 @@ router.get("/register", users.renderRegister);
 //     })
 // );
 
-router.post("/register", catchAsync(users.register));
-
 // ORIGINAL BEFORE 527
 // router.get("/login", (req, res) => {
 //     res.render("users/login");
 // });
-
-router.get("/login", users.renderLogin);
 
 // router.post(
 //     "/login",
@@ -90,16 +101,6 @@ router.get("/login", users.renderLogin);
 //         res.redirect(redirectUrl);
 //     }
 // );
-
-router.post(
-    "/login",
-    passport.authenticate("local", {
-        failureFlash: true,
-        failureRedirect: "/login",
-        keepSessionInfo: true,
-    }),
-    users.login
-);
 
 // router.get("/logout", (req, res, next) => {
 //     req.logout(function (err) {
