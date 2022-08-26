@@ -9,8 +9,32 @@ const { isLoggedIn, isAuthor, validateCampground } = require("../middleware");
 // const ExpressError = require("../utils/ExpressError"); not using got rid 523
 const Campground = require("../models/campground");
 
-router.get("/", catchAsync(campgrounds.index));
-//^^526
+router
+    .route("/")
+    .get(catchAsync(campgrounds.index))
+    .post(
+        isLoggedIn,
+        validateCampground,
+        catchAsync(campgrounds.createCampground)
+    );
+
+router.get("/new", isLoggedIn, campgrounds.renderNewForm);
+//this needs to go before the show page!!!
+
+router
+    .route("/:id")
+    .get(catchAsync(campgrounds.showCampground))
+    .put(
+        isLoggedIn,
+        isAuthor, //523
+        validateCampground,
+        catchAsync(campgrounds.updateCampground)
+    )
+    .delete(
+        isLoggedIn,
+        isAuthor, //523
+        catchAsync(campgrounds.deleteCampground)
+    );
 
 // router.get("/new", isLoggedIn, (req, res) => {
 // if (!req.isAuthenticated()) {
@@ -19,8 +43,6 @@ router.get("/", catchAsync(campgrounds.index));
 // }
 //     res.render("campgrounds/new");
 // });
-
-router.get("/new", isLoggedIn, campgrounds.renderNewForm);
 
 // router.post(
 //     "/",
@@ -37,15 +59,6 @@ router.get("/new", isLoggedIn, campgrounds.renderNewForm);
 //         res.redirect(`/campgrounds/${campground._id}`);
 //     })
 // );
-
-router.post(
-    "/",
-    isLoggedIn,
-    validateCampground,
-    catchAsync(campgrounds.createCampground)
-);
-
-router.get("/:id", catchAsync(campgrounds.showCampground));
 
 // router.get(
 //     "/:id/edit",
@@ -96,14 +109,6 @@ router.get(
 //     })
 // );
 
-router.put(
-    "/:id",
-    isLoggedIn,
-    isAuthor, //523
-    validateCampground,
-    catchAsync(campgrounds.updateCampground)
-);
-
 // router.delete(
 //     "/:id",
 //     isLoggedIn,
@@ -115,12 +120,5 @@ router.put(
 //         res.redirect("/campgrounds");
 //     })
 // );
-
-router.delete(
-    "/:id",
-    isLoggedIn,
-    isAuthor, //523
-    catchAsync(campgrounds.deleteCampground)
-);
 
 module.exports = router;
