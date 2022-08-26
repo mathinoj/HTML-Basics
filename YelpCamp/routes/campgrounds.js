@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router({ mergeParams: true });
-const campgrounds = require("../controllers"); //526
+const campgrounds = require("../controllers/campgrounds"); //526
 const catchAsync = require("../utils/catchAsync");
 // const { campgroundSchema, reviewSchema } = require("../schemas.js");
 const { isLoggedIn, isAuthor, validateCampground } = require("../middleware");
@@ -9,71 +9,68 @@ const { isLoggedIn, isAuthor, validateCampground } = require("../middleware");
 // const ExpressError = require("../utils/ExpressError"); not using got rid 523
 const Campground = require("../models/campground");
 
-router.get("/", catchAsync());
+router.get("/", catchAsync(campgrounds.index));
+//^^526
 
-router.get("/new", isLoggedIn, (req, res) => {
-    // if (!req.isAuthenticated()) {
-    //     req.flash("error", "must be signed in");
-    //     return res.redirect("/login");
-    // }
-    res.render("campgrounds/new");
-});
+// router.get("/new", isLoggedIn, (req, res) => {
+// if (!req.isAuthenticated()) {
+//     req.flash("error", "must be signed in");
+//     return res.redirect("/login");
+// }
+//     res.render("campgrounds/new");
+// });
+
+router.get("/new", isLoggedIn, campgrounds.renderNewForm);
+
+// router.post(
+//     "/",
+//     isLoggedIn,
+//     validateCampground,
+//     catchAsync(async (req, res, next) => {
+//         // if (!req.body.campground)
+//         //     throw new ExpressError("Invalid camp data", 400);
+
+//         const campground = new Campground(req.body.campground);
+//         campground.author = req.user._id;
+//         await campground.save();
+//         req.flash("success", "Successfully made a new camp!");
+//         res.redirect(`/campgrounds/${campground._id}`);
+//     })
+// );
 
 router.post(
     "/",
     isLoggedIn,
     validateCampground,
-    catchAsync(async (req, res, next) => {
-        // if (!req.body.campground)
-        //     throw new ExpressError("Invalid camp data", 400);
-
-        const campground = new Campground(req.body.campground);
-        campground.author = req.user._id;
-        await campground.save();
-        req.flash("success", "Successfully made a new camp!");
-        res.redirect(`/campgrounds/${campground._id}`);
-    })
+    catchAsync(campgrounds.createCampground)
 );
 
-router.get(
-    "/:id",
-    catchAsync(async (req, res) => {
-        const campground = await Campground.findById(req.params.id)
-            .populate({
-                path: "reviews",
-                populate: {
-                    path: "author",
-                },
-            })
-            .populate("author");
-        console.log(campground);
-        if (!campground) {
-            req.flash("error", "Can't find that camp!");
-            return res.redirect("/campgrounds");
-        }
-        // console.log(campground); test to see reviews in terminal
-        res.render("campgrounds/show", { campground });
-    })
-);
+router.get("/:id", catchAsync(campgrounds.showCampground));
+
+// router.get(
+//     "/:id/edit",
+//     isLoggedIn,
+//     isAuthor, //523
+//     catchAsync(async (req, res) => {
+//         const { id } = req.params;
+//         const campground = await Campground.findById(id);
+//         if (!campground) {
+//             req.flash("error", "Can't find that camp!");
+//             return res.redirect("/campgrounds");
+//         }
+//         // if (!campground.author.equals(req.user._id)) { 523
+//         //     req.flash("error", "you aint allowed to does that!"); 523
+//         //     return res.redirect(`/campgrounds/${id}`); 523
+//         // }
+//         res.render("campgrounds/edit", { campground });
+//     })
+// );
 
 router.get(
     "/:id/edit",
     isLoggedIn,
     isAuthor, //523
-    catchAsync(async (req, res) => {
-        const { id } = req.params;
-        const campground = await Campground.findById(id);
-        if (!campground) {
-            req.flash("error", "Can't find that camp!");
-            return res.redirect("/campgrounds");
-        }
-        // if (!campground.author.equals(req.user._id)) { 523
-        //     req.flash("error", "you aint allowed to does that!"); 523
-        //     return res.redirect(`/campgrounds/${id}`); 523
-        // }
-        res.render("campgrounds/edit", { campground });
-    })
-);
+    catchAsync(())
 
 router.put(
     "/:id",
