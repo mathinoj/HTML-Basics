@@ -23,3 +23,20 @@ module.exports.register = async (req, res, next) => {
 module.exports.renderLogin = (req, res) => {
     res.render("users/login");
 };
+
+module.exports.login = (req, res) => {
+    req.flash("success", "welcome back!");
+    const redirectUrl = req.session.returnTo || "/campgrounds";
+    delete req.session.returnTo; //this deletes from object
+    res.redirect(redirectUrl);
+};
+
+module.exports.logout = (req, res) => {
+    req.logout(function (err) {
+        if (err) {
+            return next(err);
+        }
+        req.flash("success", "Goodbye!");
+        res.redirect("/campgrounds");
+    });
+};

@@ -75,6 +75,22 @@ router.get("/login", users.renderLogin);
 //     }
 // );
 
+// ORIGINAL BEFORE 527
+// router.post(
+//     "/login",
+//     passport.authenticate("local", {
+//         failureFlash: true,
+//         failureRedirect: "/login",
+//         keepSessionInfo: true,
+//     }),
+//     (req, res) => {
+//         req.flash("success", "welcome back!");
+//         const redirectUrl = req.session.returnTo || "/campgrounds";
+//         delete req.session.returnTo; //this deletes from object
+//         res.redirect(redirectUrl);
+//     }
+// );
+
 router.post(
     "/login",
     passport.authenticate("local", {
@@ -82,12 +98,7 @@ router.post(
         failureRedirect: "/login",
         keepSessionInfo: true,
     }),
-    (req, res) => {
-        req.flash("success", "welcome back!");
-        const redirectUrl = req.session.returnTo || "/campgrounds";
-        delete req.session.returnTo; //this deletes from object
-        res.redirect(redirectUrl);
-    }
+    users.login
 );
 
 // router.get("/logout", (req, res, next) => {
@@ -101,14 +112,15 @@ router.post(
 // });
 
 // ORIGINAL BEFORE 527
-router.get("/logout", (req, res) => {
-    req.logout(function (err) {
-        if (err) {
-            return next(err);
-        }
-        req.flash("success", "Goodbye!");
-        res.redirect("/campgrounds");
-    });
-});
+// router.get("/logout", (req, res) => {
+//     req.logout(function (err) {
+//         if (err) {
+//             return next(err);
+//         }
+//         req.flash("success", "Goodbye!");
+//         res.redirect("/campgrounds");
+//     });
+// });
 
+router.get("/logout", users.logout);
 module.exports = router;
