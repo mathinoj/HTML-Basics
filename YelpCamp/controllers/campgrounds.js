@@ -27,7 +27,7 @@ module.exports.showCampground = async (req, res) => {
             },
         })
         .populate("author");
-    // console.log(campground);
+    console.log(campground);
     if (!campground) {
         req.flash("error", "Can't find that camp!");
         return res.redirect("/campgrounds");
@@ -43,9 +43,25 @@ module.exports.renderEditForm = async (req, res) => {
         req.flash("error", "Can't find that camp!");
         return res.redirect("/campgrounds");
     }
-    // if (!campground.author.equals(req.user._id)) { 523
-    //     req.flash("error", "you aint allowed to does that!"); 523
-    //     return res.redirect(`/campgrounds/${id}`); 523
-    // }
     res.render("campgrounds/edit", { campground });
 };
+
+module.exports.updateCampground = async (req, res) => {
+    const { id } = req.params;
+    const campground = await Campground.findByIdAndUpdate(id, {
+        ...req.body.campground,
+    });
+    req.flash("success", "Successfully updated camp!");
+    res.redirect(`/campgrounds/${campground._id}`);
+};
+
+module.exports.deleteCampground = async (req, res) => {
+    const { id } = req.params;
+    await Campground.findByIdAndDelete(id);
+    req.flash("success", "Successfully deleted camp!");
+    res.redirect("/campgrounds");
+};
+
+//moved all functionality into controller file, and this is where we would go for the logic/implementing every query of our camground model and all the render calls (contollers/campgrounds.js)
+
+//routes/campgrounds.js is where we go to look at the routes and to setup middleware and pass them in the controller methods that weve defined

@@ -69,42 +69,58 @@ router.get("/:id", catchAsync(campgrounds.showCampground));
 router.get(
     "/:id/edit",
     isLoggedIn,
-    isAuthor, //523
-    catchAsync(())
+    isAuthor,
+    catchAsync(campgrounds.renderEditForm)
+);
+
+// router.put(
+//     "/:id",
+//     isLoggedIn,
+//     isAuthor, //523
+//     validateCampground,
+//     catchAsync(async (req, res) => {
+//         // res.send("it worked"); // this is a test!!
+//         const { id } = req.params;
+//         // const campground = await Campground.findById(id);
+//         // if (!campground.author.equals(req.user._id)) {
+//         //     req.flash("error", "you aint allowed to does that!");
+//         //     return res.redirect(`/campgrounds/${id}`);
+//         // }
+//         const campground = await Campground.findByIdAndUpdate(id, {
+//             //523
+//             ...req.body.campground,
+//         });
+//         //... is the spread operator. Spreads into the object {...req.body.campground}
+//         req.flash("success", "Successfully updated camp!");
+//         res.redirect(`/campgrounds/${campground._id}`);
+//     })
+// );
 
 router.put(
     "/:id",
     isLoggedIn,
     isAuthor, //523
     validateCampground,
-    catchAsync(async (req, res) => {
-        // res.send("it worked"); // this is a test!!
-        const { id } = req.params;
-        // const campground = await Campground.findById(id);
-        // if (!campground.author.equals(req.user._id)) {
-        //     req.flash("error", "you aint allowed to does that!");
-        //     return res.redirect(`/campgrounds/${id}`);
-        // }
-        const campground = await Campground.findByIdAndUpdate(id, {
-            //523
-            ...req.body.campground,
-        });
-        //... is the spread operator. Spreads into the object {...req.body.campground}
-        req.flash("success", "Successfully updated camp!");
-        res.redirect(`/campgrounds/${campground._id}`);
-    })
+    catchAsync(campgrounds.updateCampground)
 );
+
+// router.delete(
+//     "/:id",
+//     isLoggedIn,
+//     isAuthor, //523
+//     catchAsync(async (req, res) => {
+//         const { id } = req.params;
+//         await Campground.findByIdAndDelete(id);
+//         req.flash("success", "Successfully deleted camp!");
+//         res.redirect("/campgrounds");
+//     })
+// );
 
 router.delete(
     "/:id",
     isLoggedIn,
     isAuthor, //523
-    catchAsync(async (req, res) => {
-        const { id } = req.params;
-        await Campground.findByIdAndDelete(id);
-        req.flash("success", "Successfully deleted camp!");
-        res.redirect("/campgrounds");
-    })
+    catchAsync(campgrounds.deleteCampground)
 );
 
 module.exports = router;
