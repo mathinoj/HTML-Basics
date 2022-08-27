@@ -6,7 +6,9 @@ const catchAsync = require("../utils/catchAsync");
 const { isLoggedIn, isAuthor, validateCampground } = require("../middleware");
 //523^^ need to require author and validate
 const multer = require("multer");
-const upload = multer({ dest: "uploads/" }); //got this one and above from multer guide?
+const { storage } = require("../cloudinary/index"); //storage in cloudinary index.js 535
+// const upload = multer({ dest: "uploads/" });
+const upload = multer({ storage }); //535
 
 // const ExpressError = require("../utils/ExpressError"); not using got rid 523
 const Campground = require("../models/campground");
