@@ -6,27 +6,27 @@ const catchAsync = require("../utils/catchAsync");
 const { isLoggedIn, isAuthor, validateCampground } = require("../middleware");
 //523^^ need to require author and validate
 const multer = require("multer");
-const { storage } = require("../cloudinary/index"); //storage in cloudinary index.js 535
+const { storage } = require("../cloudinary"); //storage in cloudinary index.js 535
 // const upload = multer({ dest: "uploads/" });
 const upload = multer({ storage }); //535
 
 // const ExpressError = require("../utils/ExpressError"); not using got rid 523
 const Campground = require("../models/campground");
 
-router
-    .route("/")
-    .get(catchAsync(campgrounds.index))
-    // .post(
-    //     isLoggedIn,
-    //     validateCampground,
-    //     catchAsync(campgrounds.createCampground)
-    .post(upload.array("image"), (req, res) => {
-        //array can make a multiple file input if we go to the file input at set it to mulitple
-        console.log(req.body, req.files);
-        res.send("it twerked");
-        //in order to parse multipart forms we need to use the middleware - Multer. Multer parses or handles multipart form data, which is primarily used for uploading files.
-        //multer parses json or url encoded data from forms
-    });
+router.route("/").get(catchAsync(campgrounds.index)).post(
+    isLoggedIn,
+    upload.array("image"), //added 538
+    validateCampground, //in real world you dont want to upload image before validate the other data but multer works first uploads everythin while its parsing and then it sends us the parsed body/files that we have access to in req.body
+    catchAsync(campgrounds.createCampground)
+    //added back in 538^^^^
+    // .post(upload.array("image"), (req, res) => {  // removed 538
+    //array can make a multiple file input if we go to the file input at set it to mulitple
+    // console.log(req.body, req.files); // removed 538
+    // res.send("it twerked"); // removed 538
+    //in order to parse multipart forms we need to use the middleware - Multer. Multer parses or handles multipart form data, which is primarily used for uploading files.
+    //multer parses json or url encoded data from forms
+    // });  // removed 538
+); // added 538
 
 router.get("/new", isLoggedIn, campgrounds.renderNewForm);
 //this needs to go before the show page!!!

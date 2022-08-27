@@ -6,11 +6,14 @@
     <div class="col-6">
         <!-- <div class="card" style="width: 18rem;"> HOW IT WAS AT FIRST -->
         <div class="card mb-3">
-            <img
+            <%for(let img of campground.images) {%>
+            <img src="<%= img.url%>" class="card-img-top" alt="..." />
+            <% } %>
+            <!-- <img
                 class="card-img-top"
                 src="<%= campground.image %>"
                 alt="Card image cap"
-            />
+            /> -->
             <div class="card-body">
                 <h5 class="card-title"><%= campground.title %></h5>
                 <p class="card-text"><%= campground.description %></p>
