@@ -12,11 +12,14 @@ const Campground = require("../models/campground");
 router
     .route("/")
     .get(catchAsync(campgrounds.index))
-    .post(
-        isLoggedIn,
-        validateCampground,
-        catchAsync(campgrounds.createCampground)
-    );
+    // .post(
+    //     isLoggedIn,
+    //     validateCampground,
+    //     catchAsync(campgrounds.createCampground)
+    .post((req, res) => {
+        res.send(req.body);
+        //in order to parse multipart forms we need to use the middleware - Multer. Multer parses or handles multipart form data, which is primarily used for uploading files.
+    });
 
 router.get("/new", isLoggedIn, campgrounds.renderNewForm);
 //this needs to go before the show page!!!
