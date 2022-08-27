@@ -5,6 +5,8 @@ const catchAsync = require("../utils/catchAsync");
 // const { campgroundSchema, reviewSchema } = require("../schemas.js");
 const { isLoggedIn, isAuthor, validateCampground } = require("../middleware");
 //523^^ need to require author and validate
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" }); //got this one and above from multer guide?
 
 // const ExpressError = require("../utils/ExpressError"); not using got rid 523
 const Campground = require("../models/campground");
@@ -16,9 +18,12 @@ router
     //     isLoggedIn,
     //     validateCampground,
     //     catchAsync(campgrounds.createCampground)
-    .post((req, res) => {
-        res.send(req.body);
+    .post(upload.array("image"), (req, res) => {
+        //array can make a multiple file input if we go to the file input at set it to mulitple
+        console.log(req.body, req.files);
+        res.send("it twerked");
         //in order to parse multipart forms we need to use the middleware - Multer. Multer parses or handles multipart form data, which is primarily used for uploading files.
+        //multer parses json or url encoded data from forms
     });
 
 router.get("/new", isLoggedIn, campgrounds.renderNewForm);
