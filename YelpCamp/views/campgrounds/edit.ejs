@@ -35,11 +35,11 @@
                 />
                 <div class="valid-feedback">Looks Damn Decent!</div>
             </div>
-            <div class="mb-3">
+            <!-- <div class="mb-3">
                 <label class="form-label" for="image">Add Images</label>
-                <input type="file" name="image" id="image" multiple />
-                <!-- ^^^^^^^^^539 -->
-            </div>
+                <input type="file" name="image" id="image" multiple /> -->
+            <!-- ^^^^^^^^^539 -->
+            <!-- </div> -->
 
             <div class="mb-3">
                 <label class="form-label" for="price">Camp Price</label>
@@ -76,6 +76,20 @@
 <%=campground.description%></textarea
                 >
                 <div class="valid-feedback">Looks Good!</div>
+            </div>
+            <div class="mb-3">
+                <div class="form-file custom-file">
+                    <input
+                        type="file"
+                        name="image"
+                        class="custom-file-input"
+                        id="image"
+                        multiple
+                    />
+                    <label class="form-file-text custom-file-label" for="image"
+                        >Add More Images</label
+                    >
+                </div>
             </div>
             <div class="mb-3">
                 <button class="btn btn-info">Update Camp</button>

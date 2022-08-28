@@ -34,19 +34,8 @@
                 />
                 <div class="valid-feedback">Like That Flava, Naybuh</div>
             </div>
-            <div class="custom-file">
-                <input
-                    type="file"
-                    name="image"
-                    class="custom-file-input"
-                    id="image"
-                    multiple
-                />
-                <label class="custom-file-label" for="image"
-                    >Choose Image</label
-                >
-            </div>
-            <input type="file" name="image" id="" multiple />
+
+            <!-- <input type="file" name="image" id="" multiple /> TOOK OUT 540 -->
             <!-- 532 (multiple)^^^ -->
             <!-- right now images are being stored locally in uploads folder. this is not a good idea -->
             <!-- <div class="mb-3">
@@ -91,6 +80,20 @@
                     required
                 ></textarea>
                 <div class="valid-feedback">Interesantay</div>
+            </div>
+            <div class="mb-3">
+                <div class="form-file custom-file">
+                    <input
+                        type="file"
+                        name="image"
+                        class="custom-file-input"
+                        id="image"
+                        multiple
+                    />
+                    <label class="form-file-text custom-file-label" for="image"
+                        >Choose Image</label
+                    >
+                </div>
             </div>
             <div class="mb-3">
                 <button class="btn btn-success">Add Camp</button>
