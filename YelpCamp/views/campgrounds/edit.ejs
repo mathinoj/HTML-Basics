@@ -92,6 +92,11 @@
                 </div>
             </div>
             <div class="mb-3">
+                <% campground.images.forEach(function(img, i) { %>
+                <img src="<%=img.url%>" alt="" />
+                <% }) %>
+            </div>
+            <div class="mb-3">
                 <button class="btn btn-info">Update Camp</button>
             </div>
         </form>
