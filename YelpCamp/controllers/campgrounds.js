@@ -1,6 +1,6 @@
 const Campground = require("../models/campground");
 //controller is looking for camground model that doesnt exist in this file until we add it
-const { cloudinary } = requier("../cloudinary");
+const { cloudinary } = require("../cloudinary");
 
 module.exports.index = async (req, res) => {
     const campgrounds = await Campground.find({});
@@ -67,6 +67,9 @@ module.exports.updateCampground = async (req, res) => {
     //spread (...) takes the data from the array and passes it into push
     await campground.save();
     if (req.body.deleteImages) {
+        for (let filename of req.body.deleteImages) {
+            await cloudinary.uploader.destroy(filename);
+        }
         await campground.updateOne({
             $pull: { images: { filename: { $in: req.body.deleteImages } } },
         });
