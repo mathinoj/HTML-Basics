@@ -3,5 +3,7 @@ node_modules
 .env
 *.env
 .env/
+/env
+/.env
 bin
 buh/index.js
