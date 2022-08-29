@@ -1,5 +1,13 @@
 const Campground = require("../models/campground");
 //controller is looking for camground model that doesnt exist in this file until we add it
+const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
+const mapBoxToken = process.env.MAPBOX_TOKEN;
+//this passes in the token
+const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
+//pass token through when we initialize/instantiate a new mapbox geocoding instance
+//mbxGeocoding contains forward and reverse geocoding, we want the forward
+
+//first import what we need from MAPBOX (so the above three)
 const { cloudinary } = require("../cloudinary");
 
 module.exports.index = async (req, res) => {
@@ -12,16 +20,23 @@ module.exports.renderNewForm = (req, res) => {
 };
 
 module.exports.createCampground = async (req, res, next) => {
-    const campground = new Campground(req.body.campground);
-    campground.images = req.files.map((f) => ({
-        url: f.path,
-        filename: f.filename,
-    })); // added 536 and ^^
-    campground.author = req.user._id;
-    await campground.save();
-    console.log(campground); //added 536
-    req.flash("success", "Successfully made a new camp!");
-    res.redirect(`/campgrounds/${campground._id}`);
+    const geoData = await geocoder
+        .forwardGeocode({
+            query: req.body.campground.location,
+            limit: 1,
+        })
+        .send();
+    res.send(geoData.body.features[0].geometry.coordinates);
+    // const campground = new Campground(req.body.campground);
+    // campground.images = req.files.map((f) => ({
+    //     url: f.path,
+    //     filename: f.filename,
+    // })); // added 536 and ^^
+    // campground.author = req.user._id;
+    // await campground.save();
+    // console.log(campground); //added 536
+    // req.flash("success", "Successfully made a new camp!");
+    // res.redirect(`/campgrounds/${campground._id}`);
 };
 
 module.exports.showCampground = async (req, res) => {
