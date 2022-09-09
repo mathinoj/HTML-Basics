@@ -23,7 +23,7 @@ module.exports.createCampground = async (req, res, next) => {
     const geoData = await geocoder
         .forwardGeocode({
             query: req.body.campground.location,
-            limit: 1,
+            limit: 1, //gives you just one result
         })
         .send();
     // res.send(geoData.body.features[0].geometry.coordinates); how it was before 547
