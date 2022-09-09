@@ -11,4 +11,12 @@ map.on("style.load", () => {
     map.setFog({}); // Set the default atmosphere style
 });
 
-new mapboxgl.Marker().setLngLat(campground.geometry.coordinates).addTo(map);
+new mapboxgl.Marker()
+    .setLngLat(campground.geometry.coordinates)
+    .setPopup(
+        new mapboxgl.Popup({ offset: 25 })
+            // .setLngLat(e.lngLat)
+            .setHTML(`<h3>${campground.title}</h3>`)
+        // .setMaxWidth("300px")
+    )
+    .addTo(map);
