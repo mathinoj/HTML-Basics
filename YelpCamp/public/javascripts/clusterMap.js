@@ -12,7 +12,7 @@ map.on("load", () => {
     // Add a new source from our GeoJSON data and
     // set the 'cluster' option to true. GL-JS will
     // add the point_count property to your source data.
-    map.addSource("earthquakes", {
+    map.addSource("campgrounds", {
         type: "geojson",
         // Point to GeoJSON data. This example visualizes all M1.0+ earthquakes
         // from 12/22/15 to 1/21/16 as logged by USGS' Earthquake hazards program.
@@ -26,7 +26,7 @@ map.on("load", () => {
     map.addLayer({
         id: "clusters",
         type: "circle",
-        source: "earthquakes",
+        source: "campgrounds",
         filter: ["has", "point_count"],
         paint: {
             // Use step expressions (https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-step)
