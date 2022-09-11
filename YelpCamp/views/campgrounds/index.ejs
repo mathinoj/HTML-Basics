@@ -39,6 +39,10 @@
 <script>
     const mapToken = "<%-process.env.MAPBOX_TOKEN%>";
     //dont really need the top one it seems?^^
+    const campgrounds = {features: <%- JSON.stringify(campgrounds) %>};
+    //everything in the earthquakes data is under a key of 'features', which is originally located on the clusetMap.js page as  // data: "https://docs.mapbox.com/mapbox-gl-js/assets/earthquakes.geojson". So if you follow this link you see the arrays of data and the key of 'features'.
+    //our data is not located under a key of 'features', but we can have our data (the gird coordinates based off the cities functions in seeds/index.js) conform to the pattern of the earthqakes data
+    //this will allow each camp to show their actual location, instead of the one we hardcoded
 </script>
 
 <script src="/javascripts/clusterMap.js"></script>
