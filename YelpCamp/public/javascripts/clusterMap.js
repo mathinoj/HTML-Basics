@@ -104,6 +104,7 @@ map.on("load", () => {
     // the location of the feature, with
     // description HTML from its properties.
     map.on("click", "unclustered-point", (e) => {
+        console.log("UNCLUST Point Cliqd");
         const coordinates = e.features[0].geometry.coordinates.slice();
         const mag = e.features[0].properties.mag;
         const tsunami = e.features[0].properties.tsunami === 1 ? "yes" : "no";
@@ -122,9 +123,11 @@ map.on("load", () => {
     });
 
     map.on("mouseenter", "clusters", () => {
+        console.log("MOUSING over KLUSTER");
         map.getCanvas().style.cursor = "pointer";
     });
     map.on("mouseleave", "clusters", () => {
+        console.log("unKLUSTER point CLIQD");
         map.getCanvas().style.cursor = "";
     });
 });
