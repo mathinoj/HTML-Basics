@@ -6,7 +6,7 @@
     <!-- <div id="map" style="width: 400px; height: 300px"></div> -->
 
     <div class="col-6">
-        <div id="map" style="width: 400px; height: 300px"></div>
+        <!-- <div id="map" style="width: 400px; height: 300px"></div> -->
 
         <div
             id="campgroundCarousel"
@@ -97,7 +97,7 @@
     </div>
     <!-- </div> -->
     <div class="col-6">
-        <!-- <div id="map" style="width: 100%; height: 300px"></div> -->
+        <div id="map" style="width: 100%; height: 300px"></div>
 
         <% if(currentUser) {%>
         <h2>Leave a Review</h2>
@@ -213,6 +213,6 @@
 <script>
     const mapToken = "<%-process.env.MAPBOX_TOKEN%>";
     //dont really need the top one it seems?^^
-    // const campground = <%- JSON.stringify(campground) %>;
+    const campground = <%- JSON.stringify(campground) %>;
 </script>
 <script src="/javascripts/showPageMap.js"></script>
