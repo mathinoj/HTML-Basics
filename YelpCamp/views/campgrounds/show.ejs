@@ -215,5 +215,6 @@
     const mapToken = "<%-process.env.MAPBOX_TOKEN%>";
     //dont really need the top one it seems?^^
     const campground = <%- JSON.stringify(campground) %>;
+    //this should have an '=' sign to escape the HTML, BUT it will break things if we had the equals sign cuz as it is now (w/o the =) we want it to be treated as JS to make a variable
 </script>
 <script src="/javascripts/showPageMap.js"></script>
