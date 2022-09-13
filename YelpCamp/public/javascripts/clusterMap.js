@@ -10,7 +10,7 @@ const map = new mapboxgl.Map({
 
 console.log(campgrounds);
 
-map.addControl(new mapboxgl.NavigationControl());
+map.addControl(new mapboxgl.NavigationControl(), "bottom-left");
 
 map.on("load", () => {
     // Add a new source from our GeoJSON data and
