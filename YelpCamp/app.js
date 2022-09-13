@@ -19,9 +19,12 @@ const passport = require("passport"); //510
 const LocalStrategy = require("passport-local"); //511
 const User = require("./models/user");
 
+const mongoSanitize = require("express-mongo-sanitize");
+
 const userRoutes = require("./routes/users");
 const campgroundRoutes = require("./routes/campgrounds");
 const reviewRoutes = require("./routes/reviews");
+const { query } = require("express");
 
 //3
 mongoose.connect("mongodb://localhost:27017/yelp-camp", {
@@ -46,6 +49,11 @@ app.set("views", path.join(__dirname, "views")); //2
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method")); //ADDDDDEEEEED
 app.use(express.static(path.join(__dirname, "public"))); //491
+app.use(
+    mongoSanitize({
+        replaceWith: "_",
+    })
+);
 
 const sessionConfig = {
     secret: "shouldbebettersecret",
@@ -76,7 +84,8 @@ passport.deserializeUser(User.deserializeUser());
 //both methods are added in cuz of passport-local-mongoose
 
 app.use((req, res, next) => {
-    console.log(req.session);
+    console.log(req.query);
+    // console.log(req.session);
     res.locals.currentUser = req.user;
     //^^with this we can go into the navbar.ejs and decide which ones we want to show depending on if there is a currentUser
     res.locals.success = req.flash("success");
