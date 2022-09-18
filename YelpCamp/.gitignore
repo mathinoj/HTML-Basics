@@ -1,9 +1,5 @@
 node_modules
 .gitignore
 .env
-*.env
-.env/
-/env
-/.env
 bin
 buh/index.js
