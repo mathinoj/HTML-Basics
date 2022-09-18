@@ -27,11 +27,16 @@ const userRoutes = require("./routes/users");
 const campgroundRoutes = require("./routes/campgrounds");
 const reviewRoutes = require("./routes/reviews");
 const { query } = require("express");
+
+const MongoStore = require("connect-mongo")(session);
+// const MongoStore = require("connect-mongo");
+
 // const dbUrl = process.env.DB_URL;
+const dbUrl = "mongodb://localhost:27017/yelp-camp";
 
 //3
-mongoose.connect("mongodb://localhost:27017/yelp-camp", {
-    // mongoose.connect(dbUrl, {
+// mongoose.connect("mongodb://localhost:27017/yelp-camp", {
+mongoose.connect(dbUrl, {
     // useNewUrlParser: true, HE DOES CUS HE HAS OLDER VERSION, u dnt need
     // useCreateIndex: true, HE DOES CUS HE HAS OLDER VERSION, u dnt need
     // useUnifiedTopology: true, HE DOES CUS HE HAS OLDER VERSION, u dnt need
@@ -59,7 +64,19 @@ app.use(
     })
 );
 
+const store = new MongoStore({
+    url: dbUrl,
+    secret: "shouldbebettersecret",
+    touchAfter: 24 * 60 * 60,
+});
+
+store.on("error", function (e) {
+    console.log("SESSION STORE ERROR", e);
+});
+
 const sessionConfig = {
+    store,
+    name: "session",
     secret: "shouldbebettersecret",
     resave: false,
     saveUninitialized: true,
