@@ -27,9 +27,11 @@ const userRoutes = require("./routes/users");
 const campgroundRoutes = require("./routes/campgrounds");
 const reviewRoutes = require("./routes/reviews");
 const { query } = require("express");
+const dbUrl = process.env.DB_URL;
 
 //3
-mongoose.connect("mongodb://localhost:27017/yelp-camp", {
+// mongoose.connect("mongodb://localhost:27017/yelp-camp", {
+mongoose.connect(dbUrl, {
     // useNewUrlParser: true, HE DOES CUS HE HAS OLDER VERSION, u dnt need
     // useCreateIndex: true, HE DOES CUS HE HAS OLDER VERSION, u dnt need
     // useUnifiedTopology: true, HE DOES CUS HE HAS OLDER VERSION, u dnt need
