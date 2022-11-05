@@ -109,6 +109,7 @@ showForm.addEventListener("click", function (e) {
     numz++;
     console.log("AFTER numz++ (form): " + numz);
     const addFormer = document.querySelector("#formNum");
+    console.log(addFormer);
     const how = (addFormer.innerText = numz);
     console.log(how);
     console.log("Form number is: " + numz);
@@ -238,6 +239,7 @@ showForm.addEventListener("click", function (e) {
     const deduce = `counters-${how}`.replace("counters-", "");
     console.log(deduce);
     const classAdd = document.querySelector("#classCheck");
+    console.log(classAdd);
     classAdd.setAttribute("id", `#classCheck-${deduce}`);
 
     const stipeChecker = document.querySelector("#stripeCheck");
@@ -369,8 +371,8 @@ showForm.addEventListener("click", function (e) {
     console.dir(e);
     // console.dir(deez.childNodes[1].innerHTML);
     // let ruby = e.submitter.nextElementSibling.innerHTML;
-    let ruby = document.getElementById(`#subNum-${how}`).innerHTML;
-    console.log(ruby);
+    // let ruby = document.getElementById(`#subNum-${how}`).innerText;
+    // console.log(ruby);
     // ruby++;
 
     grabNew.addEventListener("submit", function (e) {
@@ -380,79 +382,20 @@ showForm.addEventListener("click", function (e) {
         console.log(userInputBelt);
 
         console.dir(e);
-        console.dir(e.submitter.nextElementSibling.innerHTML);
 
-        // console.dir(e.type);
-        // console.dir(numz);
-        // console.log(numz);
-
-        // let ruby = document.getElementById(`subNum-${how}`).innerHTML;
-        // let ruby = e.submitter.nextElementSibling.innerHTML;
-        // console.log(ruby);
+        let ruby = e.submitter.nextElementSibling.innerText;
+        console.log(ruby);
         ruby++;
         console.log(ruby);
-        // console.log("AFTER numz++ (form): " + numz);
-        // const addFormer = document.querySelector("#formNum");
-        // const subAdd = document.querySelector("#subNum");
-        // const subAdd = document.querySelector("#subNum");
         const subAdd = document.getElementById(`#subNum-${how}`);
         console.log(subAdd);
-
-        subAdd.innerText = ruby;
-        // addFormer.innerText = "Form Number is: " + numz;
-        // newCounterToForm.innerText = numz;
-        console.log("Form number is: " + numz);
-        // if (numz > 0) {
-
-        const bruh = `divForSubmitForm-${how}`;
-        console.log(bruh);
-        const goose = `divForSubmitForm-${how}`.replace(
-            "divForSubmitForm-",
-            ""
-        );
-        console.log(goose);
-        console.dir(e);
-        console.dir(e.submitter);
-        // console.dir(e.submitter.nextElementSibling);
-        // console.dir(e.submitter.nextElementSibling.id);
-        // console.dir(e.submitter.previousElementSibling.id);
-        const addSub = e.submitter.nextElementSibling;
-        // const addSub = e.submitter.previousElementSibling;
-        console.log(addSub);
-        addSub.setAttribute("id", `subNum-${goose}`);
-        console.log(addSub);
+        const party = (subAdd.innerText = ruby);
+        console.log(party);
 
         // manny.setAttribute("id", `submitForm-${holla}`);
         console.log(grabNew);
         console.dir(grabNew);
 
-        // let subNumz = document.getElementById("subNum").innerHTML;
-        console.dir(e);
-        console.dir(e.submitter.nextElementSibling.innerText);
-        let subNumz = e.submitter.nextElementSibling.innerText;
-
-        // let subNumz = document.querySelector(`subNum-${goose}`);
-        console.log(subNumz);
-        subNumz++;
-        console.log(subNumz);
-        let addSubber = document.querySelector(`subNum-${goose}`);
-        console.log(`subNum-${goose}`);
-
-        // console.log(addSubber.innerHTML);
-        // console.log(addSubber.innerHTML);
-        const wow = (addSubber = subNumz);
-        console.log(wow);
-        console.log("Sub number is: " + subNumz);
-
-        // let numz = document.getElementById("formNum").innerText;
-        // console.log("Before numz++ (form): " + numz);
-        // numz++;
-        // console.log("AFTER numz++ (form): " + numz);
-        // const addFormer = document.querySelector("#formNum");
-        // const how = (addFormer.innerText = numz);
-        // addFormer.innerText = "Form Number is: " + numz;
-        // newCounterToForm.innerText = numz;
-        console.log("Form number is: " + numz);
         // newby.setAttribute("id", `#divForSubmitForm-${how}`);
 
         // const deduce = `counters-${how}`.replace("counters-", "");
