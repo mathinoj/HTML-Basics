@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Belt</title>
+    </head>
+    <body>
+        <div id="allAfterAddBelt">
+            <div id="beltShow">
+                <button id="submitBelt">Add Belt</button>
+            </div>
+
+            <br />
+            <div id="belt">
+                <form id="beltSet" action="" hidden>
+                    <input
+                        type="text"
+                        id="setBelt"
+                        placeholder="Set Belt Color Here"
+                    />
+                    <br />
+                    <input
+                        type="number"
+                        id="setStripes"
+                        placeholder="# of Stripes Here"
+                    />
+                    <br />
+                    <input
+                        type="text"
+                        id="setClasses"
+                        placeholder="# of Classes Here"
+                    />
+                    <br />
+                    <!-- <span id="formNum" hidden>0</span> -->
+                    <br />
+                    <!-- <span id="buttNumber" hidden>0</span> -->
+
+                    <br />
+                    <div class="divFormSub" id="divForSubmitForm" hidden>
+                        <button
+                            class="buttSetBelt"
+                            type="submit"
+                            id="submitForm"
+                            hidden
+                        >
+                            Submit Form
+                        </button>
+                        <span class="subzeroNum" id="subNum" hidden>0</span>
+                    </div>
+                    <br />
+                </form>
+                <span id="buttNumber" hidden>0</span>
+
+                <span id="formNum">0</span>
+
+                <!-- <h3 id="getBelt" hidden>
+                    <span id="listBelt"></span>
+                    <br />
+                    <span id="listStripes"></span>
+                    <br />
+                    <span id="listClasses"></span>
+                </h3> -->
+                <!-- <div id="buttsHere"></div> -->
+                <br />
+                <div id="counterHere" hidden></div>
+
+                <!-- <h4 id="displayBelt" hidden> -->
+                <!-- <span id="classCheck">0</span> -->
+                <br />
+                <!-- <span id="stripeCheck">Stripe</span> -->
+                <!-- <ul id="stripeCheck"></ul> -->
+                <!-- <h3 id="newBelt"></h3> -->
+                <!-- </h4> -->
+                <!-- </form> -->
+                <!-- <div id="divButt">
+                    <button class="buttDown" id="downOneClick">Down</button>
+                    <button class="buttUp" id="upOneClick">Up</button>
+                </div> -->
+            </div>
+        </div>
+        <!-- </div> -->
+        <div id="tryThis"></div>
+        <!-- <div id="buttsHere"></div> -->
+
+        <h4 id="displayBelt" hidden>
+            <span id="classCheck">0</span>
+            <br />
+            <!-- <span id="stripeCheck">Stripe</span> -->
+            <span id="stripeCheck"></span>
+            <big id="newBelt"></big>
+        </h4>
+        <!-- <h4 id="displayBelt2"></h4> -->
+        <h3 id="getBelt" hidden>
+            <span id="listBelt"></span>
+            <br />
+            <span id="listStripes"></span>
+            <br />
+            <span id="listClasses"></span>
+        </h3>
+
+        <div id="theButts" hidden>
+            <button class="buttDown" type="button" id="downOneClick">
+                Down
+            </button>
+            <button class="buttUp" type="button" id="upOneClick">Up</button>
+        </div>
+        <!-- <div id="buttDiv"></div>
+        <div id="willItAdd"></div> -->
+
+        <script src="/javascript/belt.js"></script>
+    </body>
+</html>

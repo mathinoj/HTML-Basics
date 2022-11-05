@@ -95,7 +95,7 @@ form.addEventListener("click", function (e) {
     userInput.value = "";
 });
 
-//FUNCTION to SEE WHO GETS TO SET SCORE FIRST - P1
+//FUNCTION to SEE WHO GETS TO THE SET SCORE FIRST - P1
 let setScoreP1 = document.querySelector("#upOneClick");
 setScoreP1.addEventListener("click", function (e) {
     let grabP1Score = document.getElementById("one").innerText;
@@ -105,13 +105,16 @@ setScoreP1.addEventListener("click", function (e) {
 
     let getSetScore = document.querySelector("#reachPoint").innerText;
 
+    let name1 = document.getElementById("oneName").innerText;
     if (grabP1Score === getSetScore) {
-        alert("You win!");
-        alert("Click 'Reset' to Start a New Game.");
+        // alert("You win!");
+        alert(`${name1} wins!`);
+
+        alert("Click 'Reset Game' to Start a New Game.");
     }
 });
 
-//FUNCTION to SEE WHO GETS TO SET SCORE FIRST - P2
+//FUNCTION to SEE WHO GETS TO THE SET SCORE FIRST - P2
 let setScoreP2 = document.querySelector("#upOneClick2");
 setScoreP2.addEventListener("click", function (e) {
     let grabP2Score = document.getElementById("two").innerText;
@@ -121,9 +124,12 @@ setScoreP2.addEventListener("click", function (e) {
 
     let getSetScore = document.querySelector("#reachPoint").innerText;
 
+    let name2 = document.getElementById("twoName").innerText;
     if (grabP2Score === getSetScore) {
-        alert("You win!");
-        alert("Click 'Reset' to Start a New Game.");
+        // alert("You win!");
+        alert(`${name2} wins!`);
+
+        alert("Click 'Reset Game' to Start a New Game.");
     }
 });
 
