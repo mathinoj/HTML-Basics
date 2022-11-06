@@ -369,57 +369,32 @@ showForm.addEventListener("click", function (e) {
     const classToNewForm = deez.childNodes[9];
     console.log(classToNewForm);
     console.dir(e);
-    // console.dir(deez.childNodes[1].innerHTML);
-    // let ruby = e.submitter.nextElementSibling.innerHTML;
-    // let ruby = document.getElementById(`#subNum-${how}`).innerText;
-    // console.log(ruby);
-    // ruby++;
 
     grabNew.addEventListener("submit", function (e) {
         e.preventDefault();
         // alert(`submit clicked for form# ${how}`);
 
         console.log(userInputBelt);
-
         console.dir(e);
 
+        //THIS ADDS A COUNTER TO THE SUBMIT FORM
         let ruby = e.submitter.nextElementSibling.innerText;
         console.log(ruby);
         ruby++;
         console.log(ruby);
-        const subAdd = document.getElementById(`#subNum-${how}`);
+        let subAdd = document.getElementById(`#subNum-${how}`);
         console.log(subAdd);
-        const party = (subAdd.innerText = ruby);
+        let party = (subAdd.innerText = ruby);
         console.log(party);
+        //THIS ADDS A COUNTER TO THE SUBMIT FORM ^^^^^^^^^^^^^^^^^^
 
-        // manny.setAttribute("id", `submitForm-${holla}`);
         console.log(grabNew);
         console.dir(grabNew);
 
-        // newby.setAttribute("id", `#divForSubmitForm-${how}`);
-
-        // const deduce = `counters-${how}`.replace("counters-", "");
-        // console.log(deduce);
-        // const classAdd = document.querySelector("#classCheck");
-        // classAdd.setAttribute("id", `#classCheck-${deduce}`);
-
-        // console.log(`countClass-${how}`);
-        // // console.log(`countClass-${how}`.replace("countClass-", ""));
-        // const reduce = `countClass-${how}`.replace("countClass-", "");
-        // console.log(reduce);
-
-        const bluey = (deezerD.innerHTML =
+        let bluey = (deezerD.innerHTML =
             "Belt Color: " + `${e.path[0][0].value}`);
         console.log(bluey);
         e.path[0][0].value = "";
-        //     const yoloz = document.querySelector(`#addedForm-${how}`);
-        // const getDisplay = document.getElementById("getBelt").innerHTML;
-        // console.log(getDisplay);
-        // const newDisplay = document.createElement("h3");
-        // console.log(newDisplay);
-        // newDisplay.setAttribute("id", `newDisplay-${how}`);
-        // newDisplay.innerHTML = getDisplay;
-        // yoloz.append(newDisplay);
 
         console.log(spanChangeBelt);
 
@@ -430,7 +405,7 @@ showForm.addEventListener("click", function (e) {
         console.dir(e);
         console.dir(e.path[0][1].value);
 
-        const striper =
+        let striper =
             (stripeToNeWForm.innerText = `# of Stripes: ${e.path[0][1].value}`);
         e.path[0][1].value = "";
         console.log(striper);
@@ -440,10 +415,20 @@ showForm.addEventListener("click", function (e) {
         console.dir(e);
         console.dir(deez);
 
-        const classer =
+        let classer =
             (classToNewForm.innerText = `# of Classes: ${e.path[0][2].value}`);
         e.path[0][2].value = "";
         console.log(classer);
+
+        console.log(grabNew);
+        // if (party > 1) {
+        if (grabNew) {
+            // document.getElementById(`#submitForm-${how}`).style.visibility =
+            //     "hidden";
+            document.getElementById(`#submitForm-${how}`).style.display =
+                "none";
+            // alert("more than 1");
+        }
 
         console.dir(e);
 
@@ -633,7 +618,7 @@ showForm.addEventListener("click", function (e) {
             newLi.setAttribute("id", `newStripeSee-${how}`);
             newLi.innerText = "Stripe";
 
-            const newBeltAdd = document.createElement("h3");
+            let newBeltAdd = document.createElement("h3");
             console.log(newBeltAdd);
             newBeltAdd.innerText = "New Belt Earned";
             console.dir(e);
