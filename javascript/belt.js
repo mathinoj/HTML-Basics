@@ -329,6 +329,9 @@ showForm.addEventListener("click", function (e) {
     // const setClass = document.querySelector(`#upOneClick-${how}`);
     setClass.setAttribute("id", `#upOneClick-${reduce}`);
 
+    const minusClass = document.querySelector("#downOneClick");
+    minusClass.setAttribute("id", `#downOneClick-${reduce}`);
+
     let grabNew = document.querySelector(`#addedForm-${how}`);
 
     console.log(grabNew);
@@ -461,9 +464,13 @@ showForm.addEventListener("click", function (e) {
 
         console.log(addClassez);
         console.dir(addClassez.childNodes[7]);
-        let addClass = addClassez.childNodes[7].innerHTML;
-        console.log(addClass);
-        console.dir(addClass);
+        // let addClass = addClassez.childNodes[7].innerHTML;
+
+        // let addClass = document.getElementById(
+        //     `#classCheck-${deduce}`
+        // ).innerText;
+        // console.log(addClass);
+        // console.dir(addClass);
         // console.dir(grabNew);
         // console.dir(grabNew.childNodes[26].childNodes[7]);
         // console.log(grabNew);
@@ -537,14 +544,30 @@ showForm.addEventListener("click", function (e) {
             // let addClass = document.getElementById("classCheck").innerText;
             // let addClass = document.getElementById("counters").innerText;
             // let addClass = document.getElementById(`counters-${how}`).innerText;
-            console.dir(addClass);
-            console.dir(e.target);
-            console.dir(addClass);
-            console.dir(e);
+            // console.dir(addClass);
+            // console.dir(e.target);
+            // console.dir(addClass);
+            // console.dir(e);
+            // console.log(addClass);
+
+            let addClass = document.getElementById(
+                `#classCheck-${deduce}`
+            ).innerText;
+            // let addClass = document.getElementById(
+            //     `#classCheck-${deduce}`
+            // ).innerText;
             console.log(addClass);
 
             addClass++;
+            // let classSubtract = document.getElementById(
+            //     `#classCheck-${deduce}`
+            // );
+            let classAdd = document.getElementById(`#classCheck-${deduce}`);
+            classAdd.innerText = addClass;
+
+            // addClass++;
             console.log(addClass);
+            console.log(classAdd);
 
             // const classAdd = document.querySelector("#classCheck");
             // classAdd.setAttribute("id", `#classCheck-${reduce}`);
@@ -686,6 +709,35 @@ showForm.addEventListener("click", function (e) {
                 }
             }
             // alert("LOOP");
+        });
+        minusClass.addEventListener("click", function (e) {
+            e.preventDefault();
+            // alert("down cliqd");
+
+            let subtractClass = document.getElementById(
+                `#classCheck-${deduce}`
+            ).innerText;
+            console.log(subtractClass);
+
+            subtractClass--;
+
+            // let classSubtract = document.getElementById(
+            //     `#classCheck-${deduce}`
+            // );
+            let classSubtract = document.getElementById(
+                `#classCheck-${deduce}`
+            );
+            classSubtract.innerText = subtractClass;
+            // let dButtonP1 = document.querySelector("#downOneClick");
+            // dButtonP1.addEventListener("click", function (e) {
+            //     let subtractScore = document.getElementById("one").innerText;
+
+            //     subtractScore--;
+
+            //     const scoreSubtract = document.querySelector("#one");
+            //     scoreSubtract.innerText = subtractScore;
+            //     console.log("Down P1: " + subtractScore);
+            // });
         });
     });
 });
