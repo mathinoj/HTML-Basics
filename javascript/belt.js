@@ -481,36 +481,9 @@ showForm.addEventListener("click", function (e) {
         console.log(`counters-${how}`);
         console.dir(`counters-${how}`);
 
-        let bing = document.getElementById(`stripeCheck-${deduce}`);
-        console.log(bing);
-
-        let bong = document.getElementById(`newBelt-${deduce}`);
-        console.log(bong);
-        // let paul = `counters-${how}`;
-        // console.log(paul);
-        // console.dir(paul);
-        // console.dir(e.path[0].childNodes[26].childElementCount);
-
-        // const setCounter = document.getElementById(`newCountHeading-${how}`);
-        // console.log(setCounter);
-
-        // const setCounterz = document.getElementById(`counters-${how}`);
-        // console.log(setCounterz);
-        // console.dir(setCounterz);
-        // console.dir(setCounterz.childNodes[1].innerText);
-        // let numz = document.getElementById("formNum").innerText;
-        // const setCounter = setCounterz.childNodes[1].innerText;
-        // console.log(setCounter);
         console.log(numz);
         console.dir(e);
         console.dir(numz);
-        // const stripeAdd = document.querySelector("#stripeCheck");
-        // const stripeAdd = document.querySelector(`#stripeCheck-${how}`);
-        // console.dir(stripeAdd);
-        // console.log(stripeAdd);
-        // const scrilla = `stripeAdd-${how}`;
-        // console.log(scrilla);
-        // console.dir(scrilla);
 
         setClass.addEventListener("click", function (e) {
             e.preventDefault();
@@ -520,57 +493,40 @@ showForm.addEventListener("click", function (e) {
             console.log(setClass);
             console.dir(setClass);
 
-            // let numz = document.getElementById("formNum").innerText;
             console.log(numz);
             console.dir(e);
             console.dir(numz);
 
             console.log(grabNew);
 
-            // const setCounter = document.querySelector(`#newCountHeading-${how}`);
-            // const setCounter = document.querySelector(`#counters-${how}`);
-            // const setCounter = document.querySelector(`#counters`);
-
-            // console.log(setCounter);
-            // console.log(setCounter);
-            // console.log(addClass);
-            // alert(`upButton cliqd for form ${how}`);
-            // const zero =
-            //     e.path[2].childNodes[5].childNodes[1].childNodes[25].childNodes[1]
-            //         .innerText;
-            // console.log(zero);
-            //button click counter
             console.dir(e);
-            // let addClass = document.getElementById("classCheck").innerText;
-            // let addClass = document.getElementById("counters").innerText;
-            // let addClass = document.getElementById(`counters-${how}`).innerText;
-            // console.dir(addClass);
-            // console.dir(e.target);
-            // console.dir(addClass);
-            // console.dir(e);
-            // console.log(addClass);
 
+            ///////////////UP CLICK FUNCTIONALITY ----------------------------------
             let addClass = document.getElementById(
                 `#classCheck-${deduce}`
             ).innerText;
-            // let addClass = document.getElementById(
-            //     `#classCheck-${deduce}`
-            // ).innerText;
+
             console.log(addClass);
 
             addClass++;
-            // let classSubtract = document.getElementById(
-            //     `#classCheck-${deduce}`
-            // );
+
             let classAdd = document.getElementById(`#classCheck-${deduce}`);
             classAdd.innerText = addClass;
 
-            // addClass++;
             console.log(addClass);
             console.log(classAdd);
+            ///////////////UP CLICK FUNCTIONALITY^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-            // const classAdd = document.querySelector("#classCheck");
-            // classAdd.setAttribute("id", `#classCheck-${reduce}`);
+            /////////////////////REMOVES THE DISABLE FROM THE DOWN CLICK!!!!!!!
+            if (addClass > 0) {
+                let addClassped = document.getElementById(
+                    `#downOneClick-${reduce}`
+                );
+                addClassped.disabled = false;
+                console.log(addClassped);
+            }
+            ///////////////REMOVES THE DISABLE FROM THE DOWN CLICK^^^^^^^^^^
+
             const really = (classAdd.innerText = addClass);
             console.log(really);
             console.log("Up Class: " + addClass);
@@ -693,7 +649,6 @@ showForm.addEventListener("click", function (e) {
                     // yoloz.append(glow);
                     // yoloz.append(newLi);
                     addClassez.append(newLi);
-                    // bing.append(newLi);
 
                     console.dir(e);
                     alert("INPUT STUDENTS NAME earned a stripe!");
@@ -702,7 +657,6 @@ showForm.addEventListener("click", function (e) {
                     // alert("Advance to next belt!");
                     // beltAdd.append(newBeltAdd);
                     addClassez.append(newBeltAdd);
-                    // bong.append(newBeltAdd);
 
                     alert("Advance to next belt!");
                     break;
@@ -710,9 +664,12 @@ showForm.addEventListener("click", function (e) {
             }
             // alert("LOOP");
         });
+
+        let addClassper = document.getElementById(`#downOneClick-${reduce}`);
+        addClassper.disabled = true;
+        console.log(addClassper);
         minusClass.addEventListener("click", function (e) {
             e.preventDefault();
-            // alert("down cliqd");
 
             let subtractClass = document.getElementById(
                 `#classCheck-${deduce}`
@@ -721,23 +678,23 @@ showForm.addEventListener("click", function (e) {
 
             subtractClass--;
 
-            // let classSubtract = document.getElementById(
-            //     `#classCheck-${deduce}`
-            // );
             let classSubtract = document.getElementById(
                 `#classCheck-${deduce}`
             );
             classSubtract.innerText = subtractClass;
-            // let dButtonP1 = document.querySelector("#downOneClick");
-            // dButtonP1.addEventListener("click", function (e) {
-            //     let subtractScore = document.getElementById("one").innerText;
 
-            //     subtractScore--;
-
-            //     const scoreSubtract = document.querySelector("#one");
-            //     scoreSubtract.innerText = subtractScore;
-            //     console.log("Down P1: " + subtractScore);
-            // });
+            if (subtractClass <= 0) {
+                let addClassper = document.getElementById(
+                    `#downOneClick-${reduce}`
+                );
+                addClassper.disabled = true;
+                console.log(addClassper);
+                // const getIt = document.getElementById(
+                //     `#classCheck-${deduce}`
+                // ).innerText;
+                // console.log(`#classCheck-${deduce}`);
+                // console.log(getIt);
+            }
         });
     });
 });
