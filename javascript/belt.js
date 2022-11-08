@@ -409,7 +409,7 @@ showForm.addEventListener("click", function (e) {
 
             console.dir(e);
 
-            ///////////////UP CLICK FUNCTIONALITY ----------------------------------
+            ///////////////UP CLICK FUNCTIONALITY ------------------------------
             let addClass = document.getElementById(
                 `#classCheck-${deduce}`
             ).innerText;
@@ -478,8 +478,14 @@ showForm.addEventListener("click", function (e) {
             newLi.setAttribute("id", `newStripeSee-${how}`);
             newLi.innerText = "Stripe";
 
+            // let newBeltAdd = document.createElement("h3");
+            // console.log(newBeltAdd);
+            // newBeltAdd.innerText = "New Belt Earned";
+            // console.dir(e);
+
             let newBeltAdd = document.createElement("h3");
             console.log(newBeltAdd);
+            newBeltAdd.setAttribute("id", `advanceBelt-${how}`);
             newBeltAdd.innerText = "New Belt Earned";
             console.dir(e);
 
@@ -504,7 +510,7 @@ showForm.addEventListener("click", function (e) {
                 const timed = getSetClass * getSetStripe;
 
                 const lastNum = classAdd.innerText;
-
+                console.log(lastNum);
                 // console.dir(e.path);
                 // console.dir(e.path[2].childNodes[26].childNodes[11]);
                 // console.log(`counters-${how}`);
@@ -550,24 +556,27 @@ showForm.addEventListener("click", function (e) {
         const getSetClass = classer.replace("# of Classes: ", "");
         console.log(getSetClass);
 
-        // const getSetStripe =
-        // const gettingStripe =
-        // document.querySelector("#listStripes").innerText;
-        // document.querySelector(`#listStripes-${recluse}`).innerText;
-        // console.log(gettingStripe);
-        console.log(striper);
-        // const getSetStripe = gettingStripe.replace("# of Stripes: ", "");
         const getSetStripe = striper.replace("# of Stripes: ", "");
         console.log(getSetStripe);
+
         minusClass.addEventListener("click", function (e) {
             e.preventDefault();
+            console.log("STRIPE input: " + getSetStripe);
+            console.log("CLASS input: " + getSetClass);
+            // console.log("NUMtoGET: " + numToGet);
+
+            let removeIt = document.getElementById(`newStripeSee-${how}`);
+            console.log(removeIt);
+
+            let removeItTwo = document.getElementById(`advanceBelt-${how}`);
 
             let subtractClass = document.getElementById(
                 `#classCheck-${deduce}`
             ).innerText;
-            console.log(subtractClass);
 
+            console.log(subtractClass);
             subtractClass--;
+            console.log(subtractClass);
 
             let classSubtract = document.getElementById(
                 `#classCheck-${deduce}`
@@ -575,6 +584,42 @@ showForm.addEventListener("click", function (e) {
             classSubtract.innerText = subtractClass;
 
             const timed = getSetClass * getSetStripe;
+
+            console.dir(e);
+            console.dir(e.path);
+
+            for (let i = 1; i <= getSetStripe; i++) {
+                console.log("getSetStripe: " + getSetStripe);
+
+                const numToGet = i * getSetClass;
+
+                console.log("This is numToGet: " + numToGet);
+
+                const timed = getSetClass * getSetStripe;
+
+                const lastNum = classAdd.innerText;
+                console.log(lastNum);
+
+                console.log(addClassez);
+                if (subtractClass == numToGet) {
+                    removeIt.remove();
+                    // alert("take away");
+                    console.log(removeIt);
+                } else if (timed < lastNum) {
+                    // alert("Advance to next belt!");
+                    // beltAdd.append(newBeltAdd);
+                    // addClassez.append(newBeltAdd);
+                    removeItTwo.remove();
+                    // alert("Advance to next belt!");
+
+                    // let stopUp = document.getElementById(
+                    //     `#upOneClick-${reduce}`
+                    // );
+                    // stopUp.disabled = true;
+                    // console.log(stopUp);
+                    break;
+                }
+            }
 
             if (subtractClass <= 0) {
                 let addClassper = document.getElementById(
