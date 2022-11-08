@@ -592,6 +592,8 @@ showForm.addEventListener("click", function (e) {
                 console.log("getSetStripe: " + getSetStripe);
 
                 const numToGet = i * getSetClass;
+                const lessThan = numToGet - 1;
+                console.log(lessThan);
 
                 console.log("This is numToGet: " + numToGet);
 
@@ -601,7 +603,7 @@ showForm.addEventListener("click", function (e) {
                 console.log(lastNum);
 
                 console.log(addClassez);
-                if (subtractClass == numToGet) {
+                if (subtractClass == lessThan) {
                     removeIt.remove();
                     // alert("take away");
                     console.log(removeIt);
