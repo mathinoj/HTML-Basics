@@ -8,10 +8,3 @@ spanSubmit.addEventListener("click", function (e) {
     let grabText2 = document.getElementById(`textArea2`).value;
     console.log(grabText2);
 });
-
-// let showForm = document.querySelector("#submitBelt");
-
-// showForm.addEventListener("click", function (e) {
-//     e.preventDefault();
-//     console.log(beltForming);
-//     console.log(showForm);
