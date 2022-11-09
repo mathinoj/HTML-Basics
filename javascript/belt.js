@@ -611,19 +611,12 @@ showForm.addEventListener("click", function (e) {
                 console.log(addClassez);
                 if (subtractClass == lessThan) {
                     removeIt.remove();
-                    // alert("take away");
                     console.log(removeIt);
                     console.log(removeItTwo);
-                    // removeItTwo.remove();
+                    removeItTwo.remove();
                 } else if (timed < lastNum) {
                     console.log(removeItTwo);
-
-                    // alert("Advance to next belt!");
-                    // beltAdd.append(newBeltAdd);
-                    // addClassez.append(newBeltAdd);
                     removeItTwo.remove();
-                    // alert("Advance to next belt!");
-
                     // let stopUp = document.getElementById(
                     //     `#upOneClick-${reduce}`
                     // );
