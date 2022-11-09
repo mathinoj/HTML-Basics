@@ -535,6 +535,8 @@ showForm.addEventListener("click", function (e) {
                 } else if (timed == lastNum) {
                     // alert("Advance to next belt!");
                     // beltAdd.append(newBeltAdd);
+                    addClassez.append(newLi);
+
                     addClassez.append(newBeltAdd);
 
                     alert("Advance to next belt!");
@@ -559,6 +561,9 @@ showForm.addEventListener("click", function (e) {
         const getSetStripe = striper.replace("# of Stripes: ", "");
         console.log(getSetStripe);
 
+        let removeItTwo = document.getElementById(`advanceBelt-${how}`);
+        console.log(removeItTwo);
+
         minusClass.addEventListener("click", function (e) {
             e.preventDefault();
             console.log("STRIPE input: " + getSetStripe);
@@ -569,6 +574,7 @@ showForm.addEventListener("click", function (e) {
             console.log(removeIt);
 
             let removeItTwo = document.getElementById(`advanceBelt-${how}`);
+            console.log(removeItTwo);
 
             let subtractClass = document.getElementById(
                 `#classCheck-${deduce}`
@@ -607,7 +613,11 @@ showForm.addEventListener("click", function (e) {
                     removeIt.remove();
                     // alert("take away");
                     console.log(removeIt);
+                    console.log(removeItTwo);
+                    // removeItTwo.remove();
                 } else if (timed < lastNum) {
+                    console.log(removeItTwo);
+
                     // alert("Advance to next belt!");
                     // beltAdd.append(newBeltAdd);
                     // addClassez.append(newBeltAdd);
