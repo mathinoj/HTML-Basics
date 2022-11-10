@@ -6,4 +6,4 @@ const spanishSchema = new Schema({
     spanish: String,
 });
 
-module.exports = mongoose.model("spanishCard", spanishSchema);
+module.exports = mongoose.model("viewAll", spanishSchema);
