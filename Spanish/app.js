@@ -19,11 +19,12 @@ app.set("views", path.join(__dirname, "views"));
 app.get("/addSpanish", async (req, res) => {
     // res.send("home landing");
     // res.render("home");
-    const spanish = new spanishCard({
-        text: "How are you?",
+    const newCard = new spanishCard({
+        english: "How are you?",
+        spanish: "Como estas?",
     });
-    await spanish.save();
-    res.send(spanish);
+    await newCard.save();
+    res.send(newCard);
 });
 
 app.listen(3000, () => {

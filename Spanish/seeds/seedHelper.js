@@ -4,8 +4,6 @@ module.exports.english = [
     "English3",
     "English4",
     "English5",
-    "English6",
-    "English7",
 ];
 
 module.exports.spanish = [
@@ -14,6 +12,4 @@ module.exports.spanish = [
     "Spanish3",
     "Spanish4",
     "Spanish5",
-    "Spanish6",
-    "Spanish7",
 ];
