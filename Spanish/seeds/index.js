@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const { english, spanish } = require("./seedHelpersEngSpan");
 // const spanishCard = require("../Models/viewAll");
-const viewAll = require("../Models/viewAll");
+const viewAll = require("../models/viewAll");
 
 mongoose.connect("mongodb://localhost:27017/Spanish");
 
