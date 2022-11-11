@@ -1,15 +1,18 @@
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
-const ViewAll = require("./models/viewAll");
+const Viewall = require("./models/viewAll");
 
 mongoose.connect("mongodb://localhost:27017/Spanish", {});
 
 const db = mongoose.connection;
+
+//this logic checks to see if there is an error
 db.on("error", console.error.bind(console, "connect error:"));
 db.once("open", () => {
     console.log("Database Connected Mayngz");
 });
+//this logic checks to see if there is an error^^^^^^^
 
 const app = express();
 
@@ -20,6 +23,12 @@ app.get("/", (req, res) => {
     // res.send("hello cards");
 
     res.render("home");
+});
+
+app.get("/makeCard", async (req, res) => {
+    const card = new Viewall({ english: "What", spanish: "Que" });
+    await card.save();
+    res.send(card);
 });
 
 // app.get("/viewAll", async (req, res) => {
