@@ -31,7 +31,7 @@ app.get("/viewAll", async (req, res) => {
 });
 
 app.get("/viewAll/:id", async (req, res) => {
-    res.render("viewAll/show");
+    res.render("cards/show");
 });
 
 // app.get("/makeCard", async (req, res) => {

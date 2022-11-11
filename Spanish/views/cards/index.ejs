@@ -10,7 +10,10 @@
         <h1>All Cards</h1>
         <ul>
             <% for (let viewCards of viewAllCamp) {%>
-            <li><%=viewCards.card%></li>
+            <li>
+                <a href="/viewAll/<%= viewCards._id%>"> <%=viewCards.card%></a>
+            </li>
+
             <%}%>
         </ul>
     </body>
