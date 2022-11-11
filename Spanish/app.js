@@ -31,7 +31,8 @@ app.get("/viewAll", async (req, res) => {
 });
 
 app.get("/viewAll/:id", async (req, res) => {
-    res.render("cards/show");
+    const viewCampId = await Viewall.findById(req.params.id);
+    res.render("cards/show", { viewCampId });
 });
 
 // app.get("/makeCard", async (req, res) => {
