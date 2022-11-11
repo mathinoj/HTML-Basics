@@ -25,15 +25,15 @@ app.get("/", (req, res) => {
     res.render("home");
 });
 
+app.get("/viewAll", async (req, res) => {
+    const viewAllCamp = await Viewall.find({});
+    res.render("cards/index", { viewAllCamp });
+});
+
 // app.get("/makeCard", async (req, res) => {
 //     const card = new Viewall({ english: "What", spanish: "Que" });
 //     await card.save();
 //     res.send(card);
-// });
-
-// app.get("/viewAll", async (req, res) => {
-//     const viewAll = await ViewAll.find({});
-//     res.render("cards/index");
 // });
 
 // app.get("/addSpanish", async (req, res) => {

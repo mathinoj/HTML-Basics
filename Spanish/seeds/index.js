@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 // const cities = require("./citiesToo");
 const { english, spanish } = require("./seedHelperEngSpan");
-const viewAll = require("../models/viewAll");
+const Viewall = require("../models/viewAll");
 
 mongoose.connect("mongodb://localhost:27017/Spanish", {});
 
@@ -17,7 +17,7 @@ const seedDbSpan = async () => {
     await viewAll.deleteMany({});
     for (let i = 0; i < 12; i++) {
         // const randomOnes = Math.floor(Math.random() * 1000);
-        const idioma = new viewAll({
+        const idioma = new Viewall({
             // location: `${cities[randomOnes].city}, ${cities[randomOnes].state}`,
             card: `${sample(english)} ${sample(spanish)}`,
         });
