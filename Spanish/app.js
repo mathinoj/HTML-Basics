@@ -30,6 +30,10 @@ app.get("/viewAll", async (req, res) => {
     res.render("cards/index", { viewAllCamp });
 });
 
+app.get("/viewAll/:id", async (req, res) => {
+    res.render("viewAll/show");
+});
+
 // app.get("/makeCard", async (req, res) => {
 //     const card = new Viewall({ english: "What", spanish: "Que" });
 //     await card.save();
