@@ -25,11 +25,11 @@ app.get("/", (req, res) => {
     res.render("home");
 });
 
-app.get("/makeCard", async (req, res) => {
-    const card = new Viewall({ english: "What", spanish: "Que" });
-    await card.save();
-    res.send(card);
-});
+// app.get("/makeCard", async (req, res) => {
+//     const card = new Viewall({ english: "What", spanish: "Que" });
+//     await card.save();
+//     res.send(card);
+// });
 
 // app.get("/viewAll", async (req, res) => {
 //     const viewAll = await ViewAll.find({});

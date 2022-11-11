@@ -7,4 +7,4 @@ const SpanishSchema = new Schema({
     spanish: String,
 });
 
-module.exports = mongoose.model("Viewall", SpanishSchema);
+module.exports = mongoose.model("viewall", SpanishSchema);
