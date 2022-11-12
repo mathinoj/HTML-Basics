@@ -1,48 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Edit Card</title>
-    </head>
-    <body>
-        <h1>Edit Card</h1>
-        <form action="/cards/<%=editCard._id%>?_method=PUT" method="POST">
-            <div>
-                <label for="card">Card</label>
-                <input
-                    type="text"
-                    id="english"
-                    name="card[english]"
-                    value="<%=editCard.english%>"
-                />
-                <input
-                    type="text"
-                    id="spanish"
-                    name="card[spanish]"
-                    value="<%=editCard.spanish%>"
-                />
-            </div>
-            <div>
-                <label for="hint">Hint</label>
-                <input
-                    type="text"
-                    id="hintOne"
-                    name="card[hintOne]"
-                    value="<%=editCard.hintOne%>"
-                />
-                <input
-                    type="text"
-                    id="hintTwo"
-                    name="card[hintTwo]"
-                    value="<%=editCard.hintTwo%>"
-                />
-            </div>
-            <button>Update Card</button>
-            <div>
-                <a href="/cards/<%= editCard._id%>">Back to Card</a>
-            </div>
-        </form>
-    </body>
-</html>
+<% layout('/layouts/boilerplate')%>
+<h1>Edit Card</h1>
+<form action="/cards/<%=editCard._id%>?_method=PUT" method="POST">
+    <div>
+        <label for="card">Card</label>
+        <input
+            type="text"
+            id="english"
+            name="card[english]"
+            value="<%=editCard.english%>"
+        />
+        <input
+            type="text"
+            id="spanish"
+            name="card[spanish]"
+            value="<%=editCard.spanish%>"
+        />
+    </div>
+    <div>
+        <label for="hint">Hint</label>
+        <input
+            type="text"
+            id="hintOne"
+            name="card[hintOne]"
+            value="<%=editCard.hintOne%>"
+        />
+        <input
+            type="text"
+            id="hintTwo"
+            name="card[hintTwo]"
+            value="<%=editCard.hintTwo%>"
+        />
+    </div>
+    <button>Update Card</button>
+    <div>
+        <a href="/cards/<%= editCard._id%>">Back to Card</a>
+    </div>
+</form>

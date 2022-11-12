@@ -1,27 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>New Card</title>
-    </head>
-    <body>
-        <form action="/cards" method="POST">
-            <div>
-                <label for="card">Card</label>
-                <input type="text" id="english" name="card[english]" />
-                <input type="text" id="spanish" name="card[spanish]" />
-            </div>
-            <div>
-                <label for="hint">Hint</label>
-                <input type="text" id="hintOne" name="card[hintOne]" />
-                <input type="text" id="hintTwo" name="card[hintTwo]" />
-            </div>
-            <button>Add Card</button>
-            <div>
-                <a href="/cards/">All Cards</a>
-            </div>
-        </form>
-    </body>
-</html>
+<% layout('/layouts/boilerplate')%>
+<form action="/cards" method="POST">
+    <div>
+        <label for="card">Card</label>
+        <input type="text" id="english" name="card[english]" />
+        <input type="text" id="spanish" name="card[spanish]" />
+    </div>
+    <div>
+        <label for="hint">Hint</label>
+        <input type="text" id="hintOne" name="card[hintOne]" />
+        <input type="text" id="hintTwo" name="card[hintTwo]" />
+    </div>
+    <button>Add Card</button>
+    <div>
+        <a href="/cards/">All Cards</a>
+    </div>
+</form>
