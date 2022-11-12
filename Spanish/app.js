@@ -25,21 +25,22 @@ app.get("/", (req, res) => {
     res.render("home");
 });
 
-app.get("/viewAll", async (req, res) => {
+app.get("/cards", async (req, res) => {
     const viewAllCamp = await Viewall.find({});
     res.render("cards/index", { viewAllCamp });
 });
 
-app.get("/viewAll/:id", async (req, res) => {
+app.get("/cards/new", async (req, res) => {
+    // const card = new Viewall({ english: "What", spanish: "Que" });
+    // await card.save();
+    res.render("cards/new");
+    //BEFORE, THIS WAS BELOW '/cards/:id/' but we moved it here because order matters
+});
+
+app.get("/cards/:id", async (req, res) => {
     const viewCampId = await Viewall.findById(req.params.id);
     res.render("cards/show", { viewCampId });
 });
-
-// app.get("/makeCard", async (req, res) => {
-//     const card = new Viewall({ english: "What", spanish: "Que" });
-//     await card.save();
-//     res.send(card);
-// });
 
 // app.get("/addSpanish", async (req, res) => {
 //     // res.send("home landing");
