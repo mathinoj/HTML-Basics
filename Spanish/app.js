@@ -19,6 +19,9 @@ const app = express();
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
+app.use(express.urlencoded({ extended: true }));
+//for the new card submission we wont see any of our text submissions because the request body hasn't been parced so we tell express to parse the body by doing the app.use...
+
 app.get("/", (req, res) => {
     // res.send("hello cards");
 
@@ -35,6 +38,10 @@ app.get("/cards/new", async (req, res) => {
     // await card.save();
     res.render("cards/new");
     //BEFORE, THIS WAS BELOW '/cards/:id/' but we moved it here because order matters
+});
+
+app.post("/cards", async (req, res) => {
+    res.send(req.body);
 });
 
 app.get("/cards/:id", async (req, res) => {
