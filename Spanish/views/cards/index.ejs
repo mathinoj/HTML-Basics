@@ -8,16 +8,16 @@
     </head>
     <body>
         <h1>All Cards</h1>
+        <div>
+            <a href="/cards/new">Add Card</a>
+        </div>
         <ul>
             <% for (let viewCards of viewAllCamp) {%>
             <li>
                 <a href="/cards/<%= viewCards._id%>"> <%=viewCards.card%></a>
                 <a href="/cards/<%= viewCards._id%>"
-                    ><%= viewCards.english %></a
+                    ><%= viewCards.english %> <%= viewCards.spanish %></a
                 >
-                <a><%= viewCards.spanish %></a>
-                <a><%= viewCards.hintOne %></a>
-                <a><%= viewCards.hintTwo %></a>
             </li>
 
             <%}%>
