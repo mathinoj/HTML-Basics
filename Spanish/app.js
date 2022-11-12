@@ -33,15 +33,20 @@ app.get("/cards", async (req, res) => {
     res.render("cards/index", { viewAllCamp });
 });
 
-app.get("/cards/new", async (req, res) => {
+app.get("/cards/new", (req, res) => {
     // const card = new Viewall({ english: "What", spanish: "Que" });
     // await card.save();
     res.render("cards/new");
-    //BEFORE, THIS WAS BELOW '/cards/:id/' but we moved it here because order matters
+    //BEFORE, THIS ROUTE WAS BELOW '/cards/:id/' but we moved it here because order matters
 });
 
 app.post("/cards", async (req, res) => {
-    res.send(req.body);
+    const newCard = new Viewall(req.body.card);
+    // const newCardHint = new Viewall(req.body.hint);
+    await newCard.save();
+    // await newCardHint.save();
+    res.redirect(`/cards/${newCard._id}`);
+    // res.send(req.body);
 });
 
 app.get("/cards/:id", async (req, res) => {

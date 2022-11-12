@@ -9,14 +9,14 @@
     <body>
         <form action="/cards" method="POST">
             <div>
-                <label for="title">Card</label>
-                <input type="text" id="cardEnglish" name="card[english]" />
-                <input type="text" id="cardSpanish" name="card[spanish]" />
+                <label for="card">Card</label>
+                <input type="text" id="english" name="card[english]" />
+                <input type="text" id="spanish" name="card[spanish]" />
             </div>
             <div>
-                <label for="title">Hint</label>
-                <input type="text" id="hintOne" name="hint[hintOne]" />
-                <input type="text" id="hintTwo" name="hint[hintTwo]" />
+                <label for="hint">Hint</label>
+                <input type="text" id="hintOne" name="card[hintOne]" />
+                <input type="text" id="hintTwo" name="card[hintTwo]" />
             </div>
             <button>Add Card</button>
         </form>

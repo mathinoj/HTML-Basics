@@ -12,6 +12,12 @@
             <% for (let viewCards of viewAllCamp) {%>
             <li>
                 <a href="/cards/<%= viewCards._id%>"> <%=viewCards.card%></a>
+                <a href="/cards/<%= viewCards._id%>"
+                    ><%= viewCards.english %></a
+                >
+                <a><%= viewCards.spanish %></a>
+                <a><%= viewCards.hintOne %></a>
+                <a><%= viewCards.hintTwo %></a>
             </li>
 
             <%}%>
