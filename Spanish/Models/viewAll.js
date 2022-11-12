@@ -15,6 +15,8 @@ const SpanishSchema = new Schema({
 
 module.exports = mongoose.model("Viewall", SpanishSchema);
 
+//THIS IS AN EXAMPLE OF WHAT A BIGGER SCHEMA CAN LOOK LIKE!!!!!!
+//
 // const blogSchema = new Schema({
 //     title: String, // String is shorthand for {type: String}
 //     author: String,
