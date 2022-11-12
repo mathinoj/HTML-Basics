@@ -54,15 +54,10 @@ app.get("/cards/:id", async (req, res) => {
     res.render("cards/show", { viewCampId });
 });
 
-// app.get("/addSpanish", async (req, res) => {
-//     // res.send("home landing");
-//     const spanCard = new viewAll({
-//         english: "How are you?",
-//         spanish: "Como estas?",
-//     });
-//     await spanCard.save();
-//     res.send(spanCard);
-// });
+app.get("/cards/:id/edit", async (req, res) => {
+    const editCard = await Viewall.findById(req.params.id);
+    res.render("cards/edit", { editCard });
+});
 
 app.listen(3000, () => {
     console.log("Connected port 3000");
