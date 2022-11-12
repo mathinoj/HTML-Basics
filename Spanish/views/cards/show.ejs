@@ -16,6 +16,11 @@
         <p>
             <a href="/cards/<%=viewCampId._id%>/edit">Edit</a>
         </p>
+        <p>
+          <form action="/cards/<%=viewCampId._id%>?_method=DELETE" method="POST">
+          <button>Delete</button>
+          </form>
+        </p>
         <footer>
             <a href="/cards/">All Cards</a>
         </footer>

@@ -70,6 +70,12 @@ app.put("/cards/:id", async (req, res) => {
     // res.send("it TWERKED");
 });
 
+app.delete("/cards/:id", async (req, res) => {
+    const { id } = req.params;
+    await Viewall.findByIdAndDelete(id);
+    res.redirect("/cards");
+});
+
 app.listen(3000, () => {
     console.log("Connected port 3000");
 });
