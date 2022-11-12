@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
+const methodOverride = require("method-override");
 const Viewall = require("./models/viewAll");
 
 mongoose.connect("mongodb://localhost:27017/Spanish", {});
@@ -21,6 +22,7 @@ app.set("views", path.join(__dirname, "views"));
 
 app.use(express.urlencoded({ extended: true }));
 //for the new card submission we wont see any of our text submissions because the request body hasn't been parced so we tell express to parse the body by doing the app.use...
+app.use(methodOverride("_method"));
 
 app.get("/", (req, res) => {
     // res.send("hello cards");
@@ -57,6 +59,15 @@ app.get("/cards/:id", async (req, res) => {
 app.get("/cards/:id/edit", async (req, res) => {
     const editCard = await Viewall.findById(req.params.id);
     res.render("cards/edit", { editCard });
+});
+
+app.put("/cards/:id", async (req, res) => {
+    const { id } = req.params;
+    const editedCard = await Viewall.findByIdAndUpdate(id, {
+        ...req.body.card,
+    });
+    res.redirect(`/cards/${editedCard._id}`);
+    // res.send("it TWERKED");
 });
 
 app.listen(3000, () => {

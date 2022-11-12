@@ -8,7 +8,7 @@
     </head>
     <body>
         <h1>Edit Card</h1>
-        <form action="/cards/" method="POST">
+        <form action="/cards/<%=editCard._id%>?_method=PUT" method="POST">
             <div>
                 <label for="card">Card</label>
                 <input
