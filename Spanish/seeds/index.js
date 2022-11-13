@@ -21,7 +21,7 @@ const seedDbSpan = async () => {
         const idioma = new Viewall({
             card: `${sample(english)} ${sample(spanish)}`,
             hint: `${sample(hintOne)} ${sample(hintTwo)}`,
-            // hint: `${[randomOnes].hintOne}, ${[randomOnes].hintTwo}`,
+            image: "https://source.unsplash.com/collection/483251",
         });
         await idioma.save();
     }
