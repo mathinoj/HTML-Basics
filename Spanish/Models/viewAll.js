@@ -4,11 +4,14 @@ const Schema = mongoose.Schema;
 const SpanishSchema = new Schema({
     card: String,
     hint: String,
-    image: String,
     english: String,
     spanish: String,
     hintOne: String,
     hintTwo: String,
+    image: String,
+    title: String,
+    description: String,
+    location: String,
 
     // card: [
     //     { english: String, spanish: String, hintOne: String, hintTwo: String },

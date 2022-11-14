@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const ejsMate = require("ejs-mate");
 const methodOverride = require("method-override");
 const Viewall = require("./models/viewAll");
+const Travelall = require("./models/viewAll");
 
 mongoose.connect("mongodb://localhost:27017/Spanish", {});
 
@@ -35,6 +36,11 @@ app.get("/", (req, res) => {
 app.get("/cards", async (req, res) => {
     const viewAllCamp = await Viewall.find({});
     res.render("cards/index", { viewAllCamp });
+});
+
+app.get("/travels", async (req, res) => {
+    const viewAllTravel = await Travelall.find({});
+    res.render("cards/index", { viewAllTravel });
 });
 
 app.get("/cards/new", (req, res) => {

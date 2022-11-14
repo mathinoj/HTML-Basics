@@ -1,0 +1,24 @@
+<% layout('/layouts/boilerplate')%>
+<h1>All Travels</h1>
+<div>
+    <a href="/cards/new">Add Travel</a>
+</div>
+<% for (let viewTravels of viewAllCamp) {%>
+<div class="card" mb-3>
+    <div class="row">
+        <div class="col-md-4">
+            <img class="img-fluid" alt="" src="<%=viewCards.image%>" />
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title"><%=viewCards.card%></h5>
+                <h5 class="card-title"><%= viewCards.english %></h5>
+                <h5 class="card-title"><%= viewCards.spanish %></h5>
+                <a class="btn btn-primary" href="/cards/<%= viewCards._id%>"
+                    >View Card</a
+                >
+            </div>
+        </div>
+    </div>
+</div>
+<%}%>
