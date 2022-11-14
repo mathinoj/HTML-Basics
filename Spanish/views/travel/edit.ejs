@@ -1,0 +1,96 @@
+<!-- <% layout('/layouts/boilerplate')%>
+<h1>Edit Travel</h1>
+<form action="/travel/<%=editTravel._id%>?_method=PUT" method="POST">
+    <div>
+        <label for="title">Card</label>
+        <input
+            type="text"
+            id="title"
+            name="travel[title]"
+            value="<%=editTravel.title%>"
+        />
+        <textarea
+            type="text"
+            id="description"
+            name="travel[description]"
+            value="<%=editTravel.description%>"
+        ></textarea>
+    </div>
+    <div>
+        <label for="Location">Location</label>
+        <input
+            type="text"
+            id="location"
+            name="travel[location]"
+            value="<%=editTravel.location%>"
+        />
+        <input
+            type="image"
+            id="image"
+            name="travel[image]"
+            value="<%=editTravel.image%>"
+        />
+    </div>
+    <button>Update Travel</button>
+    <div>
+        <a href="/travel/<%= editTravel._id%>">Back to Card</a>
+    </div>
+</form> -->
+
+<% layout('/layouts/boilerplate')%>
+<div class="row">
+    <h1 class="text-center">Edit Travel</h1>
+    <div class="col-6 offset-3">
+        <form action="/travel/<%=editTravel._id%>?_method=PUT" method="POST">
+            <div class="mb-3">
+                <label class="form-label" for="travel">Title</label>
+                <input
+                    class="form-control"
+                    type="text"
+                    id="title"
+                    name="travel[title]"
+                    value="<%=editTravel.title%>"
+                />
+            </div>
+            <div class="mb-3">
+                <textarea
+                    class="form-control"
+                    type="text"
+                    id="description"
+                    name="travel[description]"
+                    value="<%=editTravel.description%>"
+                >
+                </textarea>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="location">Location</label>
+                <input
+                    class="form-control"
+                    type="text"
+                    id="location"
+                    name="travel[location]"
+                    value="<%=editTravel.location%>"
+                />
+            </div>
+            <div class="mb-3">
+                <label for="image" class="form-label">Image URL</label>
+                <input
+                    class="form-control"
+                    type="text"
+                    id="image"
+                    name="travel[image]"
+                    value="<%=editTravel.image%>"
+                />
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-success">Update Travel</button>
+            </div>
+            <div>
+                <a href="/travel/<%= editTravel._id%>">Back to Travel</a>
+            </div>
+            <div>
+                <a href="/travel/">All Travels</a>
+            </div>
+        </form>
+    </div>
+</div>

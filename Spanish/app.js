@@ -39,8 +39,8 @@ app.get("/cards", async (req, res) => {
 });
 
 ///TRAVEL
-app.get("/travels", async (req, res) => {
-    const viewAllTravel = await Travelall.find({});
+app.get("/travel", async (req, res) => {
+    const viewAllTravel = await Viewall.find({});
     res.render("travel/index", { viewAllTravel });
 });
 
@@ -65,14 +65,33 @@ app.post("/cards", async (req, res) => {
     // res.send(req.body);
 });
 
+///TRAVEL
+app.post("/travel", async (req, res) => {
+    const newTravel = new Viewall(req.body.travel);
+    await newTravel.save();
+    res.redirect(`/travel/${newTravel._id}`);
+});
+
 app.get("/cards/:id", async (req, res) => {
     const viewCampId = await Viewall.findById(req.params.id);
     res.render("cards/show", { viewCampId });
 });
 
+///TRAVEL
+app.get("/travel/:id", async (req, res) => {
+    const viewTravelId = await Viewall.findById(req.params.id);
+    res.render("travel/show", { viewTravelId });
+});
+
 app.get("/cards/:id/edit", async (req, res) => {
     const editCard = await Viewall.findById(req.params.id);
     res.render("cards/edit", { editCard });
+});
+
+///TRAVEL
+app.get("/travel/:id/edit", async (req, res) => {
+    const editTravel = await Viewall.findById(req.params.id);
+    res.render("travel/edit", { editTravel });
 });
 
 app.put("/cards/:id", async (req, res) => {
@@ -84,10 +103,26 @@ app.put("/cards/:id", async (req, res) => {
     // res.send("it TWERKED");
 });
 
+///TRAVEL
+app.put("/travel/:id", async (req, res) => {
+    const { id } = req.params;
+    const editedTravel = await Viewall.findByIdAndUpdate(id, {
+        ...req.body.travel,
+    });
+    res.redirect(`/travel/${editedTravel._id}`);
+});
+
 app.delete("/cards/:id", async (req, res) => {
     const { id } = req.params;
     await Viewall.findByIdAndDelete(id);
     res.redirect("/cards");
+});
+
+//TRAVEL
+app.delete("/travel/:id", async (req, res) => {
+    const { id } = req.params;
+    await Viewall.findByIdAndDelete(id);
+    res.redirect("/travel");
 });
 
 app.listen(3000, () => {

@@ -2,43 +2,35 @@
 <div class="row">
     <h1 class="text-center">New Travel</h1>
     <div class="col-6 offset-3">
-        <form action="/cards" method="POST">
+        <form action="/travel" method="POST">
             <div class="mb-3">
-                <label class="form-label" for="card">Card</label>
-                <textarea
+                <label class="form-label" for="travel">Title</label>
+                <input
                     class="form-control"
                     type="text"
-                    id="english"
-                    name="card[english]"
-                    placeholder="English"
-                >
-                  </textarea/>
-                </div>
-                <div class="mb-3">
-                <textarea
-                    class="form-control"
-                    type="text"
-                    id="spanish"
-                    name="card[spanish]"
-                    placeholder="Spanish">
-                  </textarea
-                >
+                    id="title"
+                    name="travel[title]"
+                    placeholder="Title of Event"
+                />
             </div>
             <div class="mb-3">
-                <label class="form-label" for="hint">Hint</label>
+                <textarea
+                    class="form-control"
+                    type="text"
+                    id="description"
+                    name="travel[description]"
+                    placeholder="Description of Travels"
+                >
+                </textarea>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="location">Location</label>
                 <input
                     class="form-control"
                     type="text"
-                    id="hintOne"
-                    name="card[hintOne]"
-                    placeholder="Hint One"
-                />
-                <input
-                    class="form-control"
-                    type="text"
-                    id="hintTwo"
-                    name="card[hintTwo]"
-                    placeholder="Hint Two"
+                    id="location"
+                    name="travel[location]"
+                    placeholder="Country, State, City..."
                 />
             </div>
             <div class="mb-3">
@@ -47,14 +39,14 @@
                     type="text"
                     id="image"
                     class="form-control"
-                    name="card[image]"
+                    name="travel[image]"
                 />
             </div>
             <div class="mb-3">
-                <button class="btn btn-success">Add Card</button>
+                <button class="btn btn-success">Add Travel</button>
             </div>
             <div>
-                <a href="/cards/">All Cards</a>
+                <a href="/travel/">All Travels</a>
             </div>
         </form>
     </div>

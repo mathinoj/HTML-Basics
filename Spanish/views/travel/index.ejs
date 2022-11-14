@@ -1,7 +1,7 @@
 <% layout('/layouts/boilerplate')%>
 <h1>All Travels</h1>
 <div>
-    <a href="/cards/new">Add Travel</a>
+    <a href="/travel/new">Add Travel</a>
 </div>
 <% for (let viewTravels of viewAllTravel) {%>
 <div class="card" mb-3>
@@ -14,7 +14,7 @@
                 <h5 class="card-title"><%=viewTravels.title%></h5>
                 <h5 class="card-title"><%= viewTravels.location %></h5>
                 <h5 class="card-title"><%= viewTravels.description %></h5>
-                <a class="btn btn-primary" href="/travels/<%= viewTravels._id%>"
+                <a class="btn btn-primary" href="/travel/<%= viewTravels._id%>"
                     >View Travel</a
                 >
             </div>

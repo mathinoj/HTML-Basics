@@ -1,0 +1,17 @@
+<% layout('/layouts/boilerplate')%>
+        <img src="<%=viewTravelId.image%>" alt="...">
+        <h1><%= viewTravelId.title %></h1>
+        <h2><%= viewTravelId.description %></h2>
+        <h1><%= viewTravelId.location %></h1>
+        <p>
+            <a href="/travel/<%=viewTravelId._id%>/edit">Edit</a>
+        </p>
+        <p>
+          <form action="/travel/<%=viewTravelId._id%>?_method=DELETE" method="POST">
+          <button>Delete</button>
+          </form>
+        </p>
+        <footer>
+            <a href="/travel/">All Travels</a>
+        </footer>
+            <!-- image: String, title: String, description: String, location: String, -->
