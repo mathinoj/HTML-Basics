@@ -38,9 +38,10 @@ app.get("/cards", async (req, res) => {
     res.render("cards/index", { viewAllCamp });
 });
 
+///TRAVEL
 app.get("/travels", async (req, res) => {
     const viewAllTravel = await Travelall.find({});
-    res.render("cards/index", { viewAllTravel });
+    res.render("travel/index", { viewAllTravel });
 });
 
 app.get("/cards/new", (req, res) => {
@@ -48,6 +49,11 @@ app.get("/cards/new", (req, res) => {
     // await card.save();
     res.render("cards/new");
     //BEFORE, THIS ROUTE WAS BELOW '/cards/:id/' but we moved it here because order matters
+});
+
+///TRAVEL
+app.get("/travel/new", (req, res) => {
+    res.render("travel/new");
 });
 
 app.post("/cards", async (req, res) => {
