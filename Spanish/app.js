@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const ejsMate = require("ejs-mate");
 const methodOverride = require("method-override");
 const Viewall = require("./models/viewAll");
-const Travelall = require("./models/viewAll");
+const Travelall = require("./models/viewAllTravel");
 
 mongoose.connect("mongodb://localhost:27017/Spanish", {});
 
@@ -40,7 +40,7 @@ app.get("/cards", async (req, res) => {
 
 ///TRAVEL
 app.get("/travel", async (req, res) => {
-    const viewAllTravel = await Viewall.find({});
+    const viewAllTravel = await Travelall.find({});
     res.render("travel/index", { viewAllTravel });
 });
 
@@ -67,7 +67,7 @@ app.post("/cards", async (req, res) => {
 
 ///TRAVEL
 app.post("/travel", async (req, res) => {
-    const newTravel = new Viewall(req.body.travel);
+    const newTravel = new Travelall(req.body.travel);
     await newTravel.save();
     res.redirect(`/travel/${newTravel._id}`);
 });
@@ -79,7 +79,7 @@ app.get("/cards/:id", async (req, res) => {
 
 ///TRAVEL
 app.get("/travel/:id", async (req, res) => {
-    const viewTravelId = await Viewall.findById(req.params.id);
+    const viewTravelId = await Travelall.findById(req.params.id);
     res.render("travel/show", { viewTravelId });
 });
 
@@ -90,7 +90,7 @@ app.get("/cards/:id/edit", async (req, res) => {
 
 ///TRAVEL
 app.get("/travel/:id/edit", async (req, res) => {
-    const editTravel = await Viewall.findById(req.params.id);
+    const editTravel = await Travelall.findById(req.params.id);
     res.render("travel/edit", { editTravel });
 });
 
@@ -106,7 +106,7 @@ app.put("/cards/:id", async (req, res) => {
 ///TRAVEL
 app.put("/travel/:id", async (req, res) => {
     const { id } = req.params;
-    const editedTravel = await Viewall.findByIdAndUpdate(id, {
+    const editedTravel = await Travelall.findByIdAndUpdate(id, {
         ...req.body.travel,
     });
     res.redirect(`/travel/${editedTravel._id}`);
@@ -121,7 +121,7 @@ app.delete("/cards/:id", async (req, res) => {
 //TRAVEL
 app.delete("/travel/:id", async (req, res) => {
     const { id } = req.params;
-    await Viewall.findByIdAndDelete(id);
+    await Travelall.findByIdAndDelete(id);
     res.redirect("/travel");
 });
 

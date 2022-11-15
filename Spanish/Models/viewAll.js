@@ -8,10 +8,6 @@ const SpanishSchema = new Schema({
     spanish: String,
     hintOne: String,
     hintTwo: String,
-    image: String,
-    title: String,
-    description: String,
-    location: String,
 
     // card: [
     //     { english: String, spanish: String, hintOne: String, hintTwo: String },

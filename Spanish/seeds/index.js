@@ -4,6 +4,7 @@ const { english, spanish } = require("./seedHelperEngSpan");
 const { hintOne, hintTwo } = require("./hints");
 const cities = require("./cities");
 const Viewall = require("../models/viewAll");
+const Travelall = require("../models/viewAllTravel");
 
 mongoose.connect("mongodb://localhost:27017/Spanish", {});
 
@@ -17,6 +18,7 @@ const sample = (array) => array[Math.floor(Math.random() * array.length)];
 
 const seedDbSpan = async () => {
     await Viewall.deleteMany({});
+    await Travelall.deleteMany({});
     for (let i = 0; i < 12; i++) {
         const randomOnes = Math.floor(Math.random() * 1000);
         const idioma = new Viewall({
@@ -27,7 +29,14 @@ const seedDbSpan = async () => {
             description:
                 "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
         });
+        const idiomaToo = new Travelall({
+            location: `${cities[randomOnes].city}, ${cities[randomOnes].state}`,
+            image: "https://source.unsplash.com/collection/483251",
+            description:
+                "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+        });
         await idioma.save();
+        await idiomaToo.save();
     }
 };
 
