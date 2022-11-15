@@ -1,5 +1,39 @@
 <% layout('/layouts/boilerplate')%>
-        <img src="<%=viewTravelId.image%>" alt="...">
+<!-- <div class="card" style="width: 18rem;"> HE REMOVES THE WIDTH-->
+<div class="row">
+    <div class="col-6 offset-3">
+        <div class="card mb-3">
+            <img src="<%=viewTravelId.image%>" class="card-img-top" alt="..." />
+            <div class="card-body">
+                <h5 class="card-title"><%=viewTravelId.title%></h5>
+                <p class="card-text"><%=viewTravelId.description%></p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><%=viewTravelId.location%></li>
+            </ul>
+            <div class="card-body">
+                <a
+                    href="/travel/<%=viewTravelId._id%>/edit"
+                    class="card-link btn btn-primary"
+                    >Edit</a
+                >
+                <form
+                    class="d-inline"
+                    action="/travel/<%=viewTravelId._id%>?_method=DELETE"
+                    method="POST"
+                >
+                    <button class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+        <footer>
+            <a href="/travel/">All Travels</a>
+        </footer>
+    </div>
+</div>
+
+<!-- ORIGINAL -->
+<!-- <img src="<%=viewTravelId.image%>" alt="...">
         <h1><%= viewTravelId.title %></h1>
         <h2><%= viewTravelId.description %></h2>
         <h1><%= viewTravelId.location %></h1>
@@ -13,5 +47,4 @@
         </p>
         <footer>
             <a href="/travel/">All Travels</a>
-        </footer>
-            <!-- image: String, title: String, description: String, location: String, -->
+        </footer> -->

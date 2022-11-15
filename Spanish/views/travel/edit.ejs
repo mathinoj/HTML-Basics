@@ -1,42 +1,3 @@
-<!-- <% layout('/layouts/boilerplate')%>
-<h1>Edit Travel</h1>
-<form action="/travel/<%=editTravel._id%>?_method=PUT" method="POST">
-    <div>
-        <label for="title">Card</label>
-        <input
-            type="text"
-            id="title"
-            name="travel[title]"
-            value="<%=editTravel.title%>"
-        />
-        <textarea
-            type="text"
-            id="description"
-            name="travel[description]"
-            value="<%=editTravel.description%>"
-        ></textarea>
-    </div>
-    <div>
-        <label for="Location">Location</label>
-        <input
-            type="text"
-            id="location"
-            name="travel[location]"
-            value="<%=editTravel.location%>"
-        />
-        <input
-            type="image"
-            id="image"
-            name="travel[image]"
-            value="<%=editTravel.image%>"
-        />
-    </div>
-    <button>Update Travel</button>
-    <div>
-        <a href="/travel/<%= editTravel._id%>">Back to Card</a>
-    </div>
-</form> -->
-
 <% layout('/layouts/boilerplate')%>
 <div class="row">
     <h1 class="text-center">Edit Travel</h1>
@@ -59,8 +20,7 @@
                     id="description"
                     name="travel[description]"
                     value="<%=editTravel.description%>"
-                >
-                </textarea>
+                ></textarea>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="location">Location</label>

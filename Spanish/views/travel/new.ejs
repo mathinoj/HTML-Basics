@@ -2,26 +2,30 @@
 <div class="row">
     <h1 class="text-center">New Travel</h1>
     <div class="col-6 offset-3">
-        <form action="/travel" method="POST">
+        <form action="/travel" method="POST" novalidate class="validated-form">
             <div class="mb-3">
-                <label class="form-label" for="travel">Title</label>
+                <label class="form-label" for="title">Title</label>
                 <input
                     class="form-control"
                     type="text"
                     id="title"
                     name="travel[title]"
                     placeholder="Title of Event"
+                    required
                 />
+                <div class="valid-feedback">Looks aight!</div>
             </div>
             <div class="mb-3">
+                <label class="form-label" for="description">Description</label>
                 <textarea
                     class="form-control"
                     type="text"
                     id="description"
                     name="travel[description]"
-                    placeholder="Description of Travels"
-                >
-                </textarea>
+                    placeholder="What did you did..."
+                    required
+                ></textarea>
+                <div class="valid-feedback">Looks aight!</div>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="location">Location</label>
@@ -31,7 +35,9 @@
                     id="location"
                     name="travel[location]"
                     placeholder="Country, State, City..."
+                    required
                 />
+                <div class="valid-feedback">Looks aight!</div>
             </div>
             <div class="mb-3">
                 <label for="image" class="form-label">Image URL</label>
