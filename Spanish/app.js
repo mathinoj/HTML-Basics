@@ -57,19 +57,27 @@ app.get("/travel/new", (req, res) => {
 });
 
 app.post("/cards", async (req, res) => {
-    const newCard = new Viewall(req.body.card);
-    // const newCardHint = new Viewall(req.body.hint);
-    await newCard.save();
-    // await newCardHint.save();
-    res.redirect(`/cards/${newCard._id}`);
-    // res.send(req.body);
+    try {
+        const newCard = new Viewall(req.body.card);
+        // const newCardHint = new Viewall(req.body.hint);
+        await newCard.save();
+        // await newCardHint.save();
+        res.redirect(`/cards/${newCard._id}`);
+        // res.send(req.body);
+    } catch (e) {
+        next(e);
+    }
 });
 
 ///TRAVEL
 app.post("/travel", async (req, res) => {
-    const newTravel = new Travelall(req.body.travel);
-    await newTravel.save();
-    res.redirect(`/travel/${newTravel._id}`);
+    try {
+        const newTravel = new Travelall(req.body.travel);
+        await newTravel.save();
+        res.redirect(`/travel/${newTravel._id}`);
+    } catch (e) {
+        next(e);
+    }
 });
 
 app.get("/cards/:id", async (req, res) => {
@@ -123,6 +131,10 @@ app.delete("/travel/:id", async (req, res) => {
     const { id } = req.params;
     await Travelall.findByIdAndDelete(id);
     res.redirect("/travel");
+});
+
+app.use((err, req, res, next) => {
+    res.send("Suntin went wrong!");
 });
 
 app.listen(3000, () => {

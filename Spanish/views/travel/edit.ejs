@@ -2,7 +2,12 @@
 <div class="row">
     <h1 class="text-center">Edit Travel</h1>
     <div class="col-6 offset-3">
-        <form action="/travel/<%=editTravel._id%>?_method=PUT" method="POST">
+        <form
+            action="/travel/<%=editTravel._id%>?_method=PUT"
+            method="POST"
+            novalidate
+            class="validated-form"
+        >
             <div class="mb-3">
                 <label class="form-label" for="travel">Title</label>
                 <input
@@ -11,16 +16,22 @@
                     id="title"
                     name="travel[title]"
                     value="<%=editTravel.title%>"
+                    required
                 />
+                <div class="valid-feedback">Looks Edited</div>
             </div>
             <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
                 <textarea
                     class="form-control"
                     type="text"
                     id="description"
                     name="travel[description]"
-                    value="<%=editTravel.description%>"
-                ></textarea>
+                    required
+                >
+<%=editTravel.description%></textarea
+                >
+                <div class="valid-feedback">Looks Edited</div>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="location">Location</label>
@@ -30,7 +41,9 @@
                     id="location"
                     name="travel[location]"
                     value="<%=editTravel.location%>"
+                    required
                 />
+                <div class="valid-feedback">Looks Edited</div>
             </div>
             <div class="mb-3">
                 <label for="image" class="form-label">Image URL</label>
@@ -41,6 +54,7 @@
                     name="travel[image]"
                     value="<%=editTravel.image%>"
                 />
+                <div class="valid-feedback">Looks Edited</div>
             </div>
             <div class="mb-3">
                 <button class="btn btn-success">Update Travel</button>
