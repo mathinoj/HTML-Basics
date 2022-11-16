@@ -68,7 +68,22 @@ app.get("/travel/new", (req, res) => {
 app.post(
     "/cards",
     catchAsync(async (req, res, next) => {
-        if (!req.body.card) throw new ExpressError("Invalid card data!", 400);
+        const SpanishSchema = Joi.object({
+            card: Joi.object({
+                card: Joi.string().required,
+                hint: Joi.string().required,
+                english: Joi.string().required,
+                spanish: Joi.string().required,
+                hintOne: Joi.string().required,
+                hintTwo: Joi.string().required,
+            }).required(),
+        });
+        const { error } = SpanishSchema.validate(req.body);
+        if (error) {
+            const msg = error.details.map((el) => el.message).join(",");
+            throw new ExpressError(msg, 400);
+        }
+        // if (!req.body.card) throw new ExpressError("Invalid card data!", 400);
         const newCard = new Viewall(req.body.card);
         // const newCardHint = new Viewall(req.body.hint);
         await newCard.save();
@@ -82,8 +97,22 @@ app.post(
 app.post(
     "/travel",
     catchAsync(async (req, res, next) => {
-        if (!req.body.travel)
-            throw new ExpressError("Invalid travel data!", 400);
+        const spanishSchemaAlso = Joi.object({
+            travel: Joi.object({
+                image: Joi.string().required(),
+                title: Joi.string().required(),
+                description: Joi.string().required(),
+                location: Joi.string().required(),
+            }).required(),
+        });
+        const { error } = spanishSchemaAlso.validate(req.body);
+        if (error) {
+            const msg = error.details.map((el) => el.message).join(",");
+            throw new ExpressError(msg, 400);
+        }
+        console.log(result);
+        // if (!req.body.travel)
+        //     throw new ExpressError("Invalid travel data!", 400);
         const newTravel = new Travelall(req.body.travel);
         await newTravel.save();
         res.redirect(`/travel/${newTravel._id}`);
