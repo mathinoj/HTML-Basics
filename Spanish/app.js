@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
 const ejsMate = require("ejs-mate");
+const catchAsync = require("./utils/catchAsync");
 const methodOverride = require("method-override");
 const Viewall = require("./models/viewAll");
 const Travelall = require("./models/viewAllTravel");
@@ -57,27 +58,19 @@ app.get("/travel/new", (req, res) => {
 });
 
 app.post("/cards", async (req, res, next) => {
-    try {
-        const newCard = new Viewall(req.body.card);
-        // const newCardHint = new Viewall(req.body.hint);
-        await newCard.save();
-        // await newCardHint.save();
-        res.redirect(`/cards/${newCard._id}`);
-        // res.send(req.body);
-    } catch (error) {
-        next(error);
-    }
+    const newCard = new Viewall(req.body.card);
+    // const newCardHint = new Viewall(req.body.hint);
+    await newCard.save();
+    // await newCardHint.save();
+    res.redirect(`/cards/${newCard._id}`);
+    // res.send(req.body);
 });
 
 ///TRAVEL
 app.post("/travel", async (req, res, next) => {
-    try {
-        const newTravel = new Travelall(req.body.travel);
-        await newTravel.save();
-        res.redirect(`/travel/${newTravel._id}`);
-    } catch (error) {
-        next(error);
-    }
+    const newTravel = new Travelall(req.body.travel);
+    await newTravel.save();
+    res.redirect(`/travel/${newTravel._id}`);
 });
 
 app.get("/cards/:id", async (req, res) => {
