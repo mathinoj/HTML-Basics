@@ -3,6 +3,7 @@ const path = require("path");
 const mongoose = require("mongoose");
 const ejsMate = require("ejs-mate");
 const catchAsync = require("./utils/catchAsync");
+const ExpressError = require("./utils/ExpressError");
 const methodOverride = require("method-override");
 const Viewall = require("./models/viewAll");
 const Travelall = require("./models/viewAllTravel");
@@ -34,16 +35,22 @@ app.get("/", (req, res) => {
     res.render("home");
 });
 
-app.get("/cards", async (req, res) => {
-    const viewAllCamp = await Viewall.find({});
-    res.render("cards/index", { viewAllCamp });
-});
+app.get(
+    "/cards",
+    catchAsync(async (req, res) => {
+        const viewAllCamp = await Viewall.find({});
+        res.render("cards/index", { viewAllCamp });
+    })
+);
 
 ///TRAVEL
-app.get("/travel", async (req, res) => {
-    const viewAllTravel = await Travelall.find({});
-    res.render("travel/index", { viewAllTravel });
-});
+app.get(
+    "/travel",
+    catchAsync(async (req, res) => {
+        const viewAllTravel = await Travelall.find({});
+        res.render("travel/index", { viewAllTravel });
+    })
+);
 
 app.get("/cards/new", (req, res) => {
     // const card = new Viewall({ english: "What", spanish: "Que" });
@@ -60,6 +67,7 @@ app.get("/travel/new", (req, res) => {
 app.post(
     "/cards",
     catchAsync(async (req, res, next) => {
+        if (!req.body.card) throw new ExpressError("Invalid card data!", 400);
         const newCard = new Viewall(req.body.card);
         // const newCardHint = new Viewall(req.body.hint);
         await newCard.save();
@@ -73,6 +81,8 @@ app.post(
 app.post(
     "/travel",
     catchAsync(async (req, res, next) => {
+        if (!req.body.travel)
+            throw new ExpressError("Invalid travel data!", 400);
         const newTravel = new Travelall(req.body.travel);
         await newTravel.save();
         res.redirect(`/travel/${newTravel._id}`);
@@ -80,61 +90,91 @@ app.post(
 );
 //if there is an error we will catch it with catchAsync and pass it onto next(), which is under app.use((err, req, res, next))
 
-app.get("/cards/:id", async (req, res) => {
-    const viewCampId = await Viewall.findById(req.params.id);
-    res.render("cards/show", { viewCampId });
-});
+app.get(
+    "/cards/:id",
+    catchAsync(async (req, res) => {
+        const viewCampId = await Viewall.findById(req.params.id);
+        res.render("cards/show", { viewCampId });
+    })
+);
 
 ///TRAVEL
-app.get("/travel/:id", async (req, res) => {
-    const viewTravelId = await Travelall.findById(req.params.id);
-    res.render("travel/show", { viewTravelId });
-});
+app.get(
+    "/travel/:id",
+    catchAsync(async (req, res) => {
+        const viewTravelId = await Travelall.findById(req.params.id);
+        res.render("travel/show", { viewTravelId });
+    })
+);
 
-app.get("/cards/:id/edit", async (req, res) => {
-    const editCard = await Viewall.findById(req.params.id);
-    res.render("cards/edit", { editCard });
-});
-
-///TRAVEL
-app.get("/travel/:id/edit", async (req, res) => {
-    const editTravel = await Travelall.findById(req.params.id);
-    res.render("travel/edit", { editTravel });
-});
-
-app.put("/cards/:id", async (req, res) => {
-    const { id } = req.params;
-    const editedCard = await Viewall.findByIdAndUpdate(id, {
-        ...req.body.card,
-    });
-    res.redirect(`/cards/${editedCard._id}`);
-    // res.send("it TWERKED");
-});
+app.get(
+    "/cards/:id/edit",
+    catchAsync(async (req, res) => {
+        const editCard = await Viewall.findById(req.params.id);
+        res.render("cards/edit", { editCard });
+    })
+);
 
 ///TRAVEL
-app.put("/travel/:id", async (req, res) => {
-    const { id } = req.params;
-    const editedTravel = await Travelall.findByIdAndUpdate(id, {
-        ...req.body.travel,
-    });
-    res.redirect(`/travel/${editedTravel._id}`);
-});
+app.get(
+    "/travel/:id/edit",
+    catchAsync(async (req, res) => {
+        const editTravel = await Travelall.findById(req.params.id);
+        res.render("travel/edit", { editTravel });
+    })
+);
 
-app.delete("/cards/:id", async (req, res) => {
-    const { id } = req.params;
-    await Viewall.findByIdAndDelete(id);
-    res.redirect("/cards");
-});
+app.put(
+    "/cards/:id",
+    catchAsync(async (req, res) => {
+        const { id } = req.params;
+        const editedCard = await Viewall.findByIdAndUpdate(id, {
+            ...req.body.card,
+        });
+        res.redirect(`/cards/${editedCard._id}`);
+        // res.send("it TWERKED");
+    })
+);
+
+///TRAVEL
+app.put(
+    "/travel/:id",
+    catchAsync(async (req, res) => {
+        const { id } = req.params;
+        const editedTravel = await Travelall.findByIdAndUpdate(id, {
+            ...req.body.travel,
+        });
+        res.redirect(`/travel/${editedTravel._id}`);
+    })
+);
+
+app.delete(
+    "/cards/:id",
+    catchAsync(async (req, res) => {
+        const { id } = req.params;
+        await Viewall.findByIdAndDelete(id);
+        res.redirect("/cards");
+    })
+);
 
 //TRAVEL
-app.delete("/travel/:id", async (req, res) => {
-    const { id } = req.params;
-    await Travelall.findByIdAndDelete(id);
-    res.redirect("/travel");
+app.delete(
+    "/travel/:id",
+    catchAsync(async (req, res) => {
+        const { id } = req.params;
+        await Travelall.findByIdAndDelete(id);
+        res.redirect("/travel");
+    })
+);
+
+app.all("*", (req, res, next) => {
+    next(new ExpressError("Page Not Found", 404));
 });
 
 app.use((err, req, res, next) => {
-    res.send("Suntin went wrong!");
+    const { statusCode = 500, message = "Suntin went wrong!" } = err;
+    res.status(statusCode).send(message);
+    // res.send("Suntin went wrong!");
 });
 
 app.listen(3000, () => {
