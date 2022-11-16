@@ -2,7 +2,7 @@
 <div class="row">
     <h1 class="text-center">New Card</h1>
     <div class="col-6 offset-3">
-        <form action="/cards" method="POST">
+        <form action="/cards" method="POST" novalidate class="validated-form">
             <div class="mb-3">
                 <label class="form-label" for="card">Card</label>
                 <textarea
@@ -11,8 +11,10 @@
                     id="english"
                     name="card[english]"
                     placeholder="English"
+                    required
                 >
                   </textarea/>
+                  <div class="valid-feedback">Looks aight!</div>
                 </div>
                 <div class="mb-3">
                 <textarea
@@ -20,9 +22,11 @@
                     type="text"
                     id="spanish"
                     name="card[spanish]"
-                    placeholder="Spanish">
+                    placeholder="Spanish"
+                    required>
                   </textarea
                 >
+                <div class="valid-feedback">Looks aight!</div>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="hint">Hint</label>
@@ -32,6 +36,7 @@
                     id="hintOne"
                     name="card[hintOne]"
                     placeholder="Hint One"
+                    required
                 />
                 <input
                     class="form-control"
@@ -39,9 +44,11 @@
                     id="hintTwo"
                     name="card[hintTwo]"
                     placeholder="Hint Two"
+                    required
                 />
+                <div class="valid-feedback">Looks aight!</div>
             </div>
-            <div class="mb-3">
+            <!-- <div class="mb-3">
                 <label for="image" class="form-label">Image URL</label>
                 <input
                     type="text"
@@ -49,7 +56,8 @@
                     class="form-control"
                     name="card[image]"
                 />
-            </div>
+                <div class="valid-feedback">Looks aight!</div>
+            </div> -->
             <div class="mb-3">
                 <button class="btn btn-success">Add Card</button>
             </div>

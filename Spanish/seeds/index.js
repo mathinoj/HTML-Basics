@@ -29,13 +29,14 @@ const seedDbSpan = async () => {
             description:
                 "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
         });
+        await idioma.save();
+
         const idiomaToo = new Travelall({
             location: `${cities[randomOnes].city}, ${cities[randomOnes].state}`,
             image: "https://source.unsplash.com/collection/483251",
             description:
                 "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
         });
-        await idioma.save();
         await idiomaToo.save();
     }
 };

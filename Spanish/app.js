@@ -56,7 +56,7 @@ app.get("/travel/new", (req, res) => {
     res.render("travel/new");
 });
 
-app.post("/cards", async (req, res) => {
+app.post("/cards", async (req, res, next) => {
     try {
         const newCard = new Viewall(req.body.card);
         // const newCardHint = new Viewall(req.body.hint);
@@ -64,19 +64,19 @@ app.post("/cards", async (req, res) => {
         // await newCardHint.save();
         res.redirect(`/cards/${newCard._id}`);
         // res.send(req.body);
-    } catch (e) {
-        next(e);
+    } catch (error) {
+        next(error);
     }
 });
 
 ///TRAVEL
-app.post("/travel", async (req, res) => {
+app.post("/travel", async (req, res, next) => {
     try {
         const newTravel = new Travelall(req.body.travel);
         await newTravel.save();
         res.redirect(`/travel/${newTravel._id}`);
-    } catch (e) {
-        next(e);
+    } catch (error) {
+        next(error);
     }
 });
 
