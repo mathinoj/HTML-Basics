@@ -57,21 +57,28 @@ app.get("/travel/new", (req, res) => {
     res.render("travel/new");
 });
 
-app.post("/cards", async (req, res, next) => {
-    const newCard = new Viewall(req.body.card);
-    // const newCardHint = new Viewall(req.body.hint);
-    await newCard.save();
-    // await newCardHint.save();
-    res.redirect(`/cards/${newCard._id}`);
-    // res.send(req.body);
-});
+app.post(
+    "/cards",
+    catchAsync(async (req, res, next) => {
+        const newCard = new Viewall(req.body.card);
+        // const newCardHint = new Viewall(req.body.hint);
+        await newCard.save();
+        // await newCardHint.save();
+        res.redirect(`/cards/${newCard._id}`);
+        // res.send(req.body);
+    })
+);
 
 ///TRAVEL
-app.post("/travel", async (req, res, next) => {
-    const newTravel = new Travelall(req.body.travel);
-    await newTravel.save();
-    res.redirect(`/travel/${newTravel._id}`);
-});
+app.post(
+    "/travel",
+    catchAsync(async (req, res, next) => {
+        const newTravel = new Travelall(req.body.travel);
+        await newTravel.save();
+        res.redirect(`/travel/${newTravel._id}`);
+    })
+);
+//if there is an error we will catch it with catchAsync and pass it onto next(), which is under app.use((err, req, res, next))
 
 app.get("/cards/:id", async (req, res) => {
     const viewCampId = await Viewall.findById(req.params.id);
