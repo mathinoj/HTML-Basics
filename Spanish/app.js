@@ -65,24 +65,36 @@ app.get("/travel/new", (req, res) => {
     res.render("travel/new");
 });
 
+///////////////USED joi for server side validation!!!!!!!!!!!
+const validateCard = (req, res, next) => {
+    const { error } = spanishSchema.validate(req.body);
+    if (error) {
+        const msg = error.details.map((el) => e.message).join(",");
+        throw new ExpressError(msg, 400);
+    } else {
+        next;
+    }
+};
+
 app.post(
     "/cards",
+    validateCard,
     catchAsync(async (req, res, next) => {
-        const SpanishSchema = Joi.object({
-            card: Joi.object({
-                card: Joi.string().required,
-                hint: Joi.string().required,
-                english: Joi.string().required,
-                spanish: Joi.string().required,
-                hintOne: Joi.string().required,
-                hintTwo: Joi.string().required,
-            }).required(),
-        });
-        const { error } = SpanishSchema.validate(req.body);
-        if (error) {
-            const msg = error.details.map((el) => el.message).join(",");
-            throw new ExpressError(msg, 400);
-        }
+        // const SpanishSchema = Joi.object({
+        //     card: Joi.object({
+        //         card: Joi.string().required,
+        //         hint: Joi.string().required,
+        //         english: Joi.string().required,
+        //         spanish: Joi.string().required,
+        //         hintOne: Joi.string().required,
+        //         hintTwo: Joi.string().required,
+        //     }).required(),
+        // });
+        // const { error } = SpanishSchema.validate(req.body);
+        // if (error) {
+        //     const msg = error.details.map((el) => el.message).join(",");
+        //     throw new ExpressError(msg, 400);
+        // }
         // if (!req.body.card) throw new ExpressError("Invalid card data!", 400);
         const newCard = new Viewall(req.body.card);
         // const newCardHint = new Viewall(req.body.hint);
@@ -92,25 +104,35 @@ app.post(
         // res.send(req.body);
     })
 );
-
+///TRAVEL
+const validateTravel = (req, res, next) => {
+    const { error } = spanishSchemaAlso.validate(req.body);
+    if (error) {
+        const msg = error.details.map((el) => e.message).join(",");
+        throw new ExpressError(msg, 400);
+    } else {
+        next;
+    }
+};
 ///TRAVEL
 app.post(
     "/travel",
+    validateTravel,
     catchAsync(async (req, res, next) => {
-        const spanishSchemaAlso = Joi.object({
-            travel: Joi.object({
-                image: Joi.string().required(),
-                title: Joi.string().required(),
-                description: Joi.string().required(),
-                location: Joi.string().required(),
-            }).required(),
-        });
-        const { error } = spanishSchemaAlso.validate(req.body);
-        if (error) {
-            const msg = error.details.map((el) => el.message).join(",");
-            throw new ExpressError(msg, 400);
-        }
-        console.log(result);
+        // const spanishSchemaAlso = Joi.object({
+        //     travel: Joi.object({
+        //         image: Joi.string().required(),
+        //         title: Joi.string().required(),
+        //         description: Joi.string().required(),
+        //         location: Joi.string().required(),
+        //     }).required(),
+        // });
+        // const { error } = spanishSchemaAlso.validate(req.body);
+        // if (error) {
+        //     const msg = error.details.map((el) => el.message).join(",");
+        //     throw new ExpressError(msg, 400);
+        // }
+        // console.log(result);
         // if (!req.body.travel)
         //     throw new ExpressError("Invalid travel data!", 400);
         const newTravel = new Travelall(req.body.travel);
@@ -156,7 +178,8 @@ app.get(
 
 app.put(
     "/cards/:id",
-    catchAsync(async (req, res) => {
+    validateCard,
+    catchAsync(async (req, res, next) => {
         const { id } = req.params;
         const editedCard = await Viewall.findByIdAndUpdate(id, {
             ...req.body.card,
@@ -169,7 +192,8 @@ app.put(
 ///TRAVEL
 app.put(
     "/travel/:id",
-    catchAsync(async (req, res) => {
+    validateTravel,
+    catchAsync(async (req, res, next) => {
         const { id } = req.params;
         const editedTravel = await Travelall.findByIdAndUpdate(id, {
             ...req.body.travel,
