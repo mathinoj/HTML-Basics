@@ -3,11 +3,12 @@
     <div class="col-6 offset-3"></div>
     <div class="alert alert-danger" role="alert">
         <h4 class="alert-heading"><%= err.message %></h4>
-        <p></p>
-        <hr />
-        <p class="bm-0"></p>
+        <p><%= err.stack %></p>
+        <!-- <hr /> -->
+        <!-- <p class="bm-0"></p> -->
     </div>
 </div>
 <!-- got alert code above from bootstrap -->
 <!-- line two makes the error box smaller and sodoes the offset -->
 <!-- line 3 cetners box -->
+<!-- err.stack is good for when in development. It shows the strack trace -->
