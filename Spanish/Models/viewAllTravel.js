@@ -6,10 +6,12 @@ const SpanishSchemaAlso = new SchemaToo({
     title: String,
     description: String,
     location: String,
-
-    // card: [
-    //     { english: String, spanish: String, hintOne: String, hintTwo: String },
-    // ],
+    reviews: [
+        {
+            type: SchemaToo.Types.ObjectId,
+            ref: "Review",
+        },
+    ],
 });
 
 module.exports = mongoose.model("Travelall", SpanishSchemaAlso);
