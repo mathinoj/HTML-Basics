@@ -258,6 +258,15 @@ app.delete(
     })
 );
 
+app.delete(
+    "/travel/:id/reviews/:reviewId",
+    catchAsync(async (req, res) => {
+        // const {id, reviewId} = req.params;
+        // await Travelall.findByIdAndUpdate(id, {$pull{reviews: reviewId}, });
+        res.send("deleted me");
+    })
+);
+
 app.all("*", (req, res, next) => {
     next(new ExpressError("Page Not Found", 404));
 });
