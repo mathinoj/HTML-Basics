@@ -3,7 +3,11 @@ const path = require("path");
 const mongoose = require("mongoose");
 const ejsMate = require("ejs-mate");
 // const Joi = require("joi"); REMOVED this cuz we exporting it from schema.js
-const { spanishSchema, spanishSchemaAlso } = require("./schemas.js");
+const {
+    spanishSchema,
+    spanishSchemaAlso,
+    reviewSchema,
+} = require("./schemas.js");
 // ^^^^ these are not related to the schema we setup, in fact we could've named them anything
 const catchAsync = require("./utils/catchAsync");
 const ExpressError = require("./utils/ExpressError");
@@ -47,6 +51,16 @@ const validateCard = (req, res, next) => {
 ///TRAVEL
 const validateTravel = (req, res, next) => {
     const { error } = spanishSchemaAlso.validate(req.body);
+    if (error) {
+        const msg = error.details.map((el) => el.message).join(",");
+        throw new ExpressError(msg, 400);
+    } else {
+        next();
+    }
+};
+
+const validateReview = (req, res, next) => {
+    const { error } = reviewSchema.validate(req.body);
     if (error) {
         const msg = error.details.map((el) => el.message).join(",");
         throw new ExpressError(msg, 400);
@@ -151,6 +165,7 @@ app.post(
 
 app.post(
     "/travel/:id/reviews",
+    validateReview,
     catchAsync(async (req, res) => {
         const selectedTravel = await Travelall.findById(req.params.id);
         const review = new Review(req.body.review); //review is from review[...]
@@ -174,7 +189,9 @@ app.get(
 app.get(
     "/travel/:id",
     catchAsync(async (req, res) => {
-        const viewTravelId = await Travelall.findById(req.params.id);
+        const viewTravelId = await Travelall.findById(req.params.id).populate(
+            "reviews"
+        );
         res.render("travel/show", { viewTravelId });
     })
 );

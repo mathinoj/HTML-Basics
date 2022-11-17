@@ -30,39 +30,47 @@
             <a href="/travel/">All Travels</a>
         </footer>
     </div>
-    <h2>Leave Review</h2>
-    <form
-        action="/travel/<%=viewTravelId._id%>/reviews"
-        method="POST"
-        class="mb-3 validated-form"
-        novalidate
-    >
+    <div class="col-6">
+        <h2>Leave Review</h2>
+        <form
+            action="/travel/<%=viewTravelId._id%>/reviews"
+            method="POST"
+            class="mb-3 validated-form"
+            novalidate
+        >
+            <div class="mb-3">
+                <label for="rating" class="form-label">Rating</label>
+                <input
+                    type="range"
+                    min="1"
+                    max="5"
+                    class="form-range"
+                    name="review[rating]"
+                    id="rating"
+                />
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="body">Review</label>
+                <textarea
+                    name="review[body]"
+                    id="body"
+                    cols="30"
+                    rows="3"
+                    class="form-control"
+                    required
+                ></textarea>
+                <div class="valid-feedback">Looks Aight!</div>
+            </div>
+            <button class="btn btn-success">Submit</button>
+        </form>
+        <% for(let review of viewTravelId.reviews) {%>
         <div class="mb-3">
-            <label for="rating" class="form-label">Rating</label>
-            <input
-                type="range"
-                min="1"
-                max="5"
-                class="form-range"
-                name="review[rating]"
-                id="rating"
-            />
+            <p>Rating: <%=review.rating%></p>
+            <p>Review: <%=review.body%></p>
         </div>
-        <div class="mb-3">
-            <label class="form-label" for="body">Review</label>
-            <textarea
-                name="review[body]"
-                id="body"
-                cols="30"
-                rows="3"
-                class="form-control"
-            ></textarea>
-            <div class="validate-feedback">Looks Aight!</div>
-        </div>
-        <button class="btn btn-success">Submit</button>
-    </form>
+        <%}%>
+    </div>
 </div>
-
 <!-- ORIGINAL -->
 <!-- <img src="<%=viewTravelId.image%>" alt="...">
         <h1><%= viewTravelId.title %></h1>
