@@ -31,7 +31,11 @@
         </footer>
     </div>
     <h2>Leave Review</h2>
-    <form action="" class="mb-3">
+    <form
+        action="/travel/<%=viewTravelId._id%>/reviews"
+        method="POST"
+        class="mb-3"
+    >
         <div class="mb-3">
             <label for="rating" class="form-label">Rating</label>
             <input

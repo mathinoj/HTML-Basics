@@ -10,6 +10,7 @@ const ExpressError = require("./utils/ExpressError");
 const methodOverride = require("method-override");
 const Viewall = require("./models/viewAll");
 const Travelall = require("./models/viewAllTravel");
+const Review = require("./models/review");
 const { setgroups } = require("process");
 
 mongoose.connect("mongodb://localhost:27017/Spanish", {});
@@ -147,6 +148,16 @@ app.post(
     })
 );
 //if there is an error we will catch it with catchAsync and pass it onto next(), which is under app.use((err, req, res, next))
+
+app.post(
+    "/travel/:id/reviews",
+    catchAsync(async (req, res) => {
+        const selectedTravel = await Travelall.findById(req.params.id);
+        const review = new Review(req.body.review); //review is from review[...]
+
+        // res.send("you did it");
+    })
+);
 
 app.get(
     "/cards/:id",
