@@ -1,4 +1,5 @@
 const Joi = require("joi");
+const { builtinModules } = require("module");
 
 module.exports.spanishSchemaAlso = Joi.object({
     travel: Joi.object({
@@ -17,5 +18,12 @@ module.exports.spanishSchema = Joi.object({
         spanish: Joi.string().required(),
         hintOne: Joi.string().required(),
         hintTwo: Joi.string().required(),
+    }).required(),
+});
+
+module.exports.reviewSchema = Joi.object({
+    review: Joi.object({
+        rating: Joi.number().required(),
+        body: Joi.string().required(),
     }).required(),
 });

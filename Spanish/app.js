@@ -154,7 +154,10 @@ app.post(
     catchAsync(async (req, res) => {
         const selectedTravel = await Travelall.findById(req.params.id);
         const review = new Review(req.body.review); //review is from review[...]
-
+        selectedTravel.reviews.push(review);
+        await review.save();
+        await selectedTravel.save();
+        res.redirect(`/travel/${selectedTravel._id}`);
         // res.send("you did it");
     })
 );

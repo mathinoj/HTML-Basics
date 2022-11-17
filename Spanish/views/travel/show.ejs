@@ -34,7 +34,8 @@
     <form
         action="/travel/<%=viewTravelId._id%>/reviews"
         method="POST"
-        class="mb-3"
+        class="mb-3 validated-form"
+        novalidate
     >
         <div class="mb-3">
             <label for="rating" class="form-label">Rating</label>
@@ -56,6 +57,7 @@
                 rows="3"
                 class="form-control"
             ></textarea>
+            <div class="validate-feedback">Looks Aight!</div>
         </div>
         <button class="btn btn-success">Submit</button>
     </form>
