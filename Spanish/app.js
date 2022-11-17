@@ -263,6 +263,8 @@ app.delete(
     catchAsync(async (req, res) => {
         // const {id, reviewId} = req.params;
         // await Travelall.findByIdAndUpdate(id, {$pull{reviews: reviewId}, });
+        // await Review.findByIdAndDelete(reviewId)
+        // res.redirect(`/travel/${id}`)
         res.send("deleted me");
     })
 );
