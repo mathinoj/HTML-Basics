@@ -2,12 +2,15 @@ const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
 const ejsMate = require("ejs-mate");
-const Joi = require("joi");
+// const Joi = require("joi"); REMOVED this cuz we exporting it from schema.js
+const { spanishSchema, spanishSchemaAlso } = require("./schemas.js");
+// ^^^^ these are not related to the schema we setup, in fact we could've named them anything
 const catchAsync = require("./utils/catchAsync");
 const ExpressError = require("./utils/ExpressError");
 const methodOverride = require("method-override");
 const Viewall = require("./models/viewAll");
 const Travelall = require("./models/viewAllTravel");
+const { setgroups } = require("process");
 
 mongoose.connect("mongodb://localhost:27017/Spanish", {});
 
@@ -29,6 +32,27 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
 //for the new card submission we wont see any of our text submissions because the request body hasn't been parced so we tell express to parse the body by doing the app.use...
 app.use(methodOverride("_method"));
+
+const validateCard = (req, res, next) => {
+    const { error } = spanishSchema.validate(req.body);
+    if (error) {
+        const msg = error.details.map((el) => el.message).join(",");
+        throw new ExpressError(msg, 400);
+    } else {
+        next();
+    }
+};
+
+///TRAVEL
+const validateTravel = (req, res, next) => {
+    const { error } = spanishSchemaAlso.validate(req.body);
+    if (error) {
+        const msg = error.details.map((el) => el.message).join(",");
+        throw new ExpressError(msg, 400);
+    } else {
+        next();
+    }
+};
 
 app.get("/", (req, res) => {
     // res.send("hello cards");
@@ -66,15 +90,6 @@ app.get("/travel/new", (req, res) => {
 });
 
 ///////////////USED joi for server side validation!!!!!!!!!!!
-const validateCard = (req, res, next) => {
-    const { error } = spanishSchema.validate(req.body);
-    if (error) {
-        const msg = error.details.map((el) => e.message).join(",");
-        throw new ExpressError(msg, 400);
-    } else {
-        next;
-    }
-};
 
 app.post(
     "/cards",
@@ -104,16 +119,7 @@ app.post(
         // res.send(req.body);
     })
 );
-///TRAVEL
-const validateTravel = (req, res, next) => {
-    const { error } = spanishSchemaAlso.validate(req.body);
-    if (error) {
-        const msg = error.details.map((el) => e.message).join(",");
-        throw new ExpressError(msg, 400);
-    } else {
-        next;
-    }
-};
+
 ///TRAVEL
 app.post(
     "/travel",

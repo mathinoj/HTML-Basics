@@ -11,11 +11,11 @@ module.exports.spanishSchemaAlso = Joi.object({
 
 module.exports.spanishSchema = Joi.object({
     card: Joi.object({
-        card: Joi.string().required,
-        hint: Joi.string().required,
-        english: Joi.string().required,
-        spanish: Joi.string().required,
-        hintOne: Joi.string().required,
-        hintTwo: Joi.string().required,
+        // card: Joi.string().required(),
+        // hint: Joi.string().required(),
+        english: Joi.string().required(),
+        spanish: Joi.string().required(),
+        hintOne: Joi.string().required(),
+        hintTwo: Joi.string().required(),
     }).required(),
 });
