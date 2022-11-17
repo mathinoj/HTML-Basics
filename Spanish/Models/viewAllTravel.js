@@ -1,5 +1,16 @@
 const mongoose = require("mongoose");
 const SchemaToo = mongoose.Schema;
+const Review = require("./review");
+
+SpanishSchemaAlso.post("findOneAndDelete", async function (doc) {
+    if (doc) {
+        await Review.deleteMany({
+            _id: {
+                $in: doc.reviews,
+            },
+        });
+    }
+});
 
 const SpanishSchemaAlso = new SchemaToo({
     image: String,
