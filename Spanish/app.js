@@ -261,11 +261,11 @@ app.delete(
 app.delete(
     "/travel/:id/reviews/:reviewId",
     catchAsync(async (req, res) => {
-        // const {id, reviewId} = req.params;
-        // await Travelall.findByIdAndUpdate(id, {$pull{reviews: reviewId}, });
-        // await Review.findByIdAndDelete(reviewId)
-        // res.redirect(`/travel/${id}`)
-        res.send("deleted me");
+        const { id, reviewId } = req.params;
+        await Travelall.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
+        await Review.findByIdAndDelete(reviewId);
+        res.redirect(`/travel/${id}`);
+        // res.send("deleted me");
     })
 );
 
