@@ -66,18 +66,19 @@ const viewAllCamp = require("./routes/card");
 //     }
 // };
 
-const validateReview = (req, res, next) => {
-    const { error } = reviewSchema.validate(req.body);
-    if (error) {
-        const msg = error.details.map((el) => el.message).join(",");
-        throw new ExpressError(msg, 400);
-    } else {
-        next();
-    }
-};
+// const validateReview = (req, res, next) => {
+//     const { error } = reviewSchema.validate(req.body);
+//     if (error) {
+//         const msg = error.details.map((el) => el.message).join(",");
+//         throw new ExpressError(msg, 400);
+//     } else {
+//         next();
+//     }
+// };
 
 app.use("/travel", viewAllTravel);
 app.use("/cards", viewAllCamp);
+app.use("/review", viewAllCamp);
 
 app.get("/", (req, res) => {
     // res.send("hello cards");
@@ -173,19 +174,19 @@ app.get("/", (req, res) => {
 // );
 //if there is an error we will catch it with catchAsync and pass it onto next(), which is under app.use((err, req, res, next))
 
-app.post(
-    "/travel/:id/reviews",
-    validateReview,
-    catchAsync(async (req, res) => {
-        const selectedTravel = await Travelall.findById(req.params.id);
-        const review = new Review(req.body.review); //review is from review[...]
-        selectedTravel.reviews.push(review);
-        await review.save();
-        await selectedTravel.save();
-        res.redirect(`/travel/${selectedTravel._id}`);
-        // res.send("you did it");
-    })
-);
+// app.post(
+//     "/travel/:id/reviews",
+//     validateReview,
+//     catchAsync(async (req, res) => {
+//         const selectedTravel = await Travelall.findById(req.params.id);
+//         const review = new Review(req.body.review); //review is from review[...]
+//         selectedTravel.reviews.push(review);
+//         await review.save();
+//         await selectedTravel.save();
+//         res.redirect(`/travel/${selectedTravel._id}`);
+//         // res.send("you did it");
+//     })
+// );
 
 // app.get(
 //     "/cards/:id",
@@ -268,16 +269,16 @@ app.post(
 //     })
 // );
 
-app.delete(
-    "/travel/:id/reviews/:reviewId",
-    catchAsync(async (req, res) => {
-        const { id, reviewId } = req.params;
-        await Travelall.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
-        await Review.findByIdAndDelete(reviewId);
-        res.redirect(`/travel/${id}`);
-        // res.send("deleted me");
-    })
-);
+// app.delete(
+//     "/travel/:id/reviews/:reviewId",
+//     catchAsync(async (req, res) => {
+//         const { id, reviewId } = req.params;
+//         await Travelall.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
+//         await Review.findByIdAndDelete(reviewId);
+//         res.redirect(`/travel/${id}`);
+//         // res.send("deleted me");
+//     })
+// );
 
 app.all("*", (req, res, next) => {
     next(new ExpressError("Page Not Found", 404));

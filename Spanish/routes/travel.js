@@ -1,11 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const catchAsync = require("../utils/catchAsync");
-const {
-    spanishSchema,
-    spanishSchemaAlso,
-    reviewSchema,
-} = require("../schemas.js");
+const { spanishSchemaAlso } = require("../schemas.js");
 const ExpressError = require("../utils/ExpressError");
 const Travelall = require("../models/viewAllTravel");
 
