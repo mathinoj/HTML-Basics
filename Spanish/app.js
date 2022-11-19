@@ -1,6 +1,4 @@
 const express = require("express");
-const session = require("express-session");
-const flash = require("connect-flash");
 const path = require("path");
 const mongoose = require("mongoose");
 const ejsMate = require("ejs-mate");
@@ -12,6 +10,8 @@ const {
 } = require("./schemas.js");
 // ^^^^ these are not related to the schema we setup, in fact we could've named them anything
 const catchAsync = require("./utils/catchAsync");
+const session = require("express-session");
+const flash = require("connect-flash");
 const ExpressError = require("./utils/ExpressError");
 const methodOverride = require("method-override");
 const Viewall = require("./models/viewAll");
@@ -76,8 +76,8 @@ const validateReview = (req, res, next) => {
     }
 };
 
-app.use("travel", viewAllTravel);
-app.use("cards", viewAllCamp);
+app.use("/travel", viewAllTravel);
+app.use("/cards", viewAllCamp);
 
 app.get("/", (req, res) => {
     // res.send("hello cards");
