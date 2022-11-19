@@ -32,8 +32,6 @@ db.once("open", () => {
 
 const app = express();
 
-app.use(flash());
-
 app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -42,6 +40,25 @@ app.use(express.urlencoded({ extended: true }));
 //for the new card submission we wont see any of our text submissions because the request body hasn't been parced so we tell express to parse the body by doing the app.use...
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
+
+const sessionConfig = {
+    secret: "dontdothisinproduction",
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        httpOnly: true,
+        expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+        maxAge: 1000 * 60 * 60 * 24 * 7,
+    },
+};
+app.use(session(sessionConfig));
+
+app.use(flash());
+app.use((req, res, next) => {
+    res.locals.success = req.flash("success");
+    res.locals.error = req.flash("error");
+    next();
+});
 
 const viewAllTravel = require("./routes/travel");
 const viewAllCamp = require("./routes/card");

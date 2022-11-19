@@ -37,6 +37,7 @@ router.post(
     catchAsync(async (req, res, next) => {
         const newTravel = new Travelall(req.body.travel);
         await newTravel.save();
+        req.flash("success", "Successfully listed a travel!");
         res.redirect(`/travel/${newTravel._id}`);
     })
 );
