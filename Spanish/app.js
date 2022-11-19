@@ -1,4 +1,6 @@
 const express = require("express");
+const session = require("express-session");
+const flash = require("connect-flash");
 const path = require("path");
 const mongoose = require("mongoose");
 const ejsMate = require("ejs-mate");
@@ -29,6 +31,8 @@ db.once("open", () => {
 //this logic checks to see if there is an error^^^^^^^
 
 const app = express();
+
+app.use(flash());
 
 app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
