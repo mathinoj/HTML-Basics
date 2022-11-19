@@ -49,7 +49,10 @@ router.get(
         const viewTravelId = await Travelall.findById(req.params.id).populate(
             "reviews"
         );
-        res.render("travel/show", { viewTravelId });
+        if (!viewTravelId) {
+            req.flash("error", "No lo encuentra este viaje!");
+            res.render("travel/show", { viewTravelId });
+        }
     })
 );
 
@@ -58,7 +61,10 @@ router.get(
     "/:id/edit",
     catchAsync(async (req, res) => {
         const editTravel = await Travelall.findById(req.params.id);
-        res.render("travel/edit", { editTravel });
+        if (!editTravel) {
+            req.flash("error", "Cannot be founded!");
+            res.render("travel/edit", { editTravel });
+        }
     })
 );
 
