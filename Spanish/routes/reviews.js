@@ -1,8 +1,9 @@
 const express = require("express");
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
 const catchAsync = require("../utils/catchAsync");
 const { reviewSchema } = require("../schemas.js");
 const ExpressError = require("../utils/ExpressError");
+const Travelall = require("../models/viewAllTravel");
 const Review = require("../models/review");
 
 const validateReview = (req, res, next) => {
@@ -16,7 +17,7 @@ const validateReview = (req, res, next) => {
 };
 
 router.post(
-    "/:id/reviews",
+    "/",
     validateReview,
     catchAsync(async (req, res) => {
         const selectedTravel = await Travelall.findById(req.params.id);
@@ -30,7 +31,7 @@ router.post(
 );
 
 router.delete(
-    "/:id/reviews/:reviewId",
+    "/:reviewId",
     catchAsync(async (req, res) => {
         const { id, reviewId } = req.params;
         await Travelall.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
@@ -39,3 +40,5 @@ router.delete(
         // res.send("deleted me");
     })
 );
+
+module.exports = router;

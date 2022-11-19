@@ -44,6 +44,7 @@ app.use(methodOverride("_method"));
 
 const viewAllTravel = require("./routes/travel");
 const viewAllCamp = require("./routes/card");
+const reviews = require("./routes/reviews");
 
 // const validateCard = (req, res, next) => {
 //     const { error } = spanishSchema.validate(req.body);
@@ -78,7 +79,7 @@ const viewAllCamp = require("./routes/card");
 
 app.use("/travel", viewAllTravel);
 app.use("/cards", viewAllCamp);
-app.use("/review", viewAllCamp);
+app.use("/travel/:id/reviews", reviews);
 
 app.get("/", (req, res) => {
     // res.send("hello cards");
