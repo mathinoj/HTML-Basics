@@ -9,8 +9,8 @@ const {
 const ExpressError = require("../utils/ExpressError");
 const Viewall = require("../models/viewAll");
 
-const validateReview = (req, res, next) => {
-    const { error } = reviewSchema.validate(req.body);
+const validateCard = (req, res, next) => {
+    const { error } = spanishSchema.validate(req.body);
     if (error) {
         const msg = error.details.map((el) => el.message).join(",");
         throw new ExpressError(msg, 400);
