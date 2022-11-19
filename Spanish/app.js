@@ -41,6 +41,7 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
 //for the new card submission we wont see any of our text submissions because the request body hasn't been parced so we tell express to parse the body by doing the app.use...
 app.use(methodOverride("_method"));
+app.use(express.static(path.join(__dirname, "public")));
 
 const viewAllTravel = require("./routes/travel");
 const viewAllCamp = require("./routes/card");
