@@ -42,6 +42,9 @@ app.use(express.urlencoded({ extended: true }));
 //for the new card submission we wont see any of our text submissions because the request body hasn't been parced so we tell express to parse the body by doing the app.use...
 app.use(methodOverride("_method"));
 
+const viewAllTravel = require("./routes/travel");
+const viewAllCamp = require("./routes/card");
+
 const validateCard = (req, res, next) => {
     const { error } = spanishSchema.validate(req.body);
     if (error) {
@@ -52,26 +55,29 @@ const validateCard = (req, res, next) => {
     }
 };
 
-///TRAVEL
-const validateTravel = (req, res, next) => {
-    const { error } = spanishSchemaAlso.validate(req.body);
-    if (error) {
-        const msg = error.details.map((el) => el.message).join(",");
-        throw new ExpressError(msg, 400);
-    } else {
-        next();
-    }
-};
+// ///TRAVEL
+// const validateTravel = (req, res, next) => {
+//     const { error } = spanishSchemaAlso.validate(req.body);
+//     if (error) {
+//         const msg = error.details.map((el) => el.message).join(",");
+//         throw new ExpressError(msg, 400);
+//     } else {
+//         next();
+//     }
+// };
 
-const validateReview = (req, res, next) => {
-    const { error } = reviewSchema.validate(req.body);
-    if (error) {
-        const msg = error.details.map((el) => el.message).join(",");
-        throw new ExpressError(msg, 400);
-    } else {
-        next();
-    }
-};
+// const validateReview = (req, res, next) => {
+//     const { error } = reviewSchema.validate(req.body);
+//     if (error) {
+//         const msg = error.details.map((el) => el.message).join(",");
+//         throw new ExpressError(msg, 400);
+//     } else {
+//         next();
+//     }
+// };
+
+app.use("travel", viewAllTravel);
+app.use("cards", viewAllCamp);
 
 app.get("/", (req, res) => {
     // res.send("hello cards");
@@ -79,92 +85,92 @@ app.get("/", (req, res) => {
     res.render("home");
 });
 
-app.get(
-    "/cards",
-    catchAsync(async (req, res) => {
-        const viewAllCamp = await Viewall.find({});
-        res.render("cards/index", { viewAllCamp });
-    })
-);
+// app.get(
+//     "/cards",
+//     catchAsync(async (req, res) => {
+//         const viewAllCamp = await Viewall.find({});
+//         res.render("cards/index", { viewAllCamp });
+//     })
+// );
 
-///TRAVEL
-app.get(
-    "/travel",
-    catchAsync(async (req, res) => {
-        const viewAllTravel = await Travelall.find({});
-        res.render("travel/index", { viewAllTravel });
-    })
-);
+// ///TRAVEL
+// app.get(
+//     "/travel",
+//     catchAsync(async (req, res) => {
+//         const viewAllTravel = await Travelall.find({});
+//         res.render("travel/index", { viewAllTravel });
+//     })
+// );
 
-app.get("/cards/new", (req, res) => {
-    // const card = new Viewall({ english: "What", spanish: "Que" });
-    // await card.save();
-    res.render("cards/new");
-    //BEFORE, THIS ROUTE WAS BELOW '/cards/:id/' but we moved it here because order matters
-});
+// app.get("/cards/new", (req, res) => {
+// const card = new Viewall({ english: "What", spanish: "Que" });
+// await card.save();
+// res.render("cards/new");
+//BEFORE, THIS ROUTE WAS BELOW '/cards/:id/' but we moved it here because order matters
+// });
 
-///TRAVEL
-app.get("/travel/new", (req, res) => {
-    res.render("travel/new");
-});
+// ///TRAVEL
+// app.get("/travel/new", (req, res) => {
+//     res.render("travel/new");
+// });
 
 ///////////////USED joi for server side validation!!!!!!!!!!!
 
-app.post(
-    "/cards",
-    validateCard,
-    catchAsync(async (req, res, next) => {
-        // const SpanishSchema = Joi.object({
-        //     card: Joi.object({
-        //         card: Joi.string().required,
-        //         hint: Joi.string().required,
-        //         english: Joi.string().required,
-        //         spanish: Joi.string().required,
-        //         hintOne: Joi.string().required,
-        //         hintTwo: Joi.string().required,
-        //     }).required(),
-        // });
-        // const { error } = SpanishSchema.validate(req.body);
-        // if (error) {
-        //     const msg = error.details.map((el) => el.message).join(",");
-        //     throw new ExpressError(msg, 400);
-        // }
-        // if (!req.body.card) throw new ExpressError("Invalid card data!", 400);
-        const newCard = new Viewall(req.body.card);
-        // const newCardHint = new Viewall(req.body.hint);
-        await newCard.save();
-        // await newCardHint.save();
-        res.redirect(`/cards/${newCard._id}`);
-        // res.send(req.body);
-    })
-);
+// app.post(
+//     "/cards",
+//     validateCard,
+//     catchAsync(async (req, res, next) => {
+//         // const SpanishSchema = Joi.object({
+//         //     card: Joi.object({
+//         //         card: Joi.string().required,
+//         //         hint: Joi.string().required,
+//         //         english: Joi.string().required,
+//         //         spanish: Joi.string().required,
+//         //         hintOne: Joi.string().required,
+//         //         hintTwo: Joi.string().required,
+//         //     }).required(),
+//         // });
+//         // const { error } = SpanishSchema.validate(req.body);
+//         // if (error) {
+//         //     const msg = error.details.map((el) => el.message).join(",");
+//         //     throw new ExpressError(msg, 400);
+//         // }
+//         // if (!req.body.card) throw new ExpressError("Invalid card data!", 400);
+//         const newCard = new Viewall(req.body.card);
+//         // const newCardHint = new Viewall(req.body.hint);
+//         await newCard.save();
+//         // await newCardHint.save();
+//         res.redirect(`/cards/${newCard._id}`);
+//         // res.send(req.body);
+//     })
+// );
 
-///TRAVEL
-app.post(
-    "/travel",
-    validateTravel,
-    catchAsync(async (req, res, next) => {
-        // const spanishSchemaAlso = Joi.object({
-        //     travel: Joi.object({
-        //         image: Joi.string().required(),
-        //         title: Joi.string().required(),
-        //         description: Joi.string().required(),
-        //         location: Joi.string().required(),
-        //     }).required(),
-        // });
-        // const { error } = spanishSchemaAlso.validate(req.body);
-        // if (error) {
-        //     const msg = error.details.map((el) => el.message).join(",");
-        //     throw new ExpressError(msg, 400);
-        // }
-        // console.log(result);
-        // if (!req.body.travel)
-        //     throw new ExpressError("Invalid travel data!", 400);
-        const newTravel = new Travelall(req.body.travel);
-        await newTravel.save();
-        res.redirect(`/travel/${newTravel._id}`);
-    })
-);
+// ///TRAVEL
+// app.post(
+//     "/travel",
+//     validateTravel,
+//     catchAsync(async (req, res, next) => {
+// const spanishSchemaAlso = Joi.object({
+//     travel: Joi.object({
+//         image: Joi.string().required(),
+//         title: Joi.string().required(),
+//         description: Joi.string().required(),
+//         location: Joi.string().required(),
+//     }).required(),
+// });
+// const { error } = spanishSchemaAlso.validate(req.body);
+// if (error) {
+//     const msg = error.details.map((el) => el.message).join(",");
+//     throw new ExpressError(msg, 400);
+// }
+// console.log(result);
+// if (!req.body.travel)
+//     throw new ExpressError("Invalid travel data!", 400);
+//         const newTravel = new Travelall(req.body.travel);
+//         await newTravel.save();
+//         res.redirect(`/travel/${newTravel._id}`);
+//     })
+// );
 //if there is an error we will catch it with catchAsync and pass it onto next(), which is under app.use((err, req, res, next))
 
 app.post(
@@ -181,86 +187,86 @@ app.post(
     })
 );
 
-app.get(
-    "/cards/:id",
-    catchAsync(async (req, res) => {
-        const viewCampId = await Viewall.findById(req.params.id);
-        res.render("cards/show", { viewCampId });
-    })
-);
+// app.get(
+//     "/cards/:id",
+//     catchAsync(async (req, res) => {
+//         const viewCampId = await Viewall.findById(req.params.id);
+//         res.render("cards/show", { viewCampId });
+//     })
+// );
 
-///TRAVEL
-app.get(
-    "/travel/:id",
-    catchAsync(async (req, res) => {
-        const viewTravelId = await Travelall.findById(req.params.id).populate(
-            "reviews"
-        );
-        res.render("travel/show", { viewTravelId });
-    })
-);
+// ///TRAVEL
+// app.get(
+//     "/travel/:id",
+//     catchAsync(async (req, res) => {
+//         const viewTravelId = await Travelall.findById(req.params.id).populate(
+//             "reviews"
+//         );
+//         res.render("travel/show", { viewTravelId });
+//     })
+// );
 
-app.get(
-    "/cards/:id/edit",
-    catchAsync(async (req, res) => {
-        const editCard = await Viewall.findById(req.params.id);
-        res.render("cards/edit", { editCard });
-    })
-);
+// app.get(
+//     "/cards/:id/edit",
+//     catchAsync(async (req, res) => {
+//         const editCard = await Viewall.findById(req.params.id);
+//         res.render("cards/edit", { editCard });
+//     })
+// );
 
-///TRAVEL
-app.get(
-    "/travel/:id/edit",
-    catchAsync(async (req, res) => {
-        const editTravel = await Travelall.findById(req.params.id);
-        res.render("travel/edit", { editTravel });
-    })
-);
+// ///TRAVEL
+// app.get(
+//     "/travel/:id/edit",
+//     catchAsync(async (req, res) => {
+//         const editTravel = await Travelall.findById(req.params.id);
+//         res.render("travel/edit", { editTravel });
+//     })
+// );
 
-app.put(
-    "/cards/:id",
-    validateCard,
-    catchAsync(async (req, res, next) => {
-        const { id } = req.params;
-        const editedCard = await Viewall.findByIdAndUpdate(id, {
-            ...req.body.card,
-        });
-        res.redirect(`/cards/${editedCard._id}`);
-        // res.send("it TWERKED");
-    })
-);
+// app.put(
+//     "/cards/:id",
+//     validateCard,
+//     catchAsync(async (req, res, next) => {
+//         const { id } = req.params;
+//         const editedCard = await Viewall.findByIdAndUpdate(id, {
+//             ...req.body.card,
+//         });
+//         res.redirect(`/cards/${editedCard._id}`);
+//         // res.send("it TWERKED");
+//     })
+// );
 
-///TRAVEL
-app.put(
-    "/travel/:id",
-    validateTravel,
-    catchAsync(async (req, res, next) => {
-        const { id } = req.params;
-        const editedTravel = await Travelall.findByIdAndUpdate(id, {
-            ...req.body.travel,
-        });
-        res.redirect(`/travel/${editedTravel._id}`);
-    })
-);
+// ///TRAVEL
+// app.put(
+//     "/travel/:id",
+//     validateTravel,
+//     catchAsync(async (req, res, next) => {
+//         const { id } = req.params;
+//         const editedTravel = await Travelall.findByIdAndUpdate(id, {
+//             ...req.body.travel,
+//         });
+//         res.redirect(`/travel/${editedTravel._id}`);
+//     })
+// );
 
-app.delete(
-    "/cards/:id",
-    catchAsync(async (req, res) => {
-        const { id } = req.params;
-        await Viewall.findByIdAndDelete(id);
-        res.redirect("/cards");
-    })
-);
+// app.delete(
+//     "/cards/:id",
+//     catchAsync(async (req, res) => {
+//         const { id } = req.params;
+//         await Viewall.findByIdAndDelete(id);
+//         res.redirect("/cards");
+//     })
+// );
 
-//TRAVEL
-app.delete(
-    "/travel/:id",
-    catchAsync(async (req, res) => {
-        const { id } = req.params;
-        await Travelall.findByIdAndDelete(id);
-        res.redirect("/travel");
-    })
-);
+// //TRAVEL
+// app.delete(
+//     "/travel/:id",
+//     catchAsync(async (req, res) => {
+//         const { id } = req.params;
+//         await Travelall.findByIdAndDelete(id);
+//         res.redirect("/travel");
+//     })
+// );
 
 app.delete(
     "/travel/:id/reviews/:reviewId",
