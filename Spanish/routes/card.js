@@ -19,23 +19,23 @@ const validateReview = (req, res, next) => {
     }
 };
 
-app.get(
-    "/cards",
+router.get(
+    "/",
     catchAsync(async (req, res) => {
         const viewAllCamp = await Viewall.find({});
         res.render("cards/index", { viewAllCamp });
     })
 );
 
-app.get("/cards/new", (req, res) => {
+router.get("/new", (req, res) => {
     // const card = new Viewall({ english: "What", spanish: "Que" });
     // await card.save();
     res.render("cards/new");
     //BEFORE, THIS ROUTE WAS BELOW '/cards/:id/' but we moved it here because order matters
 });
 
-app.post(
-    "/cards",
+router.post(
+    "/",
     validateCard,
     catchAsync(async (req, res, next) => {
         // const SpanishSchema = Joi.object({
@@ -63,24 +63,24 @@ app.post(
     })
 );
 
-app.get(
-    "/cards/:id",
+router.get(
+    "/:id",
     catchAsync(async (req, res) => {
         const viewCampId = await Viewall.findById(req.params.id);
         res.render("cards/show", { viewCampId });
     })
 );
 
-app.get(
-    "/cards/:id/edit",
+router.get(
+    "/:id/edit",
     catchAsync(async (req, res) => {
         const editCard = await Viewall.findById(req.params.id);
         res.render("cards/edit", { editCard });
     })
 );
 
-app.put(
-    "/cards/:id",
+router.put(
+    "/:id",
     validateCard,
     catchAsync(async (req, res, next) => {
         const { id } = req.params;
@@ -92,8 +92,8 @@ app.put(
     })
 );
 
-app.delete(
-    "/cards/:id",
+router.delete(
+    "/:id",
     catchAsync(async (req, res) => {
         const { id } = req.params;
         await Viewall.findByIdAndDelete(id);
