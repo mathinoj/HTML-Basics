@@ -45,15 +45,15 @@ app.use(methodOverride("_method"));
 const viewAllTravel = require("./routes/travel");
 const viewAllCamp = require("./routes/card");
 
-const validateCard = (req, res, next) => {
-    const { error } = spanishSchema.validate(req.body);
-    if (error) {
-        const msg = error.details.map((el) => el.message).join(",");
-        throw new ExpressError(msg, 400);
-    } else {
-        next();
-    }
-};
+// const validateCard = (req, res, next) => {
+//     const { error } = spanishSchema.validate(req.body);
+//     if (error) {
+//         const msg = error.details.map((el) => el.message).join(",");
+//         throw new ExpressError(msg, 400);
+//     } else {
+//         next();
+//     }
+// };
 
 // ///TRAVEL
 // const validateTravel = (req, res, next) => {
@@ -66,15 +66,15 @@ const validateCard = (req, res, next) => {
 //     }
 // };
 
-// const validateReview = (req, res, next) => {
-//     const { error } = reviewSchema.validate(req.body);
-//     if (error) {
-//         const msg = error.details.map((el) => el.message).join(",");
-//         throw new ExpressError(msg, 400);
-//     } else {
-//         next();
-//     }
-// };
+const validateReview = (req, res, next) => {
+    const { error } = reviewSchema.validate(req.body);
+    if (error) {
+        const msg = error.details.map((el) => el.message).join(",");
+        throw new ExpressError(msg, 400);
+    } else {
+        next();
+    }
+};
 
 app.use("travel", viewAllTravel);
 app.use("cards", viewAllCamp);
