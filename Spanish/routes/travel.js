@@ -1,5 +1,5 @@
 const express = require("express");
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
 const catchAsync = require("../utils/catchAsync");
 const { spanishSchemaAlso } = require("../schemas.js");
 const ExpressError = require("../utils/ExpressError");
@@ -51,8 +51,9 @@ router.get(
         );
         if (!viewTravelId) {
             req.flash("error", "No lo encuentra este viaje!");
-            res.render("travel/show", { viewTravelId });
+            return res.redirect("/travel");
         }
+        res.render("travel/show", { viewTravelId });
     })
 );
 
@@ -63,8 +64,9 @@ router.get(
         const editTravel = await Travelall.findById(req.params.id);
         if (!editTravel) {
             req.flash("error", "Cannot be founded!");
-            res.render("travel/edit", { editTravel });
+            return res.redirect("/travel");
         }
+        res.render("travel/edit", { editTravel });
     })
 );
 
