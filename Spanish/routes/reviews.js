@@ -25,6 +25,7 @@ router.post(
         selectedTravel.reviews.push(review);
         await review.save();
         await selectedTravel.save();
+        req.flash("success", "Created a review.");
         res.redirect(`/travel/${selectedTravel._id}`);
         // res.send("you did it");
     })
@@ -36,6 +37,7 @@ router.delete(
         const { id, reviewId } = req.params;
         await Travelall.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
         await Review.findByIdAndDelete(reviewId);
+        req.flash("success", "Borraste un review.");
         res.redirect(`/travel/${id}`);
         // res.send("deleted me");
     })

@@ -71,6 +71,7 @@ router.put(
         const editedTravel = await Travelall.findByIdAndUpdate(id, {
             ...req.body.travel,
         });
+        req.flash("Updated a travel!");
         res.redirect(`/travel/${editedTravel._id}`);
     })
 );
@@ -81,6 +82,7 @@ router.delete(
     catchAsync(async (req, res) => {
         const { id } = req.params;
         await Travelall.findByIdAndDelete(id);
+        req.flash("Deleted a travel.");
         res.redirect("/travel");
     })
 );
