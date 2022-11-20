@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router({ mergeParams: true });
 const catchAsync = require("../utils/catchAsync");
+const { isLoggedIn } = require("../middleware");
 const { spanishSchemaAlso } = require("../schemas.js");
 const ExpressError = require("../utils/ExpressError");
 const Travelall = require("../models/viewAllTravel");
-const { isLoggedIn } = require("../middleware");
 
 ///TRAVEL
 const validateTravel = (req, res, next) => {
@@ -17,10 +17,6 @@ const validateTravel = (req, res, next) => {
     }
 };
 
-router.get("new", isLoggedIn, (req, res) => {
-    res.render("/travel/new");
-});
-
 ///TRAVEL
 router.get(
     "/",
@@ -31,10 +27,18 @@ router.get(
     })
 );
 
-///TRAVEL
-router.get("/new", (req, res) => {
+//TRAVEL
+router.get("/new", isLoggedIn, (req, res) => {
     res.render("travel/new");
 });
+
+// router.get("/new", isLoggedIn, (req, res) => {
+//     if (!req.isAuthenticated()) {
+//         req.flash("error", "must be signed in");
+//         return res.redirect("/login");
+//     }
+//     res.render("travel/new");
+// });
 
 ///TRAVEL
 router.post(

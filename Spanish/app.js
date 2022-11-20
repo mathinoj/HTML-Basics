@@ -23,6 +23,11 @@ const Travelall = require("./models/viewAllTravel");
 const Review = require("./models/review");
 const { setgroups } = require("process");
 
+const userRoutes = require("./routes/users");
+const viewAllTravel = require("./routes/travel");
+const viewAllCamp = require("./routes/card");
+const reviews = require("./routes/reviews");
+
 mongoose.connect("mongodb://localhost:27017/Spanish", {});
 
 const db = mongoose.connection;
@@ -56,24 +61,23 @@ const sessionConfig = {
     },
 };
 app.use(session(sessionConfig));
-
 app.use(flash());
 
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
+
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use((req, res, next) => {
+    console.log(req.session);
+    res.locals.currentUser = req.user;
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
     next();
 });
 
-const viewAllTravel = require("./routes/travel");
-const viewAllCamp = require("./routes/card");
-const reviews = require("./routes/reviews");
 // const passport = require("passport");
 
 // const validateCard = (req, res, next) => {
@@ -107,6 +111,7 @@ const reviews = require("./routes/reviews");
 //     }
 // };
 
+app.use("/", userRoutes);
 app.use("/travel", viewAllTravel);
 app.use("/cards", viewAllCamp);
 app.use("/travel/:id/reviews", reviews);
