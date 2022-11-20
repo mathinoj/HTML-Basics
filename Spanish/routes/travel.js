@@ -4,6 +4,7 @@ const catchAsync = require("../utils/catchAsync");
 const { spanishSchemaAlso } = require("../schemas.js");
 const ExpressError = require("../utils/ExpressError");
 const Travelall = require("../models/viewAllTravel");
+const { isLoggedIn } = require("../middleware");
 
 ///TRAVEL
 const validateTravel = (req, res, next) => {
@@ -16,9 +17,14 @@ const validateTravel = (req, res, next) => {
     }
 };
 
+router.get("new", isLoggedIn, (req, res) => {
+    res.render("/travel/new");
+});
+
 ///TRAVEL
 router.get(
     "/",
+    // isLoggedIn,
     catchAsync(async (req, res) => {
         const viewAllTravel = await Travelall.find({});
         res.render("travel/index", { viewAllTravel });
@@ -33,6 +39,7 @@ router.get("/new", (req, res) => {
 ///TRAVEL
 router.post(
     "/",
+    isLoggedIn,
     validateTravel,
     catchAsync(async (req, res, next) => {
         const newTravel = new Travelall(req.body.travel);
@@ -45,6 +52,7 @@ router.post(
 ///TRAVEL
 router.get(
     "/:id",
+    // isLoggedIn,
     catchAsync(async (req, res) => {
         const viewTravelId = await Travelall.findById(req.params.id).populate(
             "reviews"
@@ -60,6 +68,7 @@ router.get(
 ///TRAVEL
 router.get(
     "/:id/edit",
+    isLoggedIn,
     catchAsync(async (req, res) => {
         const editTravel = await Travelall.findById(req.params.id);
         if (!editTravel) {
@@ -73,6 +82,7 @@ router.get(
 ///TRAVEL
 router.put(
     "/:id",
+    isLoggedIn,
     validateTravel,
     catchAsync(async (req, res, next) => {
         const { id } = req.params;
@@ -87,6 +97,7 @@ router.put(
 //TRAVEL
 router.delete(
     "/:id",
+    isLoggedIn,
     catchAsync(async (req, res) => {
         const { id } = req.params;
         await Travelall.findByIdAndDelete(id);

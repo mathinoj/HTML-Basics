@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require("../models/user");
 const catchAsync = require("../utils/catchAsync");
 const passport = require("passport");
+const review = require("../models/review");
 
 router.get("/register", (req, res) => {
     res.render("users/register");
@@ -10,6 +11,16 @@ router.get("/register", (req, res) => {
 
 router.get("/login", (req, res) => {
     res.render("users/login");
+});
+
+router.get("/logout", (req, res, next) => {
+    req.logout(function (err) {
+        if (err) {
+            return next(err);
+        }
+        req.flash("success", "Greatbye");
+        res.redirect("/travel");
+    });
 });
 
 router.post(
