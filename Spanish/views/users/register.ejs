@@ -1,2 +1,36 @@
 <% layout('layouts/boilerplate') %>
-<form action="/register" method="POST" class="validate-form"></form>
+<form action="/register" method="POST" class="validate-form">
+    <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input
+            type="text"
+            class="from-control"
+            id="username"
+            name="username"
+            required
+        />
+        <div class="valid-feedback">U-name Looks Aight!</div>
+    </div>
+    <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input
+            type="email"
+            class="from-control"
+            id="email"
+            name="email"
+            required
+        />
+        <div class="valid-feedback">E-miz Looks Aight!</div>
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input
+            type="password"
+            class="from-control"
+            id="password"
+            name="password"
+            required
+        />
+        <div class="valid-feedback">P-word Looks Aight!</div>
+    </div>
+</form>
