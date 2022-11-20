@@ -56,6 +56,12 @@ const sessionConfig = {
 app.use(session(sessionConfig));
 
 app.use(flash());
+app.use(passport.intialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 app.use((req, res, next) => {
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
@@ -65,6 +71,7 @@ app.use((req, res, next) => {
 const viewAllTravel = require("./routes/travel");
 const viewAllCamp = require("./routes/card");
 const reviews = require("./routes/reviews");
+const passport = require("passport");
 
 // const validateCard = (req, res, next) => {
 //     const { error } = spanishSchema.validate(req.body);
