@@ -14,6 +14,9 @@
                     Submitted By: <%= viewTravelId.author.username %>
                 </li>
             </ul>
+            <% if(currentUser && viewTravelId.author.equals(currentUser._id)) {
+            %>
+
             <div class="card-body">
                 <a
                     href="/travel/<%=viewTravelId._id%>/edit"
@@ -28,6 +31,7 @@
                     <button class="btn btn-danger">Delete</button>
                 </form>
             </div>
+            <% } %>
         </div>
         <footer>
             <a href="/travel/">All Travels</a>
