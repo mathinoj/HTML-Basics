@@ -1,12 +1,13 @@
 const express = require("express");
 const router = express.Router({ mergeParams: true });
 const catchAsync = require("../utils/catchAsync");
-const { isLoggedIn, isAuthor, validateTravel } = require("../middleware");
 // const { spanishSchemaAlso, reviewSchema } = require("../schemas.js");
+const { isLoggedIn, isAuthor, validateTravel } = require("../middleware");
+
 // const ExpressError = require("../utils/ExpressError");
 const Travelall = require("../models/viewAllTravel");
 
-///TRAVEL
+// ///TRAVEL
 // const validateTravel = (req, res, next) => {
 //     const { error } = spanishSchemaAlso.validate(req.body);
 //     if (error) {
@@ -17,15 +18,15 @@ const Travelall = require("../models/viewAllTravel");
 //     }
 // };
 
-const isAuthor = async (req, res, next) => {
-    const { id } = req.params;
-    const editedTravelAuthor = await Travelall.findById(id);
-    if (!editedTravelAuthor.author.equals(req.user._id)) {
-        req.flash("error", "Cant touch this!");
-        return res.redirect(`/travel/${id}`);
-    }
-    next();
-};
+// const isAuthor = async (req, res, next) => {
+//     const { id } = req.params;
+//     const editedTravel = await Travelall.findById(id);
+//     if (!editedTravel.author.equals(req.user._id)) {
+//         req.flash("error", "Cant touch this!");
+//         return res.redirect(`/travel/${id}`);
+//     }
+//     next();
+// };
 
 ///TRAVEL
 router.get(
@@ -86,19 +87,18 @@ router.get(
     "/:id/edit",
     isLoggedIn,
     isAuthor,
-    validateTravel,
+    // validateTravel,
     catchAsync(async (req, res) => {
         const { id } = req.params;
-        const editTravel = await Travelall.findByIdAndUpdate(id);
+        const editTravel = await Travelall.findById(id);
         if (!editTravel) {
             req.flash("error", "Cannot be founded!");
             return res.redirect("/travel");
         }
-        if (!editTravel.author.equals(req.user._id)) {
-            req.flash("error", "Cant touch this!");
-            return res.redirect(`/travel/${id}`);
-            //     ...req.body.travel,
-        }
+        // if (!editTravel.author.equals(req.user._id)) {
+        //     req.flash("error", "Cant touch this!");
+        //     return res.redirect(`/travel/${id}`);
+        // }
         res.render("travel/edit", { editTravel });
     })
 );
@@ -121,16 +121,17 @@ router.get(
 router.put(
     "/:id",
     isLoggedIn,
+    isAuthor,
     validateTravel,
     catchAsync(async (req, res, next) => {
         const { id } = req.params;
-        const editedTravel = await Travelall.findById(id);
-        if (!editedTravel.author.equals(req.user._id)) {
-            req.flash("error", "Cant touch this!");
-            return res.redirect(`/travel/${id}`);
-            //     ...req.body.travel,
-        }
-        const traveler = await Travelall.findByIdAndUpdateid(id, {
+        // const editedTravel = await Travelall.findById(id);
+        // if (!editedTravel.author.equals(req.user._id)) {
+        //     req.flash("error", "Cant touch this!");
+        //     return res.redirect(`/travel/${id}`);
+        //     //     ...req.body.travel,
+        // }
+        const editedTravel = await Travelall.findByIdAndUpdateid(id, {
             ...req.body.travel,
         });
         req.flash("Updated a travel!");
