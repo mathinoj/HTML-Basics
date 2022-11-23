@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router({ mergeParams: true });
 const catchAsync = require("../utils/catchAsync");
 const { isLoggedIn, isAuthor, validateTravel } = require("../middleware");
-const { spanishSchemaAlso } = require("../schemas.js");
+// const { spanishSchemaAlso, reviewSchema } = require("../schemas.js");
 // const ExpressError = require("../utils/ExpressError");
 const Travelall = require("../models/viewAllTravel");
 
@@ -75,9 +75,11 @@ router.get(
 router.get(
     "/:id/edit",
     isLoggedIn,
+    isAuthor,
+    validateTravel,
     catchAsync(async (req, res) => {
         const { id } = req.params;
-        const editTravel = await Travelall.findById(id);
+        const editTravel = await Travelall.findByIdAndUpdate(id);
         if (!editTravel) {
             req.flash("error", "Cannot be founded!");
             return res.redirect("/travel");
@@ -133,6 +135,7 @@ router.put(
 router.delete(
     "/:id",
     isLoggedIn,
+    isAuthor,
     catchAsync(async (req, res) => {
         const { id } = req.params;
         await Travelall.findByIdAndDelete(id);
