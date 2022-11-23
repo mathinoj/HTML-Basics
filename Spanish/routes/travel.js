@@ -71,7 +71,12 @@ router.get(
     // isLoggedIn,
     catchAsync(async (req, res) => {
         const viewTravelId = await Travelall.findById(req.params.id)
-            .populate("reviews")
+            .populate({
+                path: "reviews",
+                populate: {
+                    path: "author",
+                },
+            })
             .populate("author");
         console.log(viewTravelId);
         if (!viewTravelId) {

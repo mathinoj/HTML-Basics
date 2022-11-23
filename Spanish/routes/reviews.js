@@ -5,7 +5,7 @@ const { reviewSchema } = require("../schemas.js");
 const ExpressError = require("../utils/ExpressError");
 const Travelall = require("../models/viewAllTravel");
 const Review = require("../models/review");
-const { validateReview, isLoggedIn } = require("../middleware");
+const { validateReview, isLoggedIn, isReviewAuthor } = require("../middleware");
 
 // const validateReview = (req, res, next) => {
 //     const { error } = reviewSchema.validate(req.body);
@@ -36,6 +36,8 @@ router.post(
 
 router.delete(
     "/:reviewId",
+    isLoggedIn,
+    isReviewAuthor,
     catchAsync(async (req, res) => {
         const { id, reviewId } = req.params;
         await Travelall.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
