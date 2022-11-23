@@ -19,10 +19,12 @@ const { validateReview, isLoggedIn } = require("../middleware");
 
 router.post(
     "/",
+    isLoggedIn,
     validateReview,
     catchAsync(async (req, res) => {
         const selectedTravel = await Travelall.findById(req.params.id);
         const review = new Review(req.body.review); //review is from review[...]
+        review.author = req.user._id;
         selectedTravel.reviews.push(review);
         await review.save();
         await selectedTravel.save();
