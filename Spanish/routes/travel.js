@@ -76,29 +76,58 @@ router.get(
     "/:id/edit",
     isLoggedIn,
     catchAsync(async (req, res) => {
-        const editTravel = await Travelall.findById(req.params.id);
+        const { id } = req.params;
+        const editTravel = await Travelall.findById(id);
         if (!editTravel) {
             req.flash("error", "Cannot be founded!");
             return res.redirect("/travel");
+        }
+        if (!editTravel.author.equals(req.user._id)) {
+            req.flash("error", "Cant touch this!");
+            return res.redirect(`/travel/${id}`);
+            //     ...req.body.travel,
         }
         res.render("travel/edit", { editTravel });
     })
 );
 
 ///TRAVEL
+// router.put(
+//     "/:id",
+//     isLoggedIn,
+//     validateTravel,
+//     catchAsync(async (req, res, next) => {
+//         const { id } = req.params;
+//         const editedTravel = await Travelall.findByIdAndUpdate(id, {
+//             ...req.body.travel,
+//         });
+//         req.flash("Updated a travel!");
+//         res.redirect(`/travel/${editedTravel._id}`);
+//     })
+// );
+
 router.put(
     "/:id",
     isLoggedIn,
     validateTravel,
     catchAsync(async (req, res, next) => {
         const { id } = req.params;
-        const editedTravel = await Travelall.findByIdAndUpdate(id, {
+        const editedTravel = await Travelall.findById(id);
+        if (!editedTravel.author.equals(req.user._id)) {
+            req.flash("error", "Cant touch this!");
+            return res.redirect(`/travel/${id}`);
+            //     ...req.body.travel,
+        }
+        const traveler = await Travelall.findByIdAndUpdateid(id, {
             ...req.body.travel,
         });
         req.flash("Updated a travel!");
         res.redirect(`/travel/${editedTravel._id}`);
     })
 );
+
+// if (!editedTravel.author.equals(req.user._id)) {
+// }
 
 //TRAVEL
 router.delete(
