@@ -7,14 +7,24 @@ const { isLoggedIn, isAuthor, validateTravel } = require("../middleware");
 const Travelall = require("../models/viewAllTravel");
 
 ///TRAVEL
-const validateTravel = (req, res, next) => {
-    const { error } = spanishSchemaAlso.validate(req.body);
-    if (error) {
-        const msg = error.details.map((el) => el.message).join(",");
-        throw new ExpressError(msg, 400);
-    } else {
-        next();
+// const validateTravel = (req, res, next) => {
+//     const { error } = spanishSchemaAlso.validate(req.body);
+//     if (error) {
+//         const msg = error.details.map((el) => el.message).join(",");
+//         throw new ExpressError(msg, 400);
+//     } else {
+//         next();
+//     }
+// };
+
+const isAuthor = async (req, res, next) => {
+    const { id } = req.params;
+    const editedTravelAuthor = await Travelall.findById(id);
+    if (!editedTravelAuthor.author.equals(req.user._id)) {
+        req.flash("error", "Cant touch this!");
+        return res.redirect(`/travel/${id}`);
     }
+    next();
 };
 
 ///TRAVEL

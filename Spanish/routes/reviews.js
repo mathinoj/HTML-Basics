@@ -7,7 +7,7 @@ const Travelall = require("../models/viewAllTravel");
 const Review = require("../models/review");
 const { validateReview } = require("../middleware");
 
-const validateReview = (req, res, next) => {
+(req, res, next) => {
     const { error } = reviewSchema.validate(req.body);
     if (error) {
         const msg = error.details.map((el) => el.message).join(",");
