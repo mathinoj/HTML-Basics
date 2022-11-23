@@ -2,7 +2,12 @@ const express = require("express");
 const router = express.Router({ mergeParams: true });
 const catchAsync = require("../utils/catchAsync");
 // const { spanishSchemaAlso, reviewSchema } = require("../schemas.js");
-const { isLoggedIn, isAuthor, validateTravel } = require("../middleware");
+const {
+    isLoggedIn,
+    isAuthor,
+    validateTravel,
+    isReviewAuthor,
+} = require("../middleware");
 
 // const ExpressError = require("../utils/ExpressError");
 const Travelall = require("../models/viewAllTravel");
