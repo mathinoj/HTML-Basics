@@ -8,7 +8,7 @@ const SpanishSchemaAlso = new SchemaToo({
     description: String,
     location: String,
     author: {
-        type: Schema.Types.ObjectId,
+        type: SchemaToo.Types.ObjectId,
         ref: "User",
     },
     reviews: [

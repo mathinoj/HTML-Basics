@@ -47,6 +47,7 @@ router.post(
     validateTravel,
     catchAsync(async (req, res, next) => {
         const newTravel = new Travelall(req.body.travel);
+        newTravel.author = req.user._id;
         await newTravel.save();
         req.flash("success", "Successfully listed a travel!");
         res.redirect(`/travel/${newTravel._id}`);
@@ -58,9 +59,10 @@ router.get(
     "/:id",
     // isLoggedIn,
     catchAsync(async (req, res) => {
-        const viewTravelId = await Travelall.findById(req.params.id).populate(
-            "reviews"
-        );
+        const viewTravelId = await Travelall.findById(req.params.id)
+            .populate("reviews")
+            .populate("author");
+        console.log(viewTravelId);
         if (!viewTravelId) {
             req.flash("error", "No lo encuentra este viaje!");
             return res.redirect("/travel");
