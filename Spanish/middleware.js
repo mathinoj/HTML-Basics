@@ -1,6 +1,7 @@
 const { spanishSchemaAlso, reviewSchema } = require("./schemas.js");
 const ExpressError = require("./utils/ExpressError");
 const Travelall = require("./models/viewAllTravel");
+const Review = require("./models/review");
 
 module.exports.isLoggedIn = (req, res, next) => {
     if (!req.isAuthenticated()) {
@@ -42,4 +43,14 @@ module.exports.validateReview = (req, res, next) => {
     } else {
         next();
     }
+};
+
+module.exports.isReviewAuthor = async (req, res, next) => {
+    const { id, reviewId } = req.params;
+    const review = await Review.findById(reviewId);
+    if (!review.author.equals(req.user._id)) {
+        req.flash("error", "Cant doez it!");
+        return res.redirecrt(`/travel/${id}`);
+    }
+    next();
 };
