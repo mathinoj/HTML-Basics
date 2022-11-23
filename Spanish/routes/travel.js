@@ -87,7 +87,6 @@ router.get(
     "/:id/edit",
     isLoggedIn,
     isAuthor,
-    // validateTravel,
     catchAsync(async (req, res) => {
         const { id } = req.params;
         const editTravel = await Travelall.findById(id);

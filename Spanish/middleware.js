@@ -13,8 +13,29 @@ module.exports.isLoggedIn = (req, res, next) => {
     next();
 };
 
+///TRAVEL
 module.exports.validateTravel = (req, res, next) => {
     const { error } = spanishSchemaAlso.validate(req.body);
+    if (error) {
+        const msg = error.details.map((el) => el.message).join(",");
+        throw new ExpressError(msg, 400);
+    } else {
+        next();
+    }
+};
+
+module.exports.isAuthor = async (req, res, next) => {
+    const { id } = req.params;
+    const editedTravel = await Travelall.findById(id);
+    if (!editedTravel.author.equals(req.user._id)) {
+        req.flash("error", "Cant touch this!");
+        return res.redirect(`/travel/${id}`);
+    }
+    next();
+};
+
+module.exports.validateReview = (req, res, next) => {
+    const { error } = reviewSchema.validate(req.body);
     if (error) {
         const msg = error.details.map((el) => el.message).join(",");
         throw new ExpressError(msg, 400);

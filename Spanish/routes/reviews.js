@@ -5,17 +5,17 @@ const { reviewSchema } = require("../schemas.js");
 const ExpressError = require("../utils/ExpressError");
 const Travelall = require("../models/viewAllTravel");
 const Review = require("../models/review");
-const { validateReview } = require("../middleware");
+const { validateReview, isLoggedIn } = require("../middleware");
 
-(req, res, next) => {
-    const { error } = reviewSchema.validate(req.body);
-    if (error) {
-        const msg = error.details.map((el) => el.message).join(",");
-        throw new ExpressError(msg, 400);
-    } else {
-        next();
-    }
-};
+// const validateReview = (req, res, next) => {
+//     const { error } = reviewSchema.validate(req.body);
+//     if (error) {
+//         const msg = error.details.map((el) => el.message).join(",");
+//         throw new ExpressError(msg, 400);
+//     } else {
+//         next();
+//     }
+// };
 
 router.post(
     "/",
