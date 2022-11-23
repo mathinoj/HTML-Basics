@@ -7,6 +7,10 @@ const SpanishSchemaAlso = new SchemaToo({
     title: String,
     description: String,
     location: String,
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+    },
     reviews: [
         {
             type: SchemaToo.Types.ObjectId,

@@ -32,6 +32,7 @@ const seedDbSpan = async () => {
         await idioma.save();
 
         const idiomaToo = new Travelall({
+            author: "637e0b741b5422ffd7666135",
             location: `${cities[randomOnes].city}, ${cities[randomOnes].state}`,
             image: "https://source.unsplash.com/collection/483251",
             description:
