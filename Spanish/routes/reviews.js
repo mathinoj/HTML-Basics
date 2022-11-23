@@ -5,6 +5,7 @@ const { reviewSchema } = require("../schemas.js");
 const ExpressError = require("../utils/ExpressError");
 const Travelall = require("../models/viewAllTravel");
 const Review = require("../models/review");
+const { validateReview } = require("../middleware");
 
 const validateReview = (req, res, next) => {
     const { error } = reviewSchema.validate(req.body);
