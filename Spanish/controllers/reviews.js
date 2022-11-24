@@ -22,17 +22,4 @@ module.exports.deleteReview = async (req, res) => {
     // res.send("deleted me");
 };
 
-//     "/:reviewId",
-//     isLoggedIn,
-//     isReviewAuthor,
-//     catchAsync(async (req, res) => {
-//         const { id, reviewId } = req.params;
-//         await Travelall.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
-//         await Review.findByIdAndDelete(reviewId);
-//         req.flash("success", "Borraste un review.");
-//         res.redirect(`/travel/${id}`);
-//         // res.send("deleted me");
-//     })
-// );
-
 // module.exports = router;

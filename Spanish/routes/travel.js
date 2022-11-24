@@ -13,24 +13,43 @@ const {
 const Travelall = require("../models/viewAllTravel");
 const travels = require("../controllers/travel");
 
-router.get("/", catchAsync(travels.index));
+// router.get("/", catchAsync(travels.index));
+router
+    .route("/")
+    .get(catchAsync(travels.index))
+    .post(isLoggedIn, validateTravel, catchAsync(travels.createTravel));
+
 router.get("/new", isLoggedIn, travels.renderNewForm);
-router.post("/", isLoggedIn, validateTravel, catchAsync(travels.createTravel));
-router.get("/:id", catchAsync(travels.showTravel));
+// router.post("/", isLoggedIn, validateTravel, catchAsync(travels.createTravel));
+// router.get("/:id", catchAsync(travels.showTravel));
+router
+    .route("/:id")
+    .get(catchAsync(travels.showTravel))
+    .put(
+        isLoggedIn,
+        isAuthor,
+        validateTravel,
+        catchAsync(travels.updateTravel).delete(
+            isLoggedIn,
+            isAuthor,
+            catchAsync(travels.deleteTravel)
+        )
+    );
+
 router.get(
     "/:id/edit",
     isLoggedIn,
     isAuthor,
     catchAsync(travels.renderEditForm)
 );
-router.put(
-    "/:id",
-    isLoggedIn,
-    isAuthor,
-    validateTravel,
-    catchAsync(travels.updateTravel)
-);
-router.delete("/:id", isLoggedIn, isAuthor, catchAsync(travels.deleteTravel));
+// router.put(
+//     "/:id",
+//     isLoggedIn,
+//     isAuthor,
+//     validateTravel,
+//     catchAsync(travels.updateTravel)
+// );
+// router.delete("/:id", isLoggedIn, isAuthor, catchAsync(travels.deleteTravel));
 
 // ///TRAVEL
 // const validateTravel = (req, res, next) => {
