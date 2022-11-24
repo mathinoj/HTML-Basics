@@ -94,7 +94,7 @@ module.exports.renderEditForm = async (req, res) => {
 
 module.exports.updateTravel = async (req, res, next) => {
     const { id } = req.params;
-    const editedTravel = await Travel.findByIdAndUpdateid(id, {
+    const editedTravel = await Travel.findByIdAndUpdate(id, {
         ...req.body.travel,
     });
     req.flash("Updated a travel!");

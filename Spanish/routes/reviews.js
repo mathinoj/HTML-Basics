@@ -8,6 +8,14 @@ const Review = require("../models/review");
 const { validateReview, isLoggedIn, isReviewAuthor } = require("../middleware");
 const reviews = require("../controllers/reviews");
 
+router.post("/", isLoggedIn, validateReview, catchAsync(reviews.createReview));
+router.delete(
+    "/:id",
+    isLoggedIn,
+    isReviewAuthor,
+    catchAsync(reviews.deleteReview)
+);
+
 // const validateReview = (req, res, next) => {
 //     const { error } = reviewSchema.validate(req.body);
 //     if (error) {
