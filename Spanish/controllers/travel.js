@@ -27,13 +27,13 @@ module.exports.renderNewForm = (req, res) => {
 //     res.redirect(`/travel/${travel._id}`);
 // };
 
-module.exports.createTravel = (req, res, next) => {
-      const newTravel = new Travel(req.body.travel);
-      newTravel.author = req.user._id;
-      await newTravel.save();
-      req.flash("success", "Successfully listed a travel!");
-      res.redirect(`/travel/${newTravel._id}`);
-  };
+module.exports.createTravel = async (req, res, next) => {
+    const newTravel = new Travel(req.body.travel);
+    newTravel.author = req.user._id;
+    await Travel.save();
+    req.flash("success", "Successfully listed a travel!");
+    res.redirect(`/travel/${newTravel._id}`);
+};
 
 // module.exports.showTravel = async (req, res) => {
 //     const travel = await Travel.findById(req.params.id)
@@ -50,21 +50,20 @@ module.exports.createTravel = (req, res, next) => {
 //     res.render("travel/edit", { travel });
 // };
 
-
 module.exports.showTravel = async (req, res) => {
-        const viewTravelId = await Travel.findById(req.params.id)
-            .populate({
-                path: "reviews",
-                populate: { path: "author"},
-            })
-            .populate("author");
-        console.log(viewTravelId);
-        if (!viewTravelId) {
-            req.flash("error", "No lo encuentra este viaje!");
-            return res.redirect("/travel");
-        }
-        res.render("travel/show", { viewTravelId });
-    };
+    const viewTravelId = await Travel.findById(req.params.id)
+        .populate({
+            path: "reviews",
+            populate: { path: "author" },
+        })
+        .populate("author");
+    console.log(viewTravelId);
+    if (!viewTravelId) {
+        req.flash("error", "No lo encuentra este viaje!");
+        return res.redirect("/travel");
+    }
+    res.render("travel/show", { viewTravelId });
+};
 
 // module.exports.renderEditForm = async (req, res) => {
 //     const { id } = req.params;
@@ -77,14 +76,14 @@ module.exports.showTravel = async (req, res) => {
 // };
 
 module.exports.renderEditForm = async (req, res) => {
-      const { id } = req.params;
-      const editTravel = await Travel.findById(id);
-      if (!editTravel) {
-          req.flash("error", "Cannot be founded!");
-          return res.redirect("/travel");
-      }
-      res.render("travel/edit", { editTravel });
-  };
+    const { id } = req.params;
+    const editTravel = await Travel.findById(id);
+    if (!editTravel) {
+        req.flash("error", "Cannot be founded!");
+        return res.redirect("/travel");
+    }
+    res.render("travel/edit", { editTravel });
+};
 
 // module.exports.updateTravel = async (req, res) => {
 //     const { id } = req.params;
@@ -94,14 +93,13 @@ module.exports.renderEditForm = async (req, res) => {
 // };
 
 module.exports.updateTravel = async (req, res, next) => {
-      const { id } = req.params;
-      const editedTravel = await Travel.findByIdAndUpdateid(id, {
-          ...req.body.travel,
-      });
-      req.flash("Updated a travel!");
-      res.redirect(`/travel/${editedTravel._id}`);
-  };
-
+    const { id } = req.params;
+    const editedTravel = await Travel.findByIdAndUpdateid(id, {
+        ...req.body.travel,
+    });
+    req.flash("Updated a travel!");
+    res.redirect(`/travel/${editedTravel._id}`);
+};
 
 // module.exports.deleteTravel = async (req, res) => {
 //     const { id } = req.params;
@@ -111,8 +109,8 @@ module.exports.updateTravel = async (req, res, next) => {
 // };
 
 module.exports.deleteTravel = async (req, res) => {
-      const { id } = req.params;
-      await Travel.findByIdAndDelete(id);
-      req.flash("Deleted a travel.");
-      res.redirect("/travel");
-  };
+    const { id } = req.params;
+    await Travel.findByIdAndDelete(id);
+    req.flash("Deleted a travel.");
+    res.redirect("/travel");
+};
