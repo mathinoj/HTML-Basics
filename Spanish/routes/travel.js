@@ -19,22 +19,14 @@ router
     .get(catchAsync(travels.index))
     .post(isLoggedIn, validateTravel, catchAsync(travels.createTravel));
 
-router.get("/new", isLoggedIn, travels.renderNewForm);
+router.get("/new", isLoggedIn, travels.renderNewForm); //THIS ALWAYS HAS TO GO ABOVE ('/:id')
 // router.post("/", isLoggedIn, validateTravel, catchAsync(travels.createTravel));
 // router.get("/:id", catchAsync(travels.showTravel));
 router
     .route("/:id")
     .get(catchAsync(travels.showTravel))
-    .put(
-        isLoggedIn,
-        isAuthor,
-        validateTravel,
-        catchAsync(travels.updateTravel).delete(
-            isLoggedIn,
-            isAuthor,
-            catchAsync(travels.deleteTravel)
-        )
-    );
+    .put(isLoggedIn, isAuthor, validateTravel, catchAsync(travels.updateTravel))
+    .delete(isLoggedIn, isAuthor, catchAsync(travels.deleteTravel));
 
 router.get(
     "/:id/edit",
