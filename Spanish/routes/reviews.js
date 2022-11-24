@@ -10,7 +10,7 @@ const reviews = require("../controllers/reviews");
 
 router.post("/", isLoggedIn, validateReview, catchAsync(reviews.createReview));
 router.delete(
-    "/:id",
+    "/:reviewId",
     isLoggedIn,
     isReviewAuthor,
     catchAsync(reviews.deleteReview)

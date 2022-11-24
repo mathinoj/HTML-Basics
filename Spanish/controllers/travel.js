@@ -30,7 +30,7 @@ module.exports.renderNewForm = (req, res) => {
 module.exports.createTravel = async (req, res, next) => {
     const newTravel = new Travel(req.body.travel);
     newTravel.author = req.user._id;
-    await Travel.save();
+    await newTravel.save();
     req.flash("success", "Successfully listed a travel!");
     res.redirect(`/travel/${newTravel._id}`);
 };
@@ -57,7 +57,7 @@ module.exports.showTravel = async (req, res) => {
             populate: { path: "author" },
         })
         .populate("author");
-    console.log(viewTravelId);
+    // console.log(viewTravelId);
     if (!viewTravelId) {
         req.flash("error", "No lo encuentra este viaje!");
         return res.redirect("/travel");
