@@ -3,7 +3,7 @@ const SchemaToo = mongoose.Schema;
 const Review = require("./review");
 
 const SpanishSchemaAlso = new SchemaToo({
-    image: String,
+    images: [{ url: String, filename: String }],
     title: String,
     description: String,
     location: String,

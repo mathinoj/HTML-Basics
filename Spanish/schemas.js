@@ -3,7 +3,7 @@ const { builtinModules } = require("module");
 
 module.exports.spanishSchemaAlso = Joi.object({
     travel: Joi.object({
-        image: Joi.string().required(),
+        // image: Joi.string().required(),
         title: Joi.string().required(),
         description: Joi.string().required(),
         location: Joi.string().required(),
