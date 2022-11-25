@@ -21,7 +21,12 @@ router.get("/", catchAsync(travels.index));
 router
     .route("/")
     .get(catchAsync(travels.index))
-    // .post(isLoggedIn, validateTravel, catchAsync(travels.createTravel));
+    .post(
+        isLoggedIn,
+        upload.array("image"),
+        validateTravel,
+        catchAsync(travels.createTravel)
+    )
     .post(upload.array("image"), (req, res) => {
         console.log(req.body, req.files);
         res.send("It twrked!");
