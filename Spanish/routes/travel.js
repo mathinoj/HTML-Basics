@@ -13,12 +13,18 @@ const upload = multer({ dest: "uploads/" });
 // const ExpressError = require("../utils/ExpressError");
 const Travelall = require("../models/viewAllTravel");
 const travels = require("../controllers/travel");
+const { reviewSchema } = require("../schemas");
 
-// router.get("/", catchAsync(travels.index));
+router.get("/", catchAsync(travels.index));
+
 router
     .route("/")
     .get(catchAsync(travels.index))
-    .post(isLoggedIn, validateTravel, catchAsync(travels.createTravel));
+    // .post(isLoggedIn, validateTravel, catchAsync(travels.createTravel));
+    .post(upload.array("image"), (req, res) => {
+        console.log(req.body, req.files);
+        res.send("It twrked!");
+    });
 
 router.get("/new", isLoggedIn, travels.renderNewForm); //THIS ALWAYS HAS TO GO ABOVE ('/:id')
 // router.post("/", isLoggedIn, validateTravel, catchAsync(travels.createTravel));
@@ -36,13 +42,6 @@ router.get(
     catchAsync(travels.renderEditForm)
 );
 
-router
-    .route("/")
-    .get(catchAsync(travels.index))
-    .post(upload.array("image"), (req, res) => {
-        console.log(req.body, req.files);
-        res.send("It Twrked!");
-    });
 // router.put(
 //     "/:id",
 //     isLoggedIn,

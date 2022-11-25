@@ -2,7 +2,13 @@
 <div class="row">
     <h1 class="text-center">New Travel</h1>
     <div class="col-6 offset-3">
-        <form action="/travel" method="POST" novalidate class="validated-form">
+        <form
+            action="/travel"
+            method="POST"
+            novalidate
+            class="validated-form"
+            enctype="multipart/form-data"
+        >
             <div class="mb-3">
                 <label class="form-label" for="title">Title</label>
                 <input
@@ -27,6 +33,16 @@
                 ></textarea>
                 <div class="valid-feedback">Looks aight!</div>
             </div>
+            <input type="file" name="image" id="" multiple />
+            <!-- <div class="mb-3">
+                <label class="form-label" for="image">Image URL</label>
+                <input
+                    type="text"
+                    id="image"
+                    class="form-control"
+                    name="travel[image]"
+                />
+            </div> -->
             <div class="mb-3">
                 <label class="form-label" for="location">Location</label>
                 <input
@@ -38,15 +54,6 @@
                     required
                 />
                 <div class="valid-feedback">Looks aight!</div>
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="image">Image URL</label>
-                <input
-                    type="text"
-                    id="image"
-                    class="form-control"
-                    name="travel[image]"
-                />
             </div>
             <div class="mb-3">
                 <button class="btn btn-success">Add Travel</button>
