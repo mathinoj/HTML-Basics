@@ -3,7 +3,9 @@
 <div class="row">
     <div class="col-6">
         <div class="card mb-3">
-            <img src="<%=viewTravelId.image%>" class="card-img-top" alt="..." />
+            <% for(let img of viewTravelId.images) { %>
+            <img src="<%=image.url%>" class="card-img-top" alt="..." />
+            <% } %>
             <div class="card-body">
                 <h5 class="card-title"><%=viewTravelId.title%></h5>
                 <p class="card-text"><%=viewTravelId.description%></p>

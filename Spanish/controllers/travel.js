@@ -29,6 +29,10 @@ module.exports.renderNewForm = (req, res) => {
 
 module.exports.createTravel = async (req, res, next) => {
     const newTravel = new Travel(req.body.travel);
+    newTravel.images = req.files.map((f) => ({
+        url: f.path,
+        filename: f.filename,
+    }));
     newTravel.author = req.user._id;
     await newTravel.save();
     req.flash("success", "Successfully listed a travel!");
