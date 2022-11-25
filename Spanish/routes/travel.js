@@ -8,7 +8,8 @@ const {
     validateTravel,
     isReviewAuthor,
 } = require("../middleware");
-
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" });
 // const ExpressError = require("../utils/ExpressError");
 const Travelall = require("../models/viewAllTravel");
 const travels = require("../controllers/travel");
@@ -34,6 +35,14 @@ router.get(
     isAuthor,
     catchAsync(travels.renderEditForm)
 );
+
+router
+    .route("/")
+    .get(catchAsync(travels.index))
+    .post(upload.array("image"), (req, res) => {
+        console.log(req.body, req.files);
+        res.send("It Twrked!");
+    });
 // router.put(
 //     "/:id",
 //     isLoggedIn,
