@@ -9,7 +9,8 @@ const {
     isReviewAuthor,
 } = require("../middleware");
 const multer = require("multer");
-const upload = multer({ dest: "uploads/" });
+const { storage } = require("../cloudinary");
+const upload = multer({ storage });
 // const ExpressError = require("../utils/ExpressError");
 const Travelall = require("../models/viewAllTravel");
 const travels = require("../controllers/travel");
