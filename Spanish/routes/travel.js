@@ -38,7 +38,13 @@ router.get("/new", isLoggedIn, travels.renderNewForm); //THIS ALWAYS HAS TO GO A
 router
     .route("/:id")
     .get(catchAsync(travels.showTravel))
-    .put(isLoggedIn, isAuthor, validateTravel, catchAsync(travels.updateTravel))
+    .put(
+        isLoggedIn,
+        isAuthor,
+        upload.array("image"),
+        validateTravel,
+        catchAsync(travels.updateTravel)
+    )
     .delete(isLoggedIn, isAuthor, catchAsync(travels.deleteTravel));
 
 router.get(
