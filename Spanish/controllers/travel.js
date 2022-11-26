@@ -35,6 +35,7 @@ module.exports.createTravel = async (req, res, next) => {
     }));
     newTravel.author = req.user._id;
     await newTravel.save();
+    // console.log(newTravel);
     req.flash("success", "Successfully listed a travel!");
     res.redirect(`/travel/${newTravel._id}`);
 };
