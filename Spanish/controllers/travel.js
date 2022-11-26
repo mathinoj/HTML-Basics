@@ -1,4 +1,5 @@
 const Travel = require("../models/viewAllTravel");
+const { cloudinary } = require("../cloudinary");
 
 // module.exports.index = async (req, res) => {
 //     const travels = await Travel.find({});
@@ -99,6 +100,7 @@ module.exports.renderEditForm = async (req, res) => {
 
 module.exports.updateTravel = async (req, res, next) => {
     const { id } = req.params;
+    console.log(req.body);
     const editedTravel = await Travel.findByIdAndUpdate(id, {
         ...req.body.travel,
     });

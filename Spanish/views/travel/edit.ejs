@@ -50,6 +50,22 @@
                 <label for="image" class="form-label">Upload Images</label>
                 <input class="form-control" type="file" id="image" multiple />
             </div>
+
+            <div class="mb-3">
+                <% editTravel.images.forEach(function(img, i) { %>
+                <img src="<%=img.url %> " alt="" class="img-thumbnail" />
+                <div class="form-check-line">
+                    <input
+                        type="checkbox"
+                        id="image-<%=i%>"
+                        name="deleteImages[]"
+                        value="<%=img.filename%>"
+                    />
+                </div>
+                <label for="image-<%= i %> ">Delete Image</label>
+                <% }) %>
+            </div>
+
             <div class="mb-3">
                 <button class="btn btn-success">Update Travel</button>
             </div>

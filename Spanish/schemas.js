@@ -8,6 +8,7 @@ module.exports.spanishSchemaAlso = Joi.object({
         description: Joi.string().required(),
         location: Joi.string().required(),
     }).required(),
+    deletImages: Joi.array(),
 });
 
 module.exports.spanishSchema = Joi.object({
