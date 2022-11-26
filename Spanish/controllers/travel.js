@@ -98,7 +98,7 @@ module.exports.renderEditForm = async (req, res) => {
 //     res.redirect(`/travel/${travel._id}`);
 // };
 
-module.exports.updateTravel = async (req, res, next) => {
+module.exports.updateTravel = async (req, res) => {
     const { id } = req.params;
     console.log(req.body);
     const editedTravel = await Travel.findByIdAndUpdate(id, {
@@ -107,6 +107,15 @@ module.exports.updateTravel = async (req, res, next) => {
     const imgs = req.files.map((f) => ({ url: f.path, filename: f.filename }));
     editedTravel.images.push(...imgs);
     await editedTravel.save();
+    if (req.body.deleteImages) {
+        for (let filename of req.body.deleteImages) {
+            await cloudinary.uploader.destroy(filename);
+        }
+        await editedTravel.updateOne({
+            $pull: { images: { filename: { $in: req.body.deleteImages } } },
+        });
+        console.log(editedTravel);
+    }
     req.flash("Updated a travel!");
     res.redirect(`/travel/${editedTravel._id}`);
 };
