@@ -2,11 +2,7 @@
 <!-- <div class="card" style="width: 18rem;"> HE REMOVES THE WIDTH-->
 <div class="row">
     <div class="col-6">
-        <div
-            id="carouselExampleControls"
-            class="carousel slide"
-            data-bs-ride="carousel"
-        >
+        <div id="travelCarousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <% viewTravelId.images.forEach((img, i) => { %>
                 <div class="carousel-item <%= i === 0 ? 'active' : '' %>">
@@ -25,7 +21,7 @@
             <button
                 class="carousel-control-prev"
                 type="button"
-                data-bs-target="#carouselExampleControls"
+                data-bs-target="#travelCarousel"
                 data-bs-slide="prev"
             >
                 <span
@@ -37,7 +33,7 @@
             <button
                 class="carousel-control-next"
                 type="button"
-                data-bs-target="#carouselExampleControls"
+                data-bs-target="#travelCarousel"
                 data-bs-slide="next"
             >
                 <span
@@ -48,9 +44,7 @@
             </button>
             <% } %>
         </div>
-
         <!-- //////////// -->
-
         <div class="card mb-3">
             <div class="card-body">
                 <h5 class="card-title"><%=viewTravelId.title%></h5>
