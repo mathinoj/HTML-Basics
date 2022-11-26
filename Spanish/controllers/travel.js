@@ -102,6 +102,8 @@ module.exports.updateTravel = async (req, res, next) => {
     const editedTravel = await Travel.findByIdAndUpdate(id, {
         ...req.body.travel,
     });
+    const imgs = req.files.map((f) => ({ url: f.path, filename: f.filename }));
+    editedTravel.images.push(...imgs);
     req.flash("Updated a travel!");
     res.redirect(`/travel/${editedTravel._id}`);
 };
