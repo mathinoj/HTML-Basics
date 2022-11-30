@@ -25,7 +25,7 @@ const seedDbSpan = async () => {
             card: `${sample(english)} ${sample(spanish)}`,
             hint: `${sample(hintOne)} ${sample(hintTwo)}`,
             location: `${cities[randomOnes].city}, ${cities[randomOnes].state}`,
-            // image: "https://source.unsplash.com/collection/483251",
+            image: "https://source.unsplash.com/collection/483251",
             description:
                 "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
         });
