@@ -63,7 +63,7 @@ module.exports.showTravel = async (req, res) => {
             populate: { path: "author" },
         })
         .populate("author");
-    // console.log(viewTravelId);
+    console.log(viewTravelId);
     if (!viewTravelId) {
         req.flash("error", "No lo encuentra este viaje!");
         return res.redirect("/travel");

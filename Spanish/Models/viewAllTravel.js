@@ -2,8 +2,18 @@ const mongoose = require("mongoose");
 const SchemaToo = mongoose.Schema;
 const Review = require("./review");
 
+const ImageSchema = new SchemaToo({
+    url: String,
+    filename: String,
+});
+
+ImageSchema.virtual("thumbnail").get(function () {
+    return this.url.replace("/upload", "/upload/w_200");
+});
+
 const SpanishSchemaAlso = new SchemaToo({
-    images: [{ url: String, filename: String }],
+    // images: [{ url: String, filename: String }],
+    images: [ImageSchema],
     title: String,
     description: String,
     location: String,

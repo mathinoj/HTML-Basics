@@ -16,7 +16,7 @@ const Travelall = require("../models/viewAllTravel");
 const travels = require("../controllers/travel");
 const { reviewSchema } = require("../schemas");
 
-router.get("/", catchAsync(travels.index));
+// router.get("/", catchAsync(travels.index));
 
 router
     .route("/")
@@ -26,11 +26,11 @@ router
         upload.array("image"),
         validateTravel,
         catchAsync(travels.createTravel)
-    )
-    .post(upload.array("image"), (req, res) => {
-        console.log(req.body, req.files);
-        res.send("It twrked!");
-    });
+    );
+// .post(upload.array("image"), (req, res) => {
+//     console.log(req.body, req.files);
+//     res.send("It twrked!");
+// });
 
 router.get("/new", isLoggedIn, travels.renderNewForm); //THIS ALWAYS HAS TO GO ABOVE ('/:id')
 // router.post("/", isLoggedIn, validateTravel, catchAsync(travels.createTravel));
