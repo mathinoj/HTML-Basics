@@ -40,7 +40,11 @@ const seedDbSpan = async () => {
                 "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
             geometry: {
                 type: "Point",
-                coordinates: [-113.1331, 47.0202],
+                // coordinates: [-113.1331, 47.0202],
+                coordinates: [
+                    cities[randomOnes].longitude,
+                    cities[randomOnes].latitude,
+                ],
             },
             images: [
                 {
