@@ -15,6 +15,17 @@ const SpanishSchemaAlso = new SchemaToo({
     // images: [{ url: String, filename: String }],
     images: [ImageSchema],
     title: String,
+    geometry: {
+        type: {
+            type: String,
+            enum: ["Point"],
+            required: true,
+        },
+        coordinates: {
+            type: [Number],
+            required: true,
+        },
+    },
     description: String,
     location: String,
     author: {
