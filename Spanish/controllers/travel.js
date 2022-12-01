@@ -1,4 +1,7 @@
 const Travel = require("../models/viewAllTravel");
+const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
+const mapboxToken = process.env.MAPBOX_TOKEN;
+const geocoder = mbxGeocoding({ accessToken: mapboxToken });
 const { cloudinary } = require("../cloudinary");
 
 // module.exports.index = async (req, res) => {
@@ -29,6 +32,12 @@ module.exports.renderNewForm = (req, res) => {
 // };
 
 module.exports.createTravel = async (req, res, next) => {
+    const geoData = await geocoder.forwardGeocode({
+        query: req.body.travel.location,
+        limit: 1,
+    });
+    send();
+    res.send(geoData.body.features[0].geometry.coordinates);
     const newTravel = new Travel(req.body.travel);
     newTravel.images = req.files.map((f) => ({
         url: f.path,
