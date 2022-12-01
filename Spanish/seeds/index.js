@@ -25,18 +25,23 @@ const seedDbSpan = async () => {
             card: `${sample(english)} ${sample(spanish)}`,
             hint: `${sample(hintOne)} ${sample(hintTwo)}`,
             location: `${cities[randomOnes].city}, ${cities[randomOnes].state}`,
-            image: "https://source.unsplash.com/collection/483251",
+            // image: "https://source.unsplash.com/collection/483251",
             description:
                 "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
         });
         await idioma.save();
 
         const idiomaToo = new Travelall({
+            //this is your userID, which should me mat
             author: "637e0b741b5422ffd7666135",
             location: `${cities[randomOnes].city}, ${cities[randomOnes].state}`,
             // image: "https://source.unsplash.com/collection/483251",
             description:
                 "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+            geometry: {
+                type: "Point",
+                coordinates: [-113.1331, 47.0202],
+            },
             images: [
                 {
                     url: "https://res.cloudinary.com/dmjfoztry/image/upload/v1669392968/Spanish/tfuyjfkqcy5puln9zfsi.jpg",

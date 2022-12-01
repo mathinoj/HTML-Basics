@@ -7,11 +7,19 @@
 <div class="card" mb-3>
     <div class="row">
         <div class="col-md-4">
+            <% if(viewTravels.images.length) { %>
             <img
                 class="img-fluid"
                 alt=""
                 src="<%= viewTravels.images[0].url%>"
             />
+            <% }else{ %>
+            <img
+                src="https://res.cloudinary.com/dmjfoztry/image/upload/v1669463195/Spanish/efifkxzmtlmdgk8hdeka.jpg"
+                alt=""
+                class="img-field"
+            />
+            <% } %>
         </div>
         <div class="col-md-8">
             <div class="card-body">
