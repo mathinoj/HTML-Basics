@@ -32,21 +32,22 @@ module.exports.renderNewForm = (req, res) => {
 // };
 
 module.exports.createTravel = async (req, res, next) => {
-    const geoData = await geocoder.forwardGeocode({
-        query: req.body.travel.location,
-        limit: 1,
-    });
-    send();
-    res.send(geoData.body.features[0].geometry.coordinates);
+    const geoData = await geocoder
+        .forwardGeocode({
+            query: req.body.travel.location,
+            limit: 1,
+        })
+        .send();
+    // res.send(geoData.body.features[0].geometry.coordinates);
     const newTravel = new Travel(req.body.travel);
-    trave.geometry = geoData.body.features[0].geometry;
+    newTravel.geometry = geoData.body.features[0].geometry;
     newTravel.images = req.files.map((f) => ({
         url: f.path,
         filename: f.filename,
     }));
     newTravel.author = req.user._id;
     await newTravel.save();
-    // console.log(newTravel);
+    console.log(newTravel);
     req.flash("success", "Successfully listed a travel!");
     res.redirect(`/travel/${newTravel._id}`);
 };
