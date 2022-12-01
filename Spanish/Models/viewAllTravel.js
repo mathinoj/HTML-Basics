@@ -17,8 +17,8 @@ const SpanishSchemaAlso = new SchemaToo({
     title: String,
     geometry: {
         type: {
-            type: String,
-            enum: ["Point"],
+            type: String, // Don't do `{ location: { type: String } }`
+            enum: ["Point"], // 'location.type' must be 'Point'
             required: true,
         },
         coordinates: {
