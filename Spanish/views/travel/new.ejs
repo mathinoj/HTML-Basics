@@ -1,70 +1,68 @@
 <% layout('/layouts/boilerplate')%>
 <div class="row">
+    <h1 class="text-center">New Travel</h1>
     <div class="col-md-6 offset-md-3">
-        <h1 class="text-center">New Travel</h1>
-        <div class="col-6 offset-3">
-            <form
-                action="/travel"
-                method="POST"
-                novalidate
-                class="validated-form"
-                enctype="multipart/form-data"
-            >
-                <div class="mb-3">
-                    <label class="form-label" for="title">Title</label>
-                    <input
-                        class="form-control"
-                        type="text"
-                        id="title"
-                        name="travel[title]"
-                        placeholder="Title of Event"
-                        required
-                    />
-                    <div class="valid-feedback">Looks aight!</div>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="description"
-                        >Description</label
-                    >
-                    <textarea
-                        class="form-control"
-                        type="text"
-                        id="description"
-                        name="travel[description]"
-                        placeholder="What did you did..."
-                        required
-                    ></textarea>
-                    <div class="valid-feedback">Looks aight!</div>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="location">Location</label>
-                    <input
-                        class="form-control"
-                        type="text"
-                        id="location"
-                        name="travel[location]"
-                        placeholder="Country, State, City..."
-                        required
-                    />
-                    <div class="valid-feedback">Looks aight!</div>
-                </div>
-                <div class="mb-3">
-                    <label for="image" class="form-label">Upload</label>
-                    <input
-                        class="form-control"
-                        type="file"
-                        id="image"
-                        name="image"
-                        multiple
-                    />
-                </div>
-                <div class="mb-3">
-                    <button class="btn btn-success">Add Travel</button>
-                </div>
-                <div>
-                    <a href="/travel/">All Travels</a>
-                </div>
-            </form>
-        </div>
+        <!-- <div class="col-6 offset-3"> -->
+        <form
+            action="/travel"
+            method="POST"
+            novalidate
+            class="validated-form"
+            enctype="multipart/form-data"
+        >
+            <div class="mb-3">
+                <label class="form-label" for="title">Title</label>
+                <input
+                    class="form-control"
+                    type="text"
+                    id="title"
+                    name="travel[title]"
+                    placeholder="Title of Event"
+                    required
+                />
+                <div class="valid-feedback">Looks aight!</div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="description">Description</label>
+                <textarea
+                    class="form-control"
+                    type="text"
+                    id="description"
+                    name="travel[description]"
+                    placeholder="What did you did..."
+                    required
+                ></textarea>
+                <div class="valid-feedback">Looks aight!</div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="location">Location</label>
+                <input
+                    class="form-control"
+                    type="text"
+                    id="location"
+                    name="travel[location]"
+                    placeholder="Country, State, City..."
+                    required
+                />
+                <div class="valid-feedback">Looks aight!</div>
+            </div>
+            <div class="mb-3">
+                <label for="image" class="form-label">Upload</label>
+                <input
+                    class="form-control"
+                    type="file"
+                    id="image"
+                    name="image"
+                    multiple
+                />
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-success">Add Travel</button>
+            </div>
+            <div>
+                <a href="/travel/">All Travels</a>
+            </div>
+        </form>
     </div>
 </div>
+<!-- </div> -->
