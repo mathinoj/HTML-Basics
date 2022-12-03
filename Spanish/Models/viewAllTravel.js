@@ -11,33 +11,43 @@ ImageSchema.virtual("thumbnail").get(function () {
     return this.url.replace("/upload", "/upload/w_200");
 });
 
-const SpanishSchemaAlso = new SchemaToo({
-    // images: [{ url: String, filename: String }],
-    images: [ImageSchema],
-    title: String,
-    geometry: {
-        type: {
-            type: String, // Don't do `{ location: { type: String } }`
-            enum: ["Point"], // 'location.type' must be 'Point'
-            required: true,
+const opts = { toJSON: { virtuals: true } };
+
+const SpanishSchemaAlso = new SchemaToo(
+    {
+        // images: [{ url: String, filename: String }],
+        images: [ImageSchema],
+        title: String,
+        geometry: {
+            type: {
+                type: String, // Don't do `{ location: { type: String } }`
+                enum: ["Point"], // 'location.type' must be 'Point'
+                required: true,
+            },
+            coordinates: {
+                type: [Number],
+                required: true,
+            },
         },
-        coordinates: {
-            type: [Number],
-            required: true,
-        },
-    },
-    description: String,
-    location: String,
-    author: {
-        type: SchemaToo.Types.ObjectId,
-        ref: "User",
-    },
-    reviews: [
-        {
+        description: String,
+        location: String,
+        author: {
             type: SchemaToo.Types.ObjectId,
-            ref: "Review",
+            ref: "User",
         },
-    ],
+        reviews: [
+            {
+                type: SchemaToo.Types.ObjectId,
+                ref: "Review",
+            },
+        ],
+    },
+    opts
+);
+
+SpanishSchemaAlso.virtual("properties.popUpMarkup").get(function () {
+    return `<strong><a href="/travel/${this._id}">${this.title}</a></strong>
+    <p>${this.description.substring(0, 50)}...</p>`;
 });
 
 SpanishSchemaAlso.post("findOneAndDelete", async function (doc) {

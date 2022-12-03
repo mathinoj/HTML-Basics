@@ -6,6 +6,7 @@ const map = new mapboxgl.Map({
     center: [-103.5917, 40.6699],
     zoom: 3,
 });
+console.log(viewAllTravels);
 
 map.on("load", () => {
     // Add a new source from our GeoJSON data and
@@ -103,9 +104,12 @@ map.on("load", () => {
     // the location of the feature, with
     // description HTML from its properties.
     map.on("click", "unclustered-point", (e) => {
+        const { popUpMarkup } = e.features[0].properties;
+
         const coordinates = e.features[0].geometry.coordinates.slice();
-        const mag = e.features[0].properties.mag;
-        const tsunami = e.features[0].properties.tsunami === 1 ? "yes" : "no";
+        console.log(e.features[0]);
+        // const mag = e.features[0].properties.mag;
+        // const tsunami = e.features[0].properties.tsunami === 1 ? "yes" : "no";
 
         // Ensure that if the map is zoomed out such that
         // multiple copies of the feature are visible, the
@@ -116,7 +120,8 @@ map.on("load", () => {
 
         new mapboxgl.Popup()
             .setLngLat(coordinates)
-            .setHTML(`magnitude: ${mag}<br>Was there a tsunami?: ${tsunami}`)
+            // .setHTML(`magnitude: ${mag}<br>Was there a tsunami?: ${tsunami}`)
+            .setHTML(popUpMarkup)
             .addTo(map);
     });
 
