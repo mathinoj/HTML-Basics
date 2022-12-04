@@ -1,38 +1,43 @@
 <% layout('/layouts/boilerplate')%>
-<div id="map" style="width: 100%; height: 500px"></div>
-<h1>All Travels</h1>
-<div>
-    <a href="/travel/new">Add Travel</a>
-</div>
-<% for (let viewTravels of viewAllTravel) {%>
-<div class="card mb-3">
-    <div class="row">
-        <div class="col-md-4">
-            <% if(viewTravels.images.length) { %>
-            <img
-                class="img-fluid"
-                alt=""
-                src="<%= viewTravels.images[0].url%>"
-            />
-            <% }else{ %>
-            <img
-                src="https://res.cloudinary.com/dmjfoztry/image/upload/v1669463195/Spanish/efifkxzmtlmdgk8hdeka.jpg"
-                alt=""
-                class="img-field"
-                width="250"
-                height="300"
-            />
-            <% } %>
-        </div>
-        <div class="col-md-8">
-            <div class="card-body">
-                <h5 class="card-title"><%=viewTravels.title%></h5>
+<!-- <div id="map" style="width: 100%; height: 500px"></div> -->
+<div id="cluster-map"></div>
+<div class="container">
+    <h1>All Travels</h1>
+    <div>
+        <a href="/travel/new">Add Travel</a>
+    </div>
+    <% for (let viewTravels of viewAllTravel) {%>
+    <div class="card mb-3">
+        <div class="row">
+            <div class="col-md-4">
+                <% if(viewTravels.images.length) { %>
+                <img
+                    class="img-fluid"
+                    alt=""
+                    src="<%= viewTravels.images[0].url%>"
+                />
+                <% }else{ %>
+                <img
+                    src="https://res.cloudinary.com/dmjfoztry/image/upload/v1669463195/Spanish/efifkxzmtlmdgk8hdeka.jpg"
+                    alt=""
+                    class="img-field"
+                    width="250"
+                    height="300"
+                />
+                <% } %>
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title"><%=viewTravels.title%></h5>
 
-                <h5 class="card-title"><%= viewTravels.location %></h5>
-                <h5 class="card-title"><%= viewTravels.description %></h5>
-                <a class="btn btn-primary" href="/travel/<%= viewTravels._id%>"
-                    >View Travel</a
-                >
+                    <h5 class="card-title"><%= viewTravels.location %></h5>
+                    <h5 class="card-title"><%= viewTravels.description %></h5>
+                    <a
+                        class="btn btn-primary"
+                        href="/travel/<%= viewTravels._id%>"
+                        >View Travel</a
+                    >
+                </div>
             </div>
         </div>
     </div>
