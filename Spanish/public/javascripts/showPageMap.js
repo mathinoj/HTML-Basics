@@ -6,6 +6,9 @@ const map = new mapboxgl.Map({
     zoom: 9, // starting zoom
 });
 
+const nav = new mapboxgl.NavigationControl();
+map.addControl(nav, "top-right");
+
 // new mapboxgl.Marker().setLngLat(centerMapBox.geometry.coordinates).addTo(map);
 new mapboxgl.Marker()
     .setLngLat(centerMapBox.geometry.coordinates)
