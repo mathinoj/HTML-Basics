@@ -1,5 +1,7 @@
-const Joi = require("joi");
-const { builtinModules } = require("module");
+const BaseJoi = require("joi");
+const sanitizeHtml = require("sanitize-html");
+// const Joi = require("joi");
+// const { builtinModules } = require("module");
 
 const extension = (joi) => ({
     type: "String",
@@ -21,6 +23,8 @@ const extension = (joi) => ({
         },
     },
 });
+
+const Joi = BaseJoi.extend(extension);
 
 module.exports.spanishSchemaAlso = Joi.object({
     travel: Joi.object({
