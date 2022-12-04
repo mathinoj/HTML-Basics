@@ -52,7 +52,7 @@ const seedDbSpan = async () => {
                     filename: "Spanish/tfuyjfkqcy5puln9zfsi",
                 },
                 {
-                    url: "https://res.cloudinary.com/dmjfoztry/image/upload/v1669392988/Spanish/ctq2utdiixiynhpedgjg.jpg",
+                    url: "https://res.cloudinary.com/dmjfoztry/image/upload/v1669463195/Spanish/efifkxzmtlmdgk8hdeka.jpg",
                     filename: "Spanish/ctq2utdiixiynhpedgjg",
                 },
             ],

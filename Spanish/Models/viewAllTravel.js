@@ -16,8 +16,8 @@ const opts = { toJSON: { virtuals: true } };
 const SpanishSchemaAlso = new SchemaToo(
     {
         // images: [{ url: String, filename: String }],
-        images: [ImageSchema],
         title: String,
+        images: [ImageSchema],
         geometry: {
             type: {
                 type: String, // Don't do `{ location: { type: String } }`
