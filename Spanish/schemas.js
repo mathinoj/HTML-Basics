@@ -4,8 +4,8 @@ const sanitizeHtml = require("sanitize-html");
 // const { builtinModules } = require("module");
 
 const extension = (joi) => ({
-    type: "String",
-    base: joi.String(),
+    type: "string",
+    base: joi.string(),
     messages: {
         "string.escapeHTML": "{{#label}} must not include HTML.",
     },
