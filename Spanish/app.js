@@ -24,6 +24,7 @@ const methodOverride = require("method-override");
 const passport = require("passport"); //510
 const LocalStrategy = require("passport-local");
 const User = require("./models/user");
+const mongoSanitize = require("express-mongo-sanitize");
 const Viewall = require("./models/viewAll");
 const Travelall = require("./models/viewAllTravel");
 const Review = require("./models/review");
