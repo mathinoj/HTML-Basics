@@ -28,11 +28,14 @@ const User = require("./models/user");
 const mongoSanitize = require("express-mongo-sanitize");
 const Viewall = require("./models/viewAll");
 const Travelall = require("./models/viewAllTravel");
+const Travel = require("./models/viewAllTravel");
+
 const Review = require("./models/review");
 const { setgroups } = require("process");
 
 const userRoutes = require("./routes/users");
 const viewAllTravel = require("./routes/travel");
+const viewYourTravel = require("./routes/travel");
 const viewAllCamp = require("./routes/card");
 const reviews = require("./routes/reviews");
 
@@ -143,6 +146,28 @@ app.get("/", (req, res) => {
 //     catchAsync(async (req, res) => {
 //         const viewAllCamp = await Viewall.find({});
 //         res.render("cards/index", { viewAllCamp });
+//     })
+// );
+
+app.get(
+    "/travel/userTravel/:id",
+    catchAsync(async (req, res) => {
+        // const viewYourTravel = await Travelall.findById(req.params.id)
+        const viewYourTravel = await Travelall.findById(req.params.id).populate(
+            "author"
+        );
+        console.log(viewYourTravel);
+        res.render("travel/userTravel", { viewYourTravel });
+    })
+);
+
+// app.get(
+//     "/travel/:id",
+//     catchAsync(async (req, res) => {
+//         const viewTravelId = await Travelall.findById(req.params.id).populate(
+//             "reviews"
+//         );
+//         res.render("travel/show", { viewTravelId });
 //     })
 // );
 

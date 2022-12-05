@@ -1,0 +1,14 @@
+<% layout('/layouts/boilerplate')%>
+
+<h1>Herro Mayngs</h1>
+
+<li>
+    <a class="dropdown-item" href="/travel/<%= viewYourTravel._id%>"
+        >Your Travels</a
+    >
+</li>
+<li class="list-group-item">
+    Submitted By: <%= viewYourTravel.author.username %>
+</li>
+
+action="/travel/<%=viewYourTravel._id%>/reviews"

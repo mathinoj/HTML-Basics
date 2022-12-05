@@ -17,6 +17,9 @@ const travels = require("../controllers/travel");
 const { reviewSchema } = require("../schemas");
 
 // router.get("/", catchAsync(travels.index));
+// router.get("/", catchAsync(travels.userTraveler));
+
+// router.route("/").get(catchAsync(travels.userTraveler));
 
 router
     .route("/")

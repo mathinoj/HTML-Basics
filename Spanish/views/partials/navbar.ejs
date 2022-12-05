@@ -30,17 +30,27 @@
                         >View Travels</a
                     >
                     <ul class="dropdown-menu">
+                        <% if(!currentUser) { %>
                         <li>
                             <a class="dropdown-item" href="/travel"
                                 >All Travels</a
                             >
                         </li>
                         <li><hr class="dropdown-divider" /></li>
+                        <% } else { %>
                         <li>
-                            <a class="dropdown-item" href="/userTravels"
-                                >Your Travels</a
+                            <a class="dropdown-item" href="/travel"
+                                >All Travels</a
                             >
                         </li>
+                        <li>
+                            <a
+                                class="dropdown-item"
+                                href="/travel/userTravel/:id"
+                                >Your Travels, <%=`${currentUser.username}`%></a
+                            >
+                        </li>
+                        <% } %>
                     </ul>
                 </li>
                 <!-- </li> -->

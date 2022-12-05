@@ -82,6 +82,21 @@ module.exports.showTravel = async (req, res) => {
     res.render("travel/show", { viewTravelId });
 };
 
+// module.exports.userTravel = async (req, res) => {
+//     res.render("travel/userTravel");
+// };
+
+// module.exports.userTraveler = async (req, res) => {
+//     res.render("travel/userTravel");
+// };
+
+// app.get(
+//     "/userTravel",
+//     catchAsync(async (req, res) => {
+//         res.render("travel/userTravel");
+//     })
+// );
+
 // module.exports.renderEditForm = async (req, res) => {
 //     const { id } = req.params;
 //     const travel = await Travel.findById(id);
