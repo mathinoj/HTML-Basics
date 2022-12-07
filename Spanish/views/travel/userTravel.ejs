@@ -1,14 +1,40 @@
 <% layout('/layouts/boilerplate')%>
-
-<h1>Herro Mayngs</h1>
-
-<li>
-    <a class="dropdown-item" href="/travel/<%= viewYourTravel._id%>"
-        >Your Travels</a
-    >
-</li>
-<li class="list-group-item">
-    Submitted By: <%= viewYourTravel.author.username %>
-</li>
-
-action="/travel/<%=viewYourTravel._id%>/reviews"
+<div class="container">
+    <h1>Herro <%=`${currentUser.username}`%></h1>
+    <% for(let viewz of viewYourT) { %>
+        <% if(currentUser && viewz.author.equals(currentUser._id)){%>
+        <div class="card mb-3">
+            <div class="row">
+                <div class="col-md-4">
+                    <% if(viewz.images.length) { %>
+                    <img
+                        class="img-fluid"
+                        alt=""
+                        src="<%= viewz.images[0].url%>"
+                    />
+                    <% }else{ %>
+                    <img
+                        src="https://res.cloudinary.com/dmjfoztry/image/upload/v1669463195/Spanish/efifkxzmtlmdgk8hdeka.jpg"
+                        alt=""
+                        class="img-fluid"
+                    />
+                    <% } %>
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title"><%=viewz.title%></h5>
+                        <h5 class="card-title"><%= viewz.location %></h5>
+                        <h5 class="card-title"><%= viewz.description %></h5>
+                        <a
+                            class="btn btn-primary"
+                            href="/travel/<%= viewz._id%>"
+                            >View Travel</a
+                        >
+                    </div>
+                    <% } %>
+                </div>
+            </div>
+            <% } %>
+        </div>
+    </div>
+</div>

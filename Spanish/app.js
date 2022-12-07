@@ -149,28 +149,6 @@ app.get("/", (req, res) => {
 //     })
 // );
 
-app.get(
-    "/travel/userTravel/:id",
-    catchAsync(async (req, res) => {
-        // const viewYourTravel = await Travelall.findById(req.params.id)
-        const viewYourTravel = await Travelall.findById(req.params.id).populate(
-            "author"
-        );
-        console.log(viewYourTravel);
-        res.render("travel/userTravel", { viewYourTravel });
-    })
-);
-
-// app.get(
-//     "/travel/:id",
-//     catchAsync(async (req, res) => {
-//         const viewTravelId = await Travelall.findById(req.params.id).populate(
-//             "reviews"
-//         );
-//         res.render("travel/show", { viewTravelId });
-//     })
-// );
-
 // ///TRAVEL
 // app.get(
 //     "/travel",
@@ -272,6 +250,11 @@ app.get(
 //         res.render("cards/show", { viewCampId });
 //     })
 // );
+
+app.get("/travel/userTravel/:id", async (req, res) => {
+    const viewYourT = await Travelall.find({});
+    res.render("travel/userTravel", { viewYourT });
+});
 
 // ///TRAVEL
 // app.get(
