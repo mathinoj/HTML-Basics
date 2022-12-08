@@ -251,10 +251,12 @@ app.get("/", (req, res) => {
 //     })
 // );
 
-app.get("/travel/userTravel/:id", async (req, res) => {
-    const viewYourT = await Travelall.find({});
-    res.render("travel/userTravel", { viewYourT });
-});
+// app.get("/travel/userTravel/:id", async (req, res) => {
+//     const viewYourT = await Travelall.find({});
+//     res.render("travel/userTravel", { viewYourT });
+// });
+
+// app.get('/travel/userReviews/:id',)
 
 // ///TRAVEL
 // app.get(

@@ -82,6 +82,11 @@ module.exports.showTravel = async (req, res) => {
     res.render("travel/show", { viewTravelId });
 };
 
+module.exports.userTravel = async (req, res) => {
+    const viewYourT = await Travel.find({});
+    res.render("travel/userTravel", { viewYourT });
+};
+
 // module.exports.renderEditForm = async (req, res) => {
 //     const { id } = req.params;
 //     const travel = await Travel.findById(id);

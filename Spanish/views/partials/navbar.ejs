@@ -20,7 +20,7 @@
                 <!-- </li> -->
                 <!-- <li class="nav-item"> -->
                 <!-- <a class="nav-link" href="/travel">View Travels</a> -->
-                <li class="nav-item dropdown">
+                <!-- <li class="nav-item dropdown">
                     <a
                         class="nav-link dropdown-toggle"
                         data-bs-toggle="dropdown"
@@ -32,27 +32,51 @@
                     <ul class="dropdown-menu">
                         <% if(!currentUser) { %>
                         <li>
-                            <a class="dropdown-item" href="/travel"
+                            <a class="dropdown-item" href="/travel" active
                                 >All Travels</a
                             >
                         </li>
                         <li><hr class="dropdown-divider" /></li>
                         <% } else { %>
                         <li>
-                            <a class="dropdown-item" href="/travel"
+                            <a class="dropdown-item" href="/travel" active
                                 >All Travels</a
                             >
                         </li>
                         <li>
-                            <a
-                                class="dropdown-item"
-                                href="/travel/userTravel/:id"
+                            <a class="dropdown-item" href="/travel/userTravel"
                                 >Your Travels, <%=`${currentUser.username}`%></a
                             >
                         </li>
                         <% } %>
                     </ul>
-                </li>
+                </li> -->
+
+                <!-- Example split danger button -->
+                <div class="matt btn-group">
+                    <button type="button" class="btn">
+                        <a href="/travel" class="link-secondary"
+                            >View All Travels</a
+                        >
+                    </button>
+                    <% if(currentUser) { %>
+                    <button
+                        type="button"
+                        class="btn btn-dark dropdown-toggle dropdown-toggle-split"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                    >
+                        <span class="visually-hidden">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item" href="/travel/userTravel"
+                                >Your Travels</a
+                            >
+                        </li>
+                        <% } %>
+                    </ul>
+                </div>
                 <!-- </li> -->
                 <!-- <li class="nav-item"> -->
                 <a class="nav-link" href="/travel/new">Add Travel</a>

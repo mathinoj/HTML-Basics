@@ -35,6 +35,8 @@ router
 //     res.send("It twrked!");
 // });
 
+router.route("/userTravel").get(catchAsync(travels.userTravel));
+
 router.get("/new", isLoggedIn, travels.renderNewForm); //THIS ALWAYS HAS TO GO ABOVE ('/:id')
 // router.post("/", isLoggedIn, validateTravel, catchAsync(travels.createTravel));
 // router.get("/:id", catchAsync(travels.showTravel));
