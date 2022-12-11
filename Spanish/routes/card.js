@@ -15,10 +15,6 @@ const validateCard = (req, res, next) => {
     }
 };
 
-// router.get("/test", (req, res) => {
-//     res.render("/test/test");
-// });
-
 router.get(
     "/",
     catchAsync(async (req, res) => {
