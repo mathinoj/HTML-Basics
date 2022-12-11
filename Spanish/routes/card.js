@@ -27,6 +27,10 @@ router.get("/new", (req, res) => {
     res.render("cards/new");
 });
 
+// router.get("/test", (req, res) => {
+//     res.render("/cards/test");
+// });
+
 router.post(
     "/",
     validateCard,
