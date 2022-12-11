@@ -1,27 +1,40 @@
 <% layout('/layouts/boilerplate')%>
 <h1>Edit Card</h1>
 <form action="/cards/<%=editCard._id%>?_method=PUT" method="POST">
-    <div>
-        <label for="card">Card</label>
-        <input
+    <div class="mb-3">
+        <label class="form-label" for="card">Card</label>
+        <textarea
+            placeholder="English"
+            class="form-control"
             type="text"
             id="english"
             name="card[english]"
             value="<%=editCard.english%>"
             required
-        />
-        <input
+        >
+<%=editCard.english%></textarea
+        >
+        <div class="valid-feedback">Looks aight!</div>
+    </div>
+    <div class="mb-3">
+        <textarea
+            placeholder="Spanish"
+            class="form-control"
             type="text"
             id="spanish"
             name="card[spanish]"
             value="<%=editCard.spanish%>"
             required
-        />
+        >
+<%=editCard.spanish%></textarea
+        >
         <div class="valid-feedback">Looks aight!</div>
     </div>
-    <div>
-        <label for="hint">Hint</label>
+    <div class="mb-3">
+        <label class="form-label" for="hint">Hint</label>
         <input
+            class="form-control"
+            placeholder="Hint One"
             type="text"
             id="hintOne"
             name="card[hintOne]"
@@ -29,6 +42,8 @@
             required
         />
         <input
+            class="form-control"
+            placeholder="Hint Two"
             type="text"
             id="hintTwo"
             name="card[hintTwo]"
