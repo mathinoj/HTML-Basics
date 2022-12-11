@@ -1,52 +1,35 @@
 const getIt = document.getElementById("griddy").innerText;
-console.log(getIt);
+// console.log(getIt);
 
 const arrr = Array.from(getIt);
-console.log(arrr);
+// console.log(arrr);
 
 const removeNs = arrr.filter((removal) => {
     return removal !== "\n";
     //https://bobbyhadz.com/blog/javascript-remove-empty-strings-from-array
 });
-console.log(removeNs);
-// console.log(getIt.length());
+// console.log(removeNs);
 
 let matt = removeNs.map(Number);
-console.log(matt);
+// console.log(matt);
 
 let inSpan = document.querySelectorAll("span");
-console.log(inSpan);
+// console.log(inSpan);
 
 for (let i = 1; i <= inSpan.length; i++) {
-    console.log(i);
-
-    // console.log("matt: " + matt);
-    // let newLi = document.createElement("li");
-    // console.log(newLi);
-    // console.dir(e);
-    // newLi.setAttribute("id", `newStripeSee-${how}`);
-    // newLi.innerText = "Stripe";
-    // let blee = matt.indexOf(i);
-    // console.log("watch:" + blee);
-    // let onSpan = document.querySelectorAll("span#square.grid-item");
-    // console.log(onSpan);
+    // console.log(i);
 }
 
 // const rando = Math.floor(Math.random() * matt.length) + 1;
 // console.log(rando);
 
-let move1 = document.querySelector("#griddy");
-move1.addEventListener("click", function (e) {
+let clickBox = document.querySelector("#griddy");
+clickBox.addEventListener("click", function (e) {
     console.dir(e);
     console.dir(e.path);
     console.dir(e.path[0].innerText);
-
-    // alert(` Clicked`);
-    console.log(matt);
-
-    console.log(matt.indexOf(1));
-
-    console.log(move1.innerText);
+    const hitIt = e.path[0].innerText;
+    alert(`Square ${hitIt} was toca'd!`);
 
     for (let i = 1; i <= matt.length; i++) {
         // console.log("this is i: " + i);
@@ -54,15 +37,6 @@ move1.addEventListener("click", function (e) {
         // alert(i);
         // console.log(matt.indexOf(i));
     }
-
-    // alert(bye);
-    // let get1 = document.querySelectorAll("grid-item").innerHTML;
-    // console.log(get1);
-    // let clickedNum = document.querySelectorAll("#square");
-    // console.log(clickedNum);
-
-    // let sumtim = document.getElementById
-    // alert("click");
 });
 // let move1 = document.querySelector("#one");
 // move1.addEventListener("click", function (e) {
