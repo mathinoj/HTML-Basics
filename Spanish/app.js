@@ -150,8 +150,9 @@ app.get("/", (req, res) => {
 // );
 
 app.get("/test/test", async (req, res) => {
-    // const tester = await Viewall.find({});
-    res.render("test/test");
+    const randomCard = await Viewall.find({});
+    //         res.render("cards/show", { viewCampId });
+    res.render("test/test", { randomCard });
 });
 
 // app.get("/travel/userTravel/:id", async (req, res) => {

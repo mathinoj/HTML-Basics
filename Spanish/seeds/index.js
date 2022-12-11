@@ -5,6 +5,7 @@ const { hintOne, hintTwo } = require("./hints");
 const cities = require("./cities");
 const Viewall = require("../models/viewAll");
 const Travelall = require("../models/viewAllTravel");
+const getCard = require("../models/viewAll");
 
 mongoose.connect("mongodb://localhost:27017/Spanish", {});
 
@@ -60,6 +61,23 @@ const seedDbSpan = async () => {
         await idiomaToo.save();
     }
 };
+
+const possibleRandomCard = async () => {
+    for (let i = 1; i < Viewall.length; i++) {
+        const randomCard = Math.floor(Math.random() * i);
+
+        console.log(i);
+        console.log(randomCard);
+    }
+
+    const cardioma = new Viewall({
+        cardRand: `${sample(englishCard)} ${sample(spanishCard)}`,
+        hintRand: `${sample(hintOneCard)} ${sample(hintTwoCard)}`,
+    });
+    await cardioma.save();
+};
+
+console.log(possibleRandomCard);
 
 seedDbSpan().then(() => {
     mongoose.connection.close();

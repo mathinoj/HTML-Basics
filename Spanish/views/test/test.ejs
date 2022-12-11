@@ -19,3 +19,15 @@
         <a href="#" class="card-link">Another link</a>
     </div>
 </div>
+
+<% for (let viewRandomCard of randomCard) {%>
+<div class="card" mb-3>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title"><%= viewRandomCard.english %></h5>
+            </div>
+        </div>
+    </div>
+</div>
+<%}%>
