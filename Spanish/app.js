@@ -149,9 +149,9 @@ app.get("/", (req, res) => {
 //     })
 // );
 
-app.get("/cards/test", async (req, res) => {
+app.get("/test/test", async (req, res) => {
     // const tester = await Viewall.find({});
-    res.send("test");
+    res.render("test/test");
 });
 
 // app.get("/travel/userTravel/:id", async (req, res) => {

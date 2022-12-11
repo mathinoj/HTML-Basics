@@ -15,6 +15,10 @@ const validateCard = (req, res, next) => {
     }
 };
 
+// router.get("/test", (req, res) => {
+//     res.render("/test/test");
+// });
+
 router.get(
     "/",
     catchAsync(async (req, res) => {
@@ -26,10 +30,6 @@ router.get(
 router.get("/new", (req, res) => {
     res.render("cards/new");
 });
-
-// router.get("/test", (req, res) => {
-//     res.render("/cards/test");
-// });
 
 router.post(
     "/",
