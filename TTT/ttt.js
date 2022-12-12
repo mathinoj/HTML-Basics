@@ -27,9 +27,33 @@ let clickBox = document.querySelector("#griddy");
 clickBox.addEventListener("click", function (e) {
     console.dir(e);
     console.dir(e.path);
+    console.dir(e.path[0].id);
+    let eyeD = e.path[0].id;
+    console.log(eyeD);
     console.dir(e.path[0].innerText);
     const hitIt = e.path[0].innerText;
-    alert(`Square ${hitIt} was toca'd!`);
+    // alert(`Square ${hitIt} was toca'd!`);
+
+    let count = document.getElementById("countClick").innerText;
+    console.log(count);
+    count++;
+    let upCount = document.querySelector("#countClick");
+    let another = (upCount.innerText = count);
+    console.log(another);
+
+    if (another % 2 != 0) {
+        // alert("X");
+        let getBoxX = document.getElementById(`${eyeD}`).innerHTML;
+        console.log(getBoxX);
+        let replaceX = getBoxX.replace(`${hitIt}`, "X");
+        document.getElementById(`${eyeD}`).innerHTML = replaceX;
+    } else {
+        // alert("O");
+        let getBoxO = document.getElementById(`${eyeD}`).innerHTML;
+        console.log(getBoxO);
+        let replaceO = getBoxO.replace(`${hitIt}`, "O");
+        document.getElementById(`${eyeD}`).innerHTML = replaceO;
+    }
 
     for (let i = 1; i <= matt.length; i++) {
         // console.log("this is i: " + i);
