@@ -65,11 +65,40 @@ clickBox.addEventListener("click", function (e) {
 let clickBoxWin = document.querySelector("#griddy");
 clickBoxWin.addEventListener("click", function (e) {
     console.log(clickBoxWin);
-    console.dir(e);
-    console.dir(e.path);
-    console.dir(e.path[0]);
-    const hitIt = e.path[0].innerText;
-    console.log("hitIt: " + hitIt);
+    console.log(clickBoxWin.children);
+
+    let boxing = document.getElementById("griddy").innerText;
+    const art = Array.from(boxing);
+    const removeNz = art.filter((removal) => {
+        return removal !== "\n";
+        //https://bobbyhadz.com/blog/javascript-remove-empty-strings-from-array
+    });
+    let matthias = removeNz.map(Number);
+    console.log(matthias);
+
+    for (let i = 1; i <= matthias.length; i++) {
+        // console.log(i);
+        // console.log(matthias);
+        // console.log(matthias.indexOf(i));
+        let indexed = matthias.indexOf(i);
+        console.log(indexed);
+
+        // const x = matthias.indexOf(matthias[i], i + 1);
+        // console.log(`${i}: ${x}`);
+        // https://stackoverflow.com/questions/59396013/javascript-using-an-indexof-inside-for-loop
+        // console.log(clickBoxWin.children[indexed]);
+        // console.log(clickBoxWin.children[indexed].innerText);
+    }
+
+    console.log(clickBoxWin.children[0]);
+    console.log(clickBoxWin.children[0].innerText);
+
+    // console.log(clickBoxWin);
+    // console.dir(e);
+    // console.dir(e.path);
+    // console.dir(e.path[0]);
+    // const hitIt = e.path[0].innerText;
+    // console.log("hitIt: " + hitIt);
     // if (hitIt == 1 && hitIt == 5 && hitIt == 9) {
     //     alert("win");
     // }
@@ -78,7 +107,7 @@ clickBoxWin.addEventListener("click", function (e) {
     let getBoxX = document.getElementById(`${eyeD}`).innerHTML;
     console.log(getBoxX);
 
-    if (getBoxX === "X") {
-        alert("win");
-    }
+    // if (getBoxX === "X") {
+    //     alert("win");
+    // }
 });
