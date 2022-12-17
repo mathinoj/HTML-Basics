@@ -140,12 +140,24 @@ clickBox.addEventListener("click", function (e) {
         // console.log(i);
         let firstValue = Object.values(removeNz)[i]; // 👉️ "Chile"
         console.log(firstValue);
-        // console.dir(e);
-        // console.dir(e.path);
+
+        let one = document.getElementById("one").innerText;
+        console.log(one);
+        let two = document.getElementById("two").innerText;
+        let three = document.getElementById("three").innerText;
+        let four = document.getElementById("four").innerText;
+        let five = document.getElementById("five").innerText;
+        let six = document.getElementById("six").innerText;
+        let seven = document.getElementById("seven").innerText;
+        let eight = document.getElementById("eight").innerText;
+        let nine = document.getElementById("nine").innerText;
+
+        console.dir(e);
+        console.dir(e.path);
         console.dir(e.path[0]);
         // console.dir(e.path[0].innerText);
         let going = e.path[0].innerText;
-
+        console.log(going);
         // console.dir(e.path[0].innerText);
 
         // console.log(removeNz);
@@ -169,8 +181,30 @@ clickBox.addEventListener("click", function (e) {
         // console.log("saver: " + saver);
         // let `hit${hitIt}` =
         // console.log("w/ indexOf(i): " + matthias.indexOf(i));
-        if (going === "X") {
+        // if (going === "X") {
+        if (
+            (one === "X" && five === "X" && nine === "X") ||
+            (three === "X" && five === "X" && seven === "X") ||
+            (one === "X" && four === "X" && seven === "X") ||
+            (two === "X" && five === "X" && eight === "X") ||
+            (three === "X" && six === "X" && nine === "X") ||
+            (one === "X" && two === "X" && three === "X") ||
+            (four === "X" && five === "X" && six === "X") ||
+            (seven === "X" && eight === "X" && nine === "X")
+        ) {
             alert("win");
+            break;
+        } else if (
+            (one === "O" && five === "O" && nine === "O") ||
+            (three === "O" && five === "O" && seven === "O") ||
+            (one === "O" && four === "O" && seven === "O") ||
+            (two === "O" && five === "O" && eight === "O") ||
+            (three === "O" && six === "O" && nine === "O") ||
+            (one === "O" && two === "O" && three === "O") ||
+            (four === "O" && five === "O" && six === "O") ||
+            (seven === "O" && eight === "O" && nine === "O")
+        ) {
+            alert("O win!");
             break;
         }
     }
