@@ -22,6 +22,10 @@ let clickBox = document.querySelector("#griddy");
 for (let i = 1; i <= clickBox.children.length; i++) {
     // console.log(i);
     // console.log(clickBox);
+    // console.log(clickBox.children);
+    // console.log(clickBox.children.length);
+    // const bart = Array.from(i);
+    // console.log(bart);
 }
 clickBox.addEventListener("click", function (e) {
     // console.dir(e);
@@ -31,7 +35,13 @@ clickBox.addEventListener("click", function (e) {
     console.log(eyeD);
     // console.dir(e.path[0].innerText);
     const hitIt = e.path[0].innerText;
+    console.log("hitIt: " + hitIt);
     // alert(`Square ${hitIt} was toca'd!`);
+    // let elementNum = document.getElementById(`hitIt`);
+    // console.log(elementNum);
+    // for (let i = 0; i <= elementNum.length; i++) {
+    //     console.log(i);
+    // }
 
     let count = document.getElementById("countClick").innerText;
     // console.log(count);
@@ -42,36 +52,35 @@ clickBox.addEventListener("click", function (e) {
 
     if (showNumChange % 2 != 0) {
         // alert("X");
-        // let getBoxX = document.getElementById(`${eyeD}`).innerHTML;
-        // console.log(getBoxX);
-        // let replaceX = getBoxX.replace(`${hitIt}`, "X");
-        // let matt = (document.getElementById(`${eyeD}`).innerHTML = replaceX);
-        // console.log(matt);
+        let getBoxX = document.getElementById(`${eyeD}`).innerHTML;
+        console.log(getBoxX);
+        let replaceX = getBoxX.replace(`${hitIt}`, "1");
+        let matt = (document.getElementById(`${eyeD}`).innerHTML = replaceX);
 
-        let getBoxX = document.getElementById(`${eyeD}`);
-        let createElemX = document.createElement("span");
-        createElemX.setAttribute("id", `${eyeD}`);
-        createElemX.innerText = "X";
-        getBoxX.append(createElemX);
+        // let getBoxX = document.getElementById(`${eyeD}`);
+        // let createElemX = document.createElement("span");
+        // createElemX.setAttribute("id", `${eyeD}`);
+        // createElemX.innerText = "X";
+        // getBoxX.append(createElemX);
     } else {
         // alert("O");
-        // let getBoxO = document.getElementById(`${eyeD}`).innerHTML;
-        // console.log(getBoxO);
-        // let replaceO = getBoxO.replace(`${hitIt}`, "O");
-        // document.getElementById(`${eyeD}`).innerHTML = replaceO;
+        let getBoxO = document.getElementById(`${eyeD}`).innerHTML;
+        console.log(getBoxO);
+        let replaceO = getBoxO.replace(`${hitIt}`, "0");
+        document.getElementById(`${eyeD}`).innerHTML = replaceO;
 
-        let getBoxO = document.getElementById(`${eyeD}`);
-        let createElemO = document.createElement("span");
-        createElemO.setAttribute("id", `${eyeD}`);
-        createElemO.innerHTML = "O";
-        getBoxO.append(createElemO);
+        // let getBoxO = document.getElementById(`${eyeD}`);
+        // let createElemO = document.createElement("span");
+        // createElemO.setAttribute("id", `${eyeD}`);
+        // createElemO.innerHTML = "O";
+        // getBoxO.append(createElemO);
     }
 
     console.dir(e);
     console.dir(e.path[0].innerText);
     let xoMan = e.path[0].innerText;
 
-    console.log("hitIt: " + hitIt);
+    // console.log("hitIt: " + hitIt);
     let takeOneAway = hitIt - 1;
     console.log(takeOneAway);
 
@@ -101,8 +110,16 @@ clickBox.addEventListener("click", function (e) {
     // }
     // console.dir(e.path[0].innerText);
     console.log("w/matthias const: " + matthias);
-    let newArr = matthias.concat(saver);
-    console.log(newArr);
+    // for (let i = 0; i <= matthias.length; i++) {
+    console.log(matthias);
+    const tart = Array.from(matthias);
+    console.log("If click 5 the index will be four, see: " + tart.indexOf("1"));
+    console.log(tart.length);
+    for (let i = 1; i <= matthias.length; i++) {
+        console.log("w/ indexOf(i): " + matthias.indexOf(i));
+    }
+    // let newArr = saver.concat(matthias);
+    // console.log(newArr);
     // const tart = Array.from(matthias);
     // console.log("saver: " + saver);
     // let `hit${hitIt}` =
