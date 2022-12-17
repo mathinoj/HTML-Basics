@@ -50,32 +50,6 @@ clickBox.addEventListener("click", function (e) {
     let showNumChange = (upCount.innerText = count);
     console.log(showNumChange);
 
-    if (showNumChange % 2 != 0) {
-        // alert("X");
-        let getBoxX = document.getElementById(`${eyeD}`).innerHTML;
-        console.log(getBoxX);
-        let replaceX = getBoxX.replace(`${hitIt}`, "1");
-        let matt = (document.getElementById(`${eyeD}`).innerHTML = replaceX);
-
-        // let getBoxX = document.getElementById(`${eyeD}`);
-        // let createElemX = document.createElement("span");
-        // createElemX.setAttribute("id", `${eyeD}`);
-        // createElemX.innerText = "X";
-        // getBoxX.append(createElemX);
-    } else {
-        // alert("O");
-        let getBoxO = document.getElementById(`${eyeD}`).innerHTML;
-        console.log(getBoxO);
-        let replaceO = getBoxO.replace(`${hitIt}`, "0");
-        document.getElementById(`${eyeD}`).innerHTML = replaceO;
-
-        // let getBoxO = document.getElementById(`${eyeD}`);
-        // let createElemO = document.createElement("span");
-        // createElemO.setAttribute("id", `${eyeD}`);
-        // createElemO.innerHTML = "O";
-        // getBoxO.append(createElemO);
-    }
-
     console.dir(e);
     console.dir(e.path[0].innerText);
     let xoMan = e.path[0].innerText;
@@ -91,19 +65,49 @@ clickBox.addEventListener("click", function (e) {
     // console.log("Matt: " + matt);
     // alert(i);
     // console.log(matt.indexOf(i));
+
+    if (showNumChange % 2 != 0) {
+        // alert("X");
+        let getBoxX = document.getElementById(`${eyeD}`).innerHTML;
+        console.log(getBoxX);
+        let replaceX = getBoxX.replace(`${hitIt}`, "X");
+        let matt = (document.getElementById(`${eyeD}`).innerHTML = replaceX);
+
+        // let getBoxX = document.getElementById(`${eyeD}`);
+        // let createElemX = document.createElement("span");
+        // createElemX.setAttribute("id", `${eyeD}`);
+        // createElemX.innerText = "X";
+        // getBoxX.append(createElemX);
+    } else {
+        // alert("O");
+        let getBoxO = document.getElementById(`${eyeD}`).innerHTML;
+        console.log(getBoxO);
+        let replaceO = getBoxO.replace(`${hitIt}`, "O");
+        document.getElementById(`${eyeD}`).innerHTML = replaceO;
+
+        // let getBoxO = document.getElementById(`${eyeD}`);
+        // let createElemO = document.createElement("span");
+        // createElemO.setAttribute("id", `${eyeD}`);
+        // createElemO.innerHTML = "O";
+        // getBoxO.append(createElemO);
+    }
     const boxing = document.getElementById("griddy").innerText;
+    console.log(boxing);
     const art = Array.from(boxing);
+    console.log(art);
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from
     const removeNz = art.filter((removal) => {
         return removal !== "\n";
         //https://bobbyhadz.com/blog/javascript-remove-empty-strings-from-array
     });
+    console.log(removeNz);
     const matthias = removeNz.map(Number);
+    console.log(matthias);
     // console.log(matthias.length);
     // console.log(matthias.indexOf(9));
     // console.log(takeOneAway);
-    const saver = matthias.splice(`${takeOneAway}`, 1, `${xoMan}`);
-    console.log("saver: " + saver);
+    // const saver = matthias.splice(`${takeOneAway}`, 1, `${xoMan}`);
+    // console.log("saver: " + saver);
 
     // console.log("current arrary w/matthias const: " + matthias);
     // const maver = Array.from(saver);
@@ -112,17 +116,69 @@ clickBox.addEventListener("click", function (e) {
     console.log("w/matthias const: " + matthias);
     // for (let i = 0; i <= matthias.length; i++) {
     console.log(matthias);
+    console.log("removeNz: " + removeNz);
+    console.log(Object.values(removeNz));
+    let rst = Object.values(removeNz).length;
+    // console.log(rst);
+    //     const firstValue = Object.values(obj)[0]; // 👉️ "Chile"
+    // console.log(firstValue);
+
+    // const firstValue = Object.values(removeNz)[8]; // 👉️ "Chile"
+    // console.log(firstValue);
+
     const tart = Array.from(matthias);
-    console.log("If click 5 the index will be four, see: " + tart.indexOf("1"));
-    console.log(tart.length);
-    for (let i = 1; i <= matthias.length; i++) {
-        console.log("w/ indexOf(i): " + matthias.indexOf(i));
+    // console.log(
+    //     `You clicked ${hitIt}, the index for this is: ` + tart.indexOf(saver)
+    // );
+    // console.log(
+    //     `You clicked ${hitIt}, the index for this [0] is: ` + tart.indexOf("0")
+    // );
+    // console.log(tart.length);
+    // console.log(matthias.length);
+
+    for (let i = 0; i < removeNz.length; i++) {
+        // console.log(i);
+        let firstValue = Object.values(removeNz)[i]; // 👉️ "Chile"
+        console.log(firstValue);
+        // console.dir(e);
+        // console.dir(e.path);
+        console.dir(e.path[0]);
+        // console.dir(e.path[0].innerText);
+        let going = e.path[0].innerText;
+
+        // console.dir(e.path[0].innerText);
+
+        // console.log(removeNz);
+
+        // console.log(firstValue.indexOf(8));
+        // console.log(matthias.indexOf(i));
+        // let minusOne = matthias.length - 1;
+        // console.log(minusOne);
+        // const bee = Array.from(minusOne);
+        // console.log(bee);
+        // let indexed = matthias.indexOf(i);
+        // console.log(indexed);
+        // let plusX = "1" + i;
+        // console.log(plusX);
+        // let plusO = "0" + i;
+        // console.log(plusO);
+        ////////////////////////////////////////////////////////////////////////
+        // let newArr = saver.concat(matthias);
+        // console.log(newArr);
+        // const tart = Array.from(matthias);
+        // console.log("saver: " + saver);
+        // let `hit${hitIt}` =
+        // console.log("w/ indexOf(i): " + matthias.indexOf(i));
+        if (going === "X") {
+            alert("win");
+            break;
+        }
     }
-    // let newArr = saver.concat(matthias);
-    // console.log(newArr);
-    // const tart = Array.from(matthias);
-    // console.log("saver: " + saver);
-    // let `hit${hitIt}` =
+    // console.log("all array update w/ removeNz: " + removeNz);
+    let best = Object.values(removeNz);
+    console.log("Array should update: " + best);
+
+    // console.log("all array update w/ firstValue: " + firstValue);
 });
 
 let clickBoxWin = document.querySelector("#griddy");
@@ -224,11 +280,11 @@ clickBoxWin.addEventListener("click", function (e) {
     //     //     alert("win");
     //     // }
     const hitIt = e.path[0].innerText;
-    console.log(hitIt);
+    // console.log(hitIt);
     let xoMan = e.path[0].innerText;
 
     let takeOneAway = hitIt - 1;
-    console.log(takeOneAway);
+    // console.log(takeOneAway);
 
     const boxing = document.getElementById("griddy").innerText;
     const art = Array.from(boxing);
