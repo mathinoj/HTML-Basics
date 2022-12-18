@@ -1,22 +1,3 @@
-const getIt = document.getElementById("griddy").innerText;
-// console.log(getIt);
-const arrr = Array.from(getIt);
-// console.log(arrr);
-const removeNs = arrr.filter((removal) => {
-    return removal !== "\n";
-    //https://bobbyhadz.com/blog/javascript-remove-empty-strings-from-array
-});
-// console.log(removeNs);
-let matt = removeNs.map(Number);
-// console.log(matt);
-let inSpan = document.querySelectorAll("span");
-// console.log(inSpan);
-for (let i = 1; i <= inSpan.length; i++) {
-    // console.log(i);
-}
-// const rando = Math.floor(Math.random() * matt.length) + 1;
-// console.log(rando);
-console.log();
 let clickBox = document.querySelector("#griddy");
 clickBox.addEventListener("click", function (e) {
     let eyeD = e.path[0].id;
@@ -47,21 +28,26 @@ clickBox.addEventListener("click", function (e) {
         let showX = (document.getElementById(`${eyeD}`).innerHTML = replaceX);
         console.log(showX);
 
+        //Was trying something different with ARRAY-------------------
         // let getBoxX = document.getElementById(`${eyeD}`);
         // let createElemX = document.createElement("span");
         // createElemX.setAttribute("id", `${eyeD}`);
         // createElemX.innerText = "X";
         // getBoxX.append(createElemX);
-        // } else {
+        //Was trying something different with ARRAY^^^^^^^^^^^^^^^^^^^^
     } else if (getBoxO !== "X") {
         let replaceO = getBoxO.replace(`${hitIt}`, "O");
         document.getElementById(`${eyeD}`).innerHTML = replaceO;
 
+        //Was trying something different with ARRAY-------------------
         // let getBoxO = document.getElementById(`${eyeD}`);
         // let createElemO = document.createElement("span");
         // createElemO.setAttribute("id", `${eyeD}`);
         // createElemO.innerHTML = "O";
         // getBoxO.append(createElemO);
+        //Was trying something different with ARRAY^^^^^^^^^^^^^^^^^^^^
+    } else if (getBoxX == "O" || getBoxO == "X") {
+        alert("llll");
     }
 
     let one = document.getElementById("one").innerText;
@@ -104,23 +90,40 @@ clickBox.addEventListener("click", function (e) {
         alert("O wins!");
         // break;
     }
-
-    //THIS WAS AN ATTEMPT TO CHANGE THE ARRAY!!!!!!!!!!!!!
-    // const boxing = document.getElementById("griddy").innerText;
-    // const art = Array.from(boxing);
-    // // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from
-    // const removeNz = art.filter((removal) => {
-    //     return removal !== "\n";
-    //     //https://bobbyhadz.com/blog/javascript-remove-empty-strings-from-array
-    // });
-    // const matthias = removeNz.map(Number);
-
-    // let rst = Object.values(removeNz).length;
-    // const tart = Array.from(matthias);
-
-    // for (let i = 0; i < removeNz.length; i++) {
-    //     let firstValue = Object.values(removeNz)[i]; // 👉️ "Chile"
-    //     console.log(firstValue);
-    // }
-    //THIS WAS AN ATTEMPT TO CHANGE THE ARRAY!!!!!!!!!!!!!
 });
+//THIS WAS AN ATTEMPT TO CHANGE THE ARRAY!!!!!!!!!!!!!
+//     const getIt = document.getElementById("griddy").innerText;
+// // console.log(getIt);
+// const arrr = Array.from(getIt);
+// // console.log(arrr);
+// const removeNs = arrr.filter((removal) => {
+//     return removal !== "\n";
+//     //https://bobbyhadz.com/blog/javascript-remove-empty-strings-from-array
+// });
+// // console.log(removeNs);
+// let matt = removeNs.map(Number);
+// // console.log(matt);
+// let inSpan = document.querySelectorAll("span");
+// // console.log(inSpan);
+// for (let i = 1; i <= inSpan.length; i++) {
+//     // console.log(i);
+// }
+// const rando = Math.floor(Math.random() * matt.length) + 1;
+// console.log(rando);
+// const boxing = document.getElementById("griddy").innerText;
+// const art = Array.from(boxing);
+// // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from
+// const removeNz = art.filter((removal) => {
+//     return removal !== "\n";
+//     //https://bobbyhadz.com/blog/javascript-remove-empty-strings-from-array
+// });
+// const matthias = removeNz.map(Number);
+
+// let rst = Object.values(removeNz).length;
+// const tart = Array.from(matthias);
+
+// for (let i = 0; i < removeNz.length; i++) {
+//     let firstValue = Object.values(removeNz)[i]; // 👉️ "Chile"
+//     console.log(firstValue);
+// }
+//THIS WAS AN ATTEMPT TO CHANGE THE ARRAY!!!!!!!!!!!!!
