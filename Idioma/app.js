@@ -24,9 +24,17 @@ app.get("/", (req, res) => {
 
 app.get("/allCards", async (req, res) => {
     const allCards = await Idioma.find({});
-    // console.log(allLanguage);
+    // console.log(allCards);
     // res.send("Everything her!");
     res.render("index", { allCards });
+});
+
+app.get("/card/:id", async (req, res) => {
+    const { id } = req.params;
+    const card = await Idioma.findById(id);
+    // console.log(card);
+    // res.send("Specifc card page. More detailed.");
+    res.render("show");
 });
 
 // app.get("/makeLanguage", async (req, res) => {
