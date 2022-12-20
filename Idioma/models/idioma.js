@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema; // used as a shortcut cuz we reference this a lot
 
-const LanguageSchema = new Schema({
+const IdiomaSchema = new Schema({
     card: String,
     hint: String,
     english: String,
@@ -10,4 +10,4 @@ const LanguageSchema = new Schema({
     hintTwo: String,
 });
 
-module.exports = mongoose.model("Language", LanguageSchema);
+module.exports = mongoose.model("Idioma", IdiomaSchema);

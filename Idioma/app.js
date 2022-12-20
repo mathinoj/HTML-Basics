@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
-const Language = require("./models/language");
+const Idioma = require("./models/idioma");
 
 mongoose.connect("mongodb://localhost:27017/idioma", {});
 
@@ -22,10 +22,11 @@ app.get("/", (req, res) => {
     res.render("home");
 });
 
-app.get("/allLanguage", async (req, res) => {
-    const allLanguage = await Language.find({});
-    console.log(allLanguage);
-    res.send("Everything her!");
+app.get("/allIdioma", async (req, res) => {
+    const allIdioma = await Idioma.find({});
+    // console.log(allLanguage);
+    // res.send("Everything her!");
+    res.render("index", { allIdioma });
 });
 
 // app.get("/makeLanguage", async (req, res) => {
