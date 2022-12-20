@@ -38,13 +38,15 @@ app.post("/cards", async (req, res) => {
     const newCard = new Idioma(req.body);
     await newCard.save();
 
-    console.log(newCard);
+    // console.log(newCard);
+    // res.send("makin card TEST 2");
     // console.log(req.body);
-    res.send("makin card");
+    // res.send("makin card TEST 1");
+    res.redirect(`/cards/${newCard._id}`);
 });
 //When we have a post request and we want information from the post request body. We don't have access to request body immediately. It's just undefined, nothing is there. It's not going to be parsed. We need to tell express to use that middleware.
 
-app.get("/card/:id", async (req, res) => {
+app.get("/cards/:id", async (req, res) => {
     const { id } = req.params;
     const card = await Idioma.findById(id);
     // console.log(card);
