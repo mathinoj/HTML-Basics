@@ -17,6 +17,7 @@ const app = express();
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
+// When we have a post request and we want information from the post request body. We don't have access to request body immediately. It's just undefined, nothing is there. It's not going to be parsed. We need to tell express to use that middleware (parsing middleware).
 
 app.get("/", (req, res) => {
     // res.send("hello idiotma"); THIS WAS DONE AS A TEST TO SEE CONNECTION
@@ -44,14 +45,20 @@ app.post("/cards", async (req, res) => {
     // res.send("makin card TEST 1");
     res.redirect(`/cards/${newCard._id}`);
 });
-//When we have a post request and we want information from the post request body. We don't have access to request body immediately. It's just undefined, nothing is there. It's not going to be parsed. We need to tell express to use that middleware.
+// SEE UNDER: app.use(express.urlencoded({ extended: true }));
 
 app.get("/cards/:id", async (req, res) => {
-    const { id } = req.params;
+    // const { id } = req.params;
     const card = await Idioma.findById(id);
     // console.log(card);
     // res.send("Specifc card page. More detailed.");
     res.render("cards/show", { card });
+});
+
+app.get("cards/:id/edit", async (req, res) => {
+    const { id } = req.params;
+    const editCard = await Idioma.findById(id);
+    res.render("/cards/edit", { editCard });
 });
 
 // app.get("/makeLanguage", async (req, res) => {
