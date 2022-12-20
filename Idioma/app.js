@@ -29,16 +29,16 @@ app.get("/allCards", async (req, res) => {
     res.render("cards/index", { allCards });
 });
 
+app.get("/card/new", (req, res) => {
+    res.render("cards/new");
+});
+
 app.get("/card/:id", async (req, res) => {
     const { id } = req.params;
     const card = await Idioma.findById(id);
     // console.log(card);
     // res.send("Specifc card page. More detailed.");
     res.render("cards/show", { card });
-});
-
-app.get("/card/new", (req, res) => {
-    res.render("cards/new");
 });
 
 // app.get("/makeLanguage", async (req, res) => {
