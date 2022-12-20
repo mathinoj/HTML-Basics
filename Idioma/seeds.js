@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Language = require("./models/language");
+const Idioma = require("./models/idioma");
 
 mongoose.connect("mongodb://localhost:27017/idioma", {});
 
@@ -54,9 +54,15 @@ const seedLanguages = [
         hintOne: "Starts with C",
         hintTwo: "Ends with A",
     },
+    {
+        english: "Five",
+        spanish: "Cinco",
+        hintOne: "Starts with C",
+        hintTwo: "Ends with O",
+    },
 ];
 
-Language.insertMany(seedLanguages)
+Idioma.insertMany(seedLanguages)
     .then((res) => {
         console.log(res);
     })

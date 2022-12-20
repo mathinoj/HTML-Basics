@@ -22,11 +22,11 @@ app.get("/", (req, res) => {
     res.render("home");
 });
 
-app.get("/allIdioma", async (req, res) => {
-    const allIdioma = await Idioma.find({});
+app.get("/allCards", async (req, res) => {
+    const allCards = await Idioma.find({});
     // console.log(allLanguage);
     // res.send("Everything her!");
-    res.render("index", { allIdioma });
+    res.render("index", { allCards });
 });
 
 // app.get("/makeLanguage", async (req, res) => {
