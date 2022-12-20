@@ -8,7 +8,8 @@
     </head>
     <body>
         <h1>Edit A Card</h1>
-        <form action="/cards/<%=editCard._id%>" method="POST">
+        <form action="/cards/<%=editCard._id%>?_method=PUT" method="POST">
+            <!-- THIS SHOULD SEND A PUT REQUEST -->
             <div>
                 <label for="english">English</label>
                 <!-- for in label has to match id below -->
@@ -18,22 +19,26 @@
                     id="english"
                     name="english"
                     placeholder="English"
-                    value="<%=editCard.english%>"
                     required
-                ></textarea>
+                    value="<%=editCard.english%>"
+                >
+<%=editCard.english%></textarea
+                >
             </div>
             <!-- How do we set the value on an input? We set the attribute called 'value' -->
             <div>
                 <label for="spanish">Spanish</label>
                 <textarea
-                    placeholder="Spanish"
                     class="form-control"
                     type="text"
                     id="spanish"
                     name="spanish"
-                    value="<%=editCard.spanish%>"
+                    placeholder="Spanish"
                     required
-                ></textarea>
+                    value="<%=editCard.spanish%>"
+                >
+<%=editCard.spanish%></textarea
+                >
             </div>
             <div>
                 <label for="hintOne">Hint One</label>
