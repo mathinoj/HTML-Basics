@@ -37,6 +37,10 @@ app.get("/card/:id", async (req, res) => {
     res.render("cards/show", { card });
 });
 
+app.get("/card/new", (req, res) => {
+    res.render("cards/new");
+});
+
 // app.get("/makeLanguage", async (req, res) => {
 //     const langCard = new Language({
 //         english: "hello",
