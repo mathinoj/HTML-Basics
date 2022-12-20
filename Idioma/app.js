@@ -48,17 +48,17 @@ app.post("/cards", async (req, res) => {
 // SEE UNDER: app.use(express.urlencoded({ extended: true }));
 
 app.get("/cards/:id", async (req, res) => {
-    // const { id } = req.params;
+    const { id } = req.params;
     const card = await Idioma.findById(id);
     // console.log(card);
     // res.send("Specifc card page. More detailed.");
     res.render("cards/show", { card });
 });
 
-app.get("cards/:id/edit", async (req, res) => {
+app.get("/cards/:id/edit", async (req, res) => {
     const { id } = req.params;
     const editCard = await Idioma.findById(id);
-    res.render("/cards/edit", { editCard });
+    res.render("cards/edit", { editCard });
 });
 
 // app.get("/makeLanguage", async (req, res) => {
