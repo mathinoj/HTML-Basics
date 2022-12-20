@@ -34,7 +34,7 @@ app.get("/card/:id", async (req, res) => {
     const card = await Idioma.findById(id);
     // console.log(card);
     // res.send("Specifc card page. More detailed.");
-    res.render("cards/show");
+    res.render("cards/show", { card });
 });
 
 // app.get("/makeLanguage", async (req, res) => {
