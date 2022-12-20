@@ -14,24 +14,35 @@ db.once("open", () => {
 
 const app = express();
 
-app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
+app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
     // res.send("hello idiotma"); THIS WAS DONE AS A TEST TO SEE CONNECTION
     res.render("home");
 });
 
-app.get("/allCards", async (req, res) => {
+app.get("/cards", async (req, res) => {
     const allCards = await Idioma.find({});
     // console.log(allCards);
     // res.send("Everything her!");
     res.render("cards/index", { allCards });
 });
 
-app.get("/card/new", (req, res) => {
+app.get("/cards/new", (req, res) => {
     res.render("cards/new");
 });
+
+app.post("/cards", async (req, res) => {
+    const newCard = new Idioma(req.body);
+    await newCard.save();
+
+    console.log(newCard);
+    // console.log(req.body);
+    res.send("makin card");
+});
+//When we have a post request and we want information from the post request body. We don't have access to request body immediately. It's just undefined, nothing is there. It's not going to be parsed. We need to tell express to use that middleware.
 
 app.get("/card/:id", async (req, res) => {
     const { id } = req.params;
