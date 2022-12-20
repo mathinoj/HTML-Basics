@@ -22,14 +22,20 @@ app.get("/", (req, res) => {
     res.render("home");
 });
 
-app.get("/makeLanguage", async (req, res) => {
-    const langCard = new Language({
-        english: "hello",
-        spanish: "hola",
-    });
-    await langCard.save();
-    res.send(langCard);
+app.get("/allLanguage", async (req, res) => {
+    const allLanguage = await Language.find({});
+    console.log(allLanguage);
+    res.send("Everything her!");
 });
+
+// app.get("/makeLanguage", async (req, res) => {
+//     const langCard = new Language({
+//         english: "hello",
+//         spanish: "hola",
+//     });
+//     await langCard.save();
+//     res.send(langCard);
+// });
 
 app.listen(3000, () => {
     console.log("Connected to pizort 3000!");
