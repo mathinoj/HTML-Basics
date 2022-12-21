@@ -15,5 +15,9 @@
         </div>
         <a href="/cards">All Cards</a>
         <a href="/cards/<%=card._id%>/edit">Edit Card</a>
+        <form action="/cards/<%=card._id%>?_method=DELETE" method="POST">
+            <button>Delete</button>
+        </form>
+        <!-- CAN ONLY DO GET OR POST -->
     </body>
 </html>

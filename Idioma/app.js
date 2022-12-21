@@ -39,7 +39,9 @@ app.get("/cards/new", (req, res) => {
 });
 
 app.post("/cards", async (req, res) => {
-    const newCard = new Idioma(req.body);
+    // const newCard = new Idioma(req.body);
+    // await newCard.save();
+    const newCard = new Idioma(req.body.newCard);
     await newCard.save();
 
     // console.log(newCard);
@@ -51,29 +53,41 @@ app.post("/cards", async (req, res) => {
 // SEE UNDER: app.use(express.urlencoded({ extended: true }));
 
 app.get("/cards/:id", async (req, res) => {
-    const { id } = req.params;
-    const card = await Idioma.findById(id);
+    // const { id } = req.params;
+    // const card = await Idioma.findById(id);
+    const card = await Idioma.findById(req.params.id);
     // console.log(card);
     // res.send("Specifc card page. More detailed.");
     res.render("cards/show", { card });
 });
 
 app.get("/cards/:id/edit", async (req, res) => {
-    const { id } = req.params;
-    const editCard = await Idioma.findById(id);
+    // const { id } = req.params;
+    // const editCard = await Idioma.findById(id);
+    const editCard = await Idioma.findById(req.params.id);
     res.render("cards/edit", { editCard });
 });
 
 app.put("/cards/:id", async (req, res) => {
     //from a FORM we cant make a put request, which is why we'll need to do a METHOD OVERRIDE. npm i method-override --> will go in terminal. THEN we have to require it (see TOP)
     const { id } = req.params;
-    const card = await Idioma.findByIdAndUpdate(id, req.body, {
-        runValidators: true,
-        new: true,
-    });
+    console.log("this is id: " + { id });
+    // const card = await Idioma.findByIdAndUpdate(id, req.body, {
+    //passes is in ID and then pass in our DATA(req.body). So were taking the entire body of the EJS file
+    //     runValidators: true,
+    //     new: true,
+    // });
     //first argument is ID, second arg is how we want to update, third is options
+    const card = await Idioma.findByIdAndUpdate(id, { ...req.body.editCard });
+    console.log("this is card: " + card);
+    //we take in what is request.body.editCard
+    //we use the ...(spread operator) because it takes in the properties, the key-value pairs from one area and copies/adds/combines them to the new object. So here it takes the the edit.ejs file and grabs the keys (textarea & input) and their values (whatever edits are made by user) and adds them to the new object (const card), which we
+
+    //we copy everything over from req.body.editCard of the specific card which was gotten by the id paramater before it.
     res.redirect(`/cards/${card._id}`);
-    // console.log(req.body);
+    console.log("here: " + card._id);
+    //Do redirect cuz we don't want to send a POST request again (if we hit refresh it would make the same product again). Also we never send back an HTML response from a POST route (POST route is in edit.ejs). Therefore we redirect.
+    // console.log(req.body); BEFORE ALL ABOVE, did these two as TEST!!
     // res.send("pUt!!");
 });
 
@@ -84,6 +98,13 @@ app.put("/cards/:id", async (req, res) => {
 //patch request is changing a portion of an object or document
 
 // We could honestly get away with either one here. We do a put request because we are taking everything from this form, whatever the values are, and we're going to update the given product. Maybe we could have a route called Change Quantity, and we don't have quantity, but we could have a single route dedicated to changing category or quantity, in which case that would be a patch request most likely.
+
+app.delete("/cards/:id", async (req, res) => {
+    // res.send("delete wrukin"); TEST 1
+    const { id } = req.params;
+    const deletedCard = await Idioma.findByIdAndDelete(id);
+    res.redirect("/cards");
+});
 
 // app.get("/makeLanguage", async (req, res) => {
 //     const langCard = new Language({

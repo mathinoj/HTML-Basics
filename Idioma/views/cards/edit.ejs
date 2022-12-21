@@ -17,7 +17,7 @@
                     class="form-control"
                     type="text"
                     id="english"
-                    name="english"
+                    name="editCard[english]"
                     placeholder="English"
                     required
                     value="<%=editCard.english%>"
@@ -32,7 +32,7 @@
                     class="form-control"
                     type="text"
                     id="spanish"
-                    name="spanish"
+                    name="editCard[spanish]"
                     placeholder="Spanish"
                     required
                     value="<%=editCard.spanish%>"
@@ -46,7 +46,7 @@
                     class="form-control"
                     type="text"
                     id="hintOne"
-                    name="hintOne"
+                    name="editCard[hintOne]"
                     placeholder="Hint One"
                     value="<%=editCard.hintOne%>"
                     required
@@ -58,7 +58,7 @@
                     class="form-control"
                     type="text"
                     id="hintTwo"
-                    name="hintTwo"
+                    name="editCard[hintTwo]"
                     placeholder="Hint Two"
                     value="<%=editCard.hintTwo%>"
                     required
@@ -67,5 +67,6 @@
             <button>Submit</button>
         </form>
         <a href="/cards">All Cards</a>
+        <a href="/cards/<%=editCard._id%>">Back To Cards</a>
     </body>
 </html>
