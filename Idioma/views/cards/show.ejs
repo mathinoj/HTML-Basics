@@ -1,9 +1,13 @@
 <% layout('/layouts/boilerplate') %>
 <div class="card" style="width: 18rem">
+    <div class="card-header">
+        <h3 class="card-title">Idiom</h3>
+    </div>
     <div class="card-body">
-        <h5 class="card-title">Idiom</h5>
         <p class="card-text"><%= card.english%></p>
-        <hr />
+    </div>
+    <hr />
+    <div class="card-body">
         <p class="card-text"><%= card.spanish%></p>
     </div>
     <ul class="list-group list-group-flush">
@@ -11,8 +15,8 @@
         <li class="list-group-item"><%= card.hintTwo%></li>
     </ul>
     <div class="card-body">
-        <a href="/cards" class="card-link btn btn-secondary">All Cards</a>
-        <a href="/cards/<%=card._id%>/edit" class="card-link btn btn-secondary"
+        <a href="/cards" class="btn btn-success btn-outline-dark">All Cards</a>
+        <a href="/cards/<%=card._id%>/edit" class="btn btn-outline-dark"
             >Edit</a
         >
         <form
@@ -20,7 +24,7 @@
             action="/cards/<%=card._id%>?_method=DELETE"
             method="POST"
         >
-            <button class="btn btn-secondary">Delete</button>
+            <button class="btn btn-danger btn-outline-dark">Delete</button>
         </form>
     </div>
 </div>
