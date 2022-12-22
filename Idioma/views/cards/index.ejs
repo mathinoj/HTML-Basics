@@ -1,9 +1,15 @@
 <% layout('/layouts/boilerplate') %>
+<!-- <h1>View All</h1> -->
+
 <h1>View All</h1>
 <% for(let allCard of allCards) { %>
-<h3><a href="/cards/<%=allCard._id%>"><%= allCard.english%></a></h3>
-<!-- <h4><%= allCard.spanish%></h4>
-        <h5><%= allCard.hintOne%></h5>
-        <h5><%= allCard.hintTwo%></h5> -->
+<div class="card" style="width: 12rem">
+    <div class="card-body">
+        <!-- <h5 class="card-title">Special title treatment</h5> -->
+        <h3 class="card-text"><%= allCard.english%></h3>
+        <a href="/cards/<%=allCard._id%>" class="btn btn-primary">View Card</a>
+    </div>
+</div>
 <% } %>
+
 <a href="/cards/new">Make Card</a>

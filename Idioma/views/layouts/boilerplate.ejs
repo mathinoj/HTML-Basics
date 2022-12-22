@@ -12,10 +12,14 @@
             crossorigin="anonymous"
         />
     </head>
-    <body>
+    <body class="d-flex flex-column vh-100">
+        <!-- with only d-flex, its a row. So it would look like navbar (onleft side) and View All cards to the right of it, like a 50/50 split screen -->
+        <!-- W/ d-flex flex-column it sets the container to go from top to bottom, not left to right (row), like if it was just d-flex -->
+        <!-- 100 view hieght units -->
+
         <%- include("../partials/navbar") %>
         <main class="container mt-5"><%- body %></main>
-        <!-- added mt-5 margin top-->
+        <%- include("../partials/footer") %>
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
