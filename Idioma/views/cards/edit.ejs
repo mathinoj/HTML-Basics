@@ -56,7 +56,11 @@
             required
         />
     </div>
-    <button>Submit</button>
+    <div class="buttons mt-3">
+        <button class="btn btn-success btn-outline-dark">Submit</button>
+        <a href="/cards/<%=editCard._id%>" class="btn btn-outline-dark"
+            >Back to Card</a
+        >
+        <a href="/cards" class="btn btn-danger btn-outline-dark">All Cards</a>
+    </div>
 </form>
-<a href="/cards">All Cards</a>
-<a href="/cards/<%=editCard._id%>">Back To Card</a>
