@@ -1,72 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Edit Card</title>
-    </head>
-    <body>
-        <h1>Edit A Card</h1>
-        <form action="/cards/<%=editCard._id%>?_method=PUT" method="POST">
-            <!-- THIS SHOULD SEND A PUT REQUEST -->
-            <div>
-                <label for="english">English</label>
-                <!-- for in label has to match id below -->
-                <textarea
-                    class="form-control"
-                    type="text"
-                    id="english"
-                    name="editCard[english]"
-                    placeholder="English"
-                    required
-                    value="<%=editCard.english%>"
-                >
+<% layout('/layouts/boilerplate') %>
+<h1>Edit A Card</h1>
+<form action="/cards/<%=editCard._id%>?_method=PUT" method="POST">
+    <!-- THIS SHOULD SEND A PUT REQUEST -->
+    <div>
+        <label for="english">English</label>
+        <!-- for in label has to match id below -->
+        <textarea
+            class="form-control"
+            type="text"
+            id="english"
+            name="editCard[english]"
+            placeholder="English"
+            required
+            value="<%=editCard.english%>"
+        >
 <%=editCard.english%></textarea
-                >
-            </div>
-            <!-- How do we set the value on an input? We set the attribute called 'value' -->
-            <div>
-                <label for="spanish">Spanish</label>
-                <textarea
-                    class="form-control"
-                    type="text"
-                    id="spanish"
-                    name="editCard[spanish]"
-                    placeholder="Spanish"
-                    required
-                    value="<%=editCard.spanish%>"
-                >
+        >
+    </div>
+    <!-- How do we set the value on an input? We set the attribute called 'value' -->
+    <div>
+        <label for="spanish">Spanish</label>
+        <textarea
+            class="form-control"
+            type="text"
+            id="spanish"
+            name="editCard[spanish]"
+            placeholder="Spanish"
+            required
+            value="<%=editCard.spanish%>"
+        >
 <%=editCard.spanish%></textarea
-                >
-            </div>
-            <div>
-                <label for="hintOne">Hint One</label>
-                <input
-                    class="form-control"
-                    type="text"
-                    id="hintOne"
-                    name="editCard[hintOne]"
-                    placeholder="Hint One"
-                    value="<%=editCard.hintOne%>"
-                    required
-                />
-            </div>
-            <div>
-                <label for="hintTwo">Hint Two</label>
-                <input
-                    class="form-control"
-                    type="text"
-                    id="hintTwo"
-                    name="editCard[hintTwo]"
-                    placeholder="Hint Two"
-                    value="<%=editCard.hintTwo%>"
-                    required
-                />
-            </div>
-            <button>Submit</button>
-        </form>
-        <a href="/cards">All Cards</a>
-        <a href="/cards/<%=editCard._id%>">Back To Cards</a>
-    </body>
-</html>
+        >
+    </div>
+    <div>
+        <label for="hintOne">Hint One</label>
+        <input
+            class="form-control"
+            type="text"
+            id="hintOne"
+            name="editCard[hintOne]"
+            placeholder="Hint One"
+            value="<%=editCard.hintOne%>"
+            required
+        />
+    </div>
+    <div>
+        <label for="hintTwo">Hint Two</label>
+        <input
+            class="form-control"
+            type="text"
+            id="hintTwo"
+            name="editCard[hintTwo]"
+            placeholder="Hint Two"
+            value="<%=editCard.hintTwo%>"
+            required
+        />
+    </div>
+    <button>Submit</button>
+</form>
+<a href="/cards">All Cards</a>
+<a href="/cards/<%=editCard._id%>">Back To Card</a>

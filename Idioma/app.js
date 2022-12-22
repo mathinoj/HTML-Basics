@@ -1,6 +1,8 @@
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
+const ejsMate = require("ejs-mate");
+//^^One of many engines used to run or PARSE and basically make sense of EJS
 const Idioma = require("./models/idioma");
 const methodOverride = require("method-override");
 
@@ -15,6 +17,8 @@ db.once("open", () => {
 
 const app = express();
 
+app.engine("ejs", ejsMate);
+//^^Here we tell EXPRESS which one we want to use instead of the default one its relying on
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
