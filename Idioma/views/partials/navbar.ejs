@@ -1,6 +1,7 @@
-<nav class="navbar navbar-expand-lg bg-light">
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+    <!-- added: navbar-dark -- changed to:bg-dark -- added sticky-top but it might not do anything since were using updated version of BS from what Colt S. is using-->
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="#">Idioma</a>
         <button
             class="navbar-toggler"
             type="button"
@@ -15,12 +16,14 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#"
-                        >Home</a
-                    >
+                    <a class="nav-link active" href="/">Home</a>
+                    <!-- removed: aria-current="page"  from HOME -->
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                    <a class="nav-link" href="/cards">All Cards</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/cards/new">Make New Card</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a
@@ -45,21 +48,10 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link disabled">Disabled</a>
-                </li>
+                </li> -->
             </ul>
-            <form class="d-flex" role="search">
-                <input
-                    class="form-control me-2"
-                    type="search"
-                    placeholder="Search"
-                    aria-label="Search"
-                />
-                <button class="btn btn-outline-success" type="submit">
-                    Search
-                </button>
-            </form>
         </div>
     </div>
 </nav>
