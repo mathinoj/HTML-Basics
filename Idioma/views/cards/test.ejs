@@ -1,20 +1,29 @@
 <% layout('/layouts/boilerplate') %>
 <h1>Test</h1>
+<button id="butty" class="btn btn-primary btn-outline-dark" onclick="clicky">
+    Start Test
+</button>
 <% for(let randomDoc of randomDocs) { %>
 <div class="card" style="width: 18rem">
     <div class="card-body">
         <h5 class="card-title">Card title</h5>
+        <h3 class="card-text"><%= randomDoc.english%></h3>
     </div>
-    <h3 class="card-text"><%= randomDoc.english%></h3>
 
-    <!-- <ul class="list-group list-group-flush">
-        <li class="list-group-item">An item</li>
+    <ul class="list-group list-group-flush">
+        <!-- <li class="list-group-item">An item</li>
         <li class="list-group-item">A second item</li>
-        <li class="list-group-item">A third item</li>
+        <li class="list-group-item">A third item</li> -->
+        <li class="list-group-item"><%= randomDoc.hintOne%></li>
+
+        <li class="list-group-item"><%= randomDoc.hintTwo%></li>
+        <li class="list-group-item">
+            <a href="#" class="card-link">Hint One</a>
+        </li>
     </ul>
     <div class="card-body">
-        <a href="#" class="card-link">Card link</a>
         <a href="#" class="card-link">Another link</a>
-    </div> -->
+        <a href="/cards/test" class="card-link">Next Card</a>
+    </div>
 </div>
 <% } %>
