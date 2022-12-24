@@ -25,6 +25,14 @@
             integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
             crossorigin="anonymous"
         ></script>
+        <script>
+            let popoverTriggerList = [].slice.call(
+                document.querySelectorAll('[data-toggle="popover"]')
+            );
+            let popoverList = popoverTriggerList.map(function (popoverTrigger) {
+                return new bootstrap.Popover(popoverTrigger);
+            });
+        </script>
     </body>
 </html>
 <!-- allows us to use layout and body -->
