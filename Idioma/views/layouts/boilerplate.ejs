@@ -26,12 +26,12 @@
             crossorigin="anonymous"
         ></script>
         <script>
-            let popoverTriggerList = [].slice.call(
-                document.querySelectorAll('[data-toggle="popover"]')
+            const popoverTriggerList = document.querySelectorAll(
+                '[data-bs-toggle="popover"]'
             );
-            let popoverList = popoverTriggerList.map(function (popoverTrigger) {
-                return new bootstrap.Popover(popoverTrigger);
-            });
+            const popoverList = [...popoverTriggerList].map(
+                (popoverTriggerEl) => new bootstrap.Popover(popoverTriggerEl)
+            );
         </script>
     </body>
 </html>
