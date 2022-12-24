@@ -35,27 +35,24 @@ app.get("/cards", async (req, res) => {
     const allCards = await Idioma.find({});
     // console.log(allCards);
     // res.send("Everything her!");
+
     res.render("cards/index", { allCards });
 });
 
 app.get("/cards/test", async (req, res) => {
     // res.send("tester"); DID THIS FIRST as a TEST and CLICKED NAVBAR LINK
     const testCards = await Idioma.find({});
-    console.log(testCards);
-    // console.log("LENGTH: " + testCards.length);
-    const lengthOf = testCards.length;
-    // for (let i = 1; i <= lengthOf; i++) {
-    // console.log(i);
-    console.log("lengthOf: " + lengthOf);
+    console.log("testCards " + testCards);
 
-    const rando = Math.floor(Math.random() * lengthOf) + 1;
-    console.log("rando: " + rando);
-    console.log("TEST " + testCards.indexOf(rando));
-    // console.log("lengthOf: " + lengthOf);
-    // }
-    // console.log("ID: " + testCards.english);
-    // console.log("lengthOf: " + lengthOf);
-    res.render("cards/test");
+    const randomDocs = await db
+        .collection("idiomas")
+        .aggregate([{ $sample: { size: 1 } }])
+        .toArray();
+    // .forEach(console.log);
+
+    console.log("randDUMB entries: " + randomDocs);
+
+    res.render("cards/test", { randomDocs });
 });
 
 app.get("/cards/new", (req, res) => {
