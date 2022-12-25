@@ -1,6 +1,6 @@
 <% layout('/layouts/boilerplate') %>
 <h1>Make A Card</h1>
-<form action="/cards" method="POST">
+<form action="/cards" method="POST" class="validated-form" novalidate>
     <div>
         <label for="english">English</label>
         <!-- for in label has to match id below -->
@@ -12,6 +12,7 @@
             placeholder="English"
             required
         ></textarea>
+        <div class="valid-feedback">Que Bueno!</div>
     </div>
     <div>
         <label for="spanish">Spanish</label>
@@ -23,6 +24,7 @@
             name="newCard[spanish]"
             required
         ></textarea>
+        <div class="valid-feedback">Que Bueno!</div>
     </div>
     <div>
         <label for="hintOne">Hint One</label>
@@ -34,6 +36,7 @@
             placeholder="Hint One"
             required
         />
+        <div class="valid-feedback">Que Bueno!</div>
     </div>
     <div>
         <label for="hintTwo">Hint Two</label>
@@ -45,9 +48,49 @@
             placeholder="Hint Two"
             required
         />
+        <div class="valid-feedback">Que Bueno!</div>
+    </div>
+    <div>
+        <label for="number">Number</label>
+        <input
+            class="form-control"
+            type="text"
+            id="number"
+            name="newCard[number]"
+            placeholder="Number"
+            required
+        />
+        <div class="valid-feedback">Que Bueno!</div>
     </div>
     <div class="buttons mt-3">
         <button class="btn btn-success btn-outline-dark">Submit</button>
         <a href="/cards" class="btn btn-danger btn-outline-dark">All Cards</a>
     </div>
 </form>
+
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (() => {
+        "use strict";
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll(".validated-form");
+
+        // Loop over them and prevent submission
+        Array.from(forms).forEach((form) => {
+            //this is making an ARRAY FROM the const forms. We call a forEach loop to loop over it, and then we addEventListener to EACH FORM. Then it checks each forms vailidity when the form is submitted and if it isn't valid then it preventsDefault, stopPropogation.
+            form.addEventListener(
+                "submit",
+                (event) => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+
+                    form.classList.add("was-validated");
+                },
+                false
+            );
+        });
+    })();
+</script>

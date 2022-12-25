@@ -61,17 +61,21 @@ app.get("/cards/new", (req, res) => {
     res.render("cards/new");
 });
 
-app.post("/cards", async (req, res) => {
+app.post("/cards", async (req, res, next) => {
     // const newCard = new Idioma(req.body);
     // await newCard.save();
-    const newCard = new Idioma(req.body.newCard);
-    await newCard.save();
+    try {
+        const newCard = new Idioma(req.body.newCard);
+        await newCard.save();
 
-    // console.log(newCard);
-    // res.send("makin card TEST 2");
-    // console.log(req.body);
-    // res.send("makin card TEST 1");
-    res.redirect(`/cards/${newCard._id}`);
+        // console.log(newCard);
+        // res.send("makin card TEST 2");
+        // console.log(req.body);
+        // res.send("makin card TEST 1");
+        res.redirect(`/cards/${newCard._id}`);
+    } catch (e) {
+        next(e);
+    }
 });
 // SEE UNDER: app.use(express.urlencoded({ extended: true }));
 
@@ -137,6 +141,11 @@ app.delete("/cards/:id", async (req, res) => {
 //     await langCard.save();
 //     res.send(langCard);
 // });
+
+app.use((err, req, res, next) => {
+    res.send("Something went wrong!");
+    //we dont hit this cuz were not handling the async error so in new card route we have to put try catch w/ (e)
+});
 
 app.listen(3000, () => {
     console.log("Connected to pizort 3000!");

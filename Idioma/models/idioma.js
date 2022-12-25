@@ -8,6 +8,9 @@ const IdiomaSchema = new Schema({
     spanish: String,
     hintOne: String,
     hintTwo: String,
+    number: {
+        type: Number,
+    },
 });
 
 module.exports = mongoose.model("Idioma", IdiomaSchema);

@@ -1,6 +1,11 @@
 <% layout('/layouts/boilerplate') %>
 <h1>Edit A Card</h1>
-<form action="/cards/<%=editCard._id%>?_method=PUT" method="POST">
+<form
+    action="/cards/<%=editCard._id%>?_method=PUT"
+    method="POST"
+    class="validated-form"
+    novalidate
+>
     <!-- THIS SHOULD SEND A PUT REQUEST -->
     <div>
         <label for="english">English</label>
