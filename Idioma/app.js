@@ -41,6 +41,9 @@ app.get("/cards", async (req, res) => {
 
 app.get("/cards/test", async (req, res) => {
     // res.send("tester"); DID THIS FIRST as a TEST and CLICKED NAVBAR LINK
+
+    const idCard = await Idioma.find({});
+
     const randomDocs = await db
         .collection("idiomas")
         .aggregate([{ $sample: { size: 1 } }])
@@ -49,16 +52,9 @@ app.get("/cards/test", async (req, res) => {
     // https://www.mongodb.com/docs/manual/reference/operator/aggregation/sample/#pipe._S_sample
     // https://stackoverflow.com/questions/54585939/mongodb-and-node-js-aggregate-using-sample-isnt-returning-a-document
 
-    console.log("randDUMB entries: " + randomDocs);
+    // console.log("randDUMB entries: " + randomDocs);
 
-    // let clickBox = document.getElementById("#butty");
-    // console.log(clickBox.nodeType);
-
-    // clickBox.addEventListener("click", function (e) {
-    //     alert("click");
-    // });
-
-    res.render("cards/test", { randomDocs });
+    res.render(`cards/test`, { randomDocs });
 });
 
 app.get("/cards/new", (req, res) => {
