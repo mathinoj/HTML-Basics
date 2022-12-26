@@ -42,8 +42,6 @@ app.get("/cards", async (req, res) => {
 app.get("/cards/test", async (req, res) => {
     // res.send("tester"); DID THIS FIRST as a TEST and CLICKED NAVBAR LINK
 
-    const idCard = await Idioma.find({});
-
     const randomDocs = await db
         .collection("idiomas")
         .aggregate([{ $sample: { size: 1 } }])

@@ -1,6 +1,7 @@
 <% layout('/layouts/boilerplate') %>
 <h1>Make A Card</h1>
 <form action="/cards" method="POST" class="validated-form" novalidate>
+    <!-- we tell the browser not to validate the form so that BS can do it instead, instead of using the native browser vailidation that comes with the 'required' that we added to textarea/input -->
     <div>
         <label for="english">English</label>
         <!-- for in label has to match id below -->
@@ -68,7 +69,7 @@
     </div>
 </form>
 
-<script>
+<!-- <script>
     // Example starter JavaScript for disabling form submissions if there are invalid fields
     (() => {
         "use strict";
@@ -93,4 +94,5 @@
             );
         });
     })();
-</script>
+</script> -->
+<!-- https://getbootstrap.com/docs/5.2/forms/validation/#browser-defaults -->
