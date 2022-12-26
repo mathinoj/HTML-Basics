@@ -29,20 +29,23 @@
             // Example starter JavaScript for disabling form submissions if there are invalid fields
             (() => {
                 "use strict";
-                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                // The purpose of "use strict" is to indicate that the code should be executed in "strict mode". With strict mode, you can not, for example, use undeclared variables. Undeclared − It occurs when a variable which hasn't been declared using var, let or const is being tried to access.
+
                 const forms = document.querySelectorAll(".validated-form");
                 // this selects all form with the class 'validated form'
                 // Loop over them and prevent submission
                 Array.from(forms).forEach((form) => {
                     //here we name the function 'form'
-                    //Array.from(forms) grabs the form based off the const forms (querySelectorAll(".validated-form")) and turns it into an array. So basically it breaks down each <textarea> and <input> input. We use this to as part of the checking process. Then we run a forEach loop on the array to check for to see if any part of the form has empty values.
-                    //this is making an ARRAY FROM the const forms. We call a forEach loop to loop over it, and then we addEventListener to EACH FORM. Then it checks each forms vailidity when the form is submitted and if it isn't valid then it preventsDefault, stopPropogation.
+                    //Array.from(forms) makes an array from all inputs retrieved anywhere there was a FORM with the 'validated-form' class
+                    //So basically it breaks down each <textarea> and <input> input. We use this to as part of the checking process.
+                    //Then we run a forEach loop on the array to check for to see if any part of the form has empty values.
                     form.addEventListener(
                         "submit",
                         (event) => {
                             if (!form.checkValidity()) {
                                 // checkValidity returns true if an input element contains valid data.
                                 //here we are saying if the 'form' function that we named in the 'Array.from part', if that is NOT true - is NOT VALID (!form.checkValidity), then we WILL GO ONTO the NEXT STEPS.
+                                //not true meaning there is NOTHING written in the inputs by the user
                                 // IF form DOES contain all valid inputs then the form will submit and it WILL NOT go onto the next steps.
                                 event.preventDefault();
                                 // The event.preventDefault() method stops the default action of an element from happening. For example: Prevent a submit button from submitting a form OR Prevent a link from following the URL

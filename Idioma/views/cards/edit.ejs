@@ -21,6 +21,7 @@
         >
 <%=editCard.english%></textarea
         >
+        <div class="valid-feedback">Que Bueno!</div>
     </div>
     <!-- How do we set the value on an input? We set the attribute called 'value' -->
     <div>
@@ -36,6 +37,7 @@
         >
 <%=editCard.spanish%></textarea
         >
+        <div class="valid-feedback">Que Bueno!</div>
     </div>
     <div>
         <label for="hintOne">Hint One</label>
@@ -48,6 +50,7 @@
             value="<%=editCard.hintOne%>"
             required
         />
+        <div class="valid-feedback">Que Bueno!</div>
     </div>
     <div>
         <label for="hintTwo">Hint Two</label>
@@ -60,6 +63,20 @@
             value="<%=editCard.hintTwo%>"
             required
         />
+        <div class="valid-feedback">Que Bueno!</div>
+    </div>
+    <div>
+        <label for="number">Number</label>
+        <input
+            class="form-control"
+            type="text"
+            id="number"
+            name="editCard[number]"
+            placeholder="Number"
+            value="<%=editCard.number%>"
+            required
+        />
+        <div class="valid-feedback">Que Bueno!</div>
     </div>
     <div class="buttons mt-3">
         <button class="btn btn-success btn-outline-dark">Submit</button>

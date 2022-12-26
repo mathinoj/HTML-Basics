@@ -141,9 +141,11 @@ app.delete("/cards/:id", async (req, res) => {
 // });
 
 app.use((err, req, res, next) => {
+    //this is our error handler signature
     res.send("Something went wrong!");
     //we dont hit this cuz were not handling the async error so in new card route we have to put try catch w/ (e)
 });
+//this is our error handler
 
 app.listen(3000, () => {
     console.log("Connected to pizort 3000!");
