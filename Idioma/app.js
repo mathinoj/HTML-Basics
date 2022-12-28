@@ -33,7 +33,7 @@ app.get("/", (req, res) => {
 
 app.get(
     "/cards",
-    catchAsync(async (req, res) => {
+    catchAsync(async (req, res, next) => {
         const allCards = await Idioma.find({});
         // console.log(allCards);
         // res.send("Everything her!");
@@ -44,7 +44,7 @@ app.get(
 
 app.get(
     "/cards/test",
-    catchAsync(async (req, res) => {
+    catchAsync(async (req, res, next) => {
         // res.send("tester"); DID THIS FIRST as a TEST and CLICKED NAVBAR LINK
 
         const randomDocs = await db
@@ -84,7 +84,7 @@ app.post(
 
 app.get(
     "/cards/:id",
-    catchAsync(async (req, res) => {
+    catchAsync(async (req, res, next) => {
         // const { id } = req.params;
         // const card = await Idioma.findById(id);
         const card = await Idioma.findById(req.params.id);
@@ -96,7 +96,7 @@ app.get(
 
 app.get(
     "/cards/:id/edit",
-    catchAsync(async (req, res) => {
+    catchAsync(async (req, res, next) => {
         // const { id } = req.params;
         // const editCard = await Idioma.findById(id);
         const editCard = await Idioma.findById(req.params.id);
@@ -106,7 +106,7 @@ app.get(
 
 app.put(
     "/cards/:id",
-    catchAsync(async (req, res) => {
+    catchAsync(async (req, res, next) => {
         //from a FORM we cant make a put request, which is why we'll need to do a METHOD OVERRIDE. npm i method-override --> will go in terminal. THEN we have to require it (see TOP)
         const { id } = req.params;
         console.log("this is id: " + { id });
@@ -142,7 +142,7 @@ app.put(
 
 app.delete(
     "/cards/:id",
-    catchAsync(async (req, res) => {
+    catchAsync(async (req, res, next) => {
         // res.send("delete wrukin"); TEST 1
         const { id } = req.params;
         const deletedCard = await Idioma.findByIdAndDelete(id);
