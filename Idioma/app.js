@@ -31,38 +31,45 @@ app.get("/", (req, res) => {
     res.render("home");
 });
 
-app.get("/cards", async (req, res) => {
-    const allCards = await Idioma.find({});
-    // console.log(allCards);
-    // res.send("Everything her!");
+app.get(
+    "/cards",
+    catchAsync(async (req, res) => {
+        const allCards = await Idioma.find({});
+        // console.log(allCards);
+        // res.send("Everything her!");
 
-    res.render("cards/index", { allCards });
-});
+        res.render("cards/index", { allCards });
+    })
+);
 
-app.get("/cards/test", async (req, res) => {
-    // res.send("tester"); DID THIS FIRST as a TEST and CLICKED NAVBAR LINK
+app.get(
+    "/cards/test",
+    catchAsync(async (req, res) => {
+        // res.send("tester"); DID THIS FIRST as a TEST and CLICKED NAVBAR LINK
 
-    const randomDocs = await db
-        .collection("idiomas")
-        .aggregate([{ $sample: { size: 1 } }])
-        .toArray();
-    // https://mongoosejs.com/docs/api/aggregate.html#aggregate_Aggregate-sample
-    // https://www.mongodb.com/docs/manual/reference/operator/aggregation/sample/#pipe._S_sample
-    // https://stackoverflow.com/questions/54585939/mongodb-and-node-js-aggregate-using-sample-isnt-returning-a-document
+        const randomDocs = await db
+            .collection("idiomas")
+            .aggregate([{ $sample: { size: 1 } }])
+            .toArray();
+        // https://mongoosejs.com/docs/api/aggregate.html#aggregate_Aggregate-sample
+        // https://www.mongodb.com/docs/manual/reference/operator/aggregation/sample/#pipe._S_sample
+        // https://stackoverflow.com/questions/54585939/mongodb-and-node-js-aggregate-using-sample-isnt-returning-a-document
 
-    // console.log("randDUMB entries: " + randomDocs);
+        // console.log("randDUMB entries: " + randomDocs);
 
-    res.render(`cards/test`, { randomDocs });
-});
+        res.render(`cards/test`, { randomDocs });
+    })
+);
 
 app.get("/cards/new", (req, res) => {
     res.render("cards/new");
 });
 
-app.post("/cards", async (req, res, next) => {
-    // const newCard = new Idioma(req.body);
-    // await newCard.save();
-    try {
+app.post(
+    "/cards",
+    catchAsync(async (req, res, next) => {
+        // const newCard = new Idioma(req.body);
+        // await newCard.save();
         const newCard = new Idioma(req.body.newCard);
         await newCard.save();
 
@@ -71,50 +78,59 @@ app.post("/cards", async (req, res, next) => {
         // console.log(req.body);
         // res.send("makin card TEST 1");
         res.redirect(`/cards/${newCard._id}`);
-    } catch (e) {
-        next(e);
-    }
-});
+    })
+);
 // SEE UNDER: app.use(express.urlencoded({ extended: true }));
 
-app.get("/cards/:id", async (req, res) => {
-    // const { id } = req.params;
-    // const card = await Idioma.findById(id);
-    const card = await Idioma.findById(req.params.id);
-    // console.log(card);
-    // res.send("Specifc card page. More detailed.");
-    res.render("cards/show", { card });
-});
+app.get(
+    "/cards/:id",
+    catchAsync(async (req, res) => {
+        // const { id } = req.params;
+        // const card = await Idioma.findById(id);
+        const card = await Idioma.findById(req.params.id);
+        // console.log(card);
+        // res.send("Specifc card page. More detailed.");
+        res.render("cards/show", { card });
+    })
+);
 
-app.get("/cards/:id/edit", async (req, res) => {
-    // const { id } = req.params;
-    // const editCard = await Idioma.findById(id);
-    const editCard = await Idioma.findById(req.params.id);
-    res.render("cards/edit", { editCard });
-});
+app.get(
+    "/cards/:id/edit",
+    catchAsync(async (req, res) => {
+        // const { id } = req.params;
+        // const editCard = await Idioma.findById(id);
+        const editCard = await Idioma.findById(req.params.id);
+        res.render("cards/edit", { editCard });
+    })
+);
 
-app.put("/cards/:id", async (req, res) => {
-    //from a FORM we cant make a put request, which is why we'll need to do a METHOD OVERRIDE. npm i method-override --> will go in terminal. THEN we have to require it (see TOP)
-    const { id } = req.params;
-    console.log("this is id: " + { id });
-    // const card = await Idioma.findByIdAndUpdate(id, req.body, {
-    //passes is in ID and then pass in our DATA(req.body). So were taking the entire body of the EJS file
-    //     runValidators: true,
-    //     new: true,
-    // });
-    //first argument is ID, second arg is how we want to update, third is options
-    const card = await Idioma.findByIdAndUpdate(id, { ...req.body.editCard });
-    console.log("this is card: " + card);
-    //we take in what is request.body.editCard
-    //we use the ...(spread operator) because it takes in the properties, the key-value pairs from one area and copies/adds/combines them to the new object. So here it takes the the edit.ejs file and grabs the keys (textarea & input) and their values (whatever edits are made by user) and adds them to the new object (const card), which we
+app.put(
+    "/cards/:id",
+    catchAsync(async (req, res) => {
+        //from a FORM we cant make a put request, which is why we'll need to do a METHOD OVERRIDE. npm i method-override --> will go in terminal. THEN we have to require it (see TOP)
+        const { id } = req.params;
+        console.log("this is id: " + { id });
+        // const card = await Idioma.findByIdAndUpdate(id, req.body, {
+        //passes is in ID and then pass in our DATA(req.body). So were taking the entire body of the EJS file
+        //     runValidators: true,
+        //     new: true,
+        // });
+        //first argument is ID, second arg is how we want to update, third is options
+        const card = await Idioma.findByIdAndUpdate(id, {
+            ...req.body.editCard,
+        });
+        console.log("this is card: " + card);
+        //we take in what is request.body.editCard
+        //we use the ...(spread operator) because it takes in the properties, the key-value pairs from one area and copies/adds/combines them to the new object. So here it takes the the edit.ejs file and grabs the keys (textarea & input) and their values (whatever edits are made by user) and adds them to the new object (const card), which we
 
-    //we copy everything over from req.body.editCard of the specific card which was gotten by the id paramater before it.
-    res.redirect(`/cards/${card._id}`);
-    console.log("here: " + card._id);
-    //Do redirect cuz we don't want to send a POST request again (if we hit refresh it would make the same product again). Also we never send back an HTML response from a POST route (POST route is in edit.ejs). Therefore we redirect.
-    // console.log(req.body); BEFORE ALL ABOVE, did these two as TEST!!
-    // res.send("pUt!!");
-});
+        //we copy everything over from req.body.editCard of the specific card which was gotten by the id paramater before it.
+        res.redirect(`/cards/${card._id}`);
+        console.log("here: " + card._id);
+        //Do redirect cuz we don't want to send a POST request again (if we hit refresh it would make the same product again). Also we never send back an HTML response from a POST route (POST route is in edit.ejs). Therefore we redirect.
+        // console.log(req.body); BEFORE ALL ABOVE, did these two as TEST!!
+        // res.send("pUt!!");
+    })
+);
 
 // You redirect just like when you create a new product because you don't want to be able to send that post request again to make a product. Just like we don't want to continuously update that product, although it's not an issue because you're just updating the same product.
 
@@ -124,12 +140,15 @@ app.put("/cards/:id", async (req, res) => {
 
 // We could honestly get away with either one here. We do a put request because we are taking everything from this form, whatever the values are, and we're going to update the given product. Maybe we could have a route called Change Quantity, and we don't have quantity, but we could have a single route dedicated to changing category or quantity, in which case that would be a patch request most likely.
 
-app.delete("/cards/:id", async (req, res) => {
-    // res.send("delete wrukin"); TEST 1
-    const { id } = req.params;
-    const deletedCard = await Idioma.findByIdAndDelete(id);
-    res.redirect("/cards");
-});
+app.delete(
+    "/cards/:id",
+    catchAsync(async (req, res) => {
+        // res.send("delete wrukin"); TEST 1
+        const { id } = req.params;
+        const deletedCard = await Idioma.findByIdAndDelete(id);
+        res.redirect("/cards");
+    })
+);
 
 // app.get("/makeLanguage", async (req, res) => {
 //     const langCard = new Language({
