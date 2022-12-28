@@ -147,6 +147,8 @@ app.use((err, req, res, next) => {
 });
 //this is our error handler
 
+//We want to respond with a particular status code and some message. this is a generic thing done with web applications. There are several status codes to choose from and each have diff meanings
+
 app.listen(3000, () => {
     console.log("Connected to pizort 3000!");
 });
