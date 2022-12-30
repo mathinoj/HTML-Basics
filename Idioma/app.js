@@ -160,6 +160,10 @@ app.delete(
 //     res.send(langCard);
 // });
 
+app.all("*", (req, res, next) => {
+    res.send("404!");
+});
+
 app.use((err, req, res, next) => {
     //this is our error handler signature
     res.send("Something went wrong!");
