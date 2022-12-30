@@ -5,6 +5,7 @@ const ejsMate = require("ejs-mate");
 //^^One of many engines used to run or PARSE and basically make sense of EJS
 const Idioma = require("./models/idioma");
 const catchAsync = require("./utils/catchAsync");
+const ExpressError = require("./utils/ExpressError");
 const methodOverride = require("method-override");
 
 mongoose.connect("mongodb://localhost:27017/idioma", {});
@@ -69,6 +70,15 @@ app.get("/cards/new", (req, res) => {
 app.post(
     "/cards",
     catchAsync(async (req, res, next) => {
+        if (!req.body.newCard) throw new ExpressError("Invalid Card Data", 400);
+        //IF req.body.newCard doesn't exist (if someone is trying to find a card that mabye was deleted). So if the card doesnt exist we throw a new ExpressError. You throw the ExpressError because it is inside an async function. It is thrown so the catchAsync function can catch it, and then hand it off to NEXT, which then makes its way down to the app.use(err, req, res...) function.
+        //so in the error we specify the message.
+
+        //all this basically means we have the infrastructure where we can throw one of these: new ExpressError('enter message here', enter statusCode here). Then it will make its way down to app.use where either use the message/statusCode we entered in ourselves, or rely on the default that we added to app.use if nothing was provided in the new ExpressError(message, statusCode) spots.
+
+        //we set the statusCode in the response and send the message.
+
+        //We throw the error cuz we are inside the async function, and you throw it. Then our catchAsync is going to catch the error and hand it off to NEXT, which makes its way to the app.use error handler signature we have at the bottom.
         // const newCard = new Idioma(req.body);
         // await newCard.save();
         const newCard = new Idioma(req.body.newCard);
@@ -161,13 +171,24 @@ app.delete(
 // });
 
 app.all("*", (req, res, next) => {
-    res.send("404!");
-});
+    next(new ExpressError("Page no find", 404)); //we can use this in app.use below
+    //res.send("Your 404!"); //THIS IS DONE FIRST LIKE A TEST (mod 447). This is one option, to respond to an error here . like this. Or we can make use of the error class or ExpressError, which we do at the top in the required area.
+    //for every path ('*') we call the call back (req, res, next)
 
+    //we use the new ExpressError in the app.use where we can take the statusCode and message that we used in new ExpressError
+});
+//we use err from below, cuz were passing the new ExpressError-error to next (as seen above: next(new ExpressError...)). This new error hits the error handler (app.use), and err (in app.use) will be the ExpressError from app.all, OR it could be another error if it's coming from somewhere else
 app.use((err, req, res, next) => {
-    //this is our error handler signature
-    res.send("Something went wrong!");
+    //this is a generic error handler
+    //^^^ this is our error handler signature ^^^
+    const { statusCode = 500, message = "Something went wrong, mayngs!" } = err;
+    //we add 500 and 'something went wrong' as defaults
+    res.status(statusCode).send(message);
+    // res.send("Something went wrong!"); this was initial error msg we had
     //we dont hit this cuz were not handling the async error so in new card route we have to put try catch w/ (e)
+    //STATUS sends back a status code
+    //we destructure from error by doing the const { statusCode, etc...}
+    //we use the statusCode and message from app.all
 });
 //this is our error handler
 
