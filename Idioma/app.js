@@ -181,14 +181,19 @@ app.all("*", (req, res, next) => {
 app.use((err, req, res, next) => {
     //this is a generic error handler
     //^^^ this is our error handler signature ^^^
-    const { statusCode = 500, message = "Something went wrong, mayngs!" } = err;
+    // const { statusCode = 500, message = "Something went wrong, mayngs!" } = err;
     //we add 500 and 'something went wrong' as defaults
-    res.status(statusCode).send(message);
-    // res.send("Something went wrong!"); this was initial error msg we had
-    //we dont hit this cuz were not handling the async error so in new card route we have to put try catch w/ (e)
-    //STATUS sends back a status code
-    //we destructure from error by doing the const { statusCode, etc...}
-    //we use the statusCode and message from app.all
+    // res.status(statusCode).send(message);
+
+    const { statusCode = 500 } = err;
+    if (!err.message) err.message = "Something Went Wrong!";
+    res.status(statusCode).render("error", { err });
+    // res.status(statusCode).render("error", { err });
+    //instead of destructuring we pass the entire error {err} to the template like render("error", { err })
+    // const { statusCode = 500, message = "Something Went Wrong!" } = err;
+    //Here (like this above^^, which is the original line of code we had), where were setting the message wont work to update the error object ({err} <- where render('error', {err} IS)) . Were extracting a variable ('message =') from error ('= err') and giving that variable a default ('sumtin went wrong').
+
+    //so like how it is now, we should be able to pass through the entire error {err} to our template (error.ejs is the template).
 });
 //this is our error handler
 
