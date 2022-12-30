@@ -4,8 +4,8 @@ const mongoose = require("mongoose");
 const ejsMate = require("ejs-mate");
 //^^One of many engines used to run or PARSE and basically make sense of EJS
 const Idioma = require("./models/idioma");
-const methodOverride = require("method-override");
 const catchAsync = require("./utils/catchAsync");
+const methodOverride = require("method-override");
 
 mongoose.connect("mongodb://localhost:27017/idioma", {});
 

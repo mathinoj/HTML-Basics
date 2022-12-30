@@ -9,7 +9,13 @@ module.exports = (func) => {
 // catchAsync returns a function, which will be the function that we wrap inside catchAsync in app.js
 
 //func will refer to the whole function that were doing the catchAsync to in app.js
-//we need 'return (req, res, next)' cuz we will be passing it through to 'func(req, res, next)', which will have our inner function (inside the catchAsync()) in app.js
-//.catch(next) is for if anything goes wrong inside the func we catch it and we take the error and pass it to 'next'
-//this basically simplifies the try/catch process
-//this function returns another function, a new function. this new function executes whatever we pass into catchAsync and adds on the .catch(), and if there is an error it calls 'next' with that error.
+
+//in sum module.exports accepts a function, here we call 'func', which returns a new function.
+//func is what we pass in
+//'return (req, res, next)' returns a new function. This newly returned function executes/runs 'func' and then CATCHES ('catch()') any errors and passes them to NEXT ('catch(next)').
+//this whole function returns a new function that calls the app.js function and catches errors
+
+//the 'next' in 'catch(next)' refers to the app.use((err, req, res, next)) in app.js, which right now has a generic error.
+
+//If there is an error thrown from Mongoose our catchAsync wrap function in app.js is going to 'catch' it thanks to the 'catchAsync' function that we created in catchAsync.js, and pass it to 'next' because that's what the whole function in catchAsync.js exists for.
+// Basically we create a function that accepts a function ('func') and exectutes that 'func' function, but catches any errors ('catch()') and passes it to next .('.catch(next)') if there is any errors. We use this whole thing (everything in catchAsync.js) to wrap our async functions in app.js.
