@@ -68,10 +68,26 @@ app.get("/cards/new", (req, res) => {
     res.render("cards/new");
 });
 
+//12.31.2022 1114 - last thing we do is validate our CARD data when you post a new card or edit a card. NOW we need to work on client side validation!
+//JOI is a javascript validator tool.
 app.post(
     "/cards",
     catchAsync(async (req, res, next) => {
-        if (!req.body.newCard) throw new ExpressError("Invalid Card Data", 400);
+        // if (!req.body.newCard) throw new ExpressError("Invalid Card Data", 400);
+        // this ^^ is client side validation. That checks if a card actually exists, if a card is actually in the body! Checks if our request.body contains a card at all!
+        ///////////////////////////////
+        /////TO START WE DEFINE OUR SCHEMA ////////////
+        const cardSchema = Joi.object({
+            // https://joi.dev/api/?v=17.7.0     after this ^^ we pass in the different things that we are looking for
+            newCard: Joi.object({
+                english: Joi.string().required(),
+                spanish: Joi.string().required().min(0),
+                hintOne: Joi.string().required(),
+                hintTwo: Joi.string().required(),
+                number: Joi.number().required(),
+            }).required,
+        });
+        //This is not a mongoose schema. This is going to validate our data before we even attempt to save it with Mongoose, before we involve mongoose at all.
 
         const newCard = new Idioma(req.body.newCard);
         await newCard.save();
