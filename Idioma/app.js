@@ -60,6 +60,8 @@ const validateCard = (req, res, next) => {
 
 //SO THE VALIDATECARD middleware runs FIRST, then AFTER it runs the rest of the route will run (i.e. catchAsync(async(req, res)) etc...)
 
+//had to change editCard to newCard in order for this middleware to work since this middleware is requiring 'newCard: Joi.object({...'
+
 app.get("/", (req, res) => {
     // res.send("hello idiotma"); THIS WAS DONE AS A TEST TO SEE CONNECTION
     res.render("home");
