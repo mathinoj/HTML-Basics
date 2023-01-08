@@ -29,6 +29,33 @@ app.use(express.urlencoded({ extended: true }));
 // When we have a post request and we want information from the post request body. We don't have access to request body immediately. It's just undefined, nothing is there. It's not going to be parsed. We need to tell express to use that middleware (parsing middleware).
 app.use(methodOverride("_method"));
 
+//we dont do app.use cuz we don't want this to run on every single route that we have. Instead we want this to be selectively applied, so we do this:
+const validateCard = (req, res, next) => {
+    //this is a middleware function so the signature must have (req, res, next)
+    const cardSchema = Joi.object({
+        // https://joi.dev/api/?v=17.7.0
+        newCard: Joi.object({
+            english: Joi.string().required(),
+            spanish: Joi.string().required(),
+            hintOne: Joi.string().required(),
+            hintTwo: Joi.string().required(),
+            number: Joi.number().required().min(0),
+        }).required(),
+    });
+
+    const { error } = cardSchema.validate(req.body);
+
+    if (error) {
+        const msg = error.details.map((el) => el.message).join(", ");
+
+        throw new ExpressError(msg, 400); //THIS IS SAYING throw that new
+        //WE DECIDE WHICH STATUS CODE TO GIVE.
+        //https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
+    } else {
+        next();
+    }
+};
+
 app.get("/", (req, res) => {
     // res.send("hello idiotma"); THIS WAS DONE AS A TEST TO SEE CONNECTION
     res.render("home");
@@ -69,25 +96,14 @@ app.get("/cards/new", (req, res) => {
 });
 
 //12.31.2022 1114 - last thing we do is validate our CARD data when you post a new card or edit a card. NOW we need to work on client side validation!
-//JOI is a javascript validator tool.
+//JOI is not specific to just EXPRESS, it's a javascript validator tool.
+
+//RATHER THAN write code that checks for server side validation, which would mean it would likely be a bunch of if statements checking if the newCard had englihs, spanish, hintOne, etc. Rather than do that we use JOI, which makes it easier.
 app.post(
     "/cards",
     catchAsync(async (req, res, next) => {
         // if (!req.body.newCard) throw new ExpressError("Invalid Card Data", 400);
         // this ^^ is client side validation. That checks if a card actually exists, if a card is actually in the body! Checks if our request.body contains a card at all!
-        ///////////////////////////////
-        /////TO START WE DEFINE OUR SCHEMA ////////////
-        const cardSchema = Joi.object({
-            // https://joi.dev/api/?v=17.7.0     after this ^^ we pass in the different things that we are looking for
-            newCard: Joi.object({
-                english: Joi.string().required(),
-                spanish: Joi.string().required().min(0),
-                hintOne: Joi.string().required(),
-                hintTwo: Joi.string().required(),
-                number: Joi.number().required(),
-            }).required,
-        });
-        //This is not a mongoose schema. This is going to validate our data before we even attempt to save it with Mongoose, before we involve mongoose at all.
 
         const newCard = new Idioma(req.body.newCard);
         await newCard.save();
@@ -99,7 +115,8 @@ app.post(
         res.redirect(`/cards/${newCard._id}`);
     })
 );
-// SEE UNDER: app.use(express.urlencoded({ extended: true }));
+//WE FIRST BUILD A MIDDLEWARE FOR ANYWHERE
+// We're going to build a middleware and I'll call it something like Validate Card, and we'll just be able to use it on PUT/POST route and anywhere else where we would need to validate the req.body CARD and make sure all the important pieces are there. So we'll make a reusable function to do that.
 
 app.get(
     "/cards/:id",
