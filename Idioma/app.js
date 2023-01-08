@@ -27,6 +27,8 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 
 app.use(methodOverride("_method"));
+app.use(express.static("public"));
+//but then we add in this and we get the alert from TEST 1
 
 app.use("/cards", cards); //added mod 489
 
