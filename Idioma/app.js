@@ -32,16 +32,6 @@ app.use(methodOverride("_method"));
 //we dont do app.use cuz we don't want this to run on every single route that we have. Instead we want this to be selectively applied, so we do this:
 const validateCard = (req, res, next) => {
     //this is a middleware function so the signature must have (req, res, next)
-    const cardSchema = Joi.object({
-        // https://joi.dev/api/?v=17.7.0
-        newCard: Joi.object({
-            english: Joi.string().required(),
-            spanish: Joi.string().required(),
-            hintOne: Joi.string().required(),
-            hintTwo: Joi.string().required(),
-            number: Joi.number().required().min(0),
-        }).required(),
-    });
 
     const { error } = cardSchema.validate(req.body);
 
