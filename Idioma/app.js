@@ -7,8 +7,8 @@ const Idioma = require("./models/idioma");
 const catchAsync = require("./utils/catchAsync");
 const ExpressError = require("./utils/ExpressError");
 const methodOverride = require("method-override");
-const Joi = require("joi");
-
+const { cardSchema } = require("./schemas.js");
+//we destructure here cuz we plan to have multiple schemas we'll export
 mongoose.connect("mongodb://localhost:27017/idioma", {});
 
 const db = mongoose.connection;
@@ -34,10 +34,8 @@ const validateCard = (req, res, next) => {
     //this is a middleware function so the signature must have (req, res, next)
 
     const { error } = cardSchema.validate(req.body);
-
     if (error) {
         const msg = error.details.map((el) => el.message).join(", ");
-
         throw new ExpressError(msg, 400); //THIS IS SAYING throw that new
         //WE DECIDE WHICH STATUS CODE TO GIVE.
         //https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
