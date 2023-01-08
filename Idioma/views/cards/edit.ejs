@@ -1,7 +1,7 @@
 <% layout('/layouts/boilerplate') %>
 <h1>Edit A Card</h1>
 <form
-    action="/cards/<%=editCard._id%>?_method=PUT"
+    action="/cards/<%=newCard._id%>?_method=PUT"
     method="POST"
     class="validated-form"
     novalidate
@@ -14,12 +14,12 @@
             class="form-control"
             type="text"
             id="english"
-            name="editCard[english]"
+            name="newCard[english]"
             placeholder="English"
             required
-            value="<%=editCard.english%>"
+            value="<%=newCard.english%>"
         >
-<%=editCard.english%></textarea
+<%=newCard.english%></textarea
         >
         <div class="valid-feedback">Que Bueno!</div>
     </div>
@@ -30,12 +30,12 @@
             class="form-control"
             type="text"
             id="spanish"
-            name="editCard[spanish]"
+            name="newCard[spanish]"
             placeholder="Spanish"
             required
-            value="<%=editCard.spanish%>"
+            value="<%=newCard.spanish%>"
         >
-<%=editCard.spanish%></textarea
+<%=newCard.spanish%></textarea
         >
         <div class="valid-feedback">Que Bueno!</div>
     </div>
@@ -45,9 +45,9 @@
             class="form-control"
             type="text"
             id="hintOne"
-            name="editCard[hintOne]"
+            name="newCard[hintOne]"
             placeholder="Hint One"
-            value="<%=editCard.hintOne%>"
+            value="<%=newCard.hintOne%>"
             required
         />
         <div class="valid-feedback">Que Bueno!</div>
@@ -58,9 +58,9 @@
             class="form-control"
             type="text"
             id="hintTwo"
-            name="editCard[hintTwo]"
+            name="newCard[hintTwo]"
             placeholder="Hint Two"
-            value="<%=editCard.hintTwo%>"
+            value="<%=newCard.hintTwo%>"
             required
         />
         <div class="valid-feedback">Que Bueno!</div>
@@ -71,16 +71,16 @@
             class="form-control"
             type="text"
             id="number"
-            name="editCard[number]"
+            name="newCard[number]"
             placeholder="Number"
-            value="<%=editCard.number%>"
+            value="<%=newCard.number%>"
             required
         />
         <div class="valid-feedback">Que Bueno!</div>
     </div>
     <div class="buttons mt-3">
         <button class="btn btn-success btn-outline-dark">Submit</button>
-        <a href="/cards/<%=editCard._id%>" class="btn btn-outline-dark"
+        <a href="/cards/<%=newCard._id%>" class="btn btn-outline-dark"
             >Back to Card</a
         >
         <a href="/cards" class="btn btn-danger btn-outline-dark">All Cards</a>

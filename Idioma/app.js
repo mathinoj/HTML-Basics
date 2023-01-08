@@ -53,8 +53,12 @@ const validateCard = (req, res, next) => {
         //https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
     } else {
         next();
+        //we add the else{ next() } so that our route handler can actually work
     }
 };
+//we add the middleware 'validateCard' to our route handlers. To do it we add it in as an argument to whichever route we want (put/post).
+
+//SO THE VALIDATECARD middleware runs FIRST, then AFTER it runs the rest of the route will run (i.e. catchAsync(async(req, res)) etc...)
 
 app.get("/", (req, res) => {
     // res.send("hello idiotma"); THIS WAS DONE AS A TEST TO SEE CONNECTION
@@ -136,8 +140,8 @@ app.get(
     catchAsync(async (req, res, next) => {
         // const { id } = req.params;
         // const editCard = await Idioma.findById(id);
-        const editCard = await Idioma.findById(req.params.id);
-        res.render("cards/edit", { editCard });
+        const newCard = await Idioma.findById(req.params.id);
+        res.render("cards/edit", { newCard });
     })
 );
 
@@ -155,7 +159,7 @@ app.put(
         // });
         //first argument is ID, second arg is how we want to update, third is options
         const card = await Idioma.findByIdAndUpdate(id, {
-            ...req.body.editCard,
+            ...req.body.newCard,
         });
         console.log("this is card: " + card);
         //we take in what is request.body.editCard
