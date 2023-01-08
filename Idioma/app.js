@@ -101,6 +101,7 @@ app.get("/cards/new", (req, res) => {
 //RATHER THAN write code that checks for server side validation, which would mean it would likely be a bunch of if statements checking if the newCard had englihs, spanish, hintOne, etc. Rather than do that we use JOI, which makes it easier.
 app.post(
     "/cards",
+    validateCard,
     catchAsync(async (req, res, next) => {
         // if (!req.body.newCard) throw new ExpressError("Invalid Card Data", 400);
         // this ^^ is client side validation. That checks if a card actually exists, if a card is actually in the body! Checks if our request.body contains a card at all!
@@ -142,6 +143,7 @@ app.get(
 
 app.put(
     "/cards/:id",
+    validateCard,
     catchAsync(async (req, res, next) => {
         //from a FORM we cant make a put request, which is why we'll need to do a METHOD OVERRIDE. npm i method-override --> will go in terminal. THEN we have to require it (see TOP)
         const { id } = req.params;
