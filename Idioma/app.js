@@ -44,11 +44,6 @@ const validateCard = (req, res, next) => {
         //we add the else{ next() } so that our route handler can actually work
     }
 };
-//we add the middleware 'validateCard' to our route handlers. To do it we add it in as an argument to whichever route we want (put/post).
-
-//SO THE VALIDATECARD middleware runs FIRST, then AFTER it runs the rest of the route will run (i.e. catchAsync(async(req, res)) etc...)
-
-//had to change editCard to newCard in order for this middleware to work since this middleware is requiring 'newCard: Joi.object({...'
 
 app.get("/", (req, res) => {
     // res.send("hello idiotma"); THIS WAS DONE AS A TEST TO SEE CONNECTION
