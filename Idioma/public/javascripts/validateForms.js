@@ -35,3 +35,4 @@
         );
     });
 })();
+//public directory to serve static assets so that we could have images, custom stylesheets, and javascript scripts that we can respond with to
