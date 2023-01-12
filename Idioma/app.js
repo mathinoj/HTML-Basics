@@ -33,6 +33,16 @@ app.use(methodOverride("_method"));
 
 app.use(express.static(path.join(__dirname, "public"))); //FINAL MOD 491
 
+const sessionConfig = {
+    secret: "exampleofsecretnottobedoneforreal",
+    cookie: {
+        httpOnly: true,
+        expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+        maxAge: 1000 * 60 * 60 * 24 * 7,
+    },
+};
+app.use(session(sessionConfig));
+
 app.use("/cards", cards); //added mod 489
 
 app.get("/", (req, res) => {
