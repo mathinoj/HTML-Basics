@@ -22,3 +22,20 @@ so rather than having to add our BS flash alert to all the templates where we wa
 we create partials folder to help us identify and differentiate from other fldrs
 -->
 <!-- partials help reduce duplication -->
+
+<% if(error && error.length) { %>
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <!-- alert alert-success gives us a green flash (see BS)-->
+    <!-- alert-dismissable fade show makes the alert dismissable but it needs the button in order to dismiss it-->
+    <!-- role of alert is for accessibility purposes for peeps needing a screen reader. The screen reader will announce the alert -->
+    <%= error %> <%= console.dir('Herre is flash: ' + success) %>
+    <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+    >
+        <!-- this gives the 'X' to close out the flash -->
+    </button>
+</div>
+<% } %>

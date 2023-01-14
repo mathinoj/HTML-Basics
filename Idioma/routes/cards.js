@@ -1,9 +1,11 @@
 const express = require("express");
 const router = express.Router();
+const mongoose = require("mongoose");
 const catchAsync = require("../utils/catchAsync");
 const { cardSchema } = require("../schemas.js");
 const ExpressError = require("../utils/ExpressError");
 const Idioma = require("../models/idioma");
+const db = mongoose.connection;
 
 const validateCard = (req, res, next) => {
     const { error } = cardSchema.validate(req.body);
@@ -28,9 +30,10 @@ router.get(
 router.get(
     "/test",
     catchAsync(async (req, res, next) => {
+        const randomRocs = await Idioma.find({});
         const randomDocs = await db
             .collection("idiomas")
-            .aggregate([{ $sample: { size: 1 } }])
+            .aggregate([{ $sample: { size: randomRocs.length } }])
             .toArray();
         // https://mongoosejs.com/docs/api/aggregate.html#aggregate_Aggregate-sample
         // https://www.mongodb.com/docs/manual/reference/operator/aggregation/sample/#pipe._S_sample

@@ -1,7 +1,17 @@
 <% layout('/layouts/boilerplate') %>
 <h1>Test</h1>
-<button id="butty" class="btn btn-primary btn-outline-dark">Start Test</button>
 <% for(let randomDoc of randomDocs) { %>
+<br />
+<a
+    class="btn btn-primary btn-outline-dark"
+    id="butty"
+    href="/cards/test"
+    role="button"
+    >Start Test</a
+>
+
+<%= ('Herre is randoDoc: ' + randomDoc._id) %>
+
 <div class="card" style="width: 18rem">
     <div class="card-body">
         <h5 class="card-title">Card title</h5>
@@ -55,8 +65,7 @@
         <a href="/cards/test" class="card-link">Next Card</a>
     </div>
 </div>
+
 <% } %>
 <!-- https://www.youtube.com/watch?v=HWeU6iE9NIg
 https://getbootstrap.com/docs/5.2/components/popovers/ -->
-<%= console.dir('Herre is randoDoc: ' + randomDoc) %>
-    <button
