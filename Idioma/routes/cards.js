@@ -62,6 +62,10 @@ router.get(
     "/:id",
     catchAsync(async (req, res, next) => {
         const card = await Idioma.findById(req.params.id);
+        if (!card) {
+            req.flash("error", "Card not found!");
+            return res.redirect("/cards");
+        }
         res.render("cards/show", { card });
     })
 );
@@ -70,6 +74,10 @@ router.get(
     "/:id/edit",
     catchAsync(async (req, res, next) => {
         const newCard = await Idioma.findById(req.params.id);
+        if (!newCard) {
+            req.flash("error", "Card not found!");
+            return res.redirect("/cards");
+        }
         res.render("cards/edit", { newCard });
     })
 );
