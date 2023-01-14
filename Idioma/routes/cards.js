@@ -82,6 +82,7 @@ router.put(
             ...req.body.newCard,
         });
         console.log("this is card: " + card);
+        req.flash("success", "Updated a Card!");
 
         res.redirect(`/cards/${card._id}`);
         console.log("here: " + card._id);
