@@ -94,6 +94,7 @@ router.delete(
     catchAsync(async (req, res, next) => {
         const { id } = req.params;
         const deletedCard = await Idioma.findByIdAndDelete(id);
+        req.flash("success", "Deleted a Card.");
         res.redirect("/cards");
     })
 );
