@@ -1,7 +1,6 @@
 <% layout('/layouts/boilerplate') %>
 <h1>Test</h1>
 <% for(let randomDoc of randomDocs) { %>
-<br />
 <a
     class="btn btn-primary btn-outline-dark"
     id="butty"
@@ -9,6 +8,7 @@
     role="button"
     >Start Test</a
 >
+<br />
 
 <%= ('Herre is randoDoc: ' + randomDoc._id) %>
 

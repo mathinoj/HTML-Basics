@@ -30,14 +30,30 @@ router.get(
 router.get(
     "/test",
     catchAsync(async (req, res, next) => {
+        res.render("cards/testes");
+    })
+);
+
+router.get(
+    "/test/start",
+    catchAsync(async (req, res, next) => {
         const randomRocs = await Idioma.find({});
         const randomDocs = await db
             .collection("idiomas")
-            .aggregate([{ $sample: { size: randomRocs.length } }])
+            // .aggregate([{ $sample: { size: randomRocs.length } }])
+            .aggregate([{ $sample: { size: 5 } }])
             .toArray();
         // https://mongoosejs.com/docs/api/aggregate.html#aggregate_Aggregate-sample
         // https://www.mongodb.com/docs/manual/reference/operator/aggregation/sample/#pipe._S_sample
         // https://stackoverflow.com/questions/54585939/mongodb-and-node-js-aggregate-using-sample-isnt-returning-a-document
+        // console.log("What this:" + randomDocs._id);
+        console.log("ConsLog: " + Array.from(randomDocs));
+        const randArr = Array.from(randomDocs);
+        console.log("length: " + randArr.length);
+        console.log("MATH: " + Math.floor(Math.random() * randArr.length));
+        const mathRand = Math.floor(Math.random() * randArr.length);
+        const blandArr = randArr[mathRand];
+        console.log("Index: " + blandArr);
 
         res.render(`cards/test`, { randomDocs });
     })
@@ -75,7 +91,7 @@ router.get(
     catchAsync(async (req, res, next) => {
         const newCard = await Idioma.findById(req.params.id);
         if (!newCard) {
-            req.flash("error", "Card not found!");
+            req.flash("error", "Card not found, so you cannot edit!");
             return res.redirect("/cards");
         }
         res.render("cards/edit", { newCard });
