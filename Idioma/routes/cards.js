@@ -18,8 +18,8 @@ const validateCard = (req, res, next) => {
     }
 };
 
-function paginate(req, res, next) {
-    let perPage = 1;
+const paginate = (req, res, next) => {
+    let perPage = 3;
     let page = req.params.page;
 
     // const allCards = await Idioma.find({}).skip(perPage * page).limit
@@ -39,7 +39,7 @@ function paginate(req, res, next) {
         });
 
     // res.render("cards/index", { allCards });
-}
+};
 
 router.get("/", function (req, res, next) {
     paginate(req, res, next);

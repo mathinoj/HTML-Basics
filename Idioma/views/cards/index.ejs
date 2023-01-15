@@ -19,9 +19,9 @@
         <li>
             <% for(let i = 0; i < pages; i++) {%>
                 <% if(i === 0) { %>
-                    <li><a href="/cards"><%= i %></a></li>
+                    <li><a class="btn btn-primary btn-outline-dark" role='button' href="/cards"><%= i %></a></li>
                 <% } else { %>
-                    <li><a href="/cards/page/<%= i %>"><%= i %></a></li>
+                    <li><a class="btn btn-primary btn-outline-dark" role='button' href="/cards/page/<%= i %>"><%= i %></a></li>
                 <% } %>
             <% } %>
         </li>
