@@ -1,71 +1,12 @@
 <% layout('/layouts/boilerplate') %>
 <h1>Test</h1>
-<% for(let randomDoc of randomDocs) { %>
+
+<!-- https://www.youtube.com/watch?v=HWeU6iE9NIg
+https://getbootstrap.com/docs/5.2/components/popovers/ -->
 <a
     class="btn btn-primary btn-outline-dark"
     id="butty"
-    href="/cards/test"
+    href="/cards/tested"
     role="button"
-    >Start Test</a
+    >Back</a
 >
-<br />
-
-<%= ('Herre is randoDoc: ' + randomDoc._id) %>
-
-<div class="card" style="width: 18rem">
-    <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <h3 class="card-text"><%= randomDoc.english%></h3>
-    </div>
-    <!-- <div class="card"> -->
-    <div class="card-body">
-        <button
-            type="button"
-            class="btn btn-lg btn-outline-secondary"
-            data-bs-toggle="popover"
-            data-bs-title="The Answer"
-            data-bs-content="<%= randomDoc.spanish%>"
-        >
-            Answer
-        </button>
-    </div>
-    <ul class="list-group list-group-flush">
-        <!-- <li class="list-group-item">An item</li>
-        <li class="list-group-item">A second item</li>
-        <li class="list-group-item">A third item</li> -->
-        <li class="list-group-item">
-            <button
-                type="button"
-                class="btn btn-lg"
-                data-bs-toggle="popover"
-                data-bs-title="Hint One"
-                data-bs-content="<%= randomDoc.hintOne%>"
-            >
-                Hint One
-            </button>
-        </li>
-        <li class="list-group-item">
-            <button
-                type="button"
-                class="btn btn-lg"
-                data-bs-toggle="popover"
-                data-bs-title="Hint Two"
-                data-bs-content="<%= randomDoc.hintTwo%>"
-            >
-                Hint Two
-            </button>
-        </li>
-        <!-- <li class="list-group-item">
-            <a href="#" class="card-link">Hint One</a>
-        </li> -->
-    </ul>
-    <div class="card-body">
-        <a href="/cards" class="card-link">All Cards</a>
-        <a href="#" class="card-link">Another link</a>
-        <a href="/cards/test" class="card-link">Next Card</a>
-    </div>
-</div>
-
-<% } %>
-<!-- https://www.youtube.com/watch?v=HWeU6iE9NIg
-https://getbootstrap.com/docs/5.2/components/popovers/ -->

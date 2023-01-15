@@ -18,6 +18,37 @@ const validateCard = (req, res, next) => {
     }
 };
 
+function paginate(req, res, next) {
+    let perPage = 1;
+    let page = req.params.page;
+
+    // const allCards = await Idioma.find({}).skip(perPage * page).limit
+    Idioma.find({})
+        .skip(perPage * page)
+        .limit(perPage)
+        .exec(function (err, allCardsAgain) {
+            if (err) return next(err.message);
+            Idioma.count().exec(function (err, count) {
+                if (err) return next(err.message);
+                // res.render("cards/index", { allCards });
+                res.render("cards/index", {
+                    cards: allCardsAgain,
+                    pages: count / perPage,
+                });
+            });
+        });
+
+    // res.render("cards/index", { allCards });
+}
+
+router.get("/", function (req, res, next) {
+    paginate(req, res, next);
+});
+
+router.get("/page/:page", function (req, res, next) {
+    paginate(req, res, next);
+});
+
 router.get(
     "/",
     catchAsync(async (req, res, next) => {
@@ -28,14 +59,7 @@ router.get(
 );
 
 router.get(
-    "/test",
-    catchAsync(async (req, res, next) => {
-        res.render("cards/testes");
-    })
-);
-
-router.get(
-    "/test/start",
+    "/tested",
     catchAsync(async (req, res, next) => {
         const randomRocs = await Idioma.find({});
         const randomDocs = await db
@@ -47,15 +71,28 @@ router.get(
         // https://www.mongodb.com/docs/manual/reference/operator/aggregation/sample/#pipe._S_sample
         // https://stackoverflow.com/questions/54585939/mongodb-and-node-js-aggregate-using-sample-isnt-returning-a-document
         // console.log("What this:" + randomDocs._id);
-        console.log("ConsLog: " + Array.from(randomDocs));
+        // console.log("ConsLog: " + Array.from(randomDocs));
         const randArr = Array.from(randomDocs);
+        console.log("randArr: " + randArr);
         console.log("length: " + randArr.length);
+        for (let i = 0; i < randArr.length; i++) {
+            // console.log(i);
+            console.log(randArr[i]);
+        }
+
         console.log("MATH: " + Math.floor(Math.random() * randArr.length));
         const mathRand = Math.floor(Math.random() * randArr.length);
         const blandArr = randArr[mathRand];
-        console.log("Index: " + blandArr);
+        console.log("blandArr: " + blandArr);
+        console.log("Index: " + blandArr._id);
+        res.render("cards/tested", { randomDocs });
+    })
+);
 
-        res.render(`cards/test`, { randomDocs });
+router.get(
+    "/test/start",
+    catchAsync(async (req, res, next) => {
+        res.render(`cards/test`);
     })
 );
 

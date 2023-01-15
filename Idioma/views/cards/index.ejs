@@ -3,7 +3,7 @@
 
 <h1>View All</h1>
 
-<% for(let allCard of allCards) { %>
+<% for(let allCard of cards) { %>
 <div class="card" style="width: 15rem">
     <div class="card-header">Card</div>
     <div class="card-body">
@@ -13,4 +13,21 @@
     </div>
 </div>
 <% } %>
+
+<div class="container text-center">
+    <ul class="pagination">
+        <li>
+            <% for(let i = 0; i < pages; i++) {%>
+                <% if(i === 0) { %>
+                    <li><a href="/cards"><%= i %></a></li>
+                <% } else { %>
+                    <li><a href="/cards/page/<%= i %>"><%= i %></a></li>
+                <% } %>
+            <% } %>
+        </li>
+    </ul>
+</div>
+
+
+
 <a href="/cards/new">Make Card</a>
