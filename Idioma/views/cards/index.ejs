@@ -15,15 +15,18 @@
 <% } %>
 
 <div class="container text-center">
-    <ul class="pagination">
+    <div class="pagination">
         <!-- <li> -->
-        <% for(let i = 0; i < pages; i++) {%> <% if(i === 0) { %>
+        <% for(let i = 0; i < pages; i++) {%>
+        <!-- // -->
+        <% if(i === 0) { %>
         <!-- <li> -->
+
         <a
             class="btn btn-secondary btn-outline-dark"
             role="button"
             href="/cards"
-            ><%= i %></a
+            ><%= i + 1 %></a
         >
         <!-- </li> -->
         <% } else { %>
@@ -32,12 +35,20 @@
             class="btn btn-secondary btn-outline-dark"
             role="button"
             href="/cards/page/<%= i %>"
-            ><%= i %></a
+            ><%= i + 1 %></a
         >
+
         <!-- </li> -->
         <% }} %>
         <!-- </li> -->
-    </ul>
+    </div>
+    <a
+        class="btn btn-primary btn-outline-dark"
+        id="butty"
+        href="/cards/tested"
+        role="button"
+        >Back</a
+    >
 </div>
 
 <!-- https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22291784#questions/1464534 -->
