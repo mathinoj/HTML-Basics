@@ -37,7 +37,7 @@ const paginate = (req, res, next) => {
                 });
             });
         });
-
+    // https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22291784#questions/1464534
     // res.render("cards/index", { allCards });
 };
 

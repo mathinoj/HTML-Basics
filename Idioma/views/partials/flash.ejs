@@ -17,18 +17,12 @@
 
 <!-- https://getbootstrap.com/docs/4.0/components/alerts/#dismissing -->
 
-<!-- I think technically EJS calls partilas - includes. It's a way of including templates in other templates. So sub templates instead of some other template. And this is a really useful feature, especially if we have some code that we're duplicating.
-so rather than having to add our BS flash alert to all the templates where we want a flash to display (ex. show, edit, delete) we instead do one ejs file in our partials folder. Basically it simplifies the time it takes for us to add this code to other parts of our project. Then we 'include' it in our subtemplates (ex. boilerplate)
-we create partials folder to help us identify and differentiate from other fldrs
--->
-<!-- partials help reduce duplication -->
-
 <% if(error && error.length) { %>
 <div class="alert alert-danger alert-dismissible fade show" role="alert">
     <!-- alert alert-success gives us a green flash (see BS)-->
     <!-- alert-dismissable fade show makes the alert dismissable but it needs the button in order to dismiss it-->
     <!-- role of alert is for accessibility purposes for peeps needing a screen reader. The screen reader will announce the alert -->
-    <%= error %> <%= console.dir('Herre is flash: ' + success) %>
+    <%= error %> <%= console.dir('Herre is error flash: ' + error) %>
     <button
         type="button"
         class="btn-close"
@@ -39,3 +33,10 @@ we create partials folder to help us identify and differentiate from other fldrs
     </button>
 </div>
 <% } %>
+<!-- only if error array exists and it is not empty then an error message will flash
+
+    So the first example of where this could go wrong is if I copy the show card URL (the one where you have access to edit the card) let's say I bookmark it and then somebody deletes this campground and we go to that URL again.
+
+    We get a page that basically says no card was found, which is fine cuz before we input the error functionality there is no error thrown when you don't find a card. What ends up happening is we just pass the request for to access the deleted card on an empty variable. We pass that on to our template and we get an error template that is rendered to us (this is the temaplate with the red letters on a pink/red background). To avoid this we do the if(!card) which is saying that IF there is no card then flash the error and redirect the user to the index page.
+so these IF statements are in the edit and show route.
+-->
