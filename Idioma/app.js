@@ -13,7 +13,8 @@ const User = require("./models/user");
 const { cardSchema } = require("./schemas.js");
 mongoose.connect("mongodb://localhost:27017/idioma", {});
 
-const cards = require("./routes/cards"); //added mod 489
+const userRoutes = require("./routes/users");
+const cardRoutes = require("./routes/cards"); //changed to cardRoutes mod 509 18012023 427pm
 const passport = require("passport");
 
 const db = mongoose.connection;
@@ -72,7 +73,8 @@ app.get("/fakeUser", async (req, res, next) => {
     res.send(newUser);
 });
 
-app.use("/cards", cards); //added mod 489
+app.use("/", userRoutes);
+app.use("/cards", cardRoutes); //added mod 489
 
 app.get("/", (req, res) => {
     res.render("home");
