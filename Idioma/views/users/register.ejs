@@ -1,5 +1,5 @@
 <% layout('layouts/boilerplate') %>
-<form action="/register" method="POST" class="validate-form">
+<form action="/register" method="POST" class="validated-form" novalidate>
     <div class="mb-3">
         <label for="username" class="form-label">Username</label>
         <input
@@ -35,3 +35,5 @@
     </div>
     <button class="btn btn-success">Register</button>
 </form>
+
+<!-- we rename so we can make it more clear to what those app.uses do -->
