@@ -74,6 +74,16 @@ app.use((req, res, next) => {
     next();
 });
 
+//this is demonstrating how we will register a user. so below we hardcode the creation of a new user.
+app.get("/fakeUser", async (req, res, next) => {
+    const user = new User({ email: "dg@gmail.com", username: "colttt" });
+    //this is an instance of the user model
+    const newUser = User.register(user, "secretpassword");
+    //we dont pass in the password after the new User instance cuz what we do is call the REGISTER method, which is provided as a helper thanks to our PassportLocalMongoose mongoose plugin. In the docs it says register is a 'convienence method to register a new user instance witha given password. Checks if usernames is unique'. So all we need to do above is call the User.register and tehn pass in a user object and password (user, 'secretpassword'). So User.register takes the entire user model, the instance of the model and then a password. Then it hashes the password
+    res.send(newUser);
+    //in this example we are just tring to get a visual to see that all we do is provide a user object and a password and let PASSPORT take care of the rest, meaning it will salt/hash the password, and storesthe salt and the hash on our user.
+});
+
 app.use("/cards", cards); //added mod 489
 
 app.get("/", (req, res) => {
