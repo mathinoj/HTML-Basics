@@ -48,25 +48,15 @@ const sessionConfig = {
     },
 };
 app.use(session(sessionConfig));
-//We just want to make sure app use session is there before passport session.********************jan172023 651pm
+
 app.use(flash());
 
 app.use(passport.initialize());
-// Intializes Passport for incoming requests, allowing authentication strategies to be applied.
 app.use(passport.session());
-//A web application needs the ability to identify users as they browse from page to page. This series of requests and responses, each associated with the same user, is known as a session. Authenticated users need to be remembered across subsequent requests as they navigate the application.
-//SO BASICALLY session keeps a user logged in to the website for every page that they browse. For example, WITHOUT SESSION if a user logged into their homepage but then went to a different page like a POST COMMENT page then they would be logged off or not acknowledged as logged in. SESSION makes sure this does not happen.
+
 passport.use(new LocalStrategy(User.authenticate()));
-// The LocalStrategy constructor takes a VERIFY function as an argument, which accepts username and password as arguments. When authenticating a request, the strategy parses a username and password, which are submitted via an HTML form to the web application. The strategy then calls the VERIFY function with those credentials. The VERIFY function is responsible for determining the user to which the username belongs, as well as verifying the password.
-
-// this is saying hello passport we want you to use the localStrategy that we have downloaded and required. for the localStrategy the authentication method is going to be located on our user model and it's called AUTHENTICATE. HOWEVER we don't have a method on here (USERSCEHAM in USER.JS) called authenticate, at least not one that we made. Instead AUTHENTICATE is coming from this passport local mongoose on the docs, which are the static methods that have been added in automatically. Authenticate generates a function that is used in passports local strategy.
-
 passport.serializeUser(User.serializeUser());
-//This is telling passports how to serialize a user. And serialization refers to basically how do we get data or how do we store a user in the session.
 passport.serializeUser(User.deserializeUser());
-//How do you get a user out of that session.
-
-//BOTH THESE methods have been added in from our passportLocalMongoose plugin in USERS.JS
 
 app.use((req, res, next) => {
     res.locals.success = req.flash("success");
@@ -76,12 +66,10 @@ app.use((req, res, next) => {
 
 //this is demonstrating how we will register a user. so below we hardcode the creation of a new user.
 app.get("/fakeUser", async (req, res, next) => {
-    const user = new User({ email: "dg@gmail.com", username: "colttt" });
-    //this is an instance of the user model
-    const newUser = User.register(user, "secretpassword");
-    //we dont pass in the password after the new User instance cuz what we do is call the REGISTER method, which is provided as a helper thanks to our PassportLocalMongoose mongoose plugin. In the docs it says register is a 'convienence method to register a new user instance witha given password. Checks if usernames is unique'. So all we need to do above is call the User.register and tehn pass in a user object and password (user, 'secretpassword'). So User.register takes the entire user model, the instance of the model and then a password. Then it hashes the password
+    const user = new User({ email: "vic@gmail.com", username: "vic" });
+    const newUser = await User.register(user, "secretpasswordvic");
+
     res.send(newUser);
-    //in this example we are just tring to get a visual to see that all we do is provide a user object and a password and let PASSPORT take care of the rest, meaning it will salt/hash the password, and storesthe salt and the hash on our user.
 });
 
 app.use("/cards", cards); //added mod 489
