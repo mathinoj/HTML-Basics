@@ -8,7 +8,16 @@ router.get("/register", (req, res) => {
 });
 
 router.post("/register", async (req, res) => {
-    res.send(req.body);
+    try {
+        const { email, username, password } = req.body;
+        const user = new User({ email, username });
+        const registeredUser = await User.register(user, password);
+        req.flash("success", "You have successfully reg'd");
+        res.redirect("/cards");
+    } catch (e) {
+        req.flash("error", "e.message");
+        res.redirect("register");
+    }
 });
 
 module.exports = router;
