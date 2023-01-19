@@ -71,6 +71,7 @@ app.get("/fakeUser", async (req, res, next) => {
     const newUser = await User.register(user, "secretpasswordvic");
 
     res.send(newUser);
+    //THIS IS A TEST DONE IN MOD 512 TO SEE PASSPORT WORKING. WITH THIS, when you go to /fakeUser, you will see the HASHED/SALTED pword
 });
 
 app.use("/", userRoutes);
