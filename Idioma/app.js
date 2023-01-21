@@ -8,14 +8,16 @@ const Idioma = require("./models/idioma");
 const catchAsync = require("./utils/catchAsync");
 const ExpressError = require("./utils/ExpressError");
 const methodOverride = require("method-override");
+const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user");
 const { cardSchema } = require("./schemas.js");
+
+mongoose.set("strictQuery", true); //ADDED THIS TO REMOVE TERMINAL MESSAGE BOUT DEPRECIATION. 21JAN2023 1522
 mongoose.connect("mongodb://localhost:27017/idioma", {});
 
 const userRoutes = require("./routes/users");
 const cardRoutes = require("./routes/cards"); //changed to cardRoutes mod 509 18012023 427pm
-const passport = require("passport");
 
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
@@ -26,16 +28,13 @@ db.once("open", () => {
 const app = express();
 
 app.engine("ejs", ejsMate);
-
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 app.use(express.urlencoded({ extended: true }));
-
 app.use(methodOverride("_method"));
 // app.use(express.static("public")); TEST 2 MOD 491
 //but then we add in this and we get the alert from TEST 1 MOD 491
-
 app.use(express.static(path.join(__dirname, "public"))); //FINAL MOD 491
 
 const sessionConfig = {
@@ -48,16 +47,16 @@ const sessionConfig = {
         maxAge: 1000 * 60 * 60 * 24 * 7,
     },
 };
-app.use(session(sessionConfig));
 
+app.use(session(sessionConfig));
 app.use(flash());
 
 app.use(passport.initialize());
 app.use(passport.session());
-
 passport.use(new LocalStrategy(User.authenticate()));
+
 passport.serializeUser(User.serializeUser());
-passport.serializeUser(User.deserializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 app.use((req, res, next) => {
     res.locals.success = req.flash("success");
@@ -66,13 +65,13 @@ app.use((req, res, next) => {
 });
 
 //this is demonstrating how we will register a user. so below we hardcode the creation of a new user.
-app.get("/fakeUser", async (req, res, next) => {
-    const user = new User({ email: "vic@gmail.com", username: "vic" });
-    const newUser = await User.register(user, "secretpasswordvic");
+// app.get("/fakeUser", async (req, res, next) => {
+//     const user = new User({ email: "vic@gmail.com", username: "vic" });
+//     const newUser = await User.register(user, "secretpasswordvic");
 
-    res.send(newUser);
-    //THIS IS A TEST DONE IN MOD 512 TO SEE PASSPORT WORKING. WITH THIS, when you go to /fakeUser, you will see the HASHED/SALTED pword
-});
+//     res.send(newUser);
+//     //THIS IS A TEST DONE IN MOD 512 TO SEE PASSPORT WORKING. WITH THIS, when you go to /fakeUser, you will see the HASHED/SALTED pword
+// });
 
 app.use("/", userRoutes);
 app.use("/cards", cardRoutes); //added mod 489
