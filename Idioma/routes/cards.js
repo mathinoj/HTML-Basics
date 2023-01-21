@@ -4,7 +4,9 @@ const mongoose = require("mongoose");
 const catchAsync = require("../utils/catchAsync");
 const { cardSchema } = require("../schemas.js");
 const ExpressError = require("../utils/ExpressError");
+conts {isLoggedIn} = require('../middleware')
 const Idioma = require("../models/idioma");
+const { isLoggedIn } = require('../middleware');
 const db = mongoose.connection;
 
 const validateCard = (req, res, next) => {
