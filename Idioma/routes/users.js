@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
-//must require p-port to use the middleware like 'PASSPORT.AUTHENTICATE()'
 const catchAsync = require("../utils/catchAsync");
 const User = require("../models/user");
 
@@ -29,7 +28,6 @@ router.post(
 router.get("/login", (req, res) => {
     res.render("users/login");
 });
-//this just serves the reg form from login.ejs
 
 router.post(
     "/login",
