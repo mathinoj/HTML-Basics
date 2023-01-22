@@ -64,6 +64,14 @@ app.use((req, res, next) => {
     res.locals.error = req.flash("error");
     next();
 });
+//on REQ there iss something automatically put there for us, its req.user, which contains info bout the user.
+//he does a: console.log('REQ.USER...', req.user). He says req.user will automatically be filled in with the deserialized info from the session. Session stores the serialized user, PASSPORT is going to deserialize it and fill in req.user with that data. So TO TEST the CONSLOG you have to login and then go to 'make a card' THEN go to to terminal. There you should see the user information that is stored in the session. So what you see is the req.user that is coming from the session thanks to PASSPORT. THIS EXAMPLE IS IN MIDDLEWARE.JS
+//currentUser would show the req.user, it will basically show that someone is LOGGED IN.
+
+//can name it anything you want (currentUser)
+
+//res.locals.success/error are accessible in every template, so even though theyre local they are actually global (meaning theyre accessible in every template)
+//so rather than add req.user to every single request we add it to res.locals, which allows us to have access to req.user in all templates. So now in all the templates we should have access to currentUser
 
 //this is demonstrating how we will register a user. so below we hardcode the creation of a new user.
 // app.get("/fakeUser", async (req, res, next) => {

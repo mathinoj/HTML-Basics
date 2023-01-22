@@ -56,10 +56,16 @@
                 </li> -->
             </ul>
             <div class="navbar-nav ml-auto">
+                <% if(!currentUser) { %>
                 <a href="/login" class="nav-link">Login</a>
                 <a href="/register" class="nav-link">Signup</a>
+                <% } else { %>
                 <a href="/logout" class="nav-link">Logout</a>
+                <% } %>
             </div>
         </div>
     </div>
 </nav>
+
+<!-- if no one is logged in, then show login/reg links in navbar
+if someone is logged in, then only show the logout link -->
