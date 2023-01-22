@@ -41,8 +41,14 @@ router.post(
     }
 );
 
-//passport.authenticate is a middleware given by PASSPORT and it expects us to specify the strategy 'LOCAL'
-//after LOCAL we have some options we can specify in an {object}. One of them is failuerFlash set to TRUE, which automatically flashes a message for us if there is a failure during the login. Then we add failureRedirect to redirect the user if something goes wrong with their login.
-//however if the user is successul to login then we falsh the success flash with message and redirec the user to whereever we want, which in this case is the All Cards page.
+router.get("/logout", (req, res, next) => {
+    req.logout(function (err) {
+        if (err) {
+            return next(err);
+        }
+        req.flash("success", "You logged out!");
+        res.redirect("/cards");
+    });
+});
 
 module.exports = router;
