@@ -37,7 +37,7 @@ router.post(
     }),
     (req, res) => {
         const { username } = req.body;
-        console.log("USERzzz: " + username);
+        console.log("Username is: " + username);
         req.flash("success", `Welcome back, ${username}!`);
         // console.log("USER: " + User);
         res.redirect("/cards");
