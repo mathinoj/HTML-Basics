@@ -36,7 +36,10 @@ router.post(
         failureRedirect: "/login",
     }),
     (req, res) => {
-        req.flash("success", "Welcome back!");
+        const { username } = req.body;
+        console.log("USERzzz: " + username);
+        req.flash("success", `Welcome back, ${username}!`);
+        // console.log("USER: " + User);
         res.redirect("/cards");
     }
 );
