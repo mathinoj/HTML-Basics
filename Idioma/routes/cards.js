@@ -119,6 +119,7 @@ router.get(
     "/:id",
     catchAsync(async (req, res, next) => {
         const card = await Idioma.findById(req.params.id).populate("author");
+        console.log("CARD!!! " + card); // DONE AS TEST TO SEE all the 'author' info that we added in our IDIOMA.JS models. In the app-website click on card to see the CONSLOG
         if (!card) {
             req.flash("error", "Card not found!");
             return res.redirect("/cards");
