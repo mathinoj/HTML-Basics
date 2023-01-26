@@ -12,6 +12,7 @@ const IdiomaSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "User",
     },
+    //this is a reference
     number: {
         type: Number,
     },
