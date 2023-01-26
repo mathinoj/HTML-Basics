@@ -11,3 +11,10 @@ module.exports.isLoggedIn = (req, res, next) => {
 };
 
 //we create this middleware so we can use it on any ROUTE where we want to ensure a user MUST be logged in before they can access the route!
+
+module.exports.checkReturnTo = (req, res, next) => {
+    if (req.session.returnTo) {
+        res.locals.returnTo = req.session.returnTo;
+    }
+    next();
+};

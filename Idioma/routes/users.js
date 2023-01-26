@@ -3,6 +3,7 @@ const router = express.Router();
 const passport = require("passport");
 const catchAsync = require("../utils/catchAsync");
 const User = require("../models/user");
+const { checkReturnTo } = require("../middleware");
 
 router.get("/register", (req, res) => {
     res.render("users/register");
@@ -31,18 +32,23 @@ router.get("/login", (req, res) => {
     res.render("users/login");
 });
 
+//THIS ROUTER.POST DOES THE LOGGING IN!
 router.post(
     "/login",
+    checkReturnTo,
     passport.authenticate("local", {
         failureFlash: true,
         failureRedirect: "/login",
     }),
     (req, res) => {
-        const { username } = req.body;
-        console.log("Username is: " + username);
-        req.flash("success", `Welcome back, ${username}!`);
+        // const { username } = req.body;
+        // console.log("Username is: " + username);
+        // req.flash("success", `Welcome back, ${username}!`);
+        req.flash("success", `Welcome back`);
+
         // console.log("USER: " + User);
-        res.redirect("/cards");
+        const redirectUrl = res.locals.returnTo || "/cards";
+        res.redirect(redirectUrl);
     }
 );
 

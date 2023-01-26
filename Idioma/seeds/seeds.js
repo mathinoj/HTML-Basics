@@ -21,10 +21,6 @@ const seedDbIdioma = async () => {
 
 //set the loop to run 50 times to get a city
 
-seedDbIdioma().then(() => {
-    mongoose.connection.close();
-});
-
 //this file you run on its own anytime you want to get some new data in DB, which is pretty common - to seed your DB sepertately from a web app for development purposes. We want some data in there and we want to isolate it from the actual index.js/app.js of the application youre building
 
 const seedLanguages = [
@@ -94,3 +90,7 @@ Idioma.insertMany(seedLanguages)
         console.log(e);
     });
 //One thing to know about insertManyy in Mongoose is that if anything does not pass validation, then nothing will be inserted at least by default. So Mongoose validates all of this before it inserts anything, and then it inserts it in one go. So just know that if you do have validations and we're failing, everything will fail to insert.
+
+seedDbIdioma().then(() => {
+    mongoose.connection.close();
+});
