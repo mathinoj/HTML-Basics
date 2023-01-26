@@ -118,7 +118,7 @@ router.post(
 router.get(
     "/:id",
     catchAsync(async (req, res, next) => {
-        const card = await Idioma.findById(req.params.id);
+        const card = await Idioma.findById(req.params.id).populate("author");
         if (!card) {
             req.flash("error", "Card not found!");
             return res.redirect("/cards");
