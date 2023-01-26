@@ -8,6 +8,10 @@ const IdiomaSchema = new Schema({
     spanish: String,
     hintOne: String,
     hintTwo: String,
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+    },
     number: {
         type: Number,
     },
