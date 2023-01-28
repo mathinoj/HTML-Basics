@@ -161,6 +161,7 @@ router.get(
 router.put(
     "/:id",
     isLoggedIn,
+    isAuthor,
     validateCard,
     catchAsync(async (req, res, next) => {
         const { id } = req.params;
@@ -191,6 +192,7 @@ router.put(
 router.delete(
     "/:id",
     isLoggedIn,
+    isAuthor,
     catchAsync(async (req, res, next) => {
         const { id } = req.params;
         const deletedCard = await Idioma.findByIdAndDelete(id);
