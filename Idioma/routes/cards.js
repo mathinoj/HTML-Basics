@@ -27,6 +27,7 @@ const isAuthor = (req, res, next) => {
         req.flash("error", "Cant access!");
         res.redirect(`/cards/${id}`);
     }
+    next();
 };
 
 const paginate = (req, res, next) => {
