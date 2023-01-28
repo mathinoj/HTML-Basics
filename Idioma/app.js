@@ -64,6 +64,7 @@ app.use((req, res, next) => {
     //if we go to the ALL CARDS page there is nothing in the terminal that has to deal with the 'returnTo', but if we go to 'make a card' we are redirected to login and the session (in the terminal) includes a returnTo '/cards/new'
     //Then when we actually do the logging in (user.js), which is in the router.post('/login')
     res.locals.currentUser = req.user;
+    console.log("CURRENT USER: " + res.locals.currentUser);
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
     next();
