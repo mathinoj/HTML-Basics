@@ -20,6 +20,15 @@ const validateCard = (req, res, next) => {
     }
 };
 
+const isAuthor = (req, res, next) => {
+    const { id } = req.params;
+    const cardAuthor = await.Idioma.findById(id);
+    if (!cardAuthor.author.equals(req.user._id)) {
+        req.flash("error", "Cant access!");
+        res.redirect(`/cards/${id}`);
+    }
+};
+
 const paginate = (req, res, next) => {
     let perPage = 3;
     let page = req.params.page;
@@ -134,6 +143,7 @@ router.get(
     isLoggedIn,
     catchAsync(async (req, res, next) => {
         const { id } = req.params;
+        console.log("THIS ID: " + req.params.id);
         const newCard = await Idioma.findById(id);
         if (!newCard) {
             req.flash("error", "Card not found, so you cannot edit!");
