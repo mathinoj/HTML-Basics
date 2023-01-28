@@ -25,7 +25,7 @@ const isAuthor = async (req, res, next) => {
     const cardAuthor = await Idioma.findById(id);
     if (!cardAuthor.author.equals(req.user._id)) {
         req.flash("error", "Cant access!");
-        res.redirect(`/cards/${id}`);
+        return res.redirect(`/cards/${id}`);
     }
     next();
 };
