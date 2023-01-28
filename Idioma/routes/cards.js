@@ -20,7 +20,7 @@ const validateCard = (req, res, next) => {
     }
 };
 
-const isAuthor = (req, res, next) => {
+const isAuthor = async (req, res, next) => {
     const { id } = req.params;
     const cardAuthor = await Idioma.findById(id);
     if (!cardAuthor.author.equals(req.user._id)) {
