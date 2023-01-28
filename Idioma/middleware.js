@@ -1,3 +1,6 @@
+const { cardSchema } = require("./schemas.js");
+const ExpressError = require("./utils/ExpressError");
+
 module.exports.isLoggedIn = (req, res, next) => {
     // console.log("REQ.USER: ", req.user); TEST MOD 517
     //we export this middleware by doing module.exports.isLoggedIn, but then we have to import it on the cards.js and which ever other router/router-file we want to use this middleware.
