@@ -1,5 +1,6 @@
-const { cardSchema } = require("./schemas.js");
+const { cardSchema } = require("./schemas.js"); //added BOTH 13TH
 const ExpressError = require("./utils/ExpressError");
+const Idioma = require("./models/idioma"); //ADDED 14TH
 
 module.exports.isLoggedIn = (req, res, next) => {
     // console.log("REQ.USER: ", req.user); TEST MOD 517
@@ -20,4 +21,26 @@ module.exports.checkReturnTo = (req, res, next) => {
         res.locals.returnTo = req.session.returnTo;
     }
     next();
+};
+
+module.exports.validateCard = (req, res, next) => {
+    const { error } = cardSchema.validate(req.body);
+    if (error) {
+        const msg = error.details.map((el) => el.message).join(", ");
+        throw new ExpressError(msg, 400);
+        //https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
+    } else {
+        next();
+    }
+};
+
+module.exports.isAuthor = async (req, res, next) => {
+    const { id } = req.params;
+    const cardAuthor = await Idioma.findById(id);
+    if (!cardAuthor.author.equals(req.user._id)) {
+        req.flash("error", "Cant touch dis!");
+        return res.redirect(`/cards/${id}`);
+    }
+    next();
+    //this part will move the user on to the next routers, that they do have permission to move forward (w/ changing the card)
 };
