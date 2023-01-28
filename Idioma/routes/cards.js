@@ -141,6 +141,7 @@ router.get(
 router.get(
     "/:id/edit",
     isLoggedIn,
+    isAuthor,
     catchAsync(async (req, res, next) => {
         const { id } = req.params;
         console.log("THIS ID: " + req.params.id);
