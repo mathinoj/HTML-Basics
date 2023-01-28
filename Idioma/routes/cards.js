@@ -6,6 +6,7 @@ const { cardSchema } = require("../schemas.js");
 const ExpressError = require("../utils/ExpressError");
 const Idioma = require("../models/idioma");
 const { isLoggedIn } = require("../middleware");
+const { rawListeners } = require("process");
 const db = mongoose.connection;
 
 const validateCard = (req, res, next) => {
@@ -132,10 +133,15 @@ router.get(
     "/:id/edit",
     isLoggedIn,
     catchAsync(async (req, res, next) => {
-        const newCard = await Idioma.findById(req.params.id);
+        const { id } = req.params;
+        const newCard = await Idioma.findById(id);
         if (!newCard) {
             req.flash("error", "Card not found, so you cannot edit!");
             return res.redirect("/cards");
+        }
+        if (!newCard.author.equals(req.user._id)) {
+            req.flash("error", "No se permites!");
+            return res.redirect(`/cards/${id}`);
         }
         res.render("cards/edit", { newCard });
     })
@@ -151,7 +157,7 @@ router.put(
         const card = await Idioma.findById(id);
         if (!card.author.equals(req.user._id)) {
             req.flash("error", "Cant touch dis!");
-            return res.redirect(`/campground/${id}`);
+            return res.redirect(`/cards/${id}`);
             //member, we put return so that we for sure know this code runs cuz without the RETURN this code would run and so would the other flash below
         }
         const cards = await Idioma.findByIdAndUpdate(id, {
