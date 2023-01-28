@@ -32,8 +32,3 @@
     <% } %>
 </div>
 <!-- CAN ONLY DO GET OR POST -->
-<!-- to display edit/delete to user that created the card we need two pieces of info: the card.author, which is supposed to be a userID; and also the currentUser, which will also contain an ID. We want to see if these match.
-
-    The easisest way to do that is to do a card-author .equals() the currentUser._id, which will look like this: card.author.equals(currentUser._id). However this alone will break our app especially if nobody is signed in.
-
-    SO TO FIX THIS we add currentUser && ..., which is saying if CURRENTUSER exists - meaning currentUser is activated, which will only happen after a user passes Authentication and logs-in. So the whole IF statement saying if currentUser exists AND (&&) card.author EQUALS currentUser_.id THEN display the BUTTONS that we want displayed (edit/delete)-->
