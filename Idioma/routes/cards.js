@@ -2,32 +2,10 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const catchAsync = require("../utils/catchAsync");
-const { isLoggedIn, isAuthor, validateCard } = require("../middleware");
 const Idioma = require("../models/idioma");
-const { isLoggedIn } = require("../middleware");
-const { rawListeners } = require("process");
+const { isLoggedIn, isAuthor, validateCard } = require("../middleware");
+
 const db = mongoose.connection;
-
-const validateCard = (req, res, next) => {
-    const { error } = cardSchema.validate(req.body);
-    if (error) {
-        const msg = error.details.map((el) => el.message).join(", ");
-        throw new ExpressError(msg, 400);
-        //https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
-    } else {
-        next();
-    }
-};
-
-const isAuthor = async (req, res, next) => {
-    const { id } = req.params;
-    const cardAuthor = await Idioma.findById(id);
-    if (!cardAuthor.author.equals(req.user._id)) {
-        req.flash("error", "Cant access!");
-        return res.redirect(`/cards/${id}`);
-    }
-    next();
-};
 
 const paginate = (req, res, next) => {
     let perPage = 3;
@@ -150,10 +128,6 @@ router.get(
             req.flash("error", "Card not found, so you cannot edit!");
             return res.redirect("/cards");
         }
-        if (!newCard.author.equals(req.user._id)) {
-            req.flash("error", "No se permites!");
-            return res.redirect(`/cards/${id}`);
-        }
         res.render("cards/edit", { newCard });
     })
 );
@@ -166,13 +140,7 @@ router.put(
     catchAsync(async (req, res, next) => {
         const { id } = req.params;
         // console.log("this is id: " + { id });
-        const card = await Idioma.findById(id);
-        if (!card.author.equals(req.user._id)) {
-            req.flash("error", "Cant touch dis!");
-            return res.redirect(`/cards/${id}`);
-            //member, we put return so that we for sure know this code runs cuz without the RETURN this code would run and so would the other flash below
-        }
-        const cards = await Idioma.findByIdAndUpdate(id, {
+        const card = await Idioma.findByIdAndUpdate(id, {
             ...req.body.newCard,
         });
         console.log("this is card: " + cards);
@@ -182,12 +150,6 @@ router.put(
         console.log("here: " + card._id);
     })
 );
-//what we want to do first before we update anything, we wantto check if the card has the same AUTHOR-ID as the currently logged-in user (CURRENTUSER). To do this we need to break the findByIdAndUpdate into 2 steps, cuz its no longer good enough to update all at once.
-//we want to find first AND THEN check to see if we can update, meaning if the author of that card we FOUND matches the currently logged-in user (currentUser) sending this request. Doing it all at once like we are currently doing doesnt give the app a chance to verify currentUser and card author.
-
-//the new code that we put first in the router is saying "we're finding the cards. We're awaiting that, we're checking to see if you have the the correct authorization, cuz if so then you are allowed to update the card. If not, we redirect you."
-
-//the next code would be saying but if you have the correct auhtorization and YOU DO update the card then we are going to find/update what we already found.
 
 router.delete(
     "/:id",

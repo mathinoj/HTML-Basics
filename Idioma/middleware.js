@@ -1,6 +1,6 @@
-const { cardSchema } = require("./schemas.js"); //added BOTH 13TH
+const { cardSchema } = require("./schemas.js");
 const ExpressError = require("./utils/ExpressError");
-const Idioma = require("./models/idioma"); //ADDED 14TH
+const Idioma = require("./models/idioma");
 
 module.exports.isLoggedIn = (req, res, next) => {
     // console.log("REQ.USER: ", req.user); TEST MOD 517
