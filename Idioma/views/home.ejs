@@ -13,41 +13,39 @@
         />
         <link rel="stylesheet" href="/stylesheets/home.css" />
     </head>
-    <body>
+    <!-- <body> -->
+    <body class="d-flex text-center text-white bg-dark">
         <!-- <h1>Idiotma Casa Pagina</h1> -->
-        <body class="d-flex text-center text-white bg-dark">
-            <div
-                class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column"
-            >
-                <header class="mb-auto">
-                    <h3 class="float-md-left mb-0">HOME PAGE</h3>
-                    <nav class="nav justify-content-center">
-                        <a href="#" class="nav-link active" aria-current="page"
-                            >Home</a
-                        >
-                        <a href="/cards" class="nav-link">All Cards</a>
-                        <% if(!currentUser) { %>
-                        <a href="/login" class="nav-link">Login</a>
-                        <a href="/register" class="nav-link">Register</a>
-                        <% } else { %>
-                        <a href="/logout" class="nav-link">Logout</a>
-                        <% } %>
-                    </nav>
-                </header>
-                <main>
-                    <h1>SITE TITLE</h1>
-                    <p class="lead">THIS IS MY SITE BLAHS BLAH BLAHS</p>
-                    <a
-                        href="/cards"
-                        class="btn btn-lg btn-secondary font-weight-bold border-grey bg-grey"
-                        >View Cards</a
+        <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+            <header class="mb-auto">
+                <h3 class="float-md-left mb-0">HOME PAGE</h3>
+                <nav class="nav justify-content-center">
+                    <a href="#" class="nav-link active" aria-current="page"
+                        >Home</a
                     >
-                </main>
-                <footer class="mt-auto text-white-50">
-                    <p>&copy; 2023 ADD SUM</p>
-                </footer>
-            </div>
-        </body>
+                    <a href="/cards" class="nav-link">All Cards</a>
+                    <% if(!currentUser) { %>
+                    <a href="/login" class="nav-link">Login</a>
+                    <a href="/register" class="nav-link">Register</a>
+                    <% } else { %>
+                    <a href="/logout" class="nav-link">Logout</a>
+                    <% } %>
+                </nav>
+            </header>
+            <main>
+                <h1>SITE TITLE</h1>
+                <p class="lead">THIS IS MY SITE BLAHS BLAH BLAHS</p>
+                <a
+                    href="/cards"
+                    class="btn btn-lg btn-secondary font-weight-bold border-grey bg-grey"
+                    >View Cards</a
+                >
+            </main>
+            <footer class="mt-auto text-white-50">
+                <p>&copy; 2023 ADD SUM</p>
+            </footer>
+        </div>
+        <!-- </body> -->
 
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
