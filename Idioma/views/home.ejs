@@ -23,12 +23,12 @@
                     <a href="#" class="nav-link active" aria-current="page"
                         >Home</a
                     >
-                    <a href="/cards" class="nav-link">All Cards</a>
+                    <a href="/cards" class="nav-link active">All Cards</a>
                     <% if(!currentUser) { %>
-                    <a href="/login" class="nav-link">Login</a>
-                    <a href="/register" class="nav-link">Register</a>
+                    <a href="/login" class="nav-link active">Login</a>
+                    <a href="/register" class="nav-link active">Register</a>
                     <% } else { %>
-                    <a href="/logout" class="nav-link">Logout</a>
+                    <a href="/logout" class="nav-link active">Logout</a>
                     <% } %>
                 </nav>
             </header>
