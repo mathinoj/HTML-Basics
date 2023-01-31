@@ -1,74 +1,77 @@
 <% layout('/layouts/boilerplate') %>
 <h1>Make A Card</h1>
-<form action="/cards" method="POST" class="validated-form" novalidate>
-    <!-- we tell the browser not to validate the form so that BS can do it instead, instead of using the native browser vailidation that comes with the 'required' that we added to textarea/input -->
-    <div>
-        <label for="english">English</label>
-        <!-- for in label has to match id below -->
-        <textarea
-            class="form-control"
-            type="text"
-            id="english"
-            name="newCard[english]"
-            placeholder="English"
-            required
-        ></textarea>
-        <div class="valid-feedback">Que Bueno!</div>
-    </div>
-    <div>
-        <label for="spanish">Spanish</label>
-        <textarea
-            placeholder="Spanish"
-            class="form-control"
-            type="text"
-            id="spanish"
-            name="newCard[spanish]"
-            required
-        ></textarea>
-        <div class="valid-feedback">Que Bueno!</div>
-    </div>
-    <div>
-        <label for="hintOne">Hint One</label>
-        <input
-            class="form-control"
-            type="text"
-            id="hintOne"
-            name="newCard[hintOne]"
-            placeholder="Hint One"
-            required
-        />
-        <div class="valid-feedback">Que Bueno!</div>
-    </div>
-    <div>
-        <label for="hintTwo">Hint Two</label>
-        <input
-            class="form-control"
-            type="text"
-            id="hintTwo"
-            name="newCard[hintTwo]"
-            placeholder="Hint Two"
-            required
-        />
-        <div class="valid-feedback">Que Bueno!</div>
-    </div>
-    <div>
-        <label for="number">Number</label>
-        <input
-            class="form-control"
-            type="text"
-            id="number"
-            name="newCard[number]"
-            placeholder="Number"
-            required
-        />
-        <div class="valid-feedback">Que Bueno!</div>
-    </div>
-    <div class="buttons mt-3">
-        <button class="btn btn-success btn-outline-dark">Submit</button>
-        <a href="/cards" class="btn btn-danger btn-outline-dark">All Cards</a>
-    </div>
-</form>
-
+<div class="col-md-6 offset-md-3">
+    <form action="/cards" method="POST" class="validated-form" novalidate>
+        <!-- we tell the browser not to validate the form so that BS can do it instead, instead of using the native browser vailidation that comes with the 'required' that we added to textarea/input -->
+        <div>
+            <label for="english">English</label>
+            <!-- for in label has to match id below -->
+            <textarea
+                class="form-control"
+                type="text"
+                id="english"
+                name="newCard[english]"
+                placeholder="English"
+                required
+            ></textarea>
+            <div class="valid-feedback">Que Bueno!</div>
+        </div>
+        <div>
+            <label for="spanish">Spanish</label>
+            <textarea
+                placeholder="Spanish"
+                class="form-control"
+                type="text"
+                id="spanish"
+                name="newCard[spanish]"
+                required
+            ></textarea>
+            <div class="valid-feedback">Que Bueno!</div>
+        </div>
+        <div>
+            <label for="hintOne">Hint One</label>
+            <input
+                class="form-control"
+                type="text"
+                id="hintOne"
+                name="newCard[hintOne]"
+                placeholder="Hint One"
+                required
+            />
+            <div class="valid-feedback">Que Bueno!</div>
+        </div>
+        <div>
+            <label for="hintTwo">Hint Two</label>
+            <input
+                class="form-control"
+                type="text"
+                id="hintTwo"
+                name="newCard[hintTwo]"
+                placeholder="Hint Two"
+                required
+            />
+            <div class="valid-feedback">Que Bueno!</div>
+        </div>
+        <div>
+            <label for="number">Number</label>
+            <input
+                class="form-control"
+                type="text"
+                id="number"
+                name="newCard[number]"
+                placeholder="Number"
+                required
+            />
+            <div class="valid-feedback">Que Bueno!</div>
+        </div>
+        <div class="buttons mt-3">
+            <button class="btn btn-success btn-outline-dark">Submit</button>
+            <a href="/cards" class="btn btn-danger btn-outline-dark"
+                >All Cards</a
+            >
+        </div>
+    </form>
+</div>
 <!-- <script>
     // Example starter JavaScript for disabling form submissions if there are invalid fields
     (() => {
