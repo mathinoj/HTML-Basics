@@ -1,39 +1,65 @@
 <% layout('layouts/boilerplate') %>
-<form action="/register" method="POST" class="validated-form" novalidate>
-    <div class="mb-3">
-        <label for="username" class="form-label">Username</label>
-        <input
-            type="text"
-            class="form-control"
-            name="username"
-            id="username"
-            required
-        />
-        <div class="valid-feedback">Good</div>
-    </div>
-    <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
-        <input
-            type="email"
-            class="form-control"
-            name="email"
-            id="email"
-            required
-        />
-        <div class="valid-feedback">Good</div>
-    </div>
-    <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
-        <input
-            type="password"
-            class="form-control"
-            name="password"
-            id="password"
-            required
-        />
-        <div class="valid-feedback">Good</div>
-    </div>
-    <button class="btn btn-success">Register</button>
-</form>
+<div
+    class="container display-flex justify-content-center alight-items-center mt-5"
+>
+    <div class="row">
+        <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
+            <div class="card shadow">
+                <img
+                    src="https://images.unsplash.com/photo-1498747324273-943f73ca00b6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
+                    class="card-img-top"
+                />
+                <div class="card-body">
+                    <h5 class="card-title">Register</h5>
+                    <form
+                        action="/register"
+                        method="POST"
+                        class="validated-form"
+                        novalidate
+                    >
+                        <div class="mb-3">
+                            <label for="username" class="form-label"
+                                >Username</label
+                            >
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="username"
+                                id="username"
+                                required
+                            />
+                            <div class="valid-feedback">Good</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input
+                                type="email"
+                                class="form-control"
+                                name="email"
+                                id="email"
+                                required
+                            />
+                            <div class="valid-feedback">Good</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label"
+                                >Password</label
+                            >
+                            <input
+                                type="password"
+                                class="form-control"
+                                name="password"
+                                id="password"
+                                required
+                            />
+                            <div class="valid-feedback">Good</div>
+                        </div>
+                        <button class="btn btn-success">Register</button>
+                    </form>
 
-<!-- we rename so we can make it more clear to what those app.uses do -->
+                    <!-- we rename so we can make it more clear to what those app.uses do -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
