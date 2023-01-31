@@ -1,88 +1,92 @@
 <% layout('/layouts/boilerplate') %>
 <h1>Edit A Card</h1>
-<form
-    action="/cards/<%=newCard._id%>?_method=PUT"
-    method="POST"
-    class="validated-form"
-    novalidate
->
-    <!-- THIS SHOULD SEND A PUT REQUEST -->
-    <div>
-        <label for="english">English</label>
-        <!-- for in label has to match id below -->
-        <textarea
-            class="form-control"
-            type="text"
-            id="english"
-            name="newCard[english]"
-            placeholder="English"
-            required
-            value="<%=newCard.english%>"
-        >
+<div class="col-md-6 offset-md-3">
+    <form
+        action="/cards/<%=newCard._id%>?_method=PUT"
+        method="POST"
+        class="validated-form"
+        novalidate
+    >
+        <!-- THIS SHOULD SEND A PUT REQUEST -->
+        <div>
+            <label for="english">English</label>
+            <!-- for in label has to match id below -->
+            <textarea
+                class="form-control"
+                type="text"
+                id="english"
+                name="newCard[english]"
+                placeholder="English"
+                required
+                value="<%=newCard.english%>"
+            >
 <%=newCard.english%></textarea
-        >
-        <div class="valid-feedback">Que Bueno!</div>
-    </div>
-    <!-- How do we set the value on an input? We set the attribute called 'value' -->
-    <div>
-        <label for="spanish">Spanish</label>
-        <textarea
-            class="form-control"
-            type="text"
-            id="spanish"
-            name="newCard[spanish]"
-            placeholder="Spanish"
-            required
-            value="<%=newCard.spanish%>"
-        >
+            >
+            <div class="valid-feedback">Que Bueno!</div>
+        </div>
+        <!-- How do we set the value on an input? We set the attribute called 'value' -->
+        <div>
+            <label for="spanish">Spanish</label>
+            <textarea
+                class="form-control"
+                type="text"
+                id="spanish"
+                name="newCard[spanish]"
+                placeholder="Spanish"
+                required
+                value="<%=newCard.spanish%>"
+            >
 <%=newCard.spanish%></textarea
-        >
-        <div class="valid-feedback">Que Bueno!</div>
-    </div>
-    <div>
-        <label for="hintOne">Hint One</label>
-        <input
-            class="form-control"
-            type="text"
-            id="hintOne"
-            name="newCard[hintOne]"
-            placeholder="Hint One"
-            value="<%=newCard.hintOne%>"
-            required
-        />
-        <div class="valid-feedback">Que Bueno!</div>
-    </div>
-    <div>
-        <label for="hintTwo">Hint Two</label>
-        <input
-            class="form-control"
-            type="text"
-            id="hintTwo"
-            name="newCard[hintTwo]"
-            placeholder="Hint Two"
-            value="<%=newCard.hintTwo%>"
-            required
-        />
-        <div class="valid-feedback">Que Bueno!</div>
-    </div>
-    <div>
-        <label for="number">Number</label>
-        <input
-            class="form-control"
-            type="text"
-            id="number"
-            name="newCard[number]"
-            placeholder="Number"
-            value="<%=newCard.number%>"
-            required
-        />
-        <div class="valid-feedback">Que Bueno!</div>
-    </div>
-    <div class="buttons mt-3">
-        <button class="btn btn-success btn-outline-dark">Submit</button>
-        <a href="/cards/<%=newCard._id%>" class="btn btn-outline-dark"
-            >Back to Card</a
-        >
-        <a href="/cards" class="btn btn-danger btn-outline-dark">All Cards</a>
-    </div>
-</form>
+            >
+            <div class="valid-feedback">Que Bueno!</div>
+        </div>
+        <div>
+            <label for="hintOne">Hint One</label>
+            <input
+                class="form-control"
+                type="text"
+                id="hintOne"
+                name="newCard[hintOne]"
+                placeholder="Hint One"
+                value="<%=newCard.hintOne%>"
+                required
+            />
+            <div class="valid-feedback">Que Bueno!</div>
+        </div>
+        <div>
+            <label for="hintTwo">Hint Two</label>
+            <input
+                class="form-control"
+                type="text"
+                id="hintTwo"
+                name="newCard[hintTwo]"
+                placeholder="Hint Two"
+                value="<%=newCard.hintTwo%>"
+                required
+            />
+            <div class="valid-feedback">Que Bueno!</div>
+        </div>
+        <div>
+            <label for="number">Number</label>
+            <input
+                class="form-control"
+                type="text"
+                id="number"
+                name="newCard[number]"
+                placeholder="Number"
+                value="<%=newCard.number%>"
+                required
+            />
+            <div class="valid-feedback">Que Bueno!</div>
+        </div>
+        <div class="buttons mt-3">
+            <button class="btn btn-success btn-outline-dark">Submit</button>
+            <a href="/cards/<%=newCard._id%>" class="btn btn-outline-dark"
+                >Back to Card</a
+            >
+            <a href="/cards" class="btn btn-danger btn-outline-dark"
+                >All Cards</a
+            >
+        </div>
+    </form>
+</div>
