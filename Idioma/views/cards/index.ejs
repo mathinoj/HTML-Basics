@@ -1,6 +1,6 @@
 <% layout('/layouts/boilerplate') %>
 <h1>View All</h1>
-<% for(let allCard of cards) { %>
+<% for(let allCard of allCards) { %>
 <div class="card mb-3" style="width: 15rem">
     <div class="card-header">Card</div>
     <div class="card-body">
@@ -13,8 +13,19 @@
 
 <div class="container text-center">
     <div class="pagination">
+        <% let num = 0 %>
         <!-- <li> -->
-        <% for(let i = 0; i < pages; i++) {%>
+        <%console.log("page: " +page)%>
+
+        <!-- <li> -->
+        <% for(let i = 0; i < roundedD; i++) {%>
+
+        <!-- ff -->
+        <%console.log("IIII: " +i)%>
+        <!-- ff -->
+
+        <!-- d? -->
+
         <!-- // -->
         <% if(i === 0) { %>
         <!-- <li> -->
@@ -34,18 +45,27 @@
             href="/cards/page/<%= i %>"
             ><%= i + 1 %></a
         >
+        <% } %>
 
         <!-- </li> -->
-        <% }} %>
+
+        <% } %>
+
+        <!-- f -->
+        <% console.log("CRUM: " +num) %>
+
+        <!-- d -->
+        <!-- f? -->
+        <a
+            class="btn btn-primary btn-outline-dark"
+            id="butty"
+            href="/cards/page/<%= (page + 1) %>"
+            role="button"
+            >Next</a
+        >
         <!-- </li> -->
+        <!-- l -->
     </div>
-    <a
-        class="btn btn-primary btn-outline-dark"
-        id="butty"
-        href="/cards/tested"
-        role="button"
-        >Back</a
-    >
 </div>
 
 <!-- https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22291784#questions/1464534 -->

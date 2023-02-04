@@ -4,14 +4,40 @@ const mongoose = require("mongoose");
 const catchAsync = require("../utils/catchAsync");
 const Idioma = require("../models/idioma");
 const { isLoggedIn, isAuthor, validateCard } = require("../middleware");
+const { resourceLimits } = require("worker_threads");
 
 const db = mongoose.connection;
 
 const paginate = (req, res, next) => {
     let perPage = 3;
-    let page = req.params.page;
+    let page = parseInt(req.params.page);
+    // console.log("payyyyge: " + page);
+    // let page = parseInt(req.query.page);
+    let limit = parseInt(req.query.limit);
+    let startIndex = (page - 1) * limit;
+    let endIndex = page * limit;
+    console.log("startIndex: " + startIndex);
+    console.log("endIndex: " + endIndex);
+    // let currentPage =
 
-    // const allCards = await Idioma.find({}).skip(perPage * page).limit
+    // const result = {};
+
+    // if (endIndex < Idioma.length) {
+    //     result.next = {
+    //         page: page + 1,
+    //         limit: limit,
+    //     };
+    // }
+    // console.dir("RN: " + result);
+
+    // if (startIndex > 0) {
+    //     result.previous = {
+    //         page: page - 1,
+    //         limit: limit,
+    //     };
+    // }
+    // console.log("RR: " + result);
+
     Idioma.find({})
         .skip(perPage * page)
         .limit(perPage)
@@ -20,14 +46,28 @@ const paginate = (req, res, next) => {
             Idioma.count().exec(function (err, count) {
                 if (err) return next(err.message);
                 // res.render("cards/index", { allCards });
-                res.render("cards/index", {
-                    cards: allCardsAgain,
-                    pages: count / perPage,
-                });
+                const matt = count / perPage;
+                const roundedD = Math.ceil(matt);
+                console.log("roundedD: " + roundedD);
+                for (let i = 0; i < roundedD; i++) {
+                    return res.render("cards/index", {
+                        allCards: allCardsAgain,
+                        // pages: count / perPage,
+                        pages: count / perPage,
+                        // buzz,
+                        lux: page + 1,
+                        roundedD,
+                        // i,
+                        // number,
+                        // result,
+                        page,
+                    });
+                }
             });
         });
-    // https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22291784#questions/1464534
-    // res.render("cards/index", { allCards });
+
+    //www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22291784#questions/1464534
+    // https: res.render("cards/index", { allCards });
 };
 
 router.get("/", function (req, res, next) {
@@ -35,16 +75,28 @@ router.get("/", function (req, res, next) {
 });
 
 router.get("/page/:page", function (req, res, next) {
+    console.log("hello");
     paginate(req, res, next);
+    console.log("hello UNDER");
     // https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22291784#questions/1464534
 });
 
 router.get(
     "/",
     catchAsync(async (req, res, next) => {
+        // let { page, limit } = req.query;
+        // if (!page) page = 1;
+        // if (!limit) limit = 3;
+        // const skip = (page - 1) * 3;
         const allCards = await Idioma.find({});
+        // const allCards = await Idioma.find().skip(skip).limit(limit);
 
         res.render("cards/index", { allCards });
+        // res.render("cards/index", {
+        //     allCards: allCards,
+        //     limit: limit,
+        //     page: page,
+        // });
     })
 );
 
