@@ -15,7 +15,6 @@
     <div class="pagination">
         <% let num = 0 %>
         <!-- <li> -->
-        <%console.log("page: " +page)%>
 
         <!-- <li> -->
         <% for(let i = 0; i < roundedD; i++) {%>
@@ -34,7 +33,7 @@
             class="btn btn-secondary btn-outline-dark"
             role="button"
             href="/cards"
-            ><%= i + 1 %></a
+            ><%= i %></a
         >
         <!-- </li> -->
         <% } else { %>
@@ -43,7 +42,7 @@
             class="btn btn-secondary btn-outline-dark"
             role="button"
             href="/cards/page/<%= i %>"
-            ><%= i + 1 %></a
+            ><%= i %></a
         >
         <% } %>
 
@@ -55,15 +54,29 @@
         <% console.log("CRUM: " +num) %>
 
         <!-- d -->
+
         <!-- f? -->
+        <% if(!page) { %>
+        <!-- d -->
+        <% console.log("NaN true") %>
+        <a
+            class="btn btn-primary btn-outline-dark"
+            role="button"
+            href="/cards/page/1"
+            >Next</a
+        >
+        <!-- </li> -->
+        <% } else {%>
+
         <a
             class="btn btn-primary btn-outline-dark"
             id="butty"
-            href="/cards/page/<%= (page + 1) %>"
+            href="/cards/page/<%= (page+1) %>"
             role="button"
             >Next</a
         >
         <!-- </li> -->
+        <% } %>
         <!-- l -->
     </div>
 </div>

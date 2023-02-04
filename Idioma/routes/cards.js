@@ -4,7 +4,6 @@ const mongoose = require("mongoose");
 const catchAsync = require("../utils/catchAsync");
 const Idioma = require("../models/idioma");
 const { isLoggedIn, isAuthor, validateCard } = require("../middleware");
-const { resourceLimits } = require("worker_threads");
 
 const db = mongoose.connection;
 
@@ -13,30 +12,17 @@ const paginate = (req, res, next) => {
     let page = parseInt(req.params.page);
     // console.log("payyyyge: " + page);
     // let page = parseInt(req.query.page);
-    let limit = parseInt(req.query.limit);
-    let startIndex = (page - 1) * limit;
-    let endIndex = page * limit;
-    console.log("startIndex: " + startIndex);
-    console.log("endIndex: " + endIndex);
-    // let currentPage =
+    // let limit = parseInt(req.query.limit);
+    // let startIndex = (page - 1) * limit;
+    // let endIndex = page * limit;
+    // console.log("startIndex: " + startIndex);
+    // console.log("endIndex: " + endIndex);
 
-    // const result = {};
-
-    // if (endIndex < Idioma.length) {
-    //     result.next = {
-    //         page: page + 1,
-    //         limit: limit,
-    //     };
-    // }
-    // console.dir("RN: " + result);
-
-    // if (startIndex > 0) {
-    //     result.previous = {
-    //         page: page - 1,
-    //         limit: limit,
-    //     };
-    // }
-    // console.log("RR: " + result);
+    console.log("isNaN: " + isNaN(page));
+    if (NaN) {
+        console.log("TRUE THAT nan EXISTS");
+        console.log("page: " + page);
+    }
 
     Idioma.find({})
         .skip(perPage * page)
@@ -49,21 +35,23 @@ const paginate = (req, res, next) => {
                 const matt = count / perPage;
                 const roundedD = Math.ceil(matt);
                 console.log("roundedD: " + roundedD);
-                for (let i = 0; i < roundedD; i++) {
-                    return res.render("cards/index", {
-                        allCards: allCardsAgain,
-                        // pages: count / perPage,
-                        pages: count / perPage,
-                        // buzz,
-                        lux: page + 1,
-                        roundedD,
-                        // i,
-                        // number,
-                        // result,
-                        page,
-                    });
-                }
+                // for (let i = 0; i < roundedD; i++) {
+                return res.render("cards/index", {
+                    allCards: allCardsAgain,
+                    // pages: count / perPage,
+                    pages: count / perPage,
+                    // buzz,
+                    lux: page + 1,
+                    roundedD,
+                    // i,
+                    // number,
+                    // result,
+                    page,
+                });
+                // }
             });
+            console.log("isNaN: " + isNaN(page));
+            console.log("page: " + page);
         });
 
     //www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22291784#questions/1464534
@@ -71,7 +59,9 @@ const paginate = (req, res, next) => {
 };
 
 router.get("/", function (req, res, next) {
+    console.log("before");
     paginate(req, res, next);
+    console.log("after");
 });
 
 router.get("/page/:page", function (req, res, next) {
