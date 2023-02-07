@@ -55,7 +55,8 @@ router.get("/", function (req, res, next) {
     paginate(req, res, next);
 });
 
-router.get("/page/:page", function (req, res, next) {
+// router.get("/page/:page", function (req, res, next) {
+router.get("/page/:page", (req, res, next) => {
     paginate(req, res, next);
     // https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22291784#questions/1464534
 });
