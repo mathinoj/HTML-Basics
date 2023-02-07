@@ -7,7 +7,7 @@ const { isLoggedIn, isAuthor, validateCard } = require("../middleware");
 
 const db = mongoose.connection;
 
-const paginate = async (req, res, next) => {
+const paginate = (req, res, next) => {
     let perPage = 3;
     let page = parseInt(req.params.page);
     // console.log("payyyyge: " + page);
@@ -18,7 +18,7 @@ const paginate = async (req, res, next) => {
     // console.log("startIndex: " + startIndex);
     // console.log("endIndex: " + endIndex);
 
-    await Idioma.find({})
+    Idioma.find({})
         .skip(perPage * page)
         .limit(perPage)
         .exec(function (err, allCardsAgain) {

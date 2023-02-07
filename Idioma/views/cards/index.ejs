@@ -15,7 +15,6 @@
     <div class="pagination">
         <% let num = 0 %>
         <!-- <li> -->
-        <%console.log("roundedD: " +roundedD)%>
         <!-- <li> -->
 
         <% for(let i = 0; i < roundedD; i++) {%>
@@ -43,7 +42,8 @@
         <% }} %>
         <!-- </li> -->
         <% if(!page) { %>
-        <!-- d -->
+        <!-- || page <= roundedD -->
+        <!-- Adding ABOVE WILL BRING BACK TO 1STpg -->
         <% console.log("NaN true") %>
         <a
             class="btn btn-warning btn-outline-dark"
@@ -53,9 +53,19 @@
         >
         <!-- </li> -->
 
-        <% } else { %>
+        <% } else if (roundedD <= (page + 1)) { %>
+
         <a
             class="btn btn-primary btn-outline-dark"
+            id="butty"
+            href="/cards/page/<%= (page+1) %>"
+            role="button"
+            hidden
+            >Next</a
+        >
+        <% } else {%>
+        <a
+            class="btn btn-danger btn-outline-dark"
             id="butty"
             href="/cards/page/<%= (page+1) %>"
             role="button"
