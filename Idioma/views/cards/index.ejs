@@ -16,11 +16,7 @@
         <% let num = 0 %>
         <!-- <li> -->
         <!-- <li> -->
-
-        <% for(let i = 0; i < roundedD; i++) {%>
-
-        <!-- ff -->
-        <% if(i === 0) { %>
+        <% if(page > 0) {%>
         <a
             class="btn btn-primary btn-outline-dark"
             id="butty"
@@ -28,6 +24,13 @@
             role="button"
             >Back</a
         >
+        <% } %>
+        <!--  -->
+        <% for(let i = 0; i < roundedD; i++) {%>
+        <!--  -->
+
+        <% if(i === 0) { %>
+
         <!-- <li> -->
         <a class="nathan" href="/cards" id="mainPage"></a>
         <!-- </li> -->
@@ -46,7 +49,7 @@
         <!-- Adding ABOVE WILL BRING BACK TO 1STpg -->
         <% console.log("NaN true") %>
         <a
-            class="btn btn-warning btn-outline-dark"
+            class="btn btn-primary btn-outline-dark"
             role="button"
             href="/cards/page/1"
             >Next</a
@@ -65,7 +68,7 @@
         >
         <% } else {%>
         <a
-            class="btn btn-danger btn-outline-dark"
+            class="btn btn-primary btn-outline-dark"
             id="butty"
             href="/cards/page/<%= (page+1) %>"
             role="button"
