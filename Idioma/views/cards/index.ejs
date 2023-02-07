@@ -13,9 +13,6 @@
 
 <div class="container text-center">
     <div class="pagination">
-        <% let num = 0 %>
-        <!-- <li> -->
-        <!-- <li> -->
         <% if(page > 0) {%>
         <a
             class="btn btn-primary btn-outline-dark"
@@ -29,7 +26,7 @@
         <% for(let i = 0; i < roundedD; i++) {%>
         <!--  -->
 
-        <% if(i === 0) { %>
+        <% if(i < 0) { %>
 
         <!-- <li> -->
         <a class="nathan" href="/cards" id="mainPage"></a>
@@ -40,13 +37,13 @@
             class="btn btn-secondary btn-outline-dark"
             role="button"
             href="/cards/page/<%= i %>"
-            ><%= i %></a
+            ><%= i+1 %></a
         >
         <% }} %>
         <!-- </li> -->
         <% if(!page) { %>
         <!-- || page <= roundedD -->
-        <!-- Adding ABOVE WILL BRING BACK TO 1STpg -->
+        <!-- Adding above brings back to 1STpg after clicking NEXT until end -->
         <% console.log("NaN true") %>
         <a
             class="btn btn-primary btn-outline-dark"
