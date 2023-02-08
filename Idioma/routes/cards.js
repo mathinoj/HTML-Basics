@@ -29,6 +29,11 @@ const paginate = (req, res, next) => {
                 const matt = count / perPage;
                 const roundedD = Math.ceil(matt);
                 // console.log("roundedD: " + roundedD);
+
+                if (page > roundedD) {
+                    req.flash("error", "Page cannot be found!");
+                    return res.redirect("/cards");
+                }
                 for (let i = 0; i < roundedD; i++) {
                     return res.render("cards/index", {
                         allCards: allCardsAgain,
@@ -44,7 +49,7 @@ const paginate = (req, res, next) => {
                 }
             });
             console.log("isNaN: " + isNaN(page));
-            // console.log("page: " + page);
+            console.log("page: " + page);
         });
 
     //www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22291784#questions/1464534
@@ -57,8 +62,10 @@ router.get("/", function (req, res, next) {
 
 // router.get("/page/:page", function (req, res, next) {
 router.get("/page/:page", (req, res, next) => {
+    // console.log("SEE THIS: " + page);
     paginate(req, res, next);
     // https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22291784#questions/1464534
+    // const newCard = await Idioma.findById(id);
 });
 
 router.get(

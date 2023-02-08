@@ -25,14 +25,9 @@
         <!--  -->
         <% for(let i = 0; i < roundedD; i++) {%>
         <!--  -->
-
         <% if(i < 0) { %>
-
-        <!-- <li> -->
         <a class="nathan" href="/cards" id="mainPage"></a>
-        <!-- </li> -->
         <% } else { %>
-        <!-- <li> -->
         <a
             class="btn btn-secondary btn-outline-dark"
             role="button"
@@ -44,17 +39,13 @@
         <% if(!page) { %>
         <!-- || page <= roundedD -->
         <!-- Adding above brings back to 1STpg after clicking NEXT until end -->
-        <% console.log("NaN true") %>
         <a
             class="btn btn-primary btn-outline-dark"
             role="button"
             href="/cards/page/1"
             >Next</a
         >
-        <!-- </li> -->
-
         <% } else if (roundedD <= (page + 1)) { %>
-
         <a
             class="btn btn-primary btn-outline-dark"
             id="butty"
@@ -71,11 +62,10 @@
             role="button"
             >Next</a
         >
-        <!-- </li> -->
         <% } %>
     </div>
+    <%console.log("payyyyge: " + page)%> <%console.log("RANDOd: " + roundedD)%>
 </div>
-
 <!-- https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22291784#questions/1464534 -->
 
 <a href="/cards/new">Make Card</a>
