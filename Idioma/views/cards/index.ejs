@@ -1,15 +1,24 @@
 <% layout('/layouts/boilerplate') %>
 <h1>View All</h1>
-<select
-    class="form-select mb-3"
-    style="width: 15rem"
-    aria-label="Default select example"
->
-    <option selected>Open this select menu</option>
-    <option value="1">3</option>
-    <option value="2">6</option>
-    <option value="3">9</option>
-</select>
+
+<form action="/cards" method="GET">
+    <select
+        class="form-select"
+        style="width: 15rem"
+        aria-label="Default select example"
+        name="selections"
+    >
+        <option selected>Open this select menu</option>
+        <option value="3">3</option>
+        <option value="6">6</option>
+        <option value="9">9</option>
+    </select>
+    <!-- <div class="buttons mb-3"> -->
+    <button class="btn btn-primary mb-3">Submit</button>
+    <% console.log("SELECTIONS: " +selection) %>
+    <!-- </div> -->
+</form>
+<!--  -->
 <% for(let allCard of allCards) { %>
 <div class="card mb-3" style="width: 15rem">
     <div class="card-header">Card</div>

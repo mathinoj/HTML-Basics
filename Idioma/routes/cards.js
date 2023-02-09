@@ -8,9 +8,12 @@ const { isLoggedIn, isAuthor, validateCard } = require("../middleware");
 const db = mongoose.connection;
 
 const paginate = (req, res, next) => {
-    let perPage = 3;
+    let perPage = req.query.selections || 3;
     let page = parseInt(req.params.page);
-    // console.log("payyyyge: " + page);
+    let selection = req.query.selections;
+
+    console.log("SELECT: " + selection);
+
     // let page = parseInt(req.query.page);
     // let limit = parseInt(req.query.limit);
     // let startIndex = (page - 1) * limit;
@@ -44,14 +47,15 @@ const paginate = (req, res, next) => {
                         i,
                         // number,
                         // result,
+                        err,
                         page,
+                        selection,
                     });
                 }
             });
-            console.log("isNaN: " + isNaN(page));
-            console.log("page: " + page);
+            // console.log("isNaN: " + isNaN(page));
+            // console.log("page: " + page);
         });
-
     //www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22291784#questions/1464534
     // https: res.render("cards/index", { allCards });
 };
@@ -68,22 +72,15 @@ router.get("/page/:page", (req, res, next) => {
     // const newCard = await Idioma.findById(id);
 });
 
+// router.get("/cards", function (req, res, next) {
+//     console.log("CAN YOU SEE THIS: " + req.body.selections);
+// });
+
 router.get(
     "/",
     catchAsync(async (req, res, next) => {
-        // let { page, limit } = req.query;
-        // if (!page) page = 1;
-        // if (!limit) limit = 3;
-        // const skip = (page - 1) * 3;
         const allCards = await Idioma.find({});
-        // const allCards = await Idioma.find().skip(skip).limit(limit);
-
         res.render("cards/index", { allCards });
-        // res.render("cards/index", {
-        //     allCards: allCards,
-        //     limit: limit,
-        //     page: page,
-        // });
     })
 );
 
