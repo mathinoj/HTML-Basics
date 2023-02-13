@@ -1,12 +1,13 @@
 <% layout('/layouts/boilerplate') %>
 <h1>View All</h1>
 
-<form action="/cards" method="GET">
+<form action="">
     <select
         class="form-select"
         style="width: 15rem"
         aria-label="Default select example"
         name="selections"
+        onchange="this.form.submit();"
     >
         <option selected>Open this select menu</option>
         <option value="3">3</option>
@@ -14,8 +15,7 @@
         <option value="9">9</option>
     </select>
     <!-- <div class="buttons mb-3"> -->
-    <button class="btn btn-primary mb-3">Submit</button>
-    <% console.log("SELECTIONS: " +selection) %>
+    <!-- <button class="btn btn-primary mb-3">Submit</button> -->
     <!-- </div> -->
 </form>
 <!--  -->
@@ -32,7 +32,7 @@
 
 <div class="container text-center">
     <div class="pagination">
-        <% if(page > 0) {%>
+        <% if(page > 1) {%>
         <a
             class="btn btn-primary btn-outline-dark"
             id="butty"
@@ -42,7 +42,7 @@
         >
         <% } %>
         <!--  -->
-        <% for(let i = 0; i < roundedD; i++) {%>
+        <% for(let i = 1; i <= roundedD; i++) {%>
         <!--  -->
         <% if(i < 0) { %>
         <a class="nathan" href="/cards" id="mainPage"></a>
@@ -51,40 +51,67 @@
             class="btn btn-secondary btn-outline-dark"
             role="button"
             href="/cards/page/<%= i %>"
-            ><%= i+1 %></a
+            ><%= i %></a
         >
         <% }} %>
         <!-- </li> -->
-        <% if(!page) { %>
+        <% if(!page && !selection) { %>
         <!-- || page <= roundedD -->
         <!-- Adding above brings back to 1STpg after clicking NEXT until end -->
         <a
             class="btn btn-primary btn-outline-dark"
             role="button"
             href="/cards/page/1"
-            >Next</a
+            >Next C</a
         >
-        <% } else if (roundedD <= (page + 1)) { %>
+        <!-- <% } else if (selection) { %>
+        <a
+            class="btn btn-warning btn-outline-dark"
+            role="button"
+            href="/cards/page/<%= (page + 1) %>"
+            >Next B</a
+        > -->
+
+        <% } else if (roundedD < (page + 1)) { %>
         <a
             class="btn btn-primary btn-outline-dark"
             id="butty"
             href="/cards/page/<%= (page+1) %>"
             role="button"
             hidden
-            >Next</a
+            >Next E</a
         >
+
         <% } else {%>
         <a
-            class="btn btn-primary btn-outline-dark"
+            class="btn btn-danger btn-outline-dark"
             id="butty"
             href="/cards/page/<%= (page+1) %>"
             role="button"
-            >Next</a
+            >Next D</a
         >
         <% } %>
     </div>
-    <%console.log("payyyyge: " + page)%> <%console.log("RANDOd: " + roundedD)%>
+    <%console.log("payyyyge: " + page)%>
+    <!--  -->
+    <%console.log("RANDOd: " + roundedD)%>
 </div>
 <!-- https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22291784#questions/1464534 -->
+
+<% if (pages > 0) { %>
+<ul class="pagination text-center">
+    <% if (current == 1) { %>
+    <li class="disabled"><a>First</a></li>
+    <% } else { %>
+    <li><a href="/cards/page/1">First</a></li>
+    <% } %>
+    <!--  -->
+    <% if (current == pages) { %>
+    <li class="disabled"><a>Last</a></li>
+    <% } else { %>
+    <li><a href="/cards/page/<%= pages %>">Last</a></li>
+    <% } %>
+</ul>
+<% } %>
 
 <a href="/cards/new">Make Card</a>

@@ -9,20 +9,17 @@ const db = mongoose.connection;
 
 const paginate = (req, res, next) => {
     let perPage = req.query.selections || 3;
-    let page = parseInt(req.params.page);
+    let autoPage = 3;
+    let page = parseInt(req.params.page) || 1;
     let selection = req.query.selections;
+    // console.log("perPAGE: " + perPage);
 
-    console.log("SELECT: " + selection);
-
-    // let page = parseInt(req.query.page);
-    // let limit = parseInt(req.query.limit);
-    // let startIndex = (page - 1) * limit;
-    // let endIndex = page * limit;
-    // console.log("startIndex: " + startIndex);
-    // console.log("endIndex: " + endIndex);
+    // if (perPage) {
+    //     res.redirect("/page/:page");
+    // }
 
     Idioma.find({})
-        .skip(perPage * page)
+        .skip(perPage * page - perPage)
         .limit(perPage)
         .exec(function (err, allCardsAgain) {
             if (err) return next(err.message);
@@ -31,27 +28,33 @@ const paginate = (req, res, next) => {
                 // res.render("cards/index", { allCards });
                 const matt = count / perPage;
                 const roundedD = Math.ceil(matt);
+                const batt = count / autoPage;
+                const roundedE = Math.ceil(batt);
                 // console.log("roundedD: " + roundedD);
 
                 if (page > roundedD) {
                     req.flash("error", "Page cannot be found!");
                     return res.redirect("/cards");
                 }
-                for (let i = 0; i < roundedD; i++) {
-                    return res.render("cards/index", {
-                        allCards: allCardsAgain,
-                        // pages: count / perPage,
-                        // buzz,
-                        lux: page + 1,
-                        roundedD,
-                        i,
-                        // number,
-                        // result,
-                        err,
-                        page,
-                        selection,
-                    });
-                }
+                //WHEN YOU ADD BIGGER PG NUMBER THAT SHOULDNT EXIST YOU STILL GET TAKEN TO THAT PAGE, WHICH MEANS THIS ERROR ISNT WORKING. YOU LIKE HOW THIS FORMAT IS SET CUZ IT IMPLEMENTS THE ... WHEN NUMBERS INCREASE.
+                // for (let i = 0; i < roundedD; i++) {
+                return res.render("cards/index", {
+                    allCards: allCardsAgain,
+                    pages: Math.ceil(count / perPage),
+                    // buzz,
+                    // lux: page + 1,
+                    roundedD,
+                    roundedE,
+                    // i,
+                    // number,
+                    // result,
+                    page,
+                    err,
+                    current: page,
+                    selection,
+                    autoPage,
+                });
+                // }
             });
             // console.log("isNaN: " + isNaN(page));
             // console.log("page: " + page);
