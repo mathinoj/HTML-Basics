@@ -66,13 +66,21 @@
         <li class="active btn btn-secondary btn-outline-dark" role="button">
             <a><%= i %></a>
         </li>
-        <% } else { %>
+        <% } else if(selection) { %>
             <a
                 class="btn btn-secondary btn-outline-dark"
                 role="button"
-                href="/cards/page/<%= i %>"
+                href="/cards/page/<%= i %>/?selections=<%=selection%>"
                 ><%= i %>
             </a>
+        <% } else { %>
+            <a
+            class="btn btn-secondary btn-outline-dark"
+            role="button"
+            href="/cards/page/<%= i %>"
+            ><%= i %>
+        </a>
+
         <% } %>
         <% console.log("EYE: " +i) %>
         <!--  -->
@@ -85,8 +93,6 @@
         </li>
 
         <% if(!page) { %>
-            <% console.log("START LOOOOP") %>
-
         <!-- || page <= roundedD Adding above brings back to 1STpg after clicking NEXT until end -->
         <a
             class="btn btn-primary btn-outline-dark"
