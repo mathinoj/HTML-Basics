@@ -32,8 +32,18 @@
 
 <div class="container text-center">
     <div class="pagination">
-        <% if(page > 1) {%>
+        <% if (selection && page > 1){ %>
+        <% console.log("selection: " +selection) %>
         <a
+            class="btn btn-warning btn-outline-dark"
+            id="butty"
+            href="/cards/page/<%= (page-1) %>/?selections=<%=selection%>"
+            role="button"
+            >Back</a>
+        <% } else if (page > 1 && !selection) { %>
+            <% console.log("selection: " +selection) %>
+
+            <a
             class="btn btn-primary btn-outline-dark"
             id="butty"
             href="/cards/page/<%= (page-1) %>"
