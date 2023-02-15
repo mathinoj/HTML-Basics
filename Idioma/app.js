@@ -33,8 +33,8 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 app.use(express.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 // app.use(express.static("public")); TEST 2 MOD 491
 //but then we add in this and we get the alert from TEST 1 MOD 491
@@ -97,29 +97,29 @@ app.get("/", (req, res) => {
     res.render("home");
 });
 
-app.get("/:page", function (req, res, next) {
-    let perPage = 3;
-    let page = parseInt(req.params.page) || 1;
+// app.get("/:page", function (req, res, next) {
+//     let perPage = 3;
+//     let page = parseInt(req.params.page) || 1;
 
-    Idioma.find({})
-        .skip(perPage * page - perPage)
-        .limit(perPage)
-        .exec(function (err, allCardsAgain) {
-            if (err) return next(err.message);
-            Idioma.count().exec(function (err, count) {
-                if (err) return next(err.message);
+//     Idioma.find({})
+//         .skip(perPage * page - perPage)
+//         .limit(perPage)
+//         .exec(function (err, allCardsAgain) {
+//             if (err) return next(err.message);
+//             Idioma.count().exec(function (err, count) {
+//                 if (err) return next(err.message);
 
-                let pages = Math.ceil(count / perPage);
+//                 let pages = Math.ceil(count / perPage);
 
-                res.render("cards/index", {
-                    allCards: allCardsAgain,
-                    current: page,
-                    pages: Math.ceil(count / perPage),
-                    pages,
-                });
-            });
-        });
-});
+//                 res.render("cards/index", {
+//                     allCards: allCardsAgain,
+//                     current: page,
+//                     pages: Math.ceil(count / perPage),
+//                     pages,
+//                 });
+//             });
+//         });
+// });
 
 app.all("*", (req, res, next) => {
     next(new ExpressError("Page no find", 404));

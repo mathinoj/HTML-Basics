@@ -1,7 +1,7 @@
 <% layout('/layouts/boilerplate') %>
 <h1>View All</h1>
 
-<form action="/cards/page/1">
+<form action="/cards/page/1" method="GET">
     <select
         class="form-select"
         style="width: 15rem"
@@ -42,25 +42,21 @@
         >
         <% } %>
         <!--  -->
-        <% for(let i = 1; i <= roundedD; i++) {%>
-        <!--  -->
-        <% if(i < 0) { %>
-        <a class="nathan" href="/cards" id="mainPage"></a>
-        <% } else { %>
-        <!-- <a
-            class="btn btn-secondary btn-outline-dark"
-            role="button"
-            href="/cards/page/<%= i %>"
-            ><%= i %></a
-        > -->
-        <% }} %>
+        <!-- DEEEEEELLLLLLLLLEEEEETTTTEE from here to CURLYz -->
+
+        <!-- DEEEEEELLLLLLLLLEEEEETTTTEE from here to FOR LOOP -->
         <!--  -->
         <% let i = (Number(current) > 3 ? Number(current) - 2 : 1) %>
+        <!-- console.log('NumCurr: ' + Number(current)) -->
+
         <% if (i !== 1) { %>
         <li class="disabled"><a>...</a></li>
         <% } %>
         <!--  -->
         <% for (; i <= (Number(current) + 2) && i <= pages; i++) { %>
+            <!-- console.log('Dwn Her: ' + Number(current)) -->
+            <!-- it is not required to use the initialization block to initialize variables: (referring to not having "i = 1;", and just having ";" instead)
+            https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for -->
         <!--  -->
         <%if (i == current) { %>
         <li class="active btn btn-secondary btn-outline-dark" role="button">
@@ -74,6 +70,7 @@
                 ><%= i %>
             </a>
         <% } %>
+        <% console.log("EYE: " +i) %>
         <!--  -->
         <% if (i == Number(current) + 2 && i < pages) { %>
         <li class="disabled"><a>...</a></li>
@@ -83,7 +80,9 @@
 
         </li>
 
-        <% if(!page && !selection) { %>
+        <% if(!page) { %>
+            <% console.log("START LOOOOP") %>
+
         <!-- || page <= roundedD Adding above brings back to 1STpg after clicking NEXT until end -->
         <a
             class="btn btn-primary btn-outline-dark"
@@ -91,9 +90,13 @@
             href="/cards/page/1"
             >Next C</a
         >
-        <!-- <% } else if (selection) { %>
-            <a class="btn btn-warning btn-outline-dark" role="button" href="/cards/page/<%= (page + 1) %>">Next B</a> -->
-
+        <% } else if (selection) { %>
+            <% console.log("SELCT: " + selection) %>
+            <a
+            class="btn btn-warning btn-outline-dark"
+            role="button"
+            href="/cards/page/<%= (page + 1) %>/?selections=<%=selection%>"
+            >Next B</a>
         <% } else if (roundedD < (page + 1)) { %>
         <a
             class="btn btn-primary btn-outline-dark"
@@ -112,10 +115,13 @@
             role="button"
             >Next D</a
         >
+        <% console.log("START HER") %>
+
         <% } %>
     </div>
     <%console.log("payyyyge: " + page)%>
     <%console.log("RANDOd: " + roundedD)%>
+    <%console.log("count: " + count)%>
 </div>
 <!-- https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22291784#questions/1464534 -->
 

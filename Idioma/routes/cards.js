@@ -9,14 +9,18 @@ const db = mongoose.connection;
 
 const paginate = (req, res, next) => {
     let perPage = req.query.selections || 3;
+    // let perPage = req.query.selections;
     let autoPage = 3;
+    // let page = parseInt(req.params.page);
     let page = parseInt(req.params.page) || 1;
     let selection = req.query.selections;
     // console.log("perPAGE: " + perPage);
-
     // if (perPage) {
     //     res.redirect("/page/:page");
     // }
+
+    console.log("perPage: " + perPage);
+    console.log("AutoPg: " + autoPage);
 
     Idioma.find({})
         .skip(perPage * page - perPage)
@@ -28,14 +32,19 @@ const paginate = (req, res, next) => {
                 // res.render("cards/index", { allCards });
                 const matt = count / perPage;
                 const roundedD = Math.ceil(matt);
-                const batt = count / autoPage;
-                const roundedE = Math.ceil(batt);
+                // const batt = count / selection;
+                // const roundedE = Math.ceil(batt);
                 // console.log("roundedD: " + roundedD);
 
                 if (page > roundedD) {
                     req.flash("error", "Page cannot be found!");
                     return res.redirect("/cards");
                 }
+
+                // if (perPage > 3) {
+                //     let newRound = selection;
+                //     console.log("NewRound: " + newRound);
+                // }
                 //WHEN YOU ADD BIGGER PG NUMBER THAT SHOULDNT EXIST YOU STILL GET TAKEN TO THAT PAGE, WHICH MEANS THIS ERROR ISNT WORKING. YOU LIKE HOW THIS FORMAT IS SET CUZ IT IMPLEMENTS THE ... WHEN NUMBERS INCREASE.
                 // for (let i = 0; i < roundedD; i++) {
                 return res.render("cards/index", {
@@ -44,16 +53,20 @@ const paginate = (req, res, next) => {
                     // buzz,
                     // lux: page + 1,
                     roundedD,
-                    roundedE,
+                    // roundedE,
+                    count,
                     // i,
                     // number,
                     // result,
                     page,
+                    // pages: page.length,
                     err,
                     current: page,
                     selection,
                     autoPage,
+                    // newRound,
                 });
+
                 // }
             });
             // console.log("isNaN: " + isNaN(page));
