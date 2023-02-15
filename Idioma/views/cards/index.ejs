@@ -14,9 +14,6 @@
         <option value="6">6</option>
         <option value="9">9</option>
     </select>
-    <!-- <div class="buttons mb-3"> -->
-    <!-- <button class="btn btn-primary mb-3">Submit</button> -->
-    <!-- </div> -->
 </form>
 <!--  -->
 <% for(let allCard of allCards) { %>
@@ -33,7 +30,6 @@
 <div class="container text-center">
     <div class="pagination">
         <% if (selection && page > 1){ %>
-        <% console.log("selection: " +selection) %>
         <a
             class="btn btn-warning btn-outline-dark"
             id="butty"
@@ -41,8 +37,6 @@
             role="button"
             >Back</a>
         <% } else if (page > 1 && !selection) { %>
-            <% console.log("selection: " +selection) %>
-
             <a
             class="btn btn-primary btn-outline-dark"
             id="butty"
