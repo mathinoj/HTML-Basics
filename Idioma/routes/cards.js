@@ -8,7 +8,8 @@ const { isLoggedIn, isAuthor, validateCard } = require("../middleware");
 const db = mongoose.connection;
 
 const paginate = (req, res, next) => {
-    let perPage = req.query.selections || 3;
+    let perPage = req.query.selections || 1;
+    //CHANGE BACK TO 3!!!!
     // let perPage = req.query.selections;
     let autoPage = 3;
     // let page = parseInt(req.params.page);
