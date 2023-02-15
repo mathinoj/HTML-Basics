@@ -51,14 +51,11 @@
         <!-- DEEEEEELLLLLLLLLEEEEETTTTEE from here to FOR LOOP -->
         <!--  -->
         <% let i = (Number(current) > 3 ? Number(current) - 2 : 1) %>
-        <!-- console.log('NumCurr: ' + Number(current)) -->
-
         <% if (i !== 1) { %>
         <li class="disabled"><a>...</a></li>
         <% } %>
         <!--  -->
         <% for (; i <= (Number(current) + 2) && i <= pages; i++) { %>
-            <!-- console.log('Dwn Her: ' + Number(current)) -->
             <!-- it is not required to use the initialization block to initialize variables: (referring to not having "i = 1;", and just having ";" instead)
             https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for -->
         <!--  -->
@@ -80,18 +77,14 @@
             href="/cards/page/<%= i %>"
             ><%= i %>
         </a>
-
         <% } %>
-        <% console.log("EYE: " +i) %>
         <!--  -->
         <% if (i == Number(current) + 2 && i < pages) { %>
         <li class="disabled"><a>...</a></li>
         <% } %>
         <!--  -->
         <% } %>
-
         </li>
-
         <% if(!page) { %>
         <!-- || page <= roundedD Adding above brings back to 1STpg after clicking NEXT until end -->
         <a
@@ -116,7 +109,6 @@
             hidden
             >Next E</a
         >
-
         <% } else {%>
         <a
             class="btn btn-danger btn-outline-dark"
@@ -125,29 +117,38 @@
             role="button"
             >Next D</a
         >
-        <% console.log("START HER") %>
-
         <% } %>
     </div>
-    <%console.log("payyyyge: " + page)%>
-    <%console.log("RANDOd: " + roundedD)%>
-    <%console.log("count: " + count)%>
+
 </div>
 <!-- https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22291784#questions/1464534 -->
 
-<% if (pages > 0) { %>
+<% if (selection && pages > 0) { %>
 <ul class="pagination text-center">
     <% if (current == 1) { %>
     <li class="disabled"><a>First</a></li>
     <% } else { %>
-    <li><a href="/cards/page/1">First</a></li>
+    <li><a href="/cards/page/1/?selections=<%=selection%>">First</a></li>
     <% } %>
     <% if (current == pages) { %>
     <li class="disabled"><a>Last</a></li>
     <% } else { %>
-    <li><a href="/cards/page/<%= pages %>">Last</a></li>
+    <li><a href="/cards/page/<%= pages %>/?selections=<%=selection%>">Last</a></li>
     <% } %>
 </ul>
+<% }else if(pages > 0){ %>
+    <ul class="pagination text-center">
+        <% if (current == 1) { %>
+        <li class="disabled"><a>First</a></li>
+        <% } else { %>
+        <li><a href="/cards/page/1">First</a></li>
+        <% } %>
+        <% if (current == pages) { %>
+        <li class="disabled"><a>Last</a></li>
+        <% } else { %>
+        <li><a href="/cards/page/<%= pages %>">Last</a></li>
+        <% } %>
+    </ul>
 <% } %>
 
 <a href="/cards/new">Make Card</a>
