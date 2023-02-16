@@ -44,3 +44,44 @@ module.exports.isAuthor = async (req, res, next) => {
     next();
     //this part will move the user on to the next routers, that they do have permission to move forward (w/ changing the card)
 };
+
+module.exports.paginate = async (req, res, next) => {
+    // const paginate = (req, res, next) => {
+    let perPage = req.query.selections || 3;
+    let page = parseInt(req.params.page) || 1;
+    let selection = req.query.selections;
+
+    Idioma.find({})
+        .skip(perPage * page - perPage) //THIS I BELIEVE SETS initial pg to 0, W/O i believe we don't get the the nxt btn to goto nxt pg.
+        .limit(perPage)
+        .exec(function (err, allCardsAgain) {
+            if (err) return next(err.message);
+            Idioma.count().exec(function (err, count) {
+                if (err) return next(err.message);
+                const matt = count / perPage;
+                const roundedD = Math.ceil(matt);
+
+                if (page > roundedD) {
+                    req.flash("error", "Page cannot be found!");
+                    return res.redirect("/cards");
+                }
+
+                //NEED TO WORK ON ERROR FOR IF USER TYPES IN SELECTION NUMBER IN URL THAT IS NOT AN ACTUAL SELECTION OPTION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                //ACTUALLY THIS KINDA WORKS ALREADY, (the error handler above), but maybe do something specifically for the number options!!!!!!!!!!!!!!
+                return res.render("cards/index", {
+                    allCards: allCardsAgain,
+                    pages: Math.ceil(count / perPage),
+                    roundedD,
+                    count,
+                    page,
+                    err,
+                    current: page,
+                    selection,
+                });
+
+                // }
+            });
+        });
+    //www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22291784#questions/1464534
+    // https://www.npmjs.com/package/mongodb-ejs-pagination
+};

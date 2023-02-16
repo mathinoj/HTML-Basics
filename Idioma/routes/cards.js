@@ -3,95 +3,65 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const catchAsync = require("../utils/catchAsync");
 const Idioma = require("../models/idioma");
-const { isLoggedIn, isAuthor, validateCard } = require("../middleware");
+const {
+    isLoggedIn,
+    isAuthor,
+    validateCard,
+    paginate,
+} = require("../middleware");
 
 const db = mongoose.connection;
 
-const paginate = (req, res, next) => {
-    let perPage = req.query.selections || 3;
-    //CHANGE BACK TO 3!!!!
-    // let perPage = req.query.selections;
-    let autoPage = 3;
-    // let page = parseInt(req.params.page);
-    let page = parseInt(req.params.page) || 1;
-    let selection = req.query.selections;
-    // console.log("perPAGE: " + perPage);
-    // if (perPage) {
-    //     res.redirect("/page/:page");
-    // }
+// const paginate = (req, res, next) => {
+//     let perPage = req.query.selections || 3;
+//     let page = parseInt(req.params.page) || 1;
+//     let selection = req.query.selections;
 
-    console.log("perPage: " + perPage);
-    console.log("AutoPg: " + autoPage);
+//     Idioma.find({})
+//         .skip(perPage * page - perPage) //THIS I BELIEVE SETS initial pg to 0, W/O i believe we don't get the the nxt btn to goto nxt pg.
+//         .limit(perPage)
+//         .exec(function (err, allCardsAgain) {
+//             if (err) return next(err.message);
+//             Idioma.count().exec(function (err, count) {
+//                 if (err) return next(err.message);
+//                 const matt = count / perPage;
+//                 const roundedD = Math.ceil(matt);
 
-    Idioma.find({})
-        .skip(perPage * page - perPage)
-        .limit(perPage)
-        .exec(function (err, allCardsAgain) {
-            if (err) return next(err.message);
-            Idioma.count().exec(function (err, count) {
-                if (err) return next(err.message);
-                // res.render("cards/index", { allCards });
-                const matt = count / perPage;
-                const roundedD = Math.ceil(matt);
-                // const batt = count / selection;
-                // const roundedE = Math.ceil(batt);
-                // console.log("roundedD: " + roundedD);
+//                 if (page > roundedD) {
+//                     req.flash("error", "Page cannot be found!");
+//                     return res.redirect("/cards");
+//                 }
 
-                if (page > roundedD) {
-                    req.flash("error", "Page cannot be found!");
-                    return res.redirect("/cards");
-                }
+//                 //NEED TO WORK ON ERROR FOR IF USER TYPES IN SELECTION NUMBER IN URL THAT IS NOT AN ACTUAL SELECTION OPTION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//                 //ACTUALLY THIS KINDA WORKS ALREADY, (the error handler above), but maybe do something specifically for the number options!!!!!!!!!!!!!!
+//                 return res.render("cards/index", {
+//                     allCards: allCardsAgain,
+//                     pages: Math.ceil(count / perPage),
+//                     roundedD,
+//                     count,
+//                     page,
+//                     err,
+//                     current: page,
+//                     selection,
+//                 });
 
-                // if (perPage > 3) {
-                //     let newRound = selection;
-                //     console.log("NewRound: " + newRound);
-                // }
-                //WHEN YOU ADD BIGGER PG NUMBER THAT SHOULDNT EXIST YOU STILL GET TAKEN TO THAT PAGE, WHICH MEANS THIS ERROR ISNT WORKING. YOU LIKE HOW THIS FORMAT IS SET CUZ IT IMPLEMENTS THE ... WHEN NUMBERS INCREASE.
-                // for (let i = 0; i < roundedD; i++) {
-                return res.render("cards/index", {
-                    allCards: allCardsAgain,
-                    pages: Math.ceil(count / perPage),
-                    // buzz,
-                    // lux: page + 1,
-                    roundedD,
-                    // roundedE,
-                    count,
-                    // i,
-                    // number,
-                    // result,
-                    page,
-                    // pages: page.length,
-                    err,
-                    current: page,
-                    selection,
-                    autoPage,
-                    // newRound,
-                });
+//                 // }
+//             });
+//         });
+//     //www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22291784#questions/1464534
+//     // https://www.npmjs.com/package/mongodb-ejs-pagination
+// };
 
-                // }
-            });
-            // console.log("isNaN: " + isNaN(page));
-            // console.log("page: " + page);
-        });
-    //www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22291784#questions/1464534
-    // https: res.render("cards/index", { allCards });
-};
-
-router.get("/", function (req, res, next) {
+// router.get("/", function (req, res, next) {
+router.get("/", (req, res, next) => {
     paginate(req, res, next);
 });
 
 // router.get("/page/:page", function (req, res, next) {
 router.get("/page/:page", (req, res, next) => {
-    // console.log("SEE THIS: " + page);
     paginate(req, res, next);
     // https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22291784#questions/1464534
-    // const newCard = await Idioma.findById(id);
 });
-
-// router.get("/cards", function (req, res, next) {
-//     console.log("CAN YOU SEE THIS: " + req.body.selections);
-// });
 
 router.get(
     "/",
