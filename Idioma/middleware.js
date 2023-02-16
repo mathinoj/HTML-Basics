@@ -50,7 +50,6 @@ module.exports.paginate = async (req, res, next) => {
     let perPage = req.query.selections || 4;
     let page = parseInt(req.params.page) || 1;
     let selection = req.query.selections;
-    // console.log("req.query: " + );
 
     Idioma.find({})
         .skip(perPage * page - perPage) //THIS I BELIEVE SETS initial pg to 0, W/O i believe we don't get the the nxt btn to goto nxt pg.
@@ -61,16 +60,11 @@ module.exports.paginate = async (req, res, next) => {
                 if (err) return next(err.message);
                 const matt = count / perPage;
                 const roundedD = Math.ceil(matt);
-
                 if (page > roundedD || selection > 9 || selection % 3) {
                     // if (selection % 3 == 0) {
                     req.flash("error", "Page cannot be found!");
                     return res.redirect("/cards");
                 }
-                console.log("SELECTION: " + selection);
-
-                //NEED TO WORK ON ERROR FOR IF USER TYPES IN SELECTION NUMBER IN URL THAT IS NOT AN ACTUAL SELECTION OPTION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                //ACTUALLY THIS KINDA WORKS ALREADY, (the error handler above), but maybe do something specifically for the number options!!!!!!!!!!!!!!
                 return res.render("cards/index", {
                     allCards: allCardsAgain,
                     pages: Math.ceil(count / perPage),
