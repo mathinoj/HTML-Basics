@@ -114,12 +114,12 @@
 
 <% if (selection && pages > 0) { %>
 <ul class="pagination text-center">
-    <% if (current == 1) { %>
+    <% if (page == 1) { %>
     <li class="disabled"><a>First</a></li>
     <% } else { %>
     <li><a href="/cards/page/1/?selections=<%=selection%>">First</a></li>
     <% } %>
-    <% if (current == pages) { %>
+    <% if (page == pages) { %>
     <li class="disabled"><a>Last</a></li>
     <% } else { %>
     <li><a href="/cards/page/<%= pages %>/?selections=<%=selection%>">Last</a></li>
