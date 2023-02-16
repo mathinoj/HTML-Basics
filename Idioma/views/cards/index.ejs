@@ -15,7 +15,6 @@
         <option value="9">9</option>
     </select>
 </form>
-<!--  -->
 <% for(let allCard of allCards) { %>
 <div class="card mb-3" style="width: 15rem">
     <div class="card-header">Card</div>
@@ -45,21 +44,14 @@
             >Back</a
         >
         <% } %>
-        <!--  -->
-        <!-- DEEEEEELLLLLLLLLEEEEETTTTEE from here to CURLYz -->
-
-        <!-- DEEEEEELLLLLLLLLEEEEETTTTEE from here to FOR LOOP -->
-        <!--  -->
-        <% let i = (Number(current) > 3 ? Number(current) - 2 : 1) %>
+        <% let i = (Number(page) > 3 ? Number(page) - 2 : 1) %>
         <% if (i !== 1) { %>
         <li class="disabled"><a>...</a></li>
         <% } %>
-        <!--  -->
-        <% for (; i <= (Number(current) + 2) && i <= pages; i++) { %>
+        <% for (; i <= (Number(page) + 2) && i <= pages; i++) { %>
             <!-- it is not required to use the initialization block to initialize variables: (referring to not having "i = 1;", and just having ";" instead)
             https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for -->
-        <!--  -->
-        <%if (i == current) { %>
+        <%if (i == page) { %>
         <li class="active btn btn-secondary btn-outline-dark" role="button">
             <a><%= i %></a>
         </li>
@@ -78,11 +70,9 @@
             ><%= i %>
         </a>
         <% } %>
-        <!--  -->
-        <% if (i == Number(current) + 2 && i < pages) { %>
+        <% if (i == Number(page) + 2 && i < pages) { %>
         <li class="disabled"><a>...</a></li>
         <% } %>
-        <!--  -->
         <% } %>
         </li>
         <% if(!page) { %>
@@ -94,7 +84,6 @@
             >Next C</a
         >
         <% } else if (selection) { %>
-            <% console.log("SELCT: " + selection) %>
             <a
             class="btn btn-warning btn-outline-dark"
             role="button"
@@ -138,12 +127,12 @@
 </ul>
 <% }else if(pages > 0){ %>
     <ul class="pagination text-center">
-        <% if (current == 1) { %>
+        <% if (page == 1) { %>
         <li class="disabled"><a>First</a></li>
         <% } else { %>
         <li><a href="/cards/page/1">First</a></li>
         <% } %>
-        <% if (current == pages) { %>
+        <% if (page == pages) { %>
         <li class="disabled"><a>Last</a></li>
         <% } else { %>
         <li><a href="/cards/page/<%= pages %>">Last</a></li>
