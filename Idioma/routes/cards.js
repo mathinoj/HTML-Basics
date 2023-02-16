@@ -32,7 +32,7 @@ router.get(
 );
 
 router.get(
-    "/",
+    "/myCards",
     catchAsync(async (req, res, next) => {
         const { id } = req.params;
         const myCards = await Idioma.findById(id);
