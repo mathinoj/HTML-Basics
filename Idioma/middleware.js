@@ -37,6 +37,7 @@ module.exports.validateCard = (req, res, next) => {
 module.exports.isAuthor = async (req, res, next) => {
     const { id } = req.params;
     const cardAuthor = await Idioma.findById(id);
+    console.log("cardAuth: " + cardAuthor);
     if (!cardAuthor.author.equals(req.user._id)) {
         req.flash("error", "Cant touch dis!");
         return res.redirect(`/cards/${id}`);
