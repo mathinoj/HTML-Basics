@@ -1,7 +1,6 @@
 <% layout('/layouts/boilerplate') %>
 <h1>My Cards</h1>
 <div class="card-body">
-
             <% for(let theCards of myCards) { %>
               <% if(currentUser._id == theCards.author.id){ %>
                 <div class="card mb-3" style="width: 15rem">
@@ -11,6 +10,8 @@
                       <h6 class="card-text">Author: <%= theCards.author.username%></h6>
                       <a href="/cards/<%=theCards._id%>" class="btn btn-primary">View Card</a>
                   </div>
+                  <% console.log('MikeCards: ' +theCards) %>
+
               </div>
               <% }} %>
 
