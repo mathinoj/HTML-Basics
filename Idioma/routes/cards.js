@@ -35,14 +35,20 @@ router.get(
     "/myCards",
     catchAsync(async (req, res, next) => {
         const { id } = req.params;
-        const myCards = await Idioma.findById(id);
-        console.log("myCards: " + myCards);
-        if (!myCards.author.equals(req.user._id)) {
-            req.flash("error", "Cant touch dis!");
-            return res.redirect(`/cards/${id}`);
-        }
-        next();
-        //this part will move the user on to the next routers, that they do have permission to move forward (w/ changing the card)
+        // const myCards = await Idioma.findById(id);
+        // const myCards = await Idioma.findById(req.params.id).populate("author");
+        // const { author } = req.params;
+        const myCards = await Idioma.find({}).populate("author");
+
+        const tryer = await Idioma.findById(id);
+
+        // console.log("myCards: " + myCards);
+        // if (!myCards.author.equals(req.user._id)) {
+        //     req.flash("error", "Cant touch dis!");
+        //     return res.redirect(`/cards/${id}`);
+        // }
+        // next();
+        res.render("cards/myCards", { myCards, tryer });
     })
 );
 
