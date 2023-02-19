@@ -2,7 +2,7 @@
 <h1>My Cards</h1>
 <div class="card-body">
 
-            <% for(theCards of myCards) { %>
+            <% for(let theCards of myCards) { %>
               <% if(currentUser._id == theCards.author.id){ %>
                 <div class="card mb-3" style="width: 15rem">
                   <div class="card-header">Card</div>

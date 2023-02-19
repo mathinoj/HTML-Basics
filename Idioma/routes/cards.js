@@ -35,9 +35,29 @@ router.get(
 router.get(
     "/allUsers",
     catchAsync(async (req, res, next) => {
+        let checkB = req.query.checkBoxer;
+        console.log("CHECK-b: " + checkB);
+        let tryIt = await Idioma.findById(checkB);
+        console.log("TRY: " + tryIt);
+
+        // checkB.addedCard = req.idioma._id;
+
+        const userCard = await Idioma.find({});
+
         const allUsers = await User.find({}).populate("addedCard");
-        res.render("cards/allUsers", { allUsers });
+        // const allUsers = await User.findById(req.params.id).populate(
+        //     "addedCard"
+        // );
+        // console.log("YOO: " + userCard);
+
+        res.render("cards/allUsers", { userCard, allUsers, tryIt });
     })
+
+    // const newCard = new Idioma(req.body.newCard);
+    // newCard.author = req.user._id;
+    // await newCard.save();
+    // req.flash("success", "Successfully made new card!");
+    // res.redirect(`/cards/${newCard._id}`);
 );
 
 router.get(
