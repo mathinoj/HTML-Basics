@@ -35,12 +35,13 @@ router.get(
     "/myCards",
     catchAsync(async (req, res, next) => {
         const myCards = await Idioma.find({}).populate("author");
-        // console.log("myCards: " + myCards);
-        // if (!myCards.author.equals(req.user._id)) {
-        //     req.flash("error", "Cant touch dis!");
-        //     return res.redirect(`/cards/${id}`);
-        // }
-        // next();
+        // console.log("ReqU: " + req.user._id);
+        // console.log("cAuth: " + idCard.author);
+        if (!req.user) {
+            req.flash("error", "Must be logged in!");
+            return res.redirect(`/cards`);
+        }
+        next();
         res.render("cards/myCards", { myCards });
     })
 );
