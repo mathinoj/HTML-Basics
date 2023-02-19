@@ -9,6 +9,10 @@ const UserSchema = new Schema({
         required: true,
         unique: true,
     },
+    addedCard: {
+        type: Schema.Types.ObjectId,
+        ref: "Idioma",
+    },
 });
 
 UserSchema.plugin(passportLocalMongoose);
