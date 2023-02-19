@@ -35,13 +35,10 @@ router.get(
     "/myCards",
     catchAsync(async (req, res, next) => {
         const myCards = await Idioma.find({}).populate("author");
-        // console.log("ReqU: " + req.user._id);
-        // console.log("cAuth: " + idCard.author);
         if (!req.user) {
             req.flash("error", "Must be logged in!");
             return res.redirect(`/cards`);
         }
-        next();
         res.render("cards/myCards", { myCards });
     })
 );
