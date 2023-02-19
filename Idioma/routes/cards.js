@@ -32,6 +32,14 @@ router.get(
 );
 
 router.get(
+    "/allUsers",
+    catchAsync(async (req, res, next) => {
+        const allUsers = await User.find({}).populate("addedCard");
+        res.render("cards/allUsers", { allUsers });
+    })
+);
+
+router.get(
     "/myCards",
     catchAsync(async (req, res, next) => {
         const myCards = await Idioma.find({}).populate("author");
