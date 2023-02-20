@@ -43,21 +43,22 @@ router.get(
         console.log("TRY: " + tryIt);
         console.log("REQ U: " + req.user._id);
         // checkB.addedCard = req.idioma._id;
-        const blah = await AddedCard({});
+        const blah = new AddedCard({});
         console.log("BLAH: " + blah);
         blah.nowUser = req.user._id;
         blah.addedCard = tryIt;
         await blah.save();
         console.log("HER BLAH: " + blah);
         // const userCard = await Idioma.find({});
-
+        const showThem = await AddedCard.find({}).populate("addedCard");
+        console.log("showThem: " + showThem);
         // const allUsers = await User.find({}).populate("addedCard");
         // const allUsers = await User.findById(req.params.id).populate(
         //     "addedCard"
         // );
         // console.log("YOO: " + userCard);
 
-        res.render("cards/allUsers", { tryIt });
+        res.render("cards/allUsers", { tryIt, showThem });
     })
 
     // const newCard = new Idioma(req.body.newCard);
