@@ -4,12 +4,14 @@ const mongoose = require("mongoose");
 const catchAsync = require("../utils/catchAsync");
 const Idioma = require("../models/idioma");
 const User = require("../models/user");
+const AddedCard = require("../models/addedCards");
 const {
     isLoggedIn,
     isAuthor,
     validateCard,
     paginate,
 } = require("../middleware");
+const addedCards = require("../models/addedCards");
 
 const db = mongoose.connection;
 
@@ -39,18 +41,23 @@ router.get(
         console.log("CHECK-b: " + checkB);
         let tryIt = await Idioma.findById(checkB);
         console.log("TRY: " + tryIt);
-
+        console.log("REQ U: " + req.user._id);
         // checkB.addedCard = req.idioma._id;
+        const blah = await User.findById(req.user._id);
+        console.log("BLAH: " + blah);
+        // blah.nowUser = req.user._id;
+        blah.addedCard = tryIt;
+        await blah.save();
+        console.log("HER BLAH: " + blah);
+        // const userCard = await Idioma.find({});
 
-        const userCard = await Idioma.find({});
-
-        const allUsers = await User.find({}).populate("addedCard");
+        // const allUsers = await User.find({}).populate("addedCard");
         // const allUsers = await User.findById(req.params.id).populate(
         //     "addedCard"
         // );
         // console.log("YOO: " + userCard);
 
-        res.render("cards/allUsers", { userCard, allUsers, tryIt });
+        res.render("cards/allUsers", { tryIt });
     })
 
     // const newCard = new Idioma(req.body.newCard);
@@ -58,6 +65,15 @@ router.get(
     // await newCard.save();
     // req.flash("success", "Successfully made new card!");
     // res.redirect(`/cards/${newCard._id}`);
+
+    // nowUser: {
+    //     type: Schema.Types.ObjectId,
+    //     ref: "User",
+    // },
+    // addedCard: {
+    //     type: Schema.Types.ObjectId,
+    //     ref: "Idioma",
+    // },
 );
 
 router.get(
