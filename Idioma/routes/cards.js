@@ -43,9 +43,9 @@ router.get(
         console.log("TRY: " + tryIt);
         console.log("REQ U: " + req.user._id);
         // checkB.addedCard = req.idioma._id;
-        const blah = await User.findById(req.user._id);
+        const blah = await AddedCard({});
         console.log("BLAH: " + blah);
-        // blah.nowUser = req.user._id;
+        blah.nowUser = req.user._id;
         blah.addedCard = tryIt;
         await blah.save();
         console.log("HER BLAH: " + blah);
