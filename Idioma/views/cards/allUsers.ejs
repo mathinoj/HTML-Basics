@@ -11,6 +11,7 @@
 <!--  -->
 <% for(let showThems of showThem) {%>
 <!--  -->
+<% if(currentUser._id == showThems.nowUser) {%>
 <!--  -->
 <div class="card mb-3" style="width: 15rem">
     <div class="card-header">Card</div>
@@ -24,4 +25,4 @@
         >
     </div>
 </div>
-<% }%>
+<% }} %>
