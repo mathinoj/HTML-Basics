@@ -24,6 +24,7 @@
         <a href="/cards/<%=allCard._id%>" class="btn btn-primary">View Card</a>
     </div>
     <% if(currentUser) { %>
+        <% console.log('showTIME: ') %>
         <form action="/cards/allUsers">
         <div class="form-check">
             <input class="form-check-input" type="checkbox" value="<%=allCard._id%>" id="flexCheckDefault" name="checkBoxer" onchange="this.form.submit();">

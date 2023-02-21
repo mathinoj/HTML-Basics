@@ -30,6 +30,7 @@ router.get(
     "/",
     catchAsync(async (req, res, next) => {
         const allCards = await Idioma.find({});
+        console.log("ALLCARDS: " + allCards);
         res.render("cards/index", { allCards });
     })
 );
@@ -49,16 +50,30 @@ router.get(
         blah.addedCard = tryIt;
         await blah.save();
         console.log("HER BLAH: " + blah);
+        // const { id } = req.user.id;
         // const userCard = await Idioma.find({});
         const showThem = await AddedCard.find({}).populate("addedCard");
         console.log("showThem: " + showThem);
+
+        // const cond = await AddedCard.find(id);
+        // console.log("cond: " + cond);
+        // console.log("showThemUser: " + showThem.nowUser.id);
         // const allUsers = await User.find({}).populate("addedCard");
         // const allUsers = await User.findById(req.params.id).populate(
         //     "addedCard"
         // );
-        // console.log("YOO: " + userCard);
+        // const tryId = await AddedCard.find({});
+        // console.log("tryID: " + tryId);
+        // console.log("tryIDUSER: " + tryId.nowUser._id);
 
-        res.render("cards/allUsers", { tryIt, showThem });
+        console.log("YOO: " + AddedCard.find({}));
+        req.flash("success", "Successfully added card to yours!");
+        // if (blah.addedCard.id === checkB) {
+        //     req.flash("error", "Cannot add. Card has already been selected!");
+        //     return res.redirect(`/cards`);
+        // }
+
+        res.render("cards/allUsers", { tryIt, showThem, blah });
     })
 
     // const newCard = new Idioma(req.body.newCard);

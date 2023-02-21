@@ -3,7 +3,7 @@ const Schema = mongoose.Schema; // used as a shortcut cuz we reference this a lo
 
 const AddedCardSchema = new Schema({
     nowUser: {
-        type: Schema.Types.ObjectId,
+        type: String,
         // ref: "User",
     },
     addedCard: {

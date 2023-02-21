@@ -1,15 +1,27 @@
 <% layout('/layouts/boilerplate') %>
 <h1>All Users</h1>
 <h2 class="card-text"><%= currentUser%></h2>
-<% for(let showThems of showThem) { %>
+<% console.log("s-them-user :" +blah.nowUser) %>
+<!--  -->
+<% let sue = blah.nowUser %> <% console.log('SUE: ' +sue) %>
+<!--  -->
+<% console.log("current: "+currentUser._id) %>
+<!--  -->
+
+<!--  -->
+<% for(let showThems of showThem) {%>
+<!--  -->
+<!--  -->
 <div class="card mb-3" style="width: 15rem">
     <div class="card-header">Card</div>
     <div class="card-body">
         <h3 class="card-text"><%= showThems.addedCard.english%></h3>
         <h6 class="card-text"><%= showThems.addedCard.number%></h6>
+        <h6 class="card-text"><%= showThems.nowUser%></h6>
+        <h5 class="card-text"><%=showThems.addedCard._id%></h5>
         <a href="/cards/<%=showThems.addedCard._id%>" class="btn btn-primary"
             >View Card</a
         >
     </div>
 </div>
-<% } %>
+<% }%>
