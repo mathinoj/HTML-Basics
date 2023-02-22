@@ -35,79 +35,98 @@ router.get(
     })
 );
 
-router.get(
-    "/allUsers",
-    catchAsync(async (req, res, next) => {
-        let checkB = req.query.checkBoxer;
-        console.log("CHECK-b: " + checkB);
-        let tryIt = await Idioma.findById(checkB);
-        console.log("TRY: " + tryIt);
-        console.log("REQ U: " + req.user._id);
-        // checkB.addedCard = req.idioma._id;
-        const blah = new AddedCard({});
-        console.log("BLAH: " + blah);
-        blah.nowUser = req.user._id;
-        blah.addedCard = tryIt;
-        await blah.save();
-        console.log("HER BLAH: " + blah);
+// router.get(
+//     "/allUsers",
+//     catchAsync(async (req, res, next) => {
+//         let checkB = req.query.checkBoxer;
+//         console.log("CHECK-b: " + checkB);
+//         let tryIt = await Idioma.findById(checkB);
+//         console.log("TRY: " + tryIt);
+//         console.log("REQ U: " + req.user._id);
+//         // checkB.addedCard = req.idioma._id;
+//         const blah = new AddedCard({});
+//         console.log("BLAH: " + blah);
+//         blah.nowUser = req.user._id;
+//         blah.addedCard = tryIt;
+//         await blah.save();
+//         console.log("HER BLAH: " + blah);
 
+//         // MIGHT BE SOMETHING LIKE THIS TO DISPLAY IN THE 'MY CARDS' LINK FOR THE USER
+//         if (blah) {
+//             // const { id } = req.user.id;
+//             // const userCard = await Idioma.find({});
+//             const showThem = await AddedCard.find({}).populate("addedCard");
+//             console.log("showThem: " + showThem);
 
-        MIGHT BE SOMETHING LIKE THIS TO DISPLAY IN THE 'MY CARDS' LINK FOR THE USER
-        if (blah) {
-            // const { id } = req.user.id;
-            // const userCard = await Idioma.find({});
-            const showThem = await AddedCard.find({}).populate("addedCard");
-            console.log("showThem: " + showThem);
+//             // const cond = await AddedCard.find(id);
+//             // console.log("cond: " + cond);
+//             // console.log("showThemUser: " + showThem.nowUser.id);
+//             // const allUsers = await User.find({}).populate("addedCard");
+//             // const allUsers = await User.findById(req.params.id).populate(
+//             //     "addedCard"
+//             // );
+//             // const tryId = await AddedCard.find({});
+//             // console.log("tryID: " + tryId);
+//             // console.log("tryIDUSER: " + tryId.nowUser._id);
 
-            // const cond = await AddedCard.find(id);
-            // console.log("cond: " + cond);
-            // console.log("showThemUser: " + showThem.nowUser.id);
-            // const allUsers = await User.find({}).populate("addedCard");
-            // const allUsers = await User.findById(req.params.id).populate(
-            //     "addedCard"
-            // );
-            // const tryId = await AddedCard.find({});
-            // console.log("tryID: " + tryId);
-            // console.log("tryIDUSER: " + tryId.nowUser._id);
+//             console.log("YOO: " + AddedCard.find({}));
+//             req.flash("success", "Successfully added card to yours!");
+//             // if (blah.addedCard.id === checkB) {
+//             //     req.flash("error", "Cannot add. Card has already been selected!");
+//             //     return res.redirect(`/cards`);
+//             // }
 
-            console.log("YOO: " + AddedCard.find({}));
-            req.flash("success", "Successfully added card to yours!");
-            // if (blah.addedCard.id === checkB) {
-            //     req.flash("error", "Cannot add. Card has already been selected!");
-            //     return res.redirect(`/cards`);
-            // }
+//             // res.render("cards/allUsers", { tryIt, showThem, blah });
+//             res.render("cards/myCards", { tryIt, showThem, blah });
+//         } else {
+//             res.redirect("cards/index");
+//         }
+//     })
 
-            res.render("cards/allUsers", { tryIt, showThem, blah });
-        } else {
-            res.redirect("cards/index");
-        }
-    })
+//     // const newCard = new Idioma(req.body.newCard);
+//     // newCard.author = req.user._id;
+//     // await newCard.save();
+//     // req.flash("success", "Successfully made new card!");
+//     // res.redirect(`/cards/${newCard._id}`);
 
-    // const newCard = new Idioma(req.body.newCard);
-    // newCard.author = req.user._id;
-    // await newCard.save();
-    // req.flash("success", "Successfully made new card!");
-    // res.redirect(`/cards/${newCard._id}`);
-
-    // nowUser: {
-    //     type: Schema.Types.ObjectId,
-    //     ref: "User",
-    // },
-    // addedCard: {
-    //     type: Schema.Types.ObjectId,
-    //     ref: "Idioma",
-    // },
-);
+//     // nowUser: {
+//     //     type: Schema.Types.ObjectId,
+//     //     ref: "User",
+//     // },
+//     // addedCard: {
+//     //     type: Schema.Types.ObjectId,
+//     //     ref: "Idioma",
+//     // },
+// );
 
 router.get(
     "/myCards",
     catchAsync(async (req, res, next) => {
         const myCards = await Idioma.find({}).populate("author");
+        console.log("myCz: " + myCards);
+
         if (!req.user) {
             req.flash("error", "Must be logged in!");
             return res.redirect(`/cards`);
         }
-        res.render("cards/myCards", { myCards });
+
+        let checkB = req.query.checkBoxer;
+        if (checkB) {
+            let tryIt = await Idioma.findById(checkB);
+
+            const blah = new AddedCard({});
+            blah.nowUser = req.user._id;
+            blah.addedCard = tryIt;
+            await blah.save();
+
+            req.flash("success", "Successfully added card to yours!");
+            res.redirect("/cards");
+        }
+
+        const showThem = await AddedCard.find({}).populate("addedCard");
+        console.log("showTEM: " + showThem);
+
+        res.render("cards/myCards", { myCards, showThem });
     })
 );
 
@@ -170,7 +189,8 @@ router.get(
     "/:id",
     catchAsync(async (req, res, next) => {
         const card = await Idioma.findById(req.params.id).populate("author");
-        console.log("CARD!!! " + card); // DONE AS TEST TO SEE all the 'author' info that we added in our IDIOMA.JS models. In the app-website click on card to see the CONSLOG
+        // console.log("CARD!!! " + card);
+        // DONE AS TEST TO SEE all the 'author' info that we added in our IDIOMA.JS models. In the app-website click on card to see the CONSLOG
         if (!card) {
             req.flash("error", "Card not found!");
             return res.redirect("/cards");

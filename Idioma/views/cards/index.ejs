@@ -25,7 +25,7 @@
     </div>
     <% if(currentUser) { %>
         <% console.log('showTIME: ') %>
-        <form action="/cards/allUsers">
+        <form action="/cards/myCards">
         <div class="form-check">
             <input class="form-check-input" type="checkbox" value="<%=allCard._id%>" id="flexCheckDefault" name="checkBoxer" onchange="this.form.submit();">
             <label class="form-check-label" for="flexCheckDefault">
