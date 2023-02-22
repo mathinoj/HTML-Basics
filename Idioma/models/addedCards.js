@@ -10,6 +10,9 @@ const AddedCardSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Idioma",
     },
+    originalAuthor: {
+        type: String,
+    },
 });
 
 module.exports = mongoose.model("AddedCard", AddedCardSchema);

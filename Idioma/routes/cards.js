@@ -103,7 +103,7 @@ router.get(
     "/myCards",
     catchAsync(async (req, res, next) => {
         const myCards = await Idioma.find({}).populate("author");
-        console.log("myCz: " + myCards);
+        // console.log("myCz: " + myCards);
 
         if (!req.user) {
             req.flash("error", "Must be logged in!");
@@ -113,20 +113,37 @@ router.get(
         let checkB = req.query.checkBoxer;
         if (checkB) {
             let tryIt = await Idioma.findById(checkB);
-
+            console.log("TRYit: " + tryIt);
+            console.log("AUTHORid: " + tryIt.author);
             const blah = new AddedCard({});
             blah.nowUser = req.user._id;
             blah.addedCard = tryIt;
             await blah.save();
 
             req.flash("success", "Successfully added card to yours!");
-            res.redirect("/cards");
+            return res.redirect("/cards");
         }
 
         const showThem = await AddedCard.find({}).populate("addedCard");
         console.log("showTEM: " + showThem);
+        let seeIt = req.user._id;
 
-        res.render("cards/myCards", { myCards, showThem });
+        // for (let z of showThem) {
+        //     // console.log("zzzz: " + z);
+        //     console.log("zzzzADD: " + z.addedCard);
+        //     console.log("req.user: " + z.addedCard.author);
+
+        //     let p = z.addedCard.author;
+        //     console.log("PPPP: " + p);
+
+        //     let c = await User.findById(p);
+        //     console.log("CCCCC: " + c.username);
+        //     let x = c.username;
+        //     console.log("XXX: " + x);
+        // }
+        // <h6 class="card-text"><%= showThems.addedCard.author%></h6>
+
+        res.render("cards/myCards", { myCards, showThem, seeIt });
     })
 );
 
