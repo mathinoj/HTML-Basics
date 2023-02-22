@@ -116,8 +116,12 @@ router.get(
             console.log("TRYit: " + tryIt);
             console.log("AUTHORid: " + tryIt.author);
             const blah = new AddedCard({});
+            let p = tryIt.author;
+            let c = await User.findById(p);
+            let x = c.username;
             blah.nowUser = req.user._id;
             blah.addedCard = tryIt;
+            blah.originalAuthor = x;
             await blah.save();
 
             req.flash("success", "Successfully added card to yours!");
