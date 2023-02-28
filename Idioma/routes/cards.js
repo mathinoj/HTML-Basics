@@ -16,9 +16,12 @@ const addedCards = require("../models/addedCards");
 const db = mongoose.connection;
 
 // router.get("/", function (req, res, next) {
-router.get("/", (req, res, next) => {
-    paginate(req, res, next);
-});
+router.get(
+    "/",
+    catchAsync(async (req, res, next) => {
+        paginate(req, res, next);
+    })
+);
 
 // router.get("/page/:page", function (req, res, next) {
 router.get("/page/:page", (req, res, next) => {
@@ -31,6 +34,8 @@ router.get(
     catchAsync(async (req, res, next) => {
         const allCards = await Idioma.find({});
         console.log("ALLCARDS: " + allCards);
+
+        //THIS IS NOT WORKING. INSTEAD YOUR PAGINATE MIDDLEWARE IS DISPALYING THE INDEX PAGE
         res.render("cards/index", { allCards });
     })
 );
@@ -105,32 +110,57 @@ router.get(
         const myCards = await Idioma.find({}).populate("author");
         // console.log("myCz: " + myCards);
 
+        // let page = req.params.page;
+        // console.log("PG: " + page);
+
         if (!req.user) {
             req.flash("error", "Must be logged in!");
             return res.redirect(`/cards`);
         }
 
         let checkB = req.query.checkBoxer;
+        // console.log("cheq: " + checkB);
+        const findAdd = await AddedCard.find({});
+        console.log("FINDaDD: " + findAdd);
+        for (let finder of findAdd) {
+            let mat = finder.addedCardId;
+            console.log("mattyyy: " + mat);
+            if (checkB && checkB == mat) {
+                req.flash("error", "Cant add, already gots!");
+                return res.redirect("/cards");
+            }
+        }
+
         if (checkB) {
             let tryIt = await Idioma.findById(checkB);
-            console.log("TRYit: " + tryIt);
-            console.log("AUTHORid: " + tryIt.author);
-            const blah = new AddedCard({});
-            let p = tryIt.author;
-            let c = await User.findById(p);
-            let x = c.username;
-            blah.nowUser = req.user._id;
-            blah.addedCard = tryIt;
-            blah.originalAuthor = x;
-            await blah.save();
+            const addedCard = new AddedCard({});
+            let getOrigAuth = tryIt.author;
+            let findOrigAuth = await User.findById(getOrigAuth);
+            let showOrigAuth = findOrigAuth.username;
+            addedCard.nowUser = req.user._id;
+            addedCard.addedCard = tryIt;
+            addedCard.addedCardId = checkB;
+            addedCard.originalAuthor = showOrigAuth;
+            await addedCard.save();
+
+            // const findAdd = await AddedCard.find({});
+            // console.log("FINDaDD: " + findAdd);
 
             req.flash("success", "Successfully added card to yours!");
             return res.redirect("/cards");
         }
 
+        // if (checkB) {
+        //     return res.send("<input>hidden</input>");
+        // }
+        // let checkD = req.query.checkBoxer;
+
+        // console.log("cheqBBBBB: " + checkD);
+
+        // IF CURRENTUSER and CARDID IS NOT IN DB THEN DONT DISPLAY THE CHECKBOX
+
         const showThem = await AddedCard.find({}).populate("addedCard");
-        console.log("showTEM: " + showThem);
-        let seeIt = req.user._id;
+        // console.log("showTEM: " + showThem);
 
         // for (let z of showThem) {
         //     // console.log("zzzz: " + z);
@@ -147,7 +177,7 @@ router.get(
         // }
         // <h6 class="card-text"><%= showThems.addedCard.author%></h6>
 
-        res.render("cards/myCards", { myCards, showThem, seeIt });
+        res.render("cards/myCards", { myCards, showThem });
     })
 );
 

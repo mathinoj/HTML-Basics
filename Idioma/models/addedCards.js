@@ -10,6 +10,9 @@ const AddedCardSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Idioma",
     },
+    addedCardId: {
+        type: String,
+    },
     originalAuthor: {
         type: String,
     },
