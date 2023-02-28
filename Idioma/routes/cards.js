@@ -119,14 +119,27 @@ router.get(
         }
 
         let checkB = req.query.checkBoxer;
-        // console.log("cheq: " + checkB);
+        console.log("cheQBBB: " + checkB);
+
+        //^^^ THIS FINDS THE ID OF THE CARD THAT IS CHOSEN BY THE USER
         const findAdd = await AddedCard.find({});
-        console.log("FINDaDD: " + findAdd);
         for (let finder of findAdd) {
             let mat = finder.addedCardId;
-            console.log("mattyyy: " + mat);
+            // console.log("mattyyy: " + mat);
             if (checkB && checkB == mat) {
                 req.flash("error", "Cant add, already gots!");
+                return res.redirect("/cards");
+            }
+        }
+        const findOwnCrdz = await Idioma.find({});
+        console.log("findOwn: " + findOwnCrdz);
+        for (let ownCard of findOwnCrdz) {
+            let tam = ownCard.author;
+            console.log("TTTT: " + tam);
+            let user = req.user._id;
+            console.log("userrrrrr: " + user._id);
+            if (user == tam) {
+                req.flash("error", "Cant add your OWN card!");
                 return res.redirect("/cards");
             }
         }
@@ -149,15 +162,6 @@ router.get(
             req.flash("success", "Successfully added card to yours!");
             return res.redirect("/cards");
         }
-
-        // if (checkB) {
-        //     return res.send("<input>hidden</input>");
-        // }
-        // let checkD = req.query.checkBoxer;
-
-        // console.log("cheqBBBBB: " + checkD);
-
-        // IF CURRENTUSER and CARDID IS NOT IN DB THEN DONT DISPLAY THE CHECKBOX
 
         const showThem = await AddedCard.find({}).populate("addedCard");
         // console.log("showTEM: " + showThem);
