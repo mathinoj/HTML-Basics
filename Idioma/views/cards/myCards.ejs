@@ -14,20 +14,36 @@
               </div>
               <% }} %>
 
-              <% for(let showThems of showThem) {%>
+              <% for(let showThems of showHim) {%>
+                <!-- console.log('curentUZER: ' +currentUser.id) %> -->
                 <!--  -->
-                <% if(currentUser._id == showThems.nowUser) {%>
+                <% console.log("ADDEDc: " +showThems.addedCard) %>
+<% let y = showThems.addedCard %>
+<% console.log("INCLUDES: " +y.includes(currentUser.id)) %>
+
+                <!-- console.log("XXXXX: " +showThems.nowUser._id) -->
+                 <!-- console.log("showHIM: " + showHim) %> -->
+                <!-- console.log("showThems_Id: " +showThems._id) -->
+                <!-- for(let x of showThems.addedCard){ %> -->
+                  <!-- console.log("her is x: " +x) %> -->
+                  <!-- console.log("her is INDEx: " +Object.values(x)) %> -->
+                  <!-- console.log("her is arrary: " +(x.toString())) %> -->
+                  <!-- } %> -->
+                <!--  -->
+              <% if(currentUser.id == showThems.addedCard || y.includes(currentUser.id) == true) { %>
+
                   <!--  -->
-                  <!-- console.log("XXXXX: " +x) -->
+                   <!-- let b = showThems.addedCard %>  -->
                 <!--  -->
                 <div class="card mb-3" style="width: 15rem">
                     <div class="card-header">Card</div>
                     <div class="card-body">
-                        <h3 class="card-text"><%= showThems.addedCard.english%></h3>
+                        <h3 class="card-text"><%= showThems.english%></h3>
                         <h6 class="card-text">Author: <%= showThems.originalAuthor %></h6>
                         <a href="/cards/<%=showThems.addedCard._id%>" class="btn btn-primary"
                             >View Card</a
                         >
+                        <!-- <h3 class="card-text"> showThems.nowUser._id</h3> -->
                     </div>
                 </div>
                 <% }} %>

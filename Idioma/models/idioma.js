@@ -16,6 +16,12 @@ const IdiomaSchema = new Schema({
     number: {
         type: Number,
     },
+    addedCard: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "User",
+        },
+    ],
 });
 
 module.exports = mongoose.model("Idioma", IdiomaSchema);

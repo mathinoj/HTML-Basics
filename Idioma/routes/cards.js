@@ -11,7 +11,6 @@ const {
     validateCard,
     paginate,
 } = require("../middleware");
-const addedCards = require("../models/addedCards");
 
 const db = mongoose.connection;
 
@@ -120,9 +119,14 @@ router.get(
 
         let checkB = req.query.checkBoxer;
         console.log("cheQBBB: " + checkB);
-
         //^^^ THIS FINDS THE ID OF THE CARD THAT IS CHOSEN BY THE USER
-        const findAdd = await AddedCard.find({});
+        // const finding = await Idioma.find({}).populate("addedCard");
+        // console.log("finding: " + finding);
+        // for (let buh of finding) {
+        //     // console.log("BUHH: " + buh);
+        // }
+
+        const findAdd = await Idioma.find({});
         for (let finder of findAdd) {
             let mat = finder.addedCardId;
             // console.log("mattyyy: " + mat);
@@ -132,12 +136,12 @@ router.get(
             }
         }
         const findOwnCrdz = await Idioma.find({});
-        console.log("findOwn: " + findOwnCrdz);
+        // console.log("findOwn: " + findOwnCrdz);
         for (let ownCard of findOwnCrdz) {
             let tam = ownCard.author;
-            console.log("TTTT: " + tam);
+            // console.log("TTTT: " + tam);
             let user = req.user._id;
-            console.log("userrrrrr: " + user._id);
+            // console.log("userrrrrr: " + user._id);
             if (user == tam) {
                 req.flash("error", "Cant add your OWN card!");
                 return res.redirect("/cards");
@@ -145,16 +149,31 @@ router.get(
         }
 
         if (checkB) {
+            let user = req.user._id;
+            // console.log("uSSSER: " + user);
+            // let addingTo = new AddedCard({});
+
             let tryIt = await Idioma.findById(checkB);
-            const addedCard = new AddedCard({});
-            let getOrigAuth = tryIt.author;
-            let findOrigAuth = await User.findById(getOrigAuth);
-            let showOrigAuth = findOrigAuth.username;
-            addedCard.nowUser = req.user._id;
-            addedCard.addedCard = tryIt;
-            addedCard.addedCardId = checkB;
-            addedCard.originalAuthor = showOrigAuth;
-            await addedCard.save();
+            console.log("TRY IT: " + tryIt);
+            // const addedCarder = new AddedCard({});
+            // const addedCard = new Idioma.find({});
+            // const addedCard = new Idioma(tryIt);
+            // const addedCardy = await User.findById(user);
+            const addedCardy = await User.findById(user);
+            console.log("ADDDEDCARDDD: " + addedCardy);
+
+            // addingTo.nowUser = addedCardy;
+            // addingTo.addedCard = tryIt;
+            // await addingTo.save();
+            // let getOrigAuth = tryIt.author;
+            // let findOrigAuth = await User.findById(getOrigAuth);
+            // let showOrigAuth = findOrigAuth.username;
+            // addedCard.nowUser = req.user._id;
+            // addedCard.addedCard = tryIt;
+            // addedCard.addedCardId = checkB;
+            // addedCard.originalAuthor = showOrigAuth;
+            tryIt.addedCard.push(addedCardy);
+            await tryIt.save();
 
             // const findAdd = await AddedCard.find({});
             // console.log("FINDaDD: " + findAdd);
@@ -163,9 +182,27 @@ router.get(
             return res.redirect("/cards");
         }
 
-        const showThem = await AddedCard.find({}).populate("addedCard");
-        // console.log("showTEM: " + showThem);
+        // const finderKeep = async () => {
+        //     const t = await Idioma.find({}).populate("addedCard");
+        //     console.log("TTTTTT: " + t);
+        // };
+        // finderKeep();
+        let user = req.user._id;
+        console.log("uuuuusser: " + user);
 
+        const showThem = await Idioma.find({}).populate("addedCard");
+        // console.log("showTEM HERREE: " + showThem);
+        // for (let x of showThem) {
+        //     console.log("xer: " + x.addedCard);
+        // }
+        const showHim = await Idioma.find({});
+        // console.log("showHIM: " + showHim);
+        console.log("SHOWNhim: " + showHim);
+        // const findByEd = await Idioma.findById(user).populate("addedCard");
+        // console.log("findbyED: " + findByEd);
+        // for (let x of findByEd) {
+        //     console.log("xer: " + x);
+        // }
         // for (let z of showThem) {
         //     // console.log("zzzz: " + z);
         //     console.log("zzzzADD: " + z.addedCard);
@@ -181,7 +218,7 @@ router.get(
         // }
         // <h6 class="card-text"><%= showThems.addedCard.author%></h6>
 
-        res.render("cards/myCards", { myCards, showThem });
+        res.render("cards/myCards", { myCards, showThem, showHim });
     })
 );
 
