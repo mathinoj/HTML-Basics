@@ -15,23 +15,15 @@
               <% }} %>
 
               <% for(let showThems of showHim) {%>
-                <!-- console.log('curentUZER: ' +currentUser.id) %> -->
                 <!--  -->
                 <% console.log("ADDEDc: " +showThems.addedCard) %>
-<% let y = showThems.addedCard %>
-<% console.log("INCLUDES: " +y.includes(currentUser.id)) %>
-
+                <% let y = showThems.addedCard %>
+                <% console.log("INCLUDES: " +y.includes(currentUser.id)) %>
                 <!-- console.log("XXXXX: " +showThems.nowUser._id) -->
                  <!-- console.log("showHIM: " + showHim) %> -->
                 <!-- console.log("showThems_Id: " +showThems._id) -->
-                <!-- for(let x of showThems.addedCard){ %> -->
-                  <!-- console.log("her is x: " +x) %> -->
-                  <!-- console.log("her is INDEx: " +Object.values(x)) %> -->
-                  <!-- console.log("her is arrary: " +(x.toString())) %> -->
-                  <!-- } %> -->
                 <!--  -->
               <% if(currentUser.id == showThems.addedCard || y.includes(currentUser.id) == true) { %>
-
                   <!--  -->
                    <!-- let b = showThems.addedCard %>  -->
                 <!--  -->

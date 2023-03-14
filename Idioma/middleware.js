@@ -1,7 +1,7 @@
 const { cardSchema } = require("./schemas.js");
 const ExpressError = require("./utils/ExpressError");
 const Idioma = require("./models/idioma");
-const AddedCards = require("./models/addedCards.js");
+const addedCards = require("./models/addedCards.js");
 
 module.exports.isLoggedIn = (req, res, next) => {
     // console.log("REQ.USER: ", req.user); TEST MOD 517
@@ -67,6 +67,9 @@ module.exports.paginate = async (req, res, next) => {
                     req.flash("error", "Page cannot be found!");
                     return res.redirect("/cards");
                 }
+
+                // const checkD = addedCards.find({})
+
                 return res.render("cards/index", {
                     allCards: allCardsAgain,
                     pages: Math.ceil(count / perPage),
@@ -76,6 +79,7 @@ module.exports.paginate = async (req, res, next) => {
                     err,
                     // current: page,
                     selection,
+                    // checkD,
                 });
 
                 // }

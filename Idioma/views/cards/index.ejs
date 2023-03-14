@@ -43,14 +43,13 @@
         <% if (selection && page > 1){ %>
         <a
             class="btn btn-warning btn-outline-dark"
-            id="butty"
             href="/cards/page/<%= (page-1) %>/?selections=<%=selection%>"
             role="button"
             >Back</a>
         <% } else if (page > 1 && !selection) { %>
             <a
             class="btn btn-primary btn-outline-dark"
-            id="butty"
+
             href="/cards/page/<%= (page-1) %>"
             role="button"
             >Back</a
@@ -113,7 +112,7 @@
         <% } else {%>
         <a
             class="btn btn-danger btn-outline-dark"
-            id="butty"
+
             href="/cards/page/<%= (page+1) %>"
             role="button"
             >Next D</a
