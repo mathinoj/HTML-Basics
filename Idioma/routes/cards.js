@@ -45,114 +45,98 @@ router.get(
         const myCards = await Idioma.find({}).populate("author");
         // console.log("myCz: " + myCards);
 
-        // let page = req.params.page;
-        // console.log("PG: " + page);
-
         if (!req.user) {
             req.flash("error", "Must be logged in!");
             return res.redirect(`/cards`);
         }
 
-        let checkB = req.query.checkBoxer;
-        console.log("cheQBBB: " + checkB);
+        let checkedBox = req.query.checkBoxer;
         //^^^ THIS FINDS THE ID OF THE CARD THAT IS CHOSEN BY THE USER
-        // const finding = await Idioma.find({}).populate("addedCard");
-        // console.log("finding: " + finding);
-        // for (let buh of finding) {
-        //     // console.log("BUHH: " + buh);
+        let user = req.user._id;
+        // const findAdd = await Idioma.find({}).populate("addedCard");
+        // const findAdd = await Idioma.find({});
+        // for (let finder of findAdd) {
+        //     let userIdsThatAddedCard = finder.addedCard;
+        //     console.log("usssser: " + user);
+        //     console.log("finder.ADDEDCARD: " + userIdsThatAddedCard);
+        //     console.log("istrue??: " + userIdsThatAddedCard.includes(user));
+
+        //     if (checkedBox && userIdsThatAddedCard.includes(user) == true) {
+        //         req.flash("error", "Cant add, already gots!");
+        //         return res.redirect("/cards");
+        //     }
         // }
 
-        const findAdd = await Idioma.find({});
-        for (let finder of findAdd) {
-            let mat = finder.addedCardId;
-            // console.log("mattyyy: " + mat);
-            if (checkB && checkB == mat) {
-                req.flash("error", "Cant add, already gots!");
-                return res.redirect("/cards");
-            }
-        }
+        let checkB = req.query.checkBoxer;
         const findOwnCrdz = await Idioma.find({});
         // console.log("findOwn: " + findOwnCrdz);
         for (let ownCard of findOwnCrdz) {
-            let tam = ownCard.author;
-            // console.log("TTTT: " + tam);
-            let user = req.user._id;
+            // let tam = ownCard.author;
+            console.log("TTTT: " + ownCard.author);
+            console.log("checkBBBBB: " + checkB);
+
+            // let user = req.user._id;
             // console.log("userrrrrr: " + user._id);
-            if (user == tam) {
-                req.flash("error", "Cant add your OWN card!");
+            // if (user == tam) {
+            //     req.flash("error", "Cant add your OWN card!");
+            //     return res.redirect("/cards");
+            // }
+        }
+        //START
+        if (checkedBox) {
+            const finding = await Idioma.findById(checkedBox);
+            // console.log("DAEGU: " + finding.addedCard);
+            let x = finding.addedCard;
+            console.log("SA TOWN: " + x.includes(user));
+            let y = x.includes(user);
+            if (y == true) {
+                req.flash("error", "Cant add, already gots!");
+                return res.redirect("/cards");
+            } else {
+                let user = req.user._id;
+
+                let findSelectedCard = await Idioma.findById(checkedBox);
+                const addedCardy = await User.findById(user);
+                findSelectedCard.addedCard.push(addedCardy);
+                await findSelectedCard.save();
+
+                req.flash("success", "Successfully added card to yours!");
                 return res.redirect("/cards");
             }
         }
+        // const findAdd = await Idioma.find({});
+        // for (let finder of findAdd) {
+        //     let userIdsThatAddedCard = finder.addedCard;
+        //     // console.log("usssser: " + user);
+        //     // console.log("finder.ADDEDCARD: " + userIdsThatAddedCard);
+        //     // console.log("istrue??: " + userIdsThatAddedCard.includes(user));
 
-        if (checkB) {
-            let user = req.user._id;
-            // console.log("uSSSER: " + user);
-            // let addingTo = new AddedCard({});
+        //     if (checkedBox && userIdsThatAddedCard.includes(user) == true) {
+        //         req.flash("error", "Cant add, already gots!");
+        //         return res.redirect("/cards");
+        //     }
+        // }
 
-            let tryIt = await Idioma.findById(checkB);
-            console.log("TRY IT: " + tryIt);
-            // const addedCarder = new AddedCard({});
-            // const addedCard = new Idioma.find({});
-            // const addedCard = new Idioma(tryIt);
-            // const addedCardy = await User.findById(user);
-            const addedCardy = await User.findById(user);
-            console.log("ADDDEDCARDDD: " + addedCardy);
+        // if (checkedBox) {
+        //     let user = req.user._id;
 
-            // addingTo.nowUser = addedCardy;
-            // addingTo.addedCard = tryIt;
-            // await addingTo.save();
-            // let getOrigAuth = tryIt.author;
-            // let findOrigAuth = await User.findById(getOrigAuth);
-            // let showOrigAuth = findOrigAuth.username;
-            // addedCard.nowUser = req.user._id;
-            // addedCard.addedCard = tryIt;
-            // addedCard.addedCardId = checkB;
-            // addedCard.originalAuthor = showOrigAuth;
-            tryIt.addedCard.push(addedCardy);
-            await tryIt.save();
+        //     let findSelectedCard = await Idioma.findById(checkedBox);
+        //     const addedCardy = await User.findById(user);
+        //     findSelectedCard.addedCard.push(addedCardy);
+        //     await findSelectedCard.save();
 
-            // const findAdd = await AddedCard.find({});
-            // console.log("FINDaDD: " + findAdd);
+        //     req.flash("success", "Successfully added card to yours!");
+        //     return res.redirect("/cards");
+        // }
 
-            req.flash("success", "Successfully added card to yours!");
-            return res.redirect("/cards");
-        }
-
-        // const finderKeep = async () => {
-        //     const t = await Idioma.find({}).populate("addedCard");
-        //     console.log("TTTTTT: " + t);
-        // };
-        // finderKeep();
-        let user = req.user._id;
-        console.log("uuuuusser: " + user);
+        // let user = req.user._id;
+        // console.log("uuuuusser: " + user);
 
         const showThem = await Idioma.find({}).populate("addedCard");
         // console.log("showTEM HERREE: " + showThem);
-        // for (let x of showThem) {
-        //     console.log("xer: " + x.addedCard);
-        // }
         const showHim = await Idioma.find({});
         // console.log("showHIM: " + showHim);
-        console.log("SHOWNhim: " + showHim);
-        // const findByEd = await Idioma.findById(user).populate("addedCard");
-        // console.log("findbyED: " + findByEd);
-        // for (let x of findByEd) {
-        //     console.log("xer: " + x);
-        // }
-        // for (let z of showThem) {
-        //     // console.log("zzzz: " + z);
-        //     console.log("zzzzADD: " + z.addedCard);
-        //     console.log("req.user: " + z.addedCard.author);
-
-        //     let p = z.addedCard.author;
-        //     console.log("PPPP: " + p);
-
-        //     let c = await User.findById(p);
-        //     console.log("CCCCC: " + c.username);
-        //     let x = c.username;
-        //     console.log("XXX: " + x);
-        // }
-        // <h6 class="card-text"><%= showThems.addedCard.author%></h6>
+        // console.log("SHOWNhim: " + showHim);
 
         res.render("cards/myCards", { myCards, showThem, showHim });
     })
