@@ -60,7 +60,7 @@ router.get(
             // console.log("F_AUTHOR: " + finding.author);
             const ricky = await Idioma.findById(checkedBox).populate("author");
             // console.log("00000000: " + ricky);
-            let c = ricky.author.id;
+            let changedThisAsTest = ricky.author.id;
             // console.log("c: " + ricky.author.id);
             // console.log("checkde:::: " + checkedBox);
             let a = finding.author;
@@ -77,7 +77,7 @@ router.get(
 
                 req.flash("error", "Cant add, already gots!");
                 return res.redirect("/cards");
-            } else if (c == user) {
+            } else if (changedThisAsTest == user) {
                 console.log("aaaaa: " + a);
                 console.log("ursher: " + user);
                 req.flash("error", "Cant add, own card!");
