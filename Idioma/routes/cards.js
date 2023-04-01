@@ -66,9 +66,9 @@ router.get(
             let a = finding.author;
             // let b = a.includes(user);
             // console.log("aaaaa: " + a);
-            console.log("DAEGU: " + finding.addedCard);
+            // console.log("DAEGU: " + finding.addedCard);
             let x = finding.addedCard;
-            console.log("SA TOWN: " + x.includes(user));
+            // console.log("SA TOWN: " + x.includes(user));
             let y = x.includes(user);
             if (y == true) {
                 console.log("YYYYY: " + y);
