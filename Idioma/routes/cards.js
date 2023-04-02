@@ -95,12 +95,12 @@ router.get(
             }
         }
 
-        const showThem = await Idioma.find({}).populate("addedCard");
-        const showHim = await Idioma.find({});
+        // const showThem = await Idioma.find({});
+        const showHim = await Idioma.find({}).populate("author");
 
-        res.render("cards/myCards", {
+        return res.render("cards/myCards", {
             myCards,
-            showThem,
+            // showThem,
             showHim,
             checkedBox,
             user,
