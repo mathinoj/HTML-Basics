@@ -1,7 +1,5 @@
 <% layout('/layouts/boilerplate') %>
 <h1>View All</h1>
-
-
 <% if(!currentUser) { %>
     <form action="/cards/page/1">
         <select
@@ -51,12 +49,12 @@
         <a href="/cards/<%=allCard._id%>" class="btn btn-primary">View Card</a>
     </div>
 
-    <% console.log('ALL FUCKIN CARDS: ' +allCard) %>
-    <% console.log('aAUTH: ' +allCard.author) %>
-    <% console.log('currentLY: ' +currentUser.id) %>
-    <% console.log('addY CARDy: ' +allCard.addedCard) %>
+     <!-- console.log('ALL FUCKIN CARDS: ' +allCard) %> -->
+     <!-- console.log('aAUTH: ' +allCard.author) %> -->
+     <!-- console.log('currentLY: ' +currentUser.id) %> -->
+     <!-- console.log('addY CARDy: ' +allCard.addedCard) %> -->
     <% let g = allCard.addedCard %>
-    <% console.log("included: " +g.includes(currentUser.id)) %>
+     <!-- console.log("included: " +g.includes(currentUser.id)) %> -->
     <% let n = g.includes(currentUser.id) %>
 
     <% if(currentUser && currentUser.id == allCard.author) { %>
@@ -151,7 +149,11 @@
             href="/cards/page/1"
             >Next C</a
         >
-        <% } else if (selection) { %>
+        <% } else if (selection && page != pages) { %>
+            <% console.log("selectionL : " +selection) %>
+            <% console.log("PAGER : " +page) %>
+            <% console.log("zzz : " +pages) %>
+
             <a
             class="btn btn-warning btn-outline-dark"
             role="button"
