@@ -56,30 +56,16 @@ router.get(
         //START
         if (checkedBox) {
             const finding = await Idioma.findById(checkedBox);
-            // console.log("finding: " + finding);
-            // console.log("F_AUTHOR: " + finding.author);
             const ricky = await Idioma.findById(checkedBox).populate("author");
-            // console.log("00000000: " + ricky);
             let changedThisAsTest = ricky.author.id;
-            // console.log("c: " + ricky.author.id);
-            // console.log("checkde:::: " + checkedBox);
             let a = finding.author;
-            // let b = a.includes(user);
-            // console.log("aaaaa: " + a);
-            // console.log("DAEGU: " + finding.addedCard);
             let x = finding.addedCard;
-            // console.log("SA TOWN: " + x.includes(user));
+
             let y = x.includes(user);
             if (y == true) {
-                // console.log("YYYYY: " + y);
-                // console.log("aaaaa: " + a);
-                // console.log("USER: " + user);
-
                 req.flash("error", "Cant add, already gots!");
                 return res.redirect("/cards");
             } else if (changedThisAsTest == user) {
-                // console.log("aaaaa: " + a);
-                // console.log("ursher: " + user);
                 req.flash("error", "Cant add, own card!");
                 return res.redirect("/cards");
             } else {
@@ -94,7 +80,6 @@ router.get(
                 return res.redirect("/cards");
             }
         }
-
         // const showThem = await Idioma.find({});
         const showHim = await Idioma.find({}).populate("author");
 
@@ -223,32 +208,6 @@ router.delete(
         res.redirect("/cards");
     })
 );
-
-// router.delete(
-//     "/:reviewId",
-//     isLoggedIn,
-//     isReviewAuthor,
-//     catchAsync(reviews.deleteReview)
-// );
-
-// router.put(
-//     "/:id",
-//     isLoggedIn,
-//     isAuthor,
-//     validateCard,
-//     catchAsync(async (req, res, next) => {
-//         const { id } = req.params;
-//         // console.log("this is id: " + { id });
-//         const card = await Idioma.findByIdAndUpdate(id, {
-//             ...req.body.newCard,
-//         });
-//         console.log("this is card: " + cards);
-//         req.flash("success", "Updated a Card!");
-
-//         res.redirect(`/cards/${card._id}`);
-//         console.log("here: " + card._id);
-//     })
-// );
 
 router.put(
     "/myCards/:id",
