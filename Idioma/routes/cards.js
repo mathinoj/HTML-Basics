@@ -254,36 +254,22 @@ router.put(
     "/myCards/:id",
     isLoggedIn,
     catchAsync(async (req, res, next) => {
-        let current = req.query.id;
-
-        console.log("curent: " + current);
-
         res.locals.currentUser = req.user;
         let entireUser = res.locals.currentUser;
-        // console.log("CURRENT sEEEEERR: " + res.locals.currentUser);
-        // console.log("BENNY: " + benny);
         let userIdNum = entireUser.id;
-        console.log("USER ID!!: " + userIdNum);
-        // let checkedBox = req.query.checkBoxer;
+        // console.log("USER ID!!: " + userIdNum);
         let selectedCardIdNum = req.params.id;
-        console.log("CARD ID num: " + selectedCardIdNum);
+        // console.log("CARD ID num: " + selectedCardIdNum);
 
         const specificCard = await Idioma.findById(selectedCardIdNum);
 
-        // const era = await Idioma.findByIdAndRemove(remover, {
-        //     $pull: { addedCard: current },
-        // });
-        // .findOneAndRemove(current);
-        // await I.findByIdAndDelete(reviewId);
-        console.log("Egra:: " + specificCard);
+        console.log("This is specificCard selected by user: " + specificCard);
 
-        // let her = specificCard;
-        // console.log("her: " + her);
         let listOfAddedCardIds = specificCard.addedCard;
 
         let isUserInAddedCards = listOfAddedCardIds.includes(userIdNum);
         console.log("BLLLuuurt: " + isUserInAddedCards);
-        if (specificCard && blur == true) {
+        if (specificCard && isUserInAddedCards == true) {
             let hiii = await Idioma.findById(selectedCardIdNum);
             console.log("hiii: " + hiii);
 
