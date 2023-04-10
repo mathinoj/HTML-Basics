@@ -280,7 +280,7 @@ router.put(
             let byee = await Idioma.findById(selectedCardIdNum);
             console.log("byee: " + byee);
 
-            req.flash("success", "Deleted a Card.");
+            req.flash("success", "Removed a Card.");
             res.redirect("/cards/myCards");
         }
     })
