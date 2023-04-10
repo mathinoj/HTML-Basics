@@ -255,8 +255,8 @@ router.put(
     isLoggedIn,
     catchAsync(async (req, res, next) => {
         res.locals.currentUser = req.user;
-        let entireUser = res.locals.currentUser;
-        let userIdNum = entireUser.id;
+        let entireUserInfo = res.locals.currentUser;
+        let userIdNum = entireUserInfo.id;
         // console.log("USER ID!!: " + userIdNum);
         let selectedCardIdNum = req.params.id;
         // console.log("CARD ID num: " + selectedCardIdNum);
