@@ -71,15 +71,15 @@ router.get(
             // console.log("SA TOWN: " + x.includes(user));
             let y = x.includes(user);
             if (y == true) {
-                console.log("YYYYY: " + y);
-                console.log("aaaaa: " + a);
-                console.log("USER: " + user);
+                // console.log("YYYYY: " + y);
+                // console.log("aaaaa: " + a);
+                // console.log("USER: " + user);
 
                 req.flash("error", "Cant add, already gots!");
                 return res.redirect("/cards");
             } else if (changedThisAsTest == user) {
-                console.log("aaaaa: " + a);
-                console.log("ursher: " + user);
+                // console.log("aaaaa: " + a);
+                // console.log("ursher: " + user);
                 req.flash("error", "Cant add, own card!");
                 return res.redirect("/cards");
             } else {
@@ -221,6 +221,134 @@ router.delete(
         const deletedCard = await Idioma.findByIdAndDelete(id);
         req.flash("success", "Deleted a Card.");
         res.redirect("/cards");
+    })
+);
+
+// router.delete(
+//     "/:reviewId",
+//     isLoggedIn,
+//     isReviewAuthor,
+//     catchAsync(reviews.deleteReview)
+// );
+
+// router.put(
+//     "/:id",
+//     isLoggedIn,
+//     isAuthor,
+//     validateCard,
+//     catchAsync(async (req, res, next) => {
+//         const { id } = req.params;
+//         // console.log("this is id: " + { id });
+//         const card = await Idioma.findByIdAndUpdate(id, {
+//             ...req.body.newCard,
+//         });
+//         console.log("this is card: " + cards);
+//         req.flash("success", "Updated a Card!");
+
+//         res.redirect(`/cards/${card._id}`);
+//         console.log("here: " + card._id);
+//     })
+// );
+
+router.put(
+    "/myCards/:id",
+    isLoggedIn,
+    catchAsync(async (req, res, next) => {
+        let current = req.query.id;
+
+        console.log("curent: " + current);
+
+        res.locals.currentUser = req.user;
+        let entireUser = res.locals.currentUser;
+        // console.log("CURRENT sEEEEERR: " + res.locals.currentUser);
+        // console.log("BENNY: " + benny);
+        let userIdNum = entireUser.id;
+        console.log("USER ID!!: " + userIdNum);
+        // let checkedBox = req.query.checkBoxer;
+        let selectedCardIdNum = req.params.id;
+        console.log("CARD ID num: " + selectedCardIdNum);
+
+        const specificCard = await Idioma.findById(selectedCardIdNum);
+
+        // const era = await Idioma.findByIdAndRemove(remover, {
+        //     $pull: { addedCard: current },
+        // });
+        // .findOneAndRemove(current);
+        // await I.findByIdAndDelete(reviewId);
+        console.log("Egra:: " + specificCard);
+
+        // let her = specificCard;
+        // console.log("her: " + her);
+        let listOfAddedCardIds = specificCard.addedCard;
+        // console.log("heroo: " + her.addedCard);
+
+        // console.log("vlad: " + her.includes(current));
+        let blur = listOfAddedCardIds.includes(userIdNum);
+        console.log("BLLLuuurt: " + blur);
+        if (specificCard && blur == true) {
+            // console.log("see THIS???");
+            // console.log("ID's of users dat addedC's: " + burr);
+            // console.log("INdy Of: " + burr.indexOf(jenny));
+            // let letter = burr.indexOf(jenny);
+            // console.log("c id: " + removers);
+            // console.log("LETTER: " + letter);
+            // const results = burr.filter((word) => word == jenny);
+            // console.log("RESULTS: " + results);
+            // console.log("now idzzz: " + burr);
+            // console.log("see Whole C: " + era);
+            // fruits.splice(2, 1);
+            // console.log("ACTION: " + burr.splice(letter, 1));
+            // let minus = burr.splice(letter, 1);
+            // console.log("AFTER idzzz: " + burr);
+            // console.log("After Whole C: " + era);
+            // let bera = era;
+            // console.log("yogi: " + bera);
+
+            // let removing = await Idioma.findByIdAndUpdate(removers, {
+            //     ...burr.splice(letter, 1),
+            // });
+            let removing = await Idioma.findByIdAndUpdate(selectedCardIdNum, {
+                $pull: { addedCard: userIdNum },
+            });
+
+            let byee = await Idioma.findById(selectedCardIdNum);
+            console.log("byee: " + byee);
+            // console.log("idi: " + Idioma);
+            //     // let better = removing.findByIdAndDelete(current);
+            //     // console.log("better: " + better);
+            // console.log("should see this: " + current);
+            console.log("removing now what?: " + removing);
+            console.log("spcificCard: " + specificCard);
+            //     console.log("adder:: " + era.addedCard);
+            req.flash("success", "Deleted a Card.");
+            res.redirect("/cards/myCards");
+        }
+        // let guy = await Idioma.findByIdAndUpdate(removers, {
+        //     $pull: { addedCard: minus },
+        // });
+        //     catchAsync(async (req, res, next) => {
+        //         const { id } = req.params;
+        //         // console.log("this is id: " + { id });
+        //         const card = await Idioma.findByIdAndUpdate(id, {
+        //             ...req.body.newCard,
+        //         });
+        //         console.log("this is card: " + cards);
+        //         req.flash("success", "Updated a Card!");
+
+        //         res.redirect(`/cards/${card._id}`);
+        //         console.log("here: " + card._id);
+        //     })
+        // );
+
+        // const bury = req.params.id;
+
+        //     const { id, reviewId } = req.params;
+        //     await Campground.findByIdAndUpdate(id, {
+        //         $pull: { reviews: reviewId },
+        //     });
+        //     await Review.findByIdAndDelete(reviewId);
+        //     req.flash("success", "Successfully deleted review!");
+        //     res.redirect(`/campgrounds/${id}`);
     })
 );
 
