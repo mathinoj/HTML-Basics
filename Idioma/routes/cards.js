@@ -262,13 +262,12 @@ router.put(
         // console.log("CARD ID num: " + selectedCardIdNum);
 
         const specificCard = await Idioma.findById(selectedCardIdNum);
-
         console.log("This is specificCard selected by user: " + specificCard);
 
         let listOfAddedCardIds = specificCard.addedCard;
 
         let isUserInAddedCards = listOfAddedCardIds.includes(userIdNum);
-        console.log("BLLLuuurt: " + isUserInAddedCards);
+        // console.log("BLLLuuurt: " + isUserInAddedCards);
         if (specificCard && isUserInAddedCards == true) {
             let hiii = await Idioma.findById(selectedCardIdNum);
             console.log("hiii: " + hiii);
