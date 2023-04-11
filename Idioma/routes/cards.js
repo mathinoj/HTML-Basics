@@ -96,7 +96,36 @@ router.get(
 router.get(
     "/tested",
     catchAsync(async (req, res, next) => {
+        if (!req.user) {
+            req.flash("error", "Must be logged in!");
+            return res.redirect(`/cards`);
+        }
+
+        res.locals.currentUser = req.user;
+        let entireUserInfo = res.locals.currentUser;
+        // console.log("entierUserInfo: " + req.user.id);
+        // console.log("CURRENT USER testtt: " + res.locals.currentUser);
+        let userIdNum = entireUserInfo.id;
+        console.log("userIdNum: " + userIdNum);
         const randomRocs = await Idioma.find({});
+        console.log("RandomRocz: " + randomRocs);
+        // const
+        for (let bby of randomRocs) {
+            // console.log("BBY: " + bby.addedCard);
+            let matchy = bby.addedCard;
+            console.log("matchy: " + matchy);
+            // console.log("matchy id: " + matchy.includes(userIdNum));
+            let findUserInAdd = matchy.includes(userIdNum);
+            console.log("findUserInAdd: " + findUserInAdd);
+            let bbyAuth = bby.author;
+            // console.log("user is auth: " + bbyAuth.equals(userIdNum));
+            let tFinder = bbyAuth.equals(userIdNum);
+            // console.log("Tfinder: " + tFinder);
+            if (tFinder == true || findUserInAdd == true) {
+                console.log("should only see AUTHRS card" + bby);
+                // console.log("should only see AUTHRS card" + bby);
+            }
+        }
         const randomDocs = await db
             .collection("idiomas")
             // .aggregate([{ $sample: { size: randomRocs.length } }])
@@ -107,19 +136,20 @@ router.get(
         // https://stackoverflow.com/questions/54585939/mongodb-and-node-js-aggregate-using-sample-isnt-returning-a-document
         // console.log("What this:" + randomDocs._id);
         // console.log("ConsLog: " + Array.from(randomDocs));
+        // console.log("randomDocs: " + randomDocs);
         const randArr = Array.from(randomDocs);
-        console.log("randArr: " + randArr);
-        console.log("length: " + randArr.length);
+        // console.log("randArr: " + randArr);
+        // console.log("length: " + randArr.length);
         for (let i = 0; i < randArr.length; i++) {
             // console.log(i);
-            console.log(randArr[i]);
+            console.log("randArr[i]: " + randArr[i]);
         }
 
-        console.log("MATH: " + Math.floor(Math.random() * randArr.length));
-        const mathRand = Math.floor(Math.random() * randArr.length);
-        const blandArr = randArr[mathRand];
-        console.log("blandArr: " + blandArr);
-        console.log("Index: " + blandArr._id);
+        // console.log("MATH: " + Math.floor(Math.random() * randArr.length));
+        // const mathRand = Math.floor(Math.random() * randArr.length);
+        // const blandArr = randArr[mathRand];
+        // console.log("blandArr: " + blandArr);
+        // console.log("Index: " + blandArr._id);
         res.render("cards/tested", { randomDocs });
     })
 );
