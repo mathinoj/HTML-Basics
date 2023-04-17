@@ -106,26 +106,38 @@ router.get(
         // console.log("entierUserInfo: " + req.user.id);
         // console.log("CURRENT USER testtt: " + res.locals.currentUser);
         let userIdNum = entireUserInfo.id;
-        console.log("userIdNum: " + userIdNum);
-        const randomRocs = await Idioma.find({});
-        console.log("RandomRocz: " + randomRocs);
-        // const
-        for (let bby of randomRocs) {
-            // console.log("BBY: " + bby.addedCard);
-            let matchy = bby.addedCard;
-            console.log("matchy: " + matchy);
-            // console.log("matchy id: " + matchy.includes(userIdNum));
-            let findUserInAdd = matchy.includes(userIdNum);
-            console.log("findUserInAdd: " + findUserInAdd);
-            let bbyAuth = bby.author;
-            // console.log("user is auth: " + bbyAuth.equals(userIdNum));
-            let tFinder = bbyAuth.equals(userIdNum);
-            // console.log("Tfinder: " + tFinder);
-            if (tFinder == true || findUserInAdd == true) {
-                console.log("should only see AUTHRS card" + bby);
-                // console.log("should only see AUTHRS card" + bby);
-            }
-        }
+        // console.log("userIdNum: " + userIdNum);
+        // const randomDocs = await Idioma.find({});
+        // // console.log("RandomRocz: " + randomDocs);
+        // for (let bby of randomDocs) {
+        //     // console.log("BBY: " + bby);
+        //     // console.log("rand length:  " + randomDocs.length);
+        //     let matchy = bby.addedCard;
+        //     // console.log("matchy: " + matchy);
+        //     // console.log("matchy id: " + matchy.includes(userIdNum));
+        //     let findUserInAdd = matchy.includes(userIdNum);
+        //     // console.log("findUserInAdd: " + findUserInAdd);
+        //     let bbyAuth = bby.author;
+        //     // console.log("isAthr: " + bbyAuth);
+        //     // console.log("user is auth: " + bbyAuth.equals(userIdNum));
+        //     let tFinder = bbyAuth.equals(userIdNum);
+        //     // console.log("Authfinder: " + tFinder);
+        //     if (tFinder == true || findUserInAdd == true) {
+        //         // console.log("findUserInAdd: " + findUserInAdd);
+        //         // console.log("Authfinder: " + tFinder);
+        //         // if (tFinder == true) {
+        //         // let w = await Idioma.find({});
+        //         // console.log("findUserInAdd: " + findUserInAdd);
+        //         let b = { ...bby };
+        //         console.log("WWW: " + b);
+        //         // console.log("should only see AUTHRS card " + bby);
+        //         // console.log("how many - LENGTH: " + Array.from(bby));
+        //         // let y = { ...bby };
+        //         // console.log("YY: " + y);
+        //         // console.log("randomD.addC: " + randomDocs);
+        //         // console.log("length: " + bby.length);
+        //     }
+        // }
         const randomDocs = await db
             .collection("idiomas")
             // .aggregate([{ $sample: { size: randomRocs.length } }])
@@ -136,21 +148,92 @@ router.get(
         // https://stackoverflow.com/questions/54585939/mongodb-and-node-js-aggregate-using-sample-isnt-returning-a-document
         // console.log("What this:" + randomDocs._id);
         // console.log("ConsLog: " + Array.from(randomDocs));
-        // console.log("randomDocs: " + randomDocs);
+        console.log("randomDocs: " + randomDocs);
+
         const randArr = Array.from(randomDocs);
         // console.log("randArr: " + randArr);
         // console.log("length: " + randArr.length);
-        for (let i = 0; i < randArr.length; i++) {
-            // console.log(i);
-            console.log("randArr[i]: " + randArr[i]);
-        }
+        // for (let i = 0; i < randArr.length; i++) {
+        // console.log(i);
+        // console.log("randArr[i]: " + randArr[i]);
+        // let s = await Idioma.find({}).populate("addedCard");
+        // console.log("sss: " + s);
+        // console.log("sss: " + s.author);
+        // console.log("sss: " + s.addedCard);
 
+        let k = await Idioma.find({});
+        // console.log("AC: " + k);
+        ///WHAT BOUT LIMITING THE NUMBER WE GET LIKE THROUGH THAT LOOP WHERE WE DO for(let i = 0; i < attempt; i++) CUZ I THINK YOU CAN LIMIT THE AMOUNT WE GET RATHER THAN SEEING ALL 8 CARDS THAT FIT YOUR CRITERIA
+        // let b = k.length;
+
+        // for (let i = 0; i < b; i++) {
+        //     console.log("K length: " + i);
+        // }
+
+        // for (let attempt of randomDocs && k) {
+        for (let attempt of randomDocs) {
+            // console.log("attmpt: " + attempt);
+            // console.log("this is IDs for ADDcard: " + attempt.addedCard);
+            // console.log("user: " + userIdNum);
+            // console.log("length : " + randomDocs.length);
+
+            let q = attempt.addedCard;
+            // console.log("addedCardID: " + q);
+            // console.log("array: " + q.includes(userIdNum));
+            // let mm = Object.entries(q);
+            // let z = mm.includes(userIdNum);
+            let z = q.includes(userIdNum);
+            // console.log("Added card Id has user: " + z);
+            // console.log("authorID: " + attempt.author);
+            //THIS IS FOR FINDING AUTHOR OF CARD
+            let w = attempt.author;
+            // console.log("author: " + w);
+            let e = w.equals(userIdNum);
+            // console.log("Is AUTHOR: " + e);
+            let v = attempt.author;
+            // console.log("v: " + v);
+            let n = attempt.addedCard;
+            // console.log("ad JUST: " + attempt.english);
+            console.log("AddedCards Idz: " + n);
+            const myArr = n.toString();
+            console.log("myArr: " + myArr);
+            // console.log("Index Num of Added Card: " + n.indexOf(userIdNum));
+            let x = v.equals(userIdNum);
+            // console.log("X: " + x);
+            let c = myArr.includes(userIdNum);
+            console.log("Does AddedCard have User Id num: " + c);
+            if (x == true || c == true) {
+                // if (e == true || z == true) {
+                // console.log("see this????");
+                // console.log("Author is user: " + e);
+                // console.log("Added card has user: " + z);
+                console.log("attmpt @@: " + attempt);
+                console.log("length : " + randomDocs);
+
+                // console.log("length author: " + attempt.author);
+                // console.log("length addedC: " + attempt.addedCard);
+                // let n = Iterators.size(attempt);
+                // console.log("n: " + n);
+                // console.log("aka: " + Array.from(k));
+                // console.log("AC: " + k);
+            }
+        }
         // console.log("MATH: " + Math.floor(Math.random() * randArr.length));
         // const mathRand = Math.floor(Math.random() * randArr.length);
         // const blandArr = randArr[mathRand];
         // console.log("blandArr: " + blandArr);
         // console.log("Index: " + blandArr._id);
-        res.render("cards/tested", { randomDocs });
+        return res.render("cards/tested", {
+            randomDocs,
+            // attempt,
+            // k,
+            // e,
+            // z,
+            userIdNum,
+            // attempt,
+        });
+        //     }
+        // }
     })
 );
 

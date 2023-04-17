@@ -23,10 +23,29 @@
         role="button"
         >Start Test</a
     > -->
+<!-- % console.log("uzr: " +userIdNum) %> -->
+<!--  -->
+<% let o = randomDoc.addedCard %> <% let p = o.toString() %>
+<!--  -->
+<% let i = p.includes(userIdNum) %>
+<!-- % console.log("R: " +p.includes(userIdNum)) %> -->
 <br />
-
+<% let v = randomDoc.author %>
+<!--  -->
+<% console.log("V: " +v) %>
+<!-- const myArr = n.toString(); console.log("myArr: " + myArr); -->
+<% let n = v.equals(userIdNum) %>
+<!--  -->
+<% console.log("TRUE: " +n) %>
+<!--  -->
 <%= ('Herre is randoDoc: ' + randomDoc._id) %>
+<!--  -->
+<!-- if(e == true) { %> -->
+<% if (i == true || n == true) { %>
 
+<!-- console.log("ZZZ: " +z) %> -->
+<!--  -->
+<!-- console.log("QQ: " +q) %> -->
 <div class="card" style="width: 18rem">
     <div class="card-body">
         <h5 class="card-title">Card title</h5>
@@ -81,6 +100,6 @@
     </div>
 </div>
 
-<% } %>
+<% }} %>
 <!-- https://www.youtube.com/watch?v=HWeU6iE9NIg
 https://getbootstrap.com/docs/5.2/components/popovers/ -->
