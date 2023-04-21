@@ -216,6 +216,13 @@ router.get(
                 // console.log("n: " + n);
                 // console.log("aka: " + Array.from(k));
                 // console.log("AC: " + k);
+                // let f = await AddedCard.insert(
+                //     {
+                //         nowUser: userIdNum,
+                //     },
+                //     { addedCard: randomDocs }
+                // );
+                // console.log("f: " + f);
             }
         }
         // console.log("MATH: " + Math.floor(Math.random() * randArr.length));
@@ -256,6 +263,12 @@ router.post(
         const newCard = new Idioma(req.body.newCard);
         newCard.author = req.user._id;
         await newCard.save();
+        console.log("newCard here: " + newCard);
+        //THIS PUTS THE CARD INTO THE ADDEDCARD MONGODB
+        // const addIt = db.collection("addedcards");
+        // let adder = { addedCard: newCard };
+        // let result = addIt.insertOne(adder);
+        // console.log("result: " + result);
         req.flash("success", "Successfully made new card!");
         res.redirect(`/cards/${newCard._id}`);
     })

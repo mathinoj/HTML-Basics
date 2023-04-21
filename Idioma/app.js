@@ -97,30 +97,6 @@ app.get("/", (req, res) => {
     res.render("home");
 });
 
-// app.get("/:page", function (req, res, next) {
-//     let perPage = 3;
-//     let page = parseInt(req.params.page) || 1;
-
-//     Idioma.find({})
-//         .skip(perPage * page - perPage)
-//         .limit(perPage)
-//         .exec(function (err, allCardsAgain) {
-//             if (err) return next(err.message);
-//             Idioma.count().exec(function (err, count) {
-//                 if (err) return next(err.message);
-
-//                 let pages = Math.ceil(count / perPage);
-
-//                 res.render("cards/index", {
-//                     allCards: allCardsAgain,
-//                     current: page,
-//                     pages: Math.ceil(count / perPage),
-//                     pages,
-//                 });
-//             });
-//         });
-// });
-
 app.all("*", (req, res, next) => {
     next(new ExpressError("Page no find", 404));
 });
