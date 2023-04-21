@@ -26,11 +26,16 @@ router.post(
             // console.log("USERNAME: " + username);
             let x = new AddedCard();
             // x.nowUser = username;
-            x.nowUser.push(user);
+            // x.nowUser.push(user); THISS WORKS BUT TREATS LIKE AN ARRAY!!
             // console.log("x: " + x);
+            x.nowUser = user;
             const registeredUser = await User.register(user, password);
             await x.save();
             console.log("again x: " + x);
+
+            // const newCard = new Idioma(req.body.newCard);
+            // newCard.author = req.user._id;
+            // await newCard.save();
 
             // console.log("regd: " + registeredUser);
 
