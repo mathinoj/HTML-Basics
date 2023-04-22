@@ -17,9 +17,9 @@ router.post(
             const { email, username, password } = req.body;
             const user = new User({ email, username });
             //The next 3 lines add a new user to addedCard.js Schema *********
-            let x = new AddedCard();
-            x.nowUser = user;
-            await x.save();
+            // let x = await AddedCard();
+            // x.nowUser = user;
+            // await x.save();
             const registeredUser = await User.register(user, password);
             req.login(registeredUser, (err) => {
                 if (err) return next(err);

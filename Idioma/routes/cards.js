@@ -52,6 +52,13 @@ router.get(
         let checkedBox = req.query.checkBoxer;
         //^^^ THIS FINDS THE ID OF THE CARD THAT IS CHOSEN BY THE USER
         let user = req.user._id;
+        console.log("user is this: " + user);
+        let u = await AddedCard.find({});
+        console.log("AddedCard DB: " + u);
+        console.log("AddedCard DB nowUser: " + u.id);
+        // for (let n of u) {
+        //     console.log("N: " + n.nowUser);
+        // }
 
         //START
         if (checkedBox) {
@@ -75,6 +82,10 @@ router.get(
                 const addedCardy = await User.findById(user);
                 findSelectedCard.addedCard.push(addedCardy);
                 await findSelectedCard.save();
+
+                let findUser = await User.findById(req.user._id);
+                findUser.addedCard.push(findSelectedCard);
+                await findUser.save();
 
                 req.flash("success", "Successfully added card to yours!");
                 return res.redirect("/cards");
@@ -264,6 +275,10 @@ router.post(
         newCard.author = req.user._id;
         await newCard.save();
         console.log("newCard here: " + newCard);
+        //THIS PUTS CARD INTO addedCard in USER schema
+        let findUser = await User.findById(req.user._id);
+        findUser.addedCard.push(newCard);
+        await findUser.save();
         //THIS PUTS THE CARD INTO THE ADDEDCARD MONGODB
         // const addIt = db.collection("addedcards");
         // let adder = { addedCard: newCard };
@@ -348,17 +363,29 @@ router.put(
 
         const specificCard = await Idioma.findById(selectedCardIdNum);
         console.log("This is specificCard selected by user: " + specificCard);
+        let justSpecificCardId = specificCard.id;
+
+        let userCard = await User.findById(userIdNum);
+        console.log("userCard: " + userCard);
 
         let listOfAddedCardIds = specificCard.addedCard;
+        let userListCards = userCard.addedCard;
+        console.log("userLcz :" + userListCards);
 
         let isUserInAddedCards = listOfAddedCardIds.includes(userIdNum);
+        let isItInUser = userListCards.includes(justSpecificCardId);
+        console.log("isItin: " + isItInUser);
         // console.log("BLLLuuurt: " + isUserInAddedCards);
-        if (specificCard && isUserInAddedCards == true) {
+        if (specificCard && isUserInAddedCards == true && isItInUser == true) {
             let hiii = await Idioma.findById(selectedCardIdNum);
             console.log("hiii: " + hiii);
 
             await Idioma.findByIdAndUpdate(selectedCardIdNum, {
                 $pull: { addedCard: userIdNum },
+            });
+
+            await User.findByIdAndUpdate(userIdNum, {
+                $pull: { addedCard: selectedCardIdNum },
             });
 
             let byee = await Idioma.findById(selectedCardIdNum);
