@@ -123,7 +123,7 @@ router.get(
         // console.log("m addedC: " + m.addedCard);
         // console.log("m addedC length: " + randomDocs.addedCard);
         let c = randomDocsx.addedCard;
-        let item = c[Math.floor(Math.random() * c.length)];
+        // let item = c[Math.floor(Math.random() * c.length)];
         // console.log("item: " + item);
 
         let randomDocs = c
@@ -220,14 +220,14 @@ router.get(
             // console.log("v: " + v);
             let n = attempt.addedCard;
             // console.log("ad JUST: " + attempt.english);
-            console.log("AddedCards Idz: " + n);
+            // console.log("AddedCards Idz: " + n);
             const myArr = n.toString();
-            console.log("myArr: " + myArr);
+            // console.log("myArr: " + myArr);
             // console.log("Index Num of Added Card: " + n.indexOf(userIdNum));
             let x = v.equals(userIdNum);
             // console.log("X: " + x);
             let c = myArr.includes(userIdNum);
-            console.log("Does AddedCard have User Id num: " + c);
+            // console.log("Does AddedCard have User Id num: " + c);
             if (x == true || c == true) {
                 // if (e == true || z == true) {
                 // console.log("see this????");
