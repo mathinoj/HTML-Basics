@@ -48,25 +48,14 @@
         <h6 class="card-text"><%= allCard.number%></h6>
         <a href="/cards/<%=allCard._id%>" class="btn btn-primary">View Card</a>
     </div>
-
-     <!-- console.log('ALL FUCKIN CARDS: ' +allCard) %> -->
-     <!-- console.log('aAUTH: ' +allCard.author) %> -->
-     <!-- console.log('currentLY: ' +currentUser.id) %> -->
-     <!-- console.log('addY CARDy: ' +allCard.addedCard) %> -->
     <% let g = allCard.addedCard %>
-     <!-- console.log("included: " +g.includes(currentUser.id)) %> -->
     <% let n = g.includes(currentUser.id) %>
 
     <% if(currentUser && currentUser.id == allCard.author) { %>
-         <!-- console.log('finding in Index: ' +finding) %> -->
-         <!-- console.log('CURRY her: ' +curry) %> -->
-         <!-- console.log('aUTerr her: ' +allCard.author) %> -->
-         <!-- console.log('cur use her: ' +currentUser._id) %> -->
         <form action="/cards/myCards">
         <div class="form-check">
             <input class="form-check-input" type="checkbox" value="<%=allCard._id%>" id="flexCheckDefault" name="checkBoxer" onchange="this.form.submit();" hidden>
             <label class="form-check-label" for="flexCheckDefault">
-              Default checkbox
             </label>
         </div>
         </form>
@@ -74,8 +63,7 @@
             <form action="/cards/myCards">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="<%=allCard._id%>" id="flexCheckDefault" name="checkBoxer" onchange="this.form.submit();" hidden>
-                    <label class="form-check-label" for="flexCheckDefault">
-                      Default checkbox
+                    <label class="form-check-label" for="flexCheckDefault">Card Added
                     </label>
                 </div>
                 </form>
@@ -84,7 +72,7 @@
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="<%=allCard._id%>" id="flexCheckDefault" name="checkBoxer" onchange="this.form.submit();">
                     <label class="form-check-label" for="flexCheckDefault">
-                      Default checkbox
+                        Add Card
                     </label>
                 </div>
                 </form>
@@ -150,10 +138,6 @@
             >Next C</a
         >
         <% } else if (selection && page != pages) { %>
-             <!-- console.log("selectionL : " +selection) %>
-             console.log("PAGER : " +page) %>
-             console.log("zzz : " +pages) %> -->
-
             <a
             class="btn btn-warning btn-outline-dark"
             role="button"
