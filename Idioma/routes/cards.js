@@ -117,6 +117,21 @@ router.get(
         // console.log("entierUserInfo: " + req.user.id);
         // console.log("CURRENT USER testtt: " + res.locals.currentUser);
         let userIdNum = entireUserInfo.id;
+
+        let randomDocsx = await User.findById(userIdNum).populate("addedCard");
+        // console.log("m: " + randomDocs.length);
+        // console.log("m addedC: " + m.addedCard);
+        // console.log("m addedC length: " + randomDocs.addedCard);
+        let c = randomDocsx.addedCard;
+        let item = c[Math.floor(Math.random() * c.length)];
+        // console.log("item: " + item);
+
+        let randomDocs = c
+            .sort(() => Math.random() - Math.random())
+            .slice(0, 5);
+        // c.sort(() => 0.5 - Math.random());
+        console.log("shfld: " + randomDocs);
+
         // console.log("userIdNum: " + userIdNum);
         // const randomDocs = await Idioma.find({});
         // // console.log("RandomRocz: " + randomDocs);
@@ -149,7 +164,7 @@ router.get(
         //         // console.log("length: " + bby.length);
         //     }
         // }
-        const randomDocs = await db
+        const randomDocz = await db
             .collection("idiomas")
             // .aggregate([{ $sample: { size: randomRocs.length } }])
             .aggregate([{ $sample: { size: 5 } }])
@@ -159,7 +174,7 @@ router.get(
         // https://stackoverflow.com/questions/54585939/mongodb-and-node-js-aggregate-using-sample-isnt-returning-a-document
         // console.log("What this:" + randomDocs._id);
         // console.log("ConsLog: " + Array.from(randomDocs));
-        console.log("randomDocs: " + randomDocs);
+        // console.log("randomDocs: " + randomDocs);
 
         const randArr = Array.from(randomDocs);
         // console.log("randArr: " + randArr);
@@ -218,9 +233,8 @@ router.get(
                 // console.log("see this????");
                 // console.log("Author is user: " + e);
                 // console.log("Added card has user: " + z);
-                console.log("attmpt @@: " + attempt);
-                console.log("length : " + randomDocs);
-
+                // console.log("attmpt @@: " + attempt);
+                // console.log("length : " + randomDocs);
                 // console.log("length author: " + attempt.author);
                 // console.log("length addedC: " + attempt.addedCard);
                 // let n = Iterators.size(attempt);
@@ -377,8 +391,8 @@ router.put(
         console.log("isItin: " + isItInUser);
         // console.log("BLLLuuurt: " + isUserInAddedCards);
         if (specificCard && isUserInAddedCards == true && isItInUser == true) {
-            let hiii = await Idioma.findById(selectedCardIdNum);
-            console.log("hiii: " + hiii);
+            // let hiii = await Idioma.findById(selectedCardIdNum);
+            // console.log("hiii: " + hiii);
 
             await Idioma.findByIdAndUpdate(selectedCardIdNum, {
                 $pull: { addedCard: userIdNum },
@@ -388,8 +402,8 @@ router.put(
                 $pull: { addedCard: selectedCardIdNum },
             });
 
-            let byee = await Idioma.findById(selectedCardIdNum);
-            console.log("byee: " + byee);
+            // let byee = await Idioma.findById(selectedCardIdNum);
+            // console.log("byee: " + byee);
 
             req.flash("success", "Removed a Card.");
             res.redirect("/cards/myCards");

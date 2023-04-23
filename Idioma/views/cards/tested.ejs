@@ -25,23 +25,26 @@
     > -->
 <!-- % console.log("uzr: " +userIdNum) %> -->
 <!--  -->
-<% let o = randomDoc.addedCard %> <% let p = o.toString() %>
+<!-- You had to do 'toString' cuz it wasnt iterrating. As a result it was constantly reading the includes as 'false' -->
+<% let o = randomDoc.addedCard %>
+<!--  -->
+<% let p = o.toString() %>
 <!--  -->
 <% let i = p.includes(userIdNum) %>
 <!-- % console.log("R: " +p.includes(userIdNum)) %> -->
 <br />
 <% let v = randomDoc.author %>
 <!--  -->
-<% console.log("V: " +v) %>
+<!-- < console.log("V: " +v) %> -->
 <!-- const myArr = n.toString(); console.log("myArr: " + myArr); -->
 <% let n = v.equals(userIdNum) %>
 <!--  -->
-<% console.log("TRUE: " +n) %>
+<!-- < console.log("TRUE: " +n) %> -->
 <!--  -->
 <%= ('Herre is randoDoc: ' + randomDoc._id) %>
 <!--  -->
 <!-- if(e == true) { %> -->
-<% if (i == true || n == true) { %>
+<!-- < if (i == true || n == true) { %> -->
 
 <!-- console.log("ZZZ: " +z) %> -->
 <!--  -->
@@ -100,6 +103,7 @@
     </div>
 </div>
 
-<% }} %>
+<% } %>
+<!-- < } %> -->
 <!-- https://www.youtube.com/watch?v=HWeU6iE9NIg
 https://getbootstrap.com/docs/5.2/components/popovers/ -->
