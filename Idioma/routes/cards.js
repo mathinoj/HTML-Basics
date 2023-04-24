@@ -101,7 +101,7 @@ router.get(
             await findUser.save();
 
             req.flash("success", "Added card to test cards!");
-            return res.redirect("/cards");
+            return res.redirect("/cards/myCards");
         }
         // const showThem = await Idioma.find({});
         const showHim = await Idioma.find({}).populate("author");
