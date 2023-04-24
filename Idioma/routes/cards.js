@@ -94,6 +94,14 @@ router.get(
                 req.flash("success", "Successfully added card to yours!");
                 return res.redirect("/cards");
             }
+        } else if (e) {
+            let findSelectedCardAgain = await Idioma.findById(e);
+            let findUser = await User.findById(req.user._id);
+            findUser.addedCard.push(findSelectedCardAgain);
+            await findUser.save();
+
+            req.flash("success", "Added card to test cards!");
+            return res.redirect("/cards");
         }
         // const showThem = await Idioma.find({});
         const showHim = await Idioma.find({}).populate("author");
