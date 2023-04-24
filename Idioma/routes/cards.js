@@ -51,8 +51,6 @@ router.get(
 
         let e = req.query.checkTester;
         console.log("u: " + e);
-        // let m = req.query.checkTesterTwo;
-        // console.log("m: " + m);
 
         let checkedBox = req.query.checkBoxer;
         //^^^ THIS FINDS THE ID OF THE CARD THAT IS CHOSEN BY THE USER
@@ -200,9 +198,10 @@ router.post(
         await newCard.save();
         console.log("newCard here: " + newCard);
         //THIS PUTS CARD INTO addedCard in USER schema
-        let findUser = await User.findById(req.user._id);
-        findUser.addedCard.push(newCard);
-        await findUser.save();
+        // let findUser = await User.findById(req.user._id);
+        // findUser.addedCard.push(newCard);
+        // await findUser.save();
+        //^^^^TOOK OUT ABOVE CUZ WE ONLY WANT cards from MYCARDS PG THAT ARE CHOSEN BY USER TO GO TO USER SCHEMA
         //THIS PUTS THE CARD INTO THE ADDEDCARD MONGODB
         // const addIt = db.collection("addedcards");
         // let adder = { addedCard: newCard };
@@ -308,9 +307,9 @@ router.put(
                 $pull: { addedCard: userIdNum },
             });
 
-            // await User.findByIdAndUpdate(userIdNum, {
-            //     $pull: { addedCard: selectedCardIdNum },
-            // });
+            await User.findByIdAndUpdate(userIdNum, {
+                $pull: { addedCard: selectedCardIdNum },
+            });
 
             // let byee = await Idioma.findById(selectedCardIdNum);
             // console.log("byee: " + byee);
