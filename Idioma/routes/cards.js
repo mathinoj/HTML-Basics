@@ -43,6 +43,7 @@ router.get(
     "/myCards",
     catchAsync(async (req, res, next) => {
         const myCards = await Idioma.find({}).populate("author");
+        // console.log("myCards: " + myCards);
 
         if (!req.user) {
             req.flash("error", "Must be logged in!");
@@ -96,6 +97,7 @@ router.get(
         }
         // const showThem = await Idioma.find({});
         const showHim = await Idioma.find({}).populate("author");
+        console.log("shwM: " + showHim);
 
         return res.render("cards/myCards", {
             myCards,
