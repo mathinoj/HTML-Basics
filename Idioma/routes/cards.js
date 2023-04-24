@@ -49,6 +49,9 @@ router.get(
             return res.redirect(`/cards`);
         }
 
+        let e = req.query.checkTester;
+        console.log("u: " + e);
+
         let checkedBox = req.query.checkBoxer;
         //^^^ THIS FINDS THE ID OF THE CARD THAT IS CHOSEN BY THE USER
         let user = req.user._id;
