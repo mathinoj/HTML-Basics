@@ -51,6 +51,8 @@ router.get(
 
         let e = req.query.checkTester;
         console.log("u: " + e);
+        // let m = req.query.checkTesterTwo;
+        // console.log("m: " + m);
 
         let checkedBox = req.query.checkBoxer;
         //^^^ THIS FINDS THE ID OF THE CARD THAT IS CHOSEN BY THE USER
