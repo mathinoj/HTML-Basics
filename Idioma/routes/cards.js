@@ -50,16 +50,19 @@ router.get(
             return res.redirect(`/cards`);
         }
 
-        let e = req.query.checkTester;
-        console.log("u: " + e);
+        let i = req.query.searchy;
+        console.log("i: " + i);
+
+        let getTestedCard = req.query.checkTester;
+        // console.log("u: " + getTestedCard);
 
         let checkedBox = req.query.checkBoxer;
         //^^^ THIS FINDS THE ID OF THE CARD THAT IS CHOSEN BY THE USER
         let user = req.user._id;
         console.log("user is this: " + user);
         let u = await AddedCard.find({});
-        console.log("AddedCard DB: " + u);
-        console.log("AddedCard DB nowUser: " + u.id);
+        // console.log("AddedCard DB: " + u);
+        // console.log("AddedCard DB nowUser: " + u.id);
         // for (let n of u) {
         //     console.log("N: " + n.nowUser);
         // }
@@ -94,8 +97,8 @@ router.get(
                 req.flash("success", "Successfully added card to yours!");
                 return res.redirect("/cards");
             }
-        } else if (e) {
-            let findSelectedCardAgain = await Idioma.findById(e);
+        } else if (getTestedCard) {
+            let findSelectedCardAgain = await Idioma.findById(getTestedCard);
             let findUser = await User.findById(req.user._id);
             findUser.addedCard.push(findSelectedCardAgain);
             await findUser.save();
@@ -105,7 +108,7 @@ router.get(
         }
         // const showThem = await Idioma.find({});
         const showHim = await Idioma.find({}).populate("author");
-        console.log("shwM: " + showHim);
+        // console.log("shwM: " + showHim);
 
         return res.render("cards/myCards", {
             myCards,
