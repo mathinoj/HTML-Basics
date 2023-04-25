@@ -317,9 +317,9 @@ router.put(
                 $pull: { addedCard: userIdNum },
             });
 
-            await User.findByIdAndUpdate(userIdNum, {
-                $pull: { addedCard: selectedCardIdNum },
-            });
+            // await User.findByIdAndUpdate(userIdNum, {
+            //     $pull: { addedCard: selectedCardIdNum },
+            // });
 
             // let byee = await Idioma.findById(selectedCardIdNum);
             // console.log("byee: " + byee);
