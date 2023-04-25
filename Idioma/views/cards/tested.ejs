@@ -98,7 +98,13 @@
     </ul>
     <div class="card-body">
         <a href="/cards" class="card-link">All Cards</a>
-        <a href="#" class="card-link">Another link</a>
+        <form
+            class="d-inline"
+            action="/cards/tested/<%=randomDoc.id%>?_method=PUT"
+            method="POST"
+        >
+            <a class="btn">Remove</a>
+        </form>
         <a href="/cards/test" class="card-link">Next Card</a>
     </div>
 </div>

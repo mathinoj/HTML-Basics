@@ -330,6 +330,36 @@ router.put(
     })
 );
 
+router.put(
+    "/tested/:id",
+    isLoggedIn,
+    catchAsync(async (req, res, next) => {
+        res.locals.currentUser = req.user;
+        let entireUserInfo = res.locals.currentUser.id;
+        console.log("entire: " + entireUserInfo);
+        let userIdNum = entireUserInfo.id;
+        // console.log("USER ID!!: " + userIdNum);
+        let selectedCardIdNum = req.params.id;
+
+        const specificCard = await Idioma.findById(selectedCardIdNum);
+        let justSpecificCardId = specificCard.id;
+
+        let userCard = await User.findById(userIdNum);
+
+        let listOfAddedCardIds = specificCard.addedCard;
+        let userListCards = userCard.addedCard;
+
+        let isUserInAddedCards = listOfAddedCardIds.includes(userIdNum);
+        let isItInUser = userListCards.includes(justSpecificCardId);
+        if (specificCard && isUserInAddedCards == true && isItInUser == true) {
+            await User.findByIdAndUpdate(userIdNum, {
+                $pull: { addedCard: selectedCardIdNum },
+            });
+            req.flash("success", "Removed a test Card.");
+            res.redirect("/cards/myCards");
+        }
+    })
+);
 module.exports = router;
 
 //EXPRESS comes with EXPRESS ROUTER.
