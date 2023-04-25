@@ -96,6 +96,7 @@
                 <a href="#" class="card-link">Hint One</a>
             </li> -->
     </ul>
+    <% console.log("RandD: " +randomDoc.id) %>
     <div class="card-body">
         <a href="/cards" class="card-link">All Cards</a>
         <form
@@ -103,7 +104,7 @@
             action="/cards/tested/<%=randomDoc.id%>?_method=PUT"
             method="POST"
         >
-            <a class="btn">Remove</a>
+            <button class="btn">Remove</button>
         </form>
         <a href="/cards/test" class="card-link">Next Card</a>
     </div>

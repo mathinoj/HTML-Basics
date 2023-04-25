@@ -337,23 +337,25 @@ router.put(
         res.locals.currentUser = req.user;
         let entireUserInfo = res.locals.currentUser.id;
         console.log("entire: " + entireUserInfo);
-        let userIdNum = entireUserInfo.id;
+        // let userIdNum = entireUserInfo.id;
         // console.log("USER ID!!: " + userIdNum);
-        let selectedCardIdNum = req.params.id;
+        let selectedCardIdNumTest = req.params.id;
+        console.log("selectFrmTst: " + selectedCardIdNumTest);
 
-        const specificCard = await Idioma.findById(selectedCardIdNum);
-        let justSpecificCardId = specificCard.id;
+        // const specificCard = await Idioma.findById(selectedCardIdNumTest);
+        // let justSpecificCardId = specificCard.id;
 
-        let userCard = await User.findById(userIdNum);
+        let userCard = await User.findById(entireUserInfo);
+        console.log("userCard: " + entireUserInfo);
 
-        let listOfAddedCardIds = specificCard.addedCard;
+        // let listOfAddedCardIds = specificCard.addedCard;
         let userListCards = userCard.addedCard;
 
-        let isUserInAddedCards = listOfAddedCardIds.includes(userIdNum);
-        let isItInUser = userListCards.includes(justSpecificCardId);
-        if (specificCard && isUserInAddedCards == true && isItInUser == true) {
-            await User.findByIdAndUpdate(userIdNum, {
-                $pull: { addedCard: selectedCardIdNum },
+        // let isUserInAddedCards = listOfAddedCardIds.includes(userIdNum);
+        let isItInUser = userListCards.includes(selectedCardIdNumTest);
+        if (isItInUser == true) {
+            await User.findByIdAndUpdate(entireUserInfo, {
+                $pull: { addedCard: selectedCardIdNumTest },
             });
             req.flash("success", "Removed a test Card.");
             res.redirect("/cards/myCards");
