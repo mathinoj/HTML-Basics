@@ -19,7 +19,15 @@
     </nav>
     <% for(let theCards of myCards) { %>
     <!--  -->
+    <!--  -->
     <% if(currentUser._id == theCards.author.id){ %>
+    <!--  -->
+    <!-- console.log("userSrch: " +userSearch) %> -->
+    <!-- < console.log("cccc: " +theCards) %>  -->
+    <% let h = theCards.toString() %> <% console.log("hh: " +h) %>
+    <!--  -->
+    <% console.log("theCards: " +h.includes(userSearch)) %>
+
     <div class="card mb-3" style="width: 15rem">
         <div class="card-header">Card</div>
         <div class="card-body">

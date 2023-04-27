@@ -50,8 +50,8 @@ router.get(
             return res.redirect(`/cards`);
         }
 
-        let i = req.query.searchy;
-        console.log("i: " + i);
+        let userSearch = req.query.searchy;
+        console.log("i: " + userSearch);
 
         let getTestedCard = req.query.checkTester;
         // console.log("u: " + getTestedCard);
@@ -116,6 +116,7 @@ router.get(
             showHim,
             checkedBox,
             user,
+            userSearch,
         });
     })
 );
