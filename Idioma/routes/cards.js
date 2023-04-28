@@ -52,7 +52,8 @@ router.get(
 
         let userSearches = req.query.searchy;
         console.log("i: " + `'${userSearches}'`);
-        let userSearch = `'${userSearches}'`;
+        let userSearching = `'${userSearches}'`;
+        let userSearch = userSearching.toLowerCase();
 
         let getTestedCard = req.query.checkTester;
         // console.log("u: " + getTestedCard);
