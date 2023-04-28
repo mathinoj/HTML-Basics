@@ -50,8 +50,9 @@ router.get(
             return res.redirect(`/cards`);
         }
 
-        let userSearch = req.query.searchy;
-        console.log("i: " + userSearch);
+        let userSearches = req.query.searchy;
+        console.log("i: " + `'${userSearches}'`);
+        let userSearch = `'${userSearches}'`;
 
         let getTestedCard = req.query.checkTester;
         // console.log("u: " + getTestedCard);
