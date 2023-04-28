@@ -66,13 +66,14 @@
     <!--  -->
     <% if(currentUser.id == o || y.includes(currentUser.id) == true) { %>
     <!--  -->
-    <!--  -->
     <% let pit = showThems.toString() %>
-
+    <!--  -->
+    <% let pitt = pit.toLowerCase() %>
+    <!-- let v = "\'userSearch\'" %> -->
     <!--  -->
     <% console.log("pit: " +pit) %>
     <!--  -->
-    <% console.log("incluido: " + pit.includes(userSearch)) %>
+    <% console.log("incluido: " + pitt.includes(userSearch)) %>
     <!--  -->
     <% console.log("search:" +userSearch)%>
     <div class="card mb-3" style="width: 15rem">
