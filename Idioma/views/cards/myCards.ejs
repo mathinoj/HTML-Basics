@@ -1,116 +1,149 @@
 <% layout('/layouts/boilerplate') %>
 <h1>My Cards</h1>
-<div class="card-body">
-    <nav class="navbar bg-body-tertiary">
-        <div class="container-fluid">
-            <form class="d-flex" role="search">
-                <input
-                    class="form-control me-2"
-                    type="search"
-                    placeholder="Search"
-                    aria-label="Search"
-                    name="searchy"
-                />
-                <button class="btn btn-outline-success" type="submit">
-                    Search
-                </button>
-            </form>
-        </div>
-    </nav>
-    <% for(let theCards of myCards) { %>
-    <!--  -->
-    <!--  -->
-    <% if(currentUser._id == theCards.author.id){ %>
-    <!--  -->
-    <!-- console.log("userSrch: " +userSearch) %> -->
-    <!-- < console.log("cccc: " +theCards) %>  -->
-    <% let hi = theCards.toString() %>
-    <!--  -->
-    <% let h = hi.toLowerCase() %>
-    <!--  -->
-    <% console.log("hh: " +h) %>
-    <!--  -->
-    <% console.log("theCards: " +h.includes(userSearch)) %>
+<nav class="navbar bg-body-tertiary">
+    <div class="container-fluid">
+        <form class="d-flex" role="search" action="/cards/myCards/">
+            <!-- <form action="/cards/myCards"> -->
+            <input
+                class="form-control me-2"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+                name="searchy"
+            />
+            <button class="btn btn-outline-success" type="submit">
+                Search
+            </button>
+        </form>
+    </div>
+</nav>
 
-    <div class="card mb-3" style="width: 15rem">
-        <div class="card-header">Card</div>
-        <div class="card-body">
-            <h3 class="card-text"><%= theCards.english%></h3>
-            <h6 class="card-text">Author: <%= theCards.author.username%></h6>
-            <a href="/cards/<%=theCards._id%>" class="btn btn-primary"
-                >View Card</a
-            >
-        </div>
-        <form action="/cards/myCards">
-            <div class="form-check">
-                <input
-                    class="form-check-input"
-                    type="checkbox"
-                    id="flexCheckDefault"
-                    name="checkTester"
-                    value="<%=theCards._id%>"
-                    onchange="this.form.submit();"
-                />
-                <label class="form-check-label" for="flexCheckDefault">
-                    Test Card
-                </label>
-            </div>
-        </form>
-        <div>
-            <a href="/cards/<%=theCards._id%>" class="btn">Remove Card</a>
-        </div>
+<!-- <div class="card-body"> -->
+<% for(let theCards of myCards) { %>
+<!--  -->
+<% let hi = theCards.toString() %>
+<!--  -->
+<!-- console.log("hi: " +theCards) %> -->
+<!--  -->
+<% let h = hi.toLowerCase() %>
+<!--  -->
+<!-- console.log("h above: " +h) %> -->
+<!--  -->
+<% let w = h.includes(userSearch)%>
+<!--  -->
+<% let nn = currentUser._id == theCards.author.id %>
+<!-- } %> -->
+<% if(nn && w){ %>
+<!--  -->
+<% console.log("ggg: " +theCards) %>
+<!--  -->
+<% console.log("theCardsy: " +w) %>
+<!--  -->
+<!-- console.log("userSrch: " +hi.includes(userSearch)) %> -->
+<p>searched</p>
+<div class="card mb-3" style="width: 15rem">
+    <div class="card-header">Card</div>
+    <div class="card-body">
+        <h3 class="card-text"><%= theCards.english%></h3>
+        <h3 class="card-text"><%= theCards.spanish%></h3>
+        <h3 class="card-text"><%= theCards.hintOne%></h3>
+        <h6 class="card-text">Author: <%= theCards.author.username%></h6>
+        <a href="/cards/<%=theCards._id%>" class="btn btn-primary">View Card</a>
     </div>
-    <% }} %>
-    <!--  -->
-    <% for(let showThems of showHim) {%>
-    <!--  -->
-    <% let y = showThems.addedCard %>
-    <!--  -->
-    <% let o = showThems.addedCard %>
-    <!--  -->
-    <% if(currentUser.id == o || y.includes(currentUser.id) == true) { %>
-    <!--  -->
-    <% let pit = showThems.toString() %>
-    <!--  -->
-    <% let pitt = pit.toLowerCase() %>
-    <!-- let v = "\'userSearch\'" %> -->
-    <!--  -->
-    <% console.log("pit: " +pit) %>
-    <!--  -->
-    <% console.log("incluido: " + pitt.includes(userSearch)) %>
-    <!--  -->
-    <% console.log("search:" +userSearch)%>
-    <div class="card mb-3" style="width: 15rem">
-        <div class="card-header">Card</div>
-        <div class="card-body">
-            <h3 class="card-text"><%= showThems.english%></h3>
-            <h6 class="card-text">Author: <%= showThems.author.username %></h6>
-            <a href="/cards/<%=showThems.id%>" class="btn btn-primary"
-                >View Card
-            </a>
+    <form action="/cards/myCards">
+        <div class="form-check">
+            <input
+                class="form-check-input"
+                type="checkbox"
+                id="flexCheckDefault"
+                name="checkTester"
+                value="<%=theCards._id%>"
+                onchange="this.form.submit();"
+            />
+            <label class="form-check-label" for="flexCheckDefault">
+                Test Card
+            </label>
         </div>
-        <form action="/cards/myCards">
-            <div class="form-check">
-                <input
-                    class="form-check-input"
-                    type="checkbox"
-                    id="flexCheckDefault"
-                    name="checkTester"
-                    value="<%=showThems._id%>"
-                    onchange="this.form.submit();"
-                />
-                <label class="form-check-label" for="flexCheckDefault">
-                    Test Card
-                </label>
-            </div>
-        </form>
-        <form
-            class="d-inline"
-            action="/cards/myCards/<%=showThems.id%>?_method=PUT"
-            method="POST"
-        >
-            <button class="btn">Remove Card</button>
-        </form>
+    </form>
+    <div>
+        <a href="/cards/<%=theCards._id%>" class="btn">Remove Card</a>
     </div>
-    <% }} %> <% console.log('break') %>
 </div>
+<!--  -->
+<!-- </div> -->
+<% } else if (nn) { %>
+<div class="card mb-3" style="width: 15rem">
+    <div class="card-header">Card</div>
+    <div class="card-body">
+        <h3 class="card-text"><%= theCards.english%></h3>
+        <h3 class="card-text"><%= theCards.spanish%></h3>
+        <h3 class="card-text"><%= theCards.hintOne%></h3>
+        <h6 class="card-text">Author: <%= theCards.author.username%></h6>
+        <a href="/cards/<%=theCards._id%>" class="btn btn-primary">View Card</a>
+    </div>
+</div>
+<!--  -->
+
+<!--  -->
+<% console.log("seeee") %>
+<!--  -->
+<% }} %>
+<!--  -->
+<% for(let showThems of showHim) {%>
+<!--  -->
+<% let y = showThems.addedCard %>
+<!--  -->
+<% let o = showThems.addedCard %>
+<!-- console.log("incluido: " + u) %> -->
+<!--  -->
+<% if(currentUser.id == o || y.includes(currentUser.id) == true) { %>
+
+<!--  -->
+<% let pit = showThems.toString() %>
+<!--  -->
+<!-- console.log("Y: " +pit) %> -->
+
+<!--  -->
+<% let pitt = pit.toLowerCase() %>
+<!-- let v = "\'userSearch\'" %> -->
+<!-- console.log("PITT: " +pitt) %> -->
+<!--  -->
+<% let u = pitt.includes(userSearch) %>
+<!--  -->
+<% if(showThems || u){ %>
+<!--  -->
+<% console.log("showThems: " +u) %>
+
+<div class="card mb-3" style="width: 15rem">
+    <div class="card-header">Card</div>
+    <div class="card-body">
+        <h3 class="card-text"><%= showThems.english%></h3>
+        <h6 class="card-text">Author: <%= showThems.author.username %></h6>
+        <a href="/cards/<%=showThems.id%>" class="btn btn-primary"
+            >View Card
+        </a>
+    </div>
+    <form action="/cards/myCards">
+        <div class="form-check">
+            <input
+                class="form-check-input"
+                type="checkbox"
+                id="flexCheckDefault"
+                name="checkTester"
+                value="<%=showThems._id%>"
+                onchange="this.form.submit();"
+            />
+            <label class="form-check-label" for="flexCheckDefault">
+                Test Card
+            </label>
+        </div>
+    </form>
+    <form
+        class="d-inline"
+        action="/cards/myCards/<%=showThems.id%>?_method=PUT"
+        method="POST"
+    >
+        <button class="btn">Remove Card</button>
+    </form>
+</div>
+<% }}} %> <% console.log('break') %>
