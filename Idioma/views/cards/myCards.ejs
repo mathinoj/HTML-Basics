@@ -34,10 +34,12 @@
 <% let nn = currentUser._id == theCards.author.id %>
 <!-- } %> -->
 <% if(nn && w){ %>
+<!-- < if(nn && (nn && w)){ %> -->
+
 <!--  -->
-<% console.log("ggg: " +theCards) %>
+<% console.log("xxx: " +theCards) %>
 <!--  -->
-<% console.log("theCardsy: " +w) %>
+<% console.log("cards Her: " +w) %>
 <!--  -->
 <!-- console.log("userSrch: " +hi.includes(userSearch)) %> -->
 <p>searched</p>
@@ -70,8 +72,23 @@
     </div>
 </div>
 <!--  -->
-<!-- </div> -->
-<% } else if (nn) { %>
+<% }} %>
+<!--  -->
+<% for(let theCards of myCards) { %>
+<!--  -->
+<% let hi = theCards.toString() %>
+<!--  -->
+<!-- console.log("hi: " +theCards) %> -->
+<!--  -->
+<% let h = hi.toLowerCase() %>
+<!--  -->
+<!-- console.log("h above: " +h) %> -->
+<!--  -->
+<% let w = h.includes(userSearch)%>
+<!--  -->
+<% let nn = currentUser._id == theCards.author.id %>
+<!--  -->
+<% if (nn && w == false ) { %>
 <div class="card mb-3" style="width: 15rem">
     <div class="card-header">Card</div>
     <div class="card-body">
@@ -82,10 +99,12 @@
         <a href="/cards/<%=theCards._id%>" class="btn btn-primary">View Card</a>
     </div>
 </div>
-<!--  -->
 
 <!--  -->
-<% console.log("seeee") %>
+<% console.log("ggg: " +theCards) %>
+<!--  -->
+<% console.log("theCardsy: " +w) %>
+<!--  -->
 <!--  -->
 <% }} %>
 <!--  -->
