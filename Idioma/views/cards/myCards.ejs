@@ -25,9 +25,7 @@
 <!--  -->
 <% let w = h.includes(userSearch)%>
 <!--  -->
-<% let nn = currentUser._id == theCards.author.id %>
-<!--  -->
-<% if(nn && w){ %>
+<% if(currentUser._id == theCards.author.id && w){ %>
 <div class="card mb-3" style="width: 15rem">
     <div class="card-header">Card</div>
     <div class="card-body">
@@ -61,8 +59,6 @@
 <!--  -->
 <% for(let showThems of showHim) {%>
 <!--  -->
-<% let y = showThems.addedCard %>
-<!--  -->
 <% let o = showThems.addedCard %>
 <!--  -->
 <% let pit = showThems.toString() %>
@@ -71,8 +67,7 @@
 <!--  -->
 <% let u = pitt.includes(userSearch) %>
 <!--  -->
-<% if((currentUser.id == o || y.includes(currentUser.id) == true) && u) { %>
-<!--  -->
+<% if((currentUser.id == o || o.includes(currentUser.id) == true) && u) { %>
 <div class="card mb-3" style="width: 15rem">
     <div class="card-header">Card</div>
     <div class="card-body">
@@ -149,8 +144,6 @@
 <!--  -->
 <% for(let showThems of showHim) {%>
 <!--  -->
-<% let y = showThems.addedCard %>
-<!--  -->
 <% let o = showThems.addedCard %>
 <!--  -->
 <% let pit = showThems.toString() %>
@@ -159,7 +152,7 @@
 <!--  -->
 <% let u = pitt.includes(userSearch) %>
 <!--  -->
-<% if((currentUser.id == o || y.includes(currentUser.id) == true) && u == false)
+<% if((currentUser.id == o || o.includes(currentUser.id) == true) && u == false)
 { %>
 <div class="card mb-3" style="width: 15rem">
     <div class="card-header">Card</div>
