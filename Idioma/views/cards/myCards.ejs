@@ -67,15 +67,11 @@
 <!--  -->
 <% let pit = showThems.toString() %>
 <!--  -->
-<% let oo = currentUser.id == o %>
-<!--  -->
-<% let up = y.includes(currentUser.id) == true %>
-<!--  -->
 <% let pitt = pit.toLowerCase() %>
 <!--  -->
 <% let u = pitt.includes(userSearch) %>
 <!--  -->
-<% if((oo || up) && u) { %>
+<% if((currentUser.id == o || y.includes(currentUser.id) == true) && u) { %>
 <!--  -->
 <div class="card mb-3" style="width: 15rem">
     <div class="card-header">Card</div>
