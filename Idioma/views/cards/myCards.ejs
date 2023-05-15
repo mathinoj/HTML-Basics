@@ -67,13 +67,16 @@
 <!--  -->
 <% let pit = showThems.toString() %>
 <!--  -->
+<% let oo = currentUser.id == o %>
+<!--  -->
+<% let up = y.includes(currentUser.id) == true %>
+<!--  -->
 <% let pitt = pit.toLowerCase() %>
 <!--  -->
 <% let u = pitt.includes(userSearch) %>
 <!--  -->
-<% if(currentUser.id == o || y.includes(currentUser.id) == true) { %>
+<% if((oo || up) && u) { %>
 <!--  -->
-<% if(u){ %>
 <div class="card mb-3" style="width: 15rem">
     <div class="card-header">Card</div>
     <div class="card-body">
@@ -107,7 +110,7 @@
     </form>
 </div>
 <hr />
-<% }}} %>
+<% }} %>
 <!--  -->
 <% for(let theCards of myCards) { %>
 <!--  -->
@@ -148,7 +151,6 @@
         <a href="/cards/<%=theCards._id%>" class="btn">Remove Card</a>
     </div>
 </div>
-<!--  -->
 <% }} %>
 <!--  -->
 <% for(let showThems of showHim) {%>
