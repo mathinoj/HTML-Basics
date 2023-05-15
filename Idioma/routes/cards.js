@@ -51,14 +51,19 @@ router.get(
         }
 
         let userSearches = req.query.searchy;
-        console.log("i: " + `'${userSearches}'`);
+        // console.log("i: " + `'${userSearches}'`);
         let userSearching = `'${userSearches}'`;
         let userSearch = userSearching.toLowerCase();
+        // if (userSearch == false) {
+        //     req.flash("error", "Card not in your collection!");
+        //     return res.redirect(`/cards/myCards`);
+        // }
+        console.log("is ITT: " + req.query.dubb);
 
         let getTestedCard = req.query.checkTester;
         // console.log("u: " + getTestedCard);
 
-        let checkedBox = req.query.checkBoxer;
+        let checkedBox = req.params.checkBoxer;
         //^^^ THIS FINDS THE ID OF THE CARD THAT IS CHOSEN BY THE USER
         let user = req.user._id;
         console.log("user is this: " + user);

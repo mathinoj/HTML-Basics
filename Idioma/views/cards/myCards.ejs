@@ -23,25 +23,18 @@
 <!--  -->
 <% let hi = theCards.toString() %>
 <!--  -->
-<!-- console.log("hi: " +theCards) %> -->
-<!--  -->
 <% let h = hi.toLowerCase() %>
-<!--  -->
-<!-- console.log("h above: " +h) %> -->
 <!--  -->
 <% let w = h.includes(userSearch)%>
 <!--  -->
 <% let nn = currentUser._id == theCards.author.id %>
 <!-- } %> -->
 <% if(nn && w){ %>
-<!-- < if(nn && (nn && w)){ %> -->
-
 <!--  -->
 <% console.log("xxx: " +theCards) %>
 <!--  -->
 <% console.log("cards Her: " +w) %>
 <!--  -->
-<!-- console.log("userSrch: " +hi.includes(userSearch)) %> -->
 <p>searched</p>
 <div class="card mb-3" style="width: 15rem">
     <div class="card-header">Card</div>
@@ -72,24 +65,75 @@
     </div>
 </div>
 <hr />
-<!--  -->
 <% }} %>
+<!--  -->
+<% for(let showThems of showHim) {%>
+<!--  -->
+<% let y = showThems.addedCard %>
+<!--  -->
+<% let o = showThems.addedCard %>
+<!--  -->
+<% let mitt = y.includes(currentUser.id) == true %>
+<!--  -->
+<% let bb = currentUser.id == o %>
+<!--  -->
+<% let pit = showThems.toString() %>
+<!--  -->
+<% let pitt = pit.toLowerCase() %>
+<!--  -->
+<% let u = pitt.includes(userSearch) %>
+<!--  -->
+<% if(bb || mitt) { %>
+<!--  -->
+<% if(showThems || u){ %>
+<!--  -->
+<% console.log("showThems: " +u) %>
+<p>SECOND Srch</p>
+<div class="card mb-3" style="width: 15rem">
+    <div class="card-header">Card</div>
+    <div class="card-body">
+        <h3 class="card-text"><%= showThems.english%></h3>
+        <h6 class="card-text">Author: <%= showThems.author.username %></h6>
+        <a href="/cards/<%=showThems.id%>" class="btn btn-primary"
+            >View Card
+        </a>
+    </div>
+    <form action="/cards/myCards">
+        <div class="form-check">
+            <input
+                class="form-check-input"
+                type="checkbox"
+                id="flexCheckDefault"
+                name="checkTester"
+                value="<%=showThems._id%>"
+                onchange="this.form.submit();"
+            />
+            <label class="form-check-label" for="flexCheckDefault">
+                Test Card
+            </label>
+        </div>
+    </form>
+    <form
+        class="d-inline"
+        action="/cards/myCards/<%=showThems.id%>?_method=PUT"
+        method="POST"
+    >
+        <button class="btn">Remove Card</button>
+    </form>
+</div>
+<% }}} %>
 <!--  -->
 <% for(let theCards of myCards) { %>
 <!--  -->
 <% let hi = theCards.toString() %>
 <!--  -->
-<!-- console.log("hi: " +theCards) %> -->
-<!--  -->
 <% let h = hi.toLowerCase() %>
-<!--  -->
-<!-- console.log("h above: " +h) %> -->
 <!--  -->
 <% let w = h.includes(userSearch)%>
 <!--  -->
 <% let nn = currentUser._id == theCards.author.id %>
 <!--  -->
-<% if (nn && w == false ) { %>
+<% if (nn && w == false) { %>
 <div class="card mb-3" style="width: 15rem">
     <div class="card-header">Card</div>
     <div class="card-body">
@@ -118,12 +162,10 @@
         <a href="/cards/<%=theCards._id%>" class="btn">Remove Card</a>
     </div>
 </div>
-
 <!--  -->
 <% console.log("ggg: " +theCards) %>
 <!--  -->
 <% console.log("theCardsy: " +w) %>
-<!--  -->
 <!--  -->
 <% }} %>
 <!--  -->
@@ -132,19 +174,16 @@
 <% let y = showThems.addedCard %>
 <!--  -->
 <% let o = showThems.addedCard %>
-<!-- console.log("incluido: " + u) %> -->
 <!--  -->
-<% if(currentUser.id == o || y.includes(currentUser.id) == true) { %>
-
+<% let mitt = y.includes(currentUser.id) == true %>
+<!--  -->
+<% let bb = currentUser.id == o %>
+<!--  -->
+<% if(bb || mitt) { %>
 <!--  -->
 <% let pit = showThems.toString() %>
 <!--  -->
-<!-- console.log("Y: " +pit) %> -->
-
-<!--  -->
 <% let pitt = pit.toLowerCase() %>
-<!-- let v = "\'userSearch\'" %> -->
-<!-- console.log("PITT: " +pitt) %> -->
 <!--  -->
 <% let u = pitt.includes(userSearch) %>
 <!--  -->
