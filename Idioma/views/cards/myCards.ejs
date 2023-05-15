@@ -116,9 +116,7 @@
 <!--  -->
 <% let w = h.includes(userSearch)%>
 <!--  -->
-<% let nn = currentUser._id == theCards.author.id %>
-<!--  -->
-<% if (nn && w == false) { %>
+<% if (currentUser._id == theCards.author.id && w == false) { %>
 <div class="card mb-3" style="width: 15rem">
     <div class="card-header">Card</div>
     <div class="card-body">
@@ -161,9 +159,8 @@
 <!--  -->
 <% let u = pitt.includes(userSearch) %>
 <!--  -->
-<% if(currentUser.id == o || y.includes(currentUser.id) == true) { %>
-<!--  -->
-<% if(u == false){ %>
+<% if((currentUser.id == o || y.includes(currentUser.id) == true) && u == false)
+{ %>
 <div class="card mb-3" style="width: 15rem">
     <div class="card-header">Card</div>
     <div class="card-body">
@@ -196,4 +193,4 @@
         <button class="btn">Remove Card</button>
     </form>
 </div>
-<% }}} %> <% console.log('break') %>
+<% }} %> <% console.log('break') %>
