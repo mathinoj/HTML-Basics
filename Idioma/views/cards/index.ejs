@@ -1,31 +1,30 @@
 <% layout('/layouts/boilerplate') %>
 <h1>View All</h1>
 <% if(!currentUser) { %>
-    <form action="/cards/page/1">
-        <select
-            class="form-select"
-            style="width: 15rem"
-            aria-label="Default select example"
-            name="selections"
-            onchange="this.form.submit();"
-        >
-            <option selected>Open this select menu</option>
-            <option value="3">3</option>
-            <option value="6">6</option>
-            <option value="9">9</option>
-        </select>
-    </form>
-    <% for(let allCard of allCards) { %>
-    <div class="card mb-3" style="width: 15rem">
-        <div class="card-header">Card</div>
-        <div class="card-body">
-            <h3 class="card-text"><%= allCard.english%></h3>
-            <h6 class="card-text"><%= allCard.number%></h6>
-            <a href="/cards/<%=allCard._id%>" class="btn btn-primary">View Card</a>
-        </div>
-        </div>
-        <% } %>
-        <% } else { %>
+<form action="/cards/page/1">
+    <select
+        class="form-select"
+        style="width: 15rem"
+        aria-label="Default select example"
+        name="selections"
+        onchange="this.form.submit();"
+    >
+        <option selected>Open this select menu</option>
+        <option value="3">3</option>
+        <option value="6">6</option>
+        <option value="9">9</option>
+    </select>
+</form>
+<% for(let allCard of allCards) { %>
+<div class="card mb-3" style="width: 15rem">
+    <div class="card-header">Card</div>
+    <div class="card-body">
+        <h3 class="card-text"><%= allCard.english%></h3>
+        <h6 class="card-text"><%= allCard.number%></h6>
+        <a href="/cards/<%=allCard._id%>" class="btn btn-primary">View Card</a>
+    </div>
+</div>
+<% } %> <% } else { %>
 <form action="/cards/page/1">
     <select
         class="form-select"
@@ -49,37 +48,60 @@
         <a href="/cards/<%=allCard._id%>" class="btn btn-primary">View Card</a>
     </div>
     <% let g = allCard.addedCard %>
+    <!--  -->
     <% let n = g.includes(currentUser.id) %>
-
-    <% if(currentUser && currentUser.id == allCard.author) { %>
-        <form action="/cards/myCards">
+    <!--  -->
+    <%if(currentUser && currentUser.id == allCard.author) { %>
+    <form action="/cards/myCards">
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="<%=allCard._id%>" id="flexCheckDefault" name="checkBoxer" onchange="this.form.submit();" hidden>
-            <label class="form-check-label" for="flexCheckDefault">
+            <input
+                class="form-check-input"
+                type="checkbox"
+                value="<%=allCard._id%>"
+                id="flexCheckDefault"
+                name="checkBoxer"
+                onchange="this.form.submit();"
+                hidden
+            />
+            <label class="form-check-label" for="flexCheckDefault"> </label>
+        </div>
+    </form>
+    <% } else if (currentUser && n == true ) { %>
+    <form action="/cards/myCards">
+        <div class="form-check">
+            <input
+                class="form-check-input"
+                type="checkbox"
+                value="<%=allCard._id%>"
+                id="flexCheckDefault"
+                name="checkBoxer"
+                onchange="this.form.submit();"
+                hidden
+            />
+            <label class="form-check-label" for="flexCheckDefault"
+                >Card Added
             </label>
         </div>
-        </form>
-        <% } else if (currentUser && n == true ) { %>
-            <form action="/cards/myCards">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="<%=allCard._id%>" id="flexCheckDefault" name="checkBoxer" onchange="this.form.submit();" hidden>
-                    <label class="form-check-label" for="flexCheckDefault">Card Added
-                    </label>
-                </div>
-                </form>
-        <% } else { %>
-            <form action="/cards/myCards">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="<%=allCard._id%>" id="flexCheckDefault" name="checkBoxer" onchange="this.form.submit();">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        Add Card
-                    </label>
-                </div>
-                </form>
-        <% } %>
+    </form>
+    <% } else { %>
+    <form action="/cards/myCards">
+        <div class="form-check">
+            <input
+                class="form-check-input"
+                type="checkbox"
+                value="<%=allCard._id%>"
+                id="flexCheckDefault"
+                name="checkBoxer"
+                onchange="this.form.submit();"
+            />
+            <label class="form-check-label" for="flexCheckDefault">
+                Add Card
+            </label>
+        </div>
+    </form>
+    <% } %>
 </div>
 <% }} %>
-
 
 <div class="container text-center">
     <div class="pagination">
@@ -88,61 +110,69 @@
             class="btn btn-warning btn-outline-dark"
             href="/cards/page/<%= (page-1) %>/?selections=<%=selection%>"
             role="button"
-            >Back</a>
+            >Back</a
+        >
         <% } else if (page > 1 && !selection) { %>
-            <a
+        <a
             class="btn btn-primary btn-outline-dark"
-
             href="/cards/page/<%= (page-1) %>"
             role="button"
             >Back</a
         >
         <% } %>
+        <!--  -->
         <% let i = (Number(page) > 3 ? Number(page) - 2 : 1) %>
+        <!--  -->
         <% if (i !== 1) { %>
-        <li class="disabled"><a>...</a></li>
+        <li class="disabled">
+            <a>...</a>
+        </li>
         <% } %>
+        <!--  -->
         <% for (; i <= (Number(page) + 2) && i <= pages; i++) { %>
-            <!-- it is not required to use the initialization block to initialize variables: (referring to not having "i = 1;", and just having ";" instead)
+        <!-- it is not required to use the initialization block to initialize variables: (referring to not having "i = 1;", and just having ";" instead)
             https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for -->
         <%if (i == page) { %>
         <li class="active btn btn-secondary btn-outline-dark" role="button">
             <a><%= i %></a>
         </li>
         <% } else if(selection) { %>
-            <a
-                class="btn btn-secondary btn-outline-dark"
-                role="button"
-                href="/cards/page/<%= i %>/?selections=<%=selection%>"
-                ><%= i %>
-            </a>
+        <a
+            class="btn btn-secondary btn-outline-dark"
+            role="button"
+            href="/cards/page/<%= i %>/?selections=<%=selection%>"
+            ><%= i %>
+        </a>
         <% } else { %>
-            <a
+        <a
             class="btn btn-secondary btn-outline-dark"
             role="button"
             href="/cards/page/<%= i %>"
             ><%= i %>
         </a>
         <% } %>
+        <!--  -->
         <% if (i == Number(page) + 2 && i < pages) { %>
-        <li class="disabled"><a>...</a></li>
-        <% } %>
-        <% } %>
+        <li class="disabled">
+            <a>...</a>
         </li>
+        <% }} %>
+        <!--  -->
         <% if(!page) { %>
         <!-- || page <= roundedD Adding above brings back to 1STpg after clicking NEXT until end -->
         <a
             class="btn btn-primary btn-outline-dark"
             role="button"
             href="/cards/page/1"
-            >Next C</a
-        >
+            >Next C
+        </a>
         <% } else if (selection && page != pages) { %>
-            <a
+        <a
             class="btn btn-warning btn-outline-dark"
             role="button"
             href="/cards/page/<%= (page + 1) %>/?selections=<%=selection%>"
-            >Next B</a>
+            >Next B
+        </a>
         <% } else if (roundedD < (page + 1)) { %>
         <a
             class="btn btn-primary btn-outline-dark"
@@ -150,48 +180,63 @@
             href="/cards/page/<%= (page+1) %>"
             role="button"
             hidden
-            >Next E</a
-        >
+            >Next E
+        </a>
         <% } else {%>
         <a
             class="btn btn-danger btn-outline-dark"
-
             href="/cards/page/<%= (page+1) %>"
             role="button"
-            >Next D</a
-        >
+            >Next D
+        </a>
         <% } %>
     </div>
-
 </div>
 <!-- https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22291784#questions/1464534 -->
-
 <% if (selection && pages > 0) { %>
 <ul class="pagination text-center">
     <% if (page == 1) { %>
-    <li class="disabled"><a>First</a></li>
+    <li class="disabled">
+        <a>First</a>
+    </li>
     <% } else { %>
-    <li><a href="/cards/page/1/?selections=<%=selection%>">First</a></li>
+    <li>
+        <a href="/cards/page/1/?selections=<%=selection%>">First</a>
+    </li>
     <% } %>
+    <!--  -->
     <% if (page == pages) { %>
-    <li class="disabled"><a>Last</a></li>
+    <li class="disabled">
+        <a>Last</a>
+    </li>
     <% } else { %>
-    <li><a href="/cards/page/<%= pages %>/?selections=<%=selection%>">Last</a></li>
+    <li>
+        <a href="/cards/page/<%= pages %>/?selections=<%=selection%>">Last</a>
+    </li>
     <% } %>
 </ul>
 <% }else if(pages > 0){ %>
-    <ul class="pagination text-center">
-        <% if (page == 1) { %>
-        <li class="disabled"><a>First</a></li>
-        <% } else { %>
-        <li><a href="/cards/page/1">First</a></li>
-        <% } %>
-        <% if (page == pages) { %>
-        <li class="disabled"><a>Last</a></li>
-        <% } else { %>
-        <li><a href="/cards/page/<%= pages %>">Last</a></li>
-        <% } %>
-    </ul>
+<ul class="pagination text-center">
+    <% if (page == 1) { %>
+    <li class="disabled">
+        <a>First</a>
+    </li>
+    <% } else { %>
+    <li>
+        <a href="/cards/page/1">First</a>
+    </li>
+    <% } %>
+    <!--  -->
+    <% if (page == pages) { %>
+    <li class="disabled">
+        <a>Last</a>
+    </li>
+    <% } else { %>
+    <li>
+        <a href="/cards/page/<%= pages %>">Last</a>
+    </li>
+    <% } %>
+</ul>
 <% } %>
 <!-- https://www.npmjs.com/package/mongodb-ejs-pagination -->
 <a href="/cards/new">Make Card</a>
