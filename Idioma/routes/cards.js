@@ -311,12 +311,12 @@ router.put(
 
         let listOfAddedCardIds = specificCard.addedCard;
         let userListCards = userCard.addedCard;
-        console.log("userLcz :" + userListCards);
+        // console.log("userLcz :" + userListCards);
 
         let isUserInAddedCards = listOfAddedCardIds.includes(userIdNum);
         let isItInUser = userListCards.includes(justSpecificCardId);
-        console.log("isItin: " + isItInUser);
-        console.log("BLLLuuurt: " + isUserInAddedCards);
+        // console.log("isItin: " + isItInUser);
+        // console.log("BLLLuuurt: " + isUserInAddedCards);
         if (
             (specificCard && isUserInAddedCards == true) ||
             isItInUser == true
