@@ -50,24 +50,21 @@ router.get(
             return res.redirect(`/cards`);
         }
 
+        let checkedBox = req.query.checkBoxer;
+        console.log("chckB: " + checkedBox);
+        //^^^ THIS FINDS THE ID OF THE CARD THAT IS CHOSEN BY THE USER
+
         let userSearches = req.query.searchy;
         // console.log("i: " + `'${userSearches}'`);
         let userSearching = `'${userSearches}'`;
         let userSearch = userSearching.toLowerCase();
-        // if (userSearch == false) {
-        //     req.flash("error", "Card not in your collection!");
-        //     return res.redirect(`/cards/myCards`);
-        // }
-        console.log("is ITT: " + req.query.dubb);
 
         let getTestedCard = req.query.checkTester;
         // console.log("u: " + getTestedCard);
 
-        let checkedBox = req.params.checkBoxer;
-        //^^^ THIS FINDS THE ID OF THE CARD THAT IS CHOSEN BY THE USER
         let user = req.user._id;
-        console.log("user is this: " + user);
-        let u = await AddedCard.find({});
+        // console.log("user is this: " + user);
+        // let u = await AddedCard.find({});
         // console.log("AddedCard DB: " + u);
         // console.log("AddedCard DB nowUser: " + u.id);
         // for (let n of u) {
@@ -102,7 +99,7 @@ router.get(
                 // await findUser.save();
 
                 req.flash("success", "Successfully added card to yours!");
-                return res.redirect("/cards");
+                return res.redirect("/cards/myCards");
             }
         } else if (getTestedCard) {
             let findSelectedCardAgain = await Idioma.findById(getTestedCard);
@@ -111,7 +108,7 @@ router.get(
             await findUser.save();
 
             req.flash("success", "Added card to test cards!");
-            return res.redirect("/cards/myCards");
+            return res.redirect("/cards");
         }
         // const showThem = await Idioma.find({});
         const showHim = await Idioma.find({}).populate("author");
@@ -319,8 +316,11 @@ router.put(
         let isUserInAddedCards = listOfAddedCardIds.includes(userIdNum);
         let isItInUser = userListCards.includes(justSpecificCardId);
         console.log("isItin: " + isItInUser);
-        // console.log("BLLLuuurt: " + isUserInAddedCards);
-        if (specificCard && isUserInAddedCards == true && isItInUser == true) {
+        console.log("BLLLuuurt: " + isUserInAddedCards);
+        if (
+            (specificCard && isUserInAddedCards == true) ||
+            isItInUser == true
+        ) {
             // let hiii = await Idioma.findById(selectedCardIdNum);
             // console.log("hiii: " + hiii);
 
