@@ -24,7 +24,9 @@
         <a href="/cards/<%=allCard._id%>" class="btn btn-primary">View Card</a>
     </div>
 </div>
-<% } %> <% } else { %>
+<% } %>
+<!--  -->
+<% } else { %>
 <form action="/cards/page/1">
     <select
         class="form-select"
@@ -102,6 +104,7 @@
     <% } %>
 </div>
 <% }} %>
+<!-- PAGINATION PAGINATION PAGINATION PAGINATION PAGINATION PAGINATION -->
 
 <div class="container text-center">
     <div class="pagination">
@@ -193,6 +196,8 @@
     </div>
 </div>
 <!-- https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22291784#questions/1464534 -->
+
+<!-- FIRST/LAST/... FIRST/LAST/... FIRST/LAST/... FIRST/LAST/... -->
 <% if (selection && pages > 0) { %>
 <ul class="pagination text-center">
     <% if (page == 1) { %>
