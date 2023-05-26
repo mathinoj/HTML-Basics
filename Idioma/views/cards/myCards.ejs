@@ -34,6 +34,9 @@
         <a href="/cards/<%=theCards._id%>" class="btn btn-primary">View Card</a>
     </div>
     <form action="/cards/myCards">
+        <% let zulu = theCards._id%> <% let hye = ill.includes(zulu)%>
+        <!--  -->
+        <% if(hye == false) {%>
         <div class="form-check">
             <input
                 class="form-check-input"
@@ -48,6 +51,11 @@
             </label>
             <% console.log("isTrue1: " +flexCheckDefault) %>
         </div>
+        <% } else { %>
+        <div class="form-check">
+            <h6>Added To Test</h6>
+        </div>
+        <%}%>
     </form>
     <div>
         <a href="/cards/<%=theCards._id%>" class="btn">Remove Card</a>
