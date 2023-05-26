@@ -164,8 +164,8 @@
     </div>
 
     <form action="/cards/myCards">
-        <% let hulu = showThems._id%> <% let bye = ill.includes(hulu)%> <%
-        if(bye == false) {%>
+        <%console.log("getTd: " +getTestedCard)%> <% let hulu = showThems._id%>
+        <% let bye = ill.includes(hulu)%><% if(bye == false) {%>
         <div class="form-check">
             <input
                 class="form-check-input"
@@ -181,9 +181,7 @@
         </div>
         <% } else { %>
         <div class="form-check">
-            <label class="form-check-label" for="flexCheckDefault">
-                Added To Test
-            </label>
+            <h6>Added To Test</h6>
         </div>
         <%}%>
     </form>

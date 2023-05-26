@@ -60,7 +60,7 @@ router.get(
         let userSearch = userSearching.toLowerCase();
 
         let getTestedCard = req.query.checkTester;
-        // console.log("u: " + getTestedCard);
+        console.log("u: " + getTestedCard);
 
         let user = req.user._id;
         console.log("user is this: " + user);
@@ -116,7 +116,6 @@ router.get(
         // console.log("shwM: " + showHim);
         const display = await User.find({});
         const ill = req.user.addedCard;
-        console.log("JIH: " + ill);
 
         return res.render("cards/myCards", {
             myCards,
