@@ -46,6 +46,7 @@
             <label class="form-check-label" for="flexCheckDefault">
                 Test Card
             </label>
+            <% console.log("isTrue1: " +flexCheckDefault) %>
         </div>
     </form>
     <div>
@@ -88,6 +89,7 @@
             <label class="form-check-label" for="flexCheckDefault">
                 Test Card
             </label>
+            <% console.log("isTrue2: " +flexCheckDefault) %>
         </div>
     </form>
     <form
@@ -107,7 +109,7 @@
 <!--  -->
 <% let h = hi.toLowerCase() %>
 <!--  -->
-<% let w = h.includes(userSearch)%>
+<% let w = h.includes(userSearch)%> <% "whatW: " +w %>
 <!--  -->
 <% if (currentUser._id == theCards.author.id && w == false) { %>
 <div class="card mb-3" style="width: 15rem">
@@ -128,8 +130,9 @@
                 onchange="this.form.submit();"
             />
             <label class="form-check-label" for="flexCheckDefault">
-                Test Card
+                Test Card3
             </label>
+            <!-- console.log("isTrue3: " +display) %> -->
         </div>
     </form>
     <div>
@@ -170,10 +173,12 @@
                 onchange="this.form.submit();"
             />
             <label class="form-check-label" for="flexCheckDefault">
-                Test Card
+                Test Card4
             </label>
+            <% console.log("isIT: " +getTestedCard)%>
         </div>
     </form>
+
     <form
         class="d-inline"
         action="/cards/myCards/<%=showThems.id%>?_method=PUT"

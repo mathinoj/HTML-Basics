@@ -105,6 +105,10 @@ router.get(
             let findSelectedCardAgain = await Idioma.findById(getTestedCard);
             let findUser = await User.findById(req.user._id);
             findUser.addedCard.push(findSelectedCardAgain);
+
+            let getTestedCardz = req.query.checkTester;
+            console.log("getz: " + getTestedCardz);
+
             await findUser.save();
 
             req.flash("success", "Added card to test cards!");
@@ -113,6 +117,7 @@ router.get(
         // const showThem = await Idioma.find({});
         const showHim = await Idioma.find({}).populate("author");
         // console.log("shwM: " + showHim);
+        const display = await User.find({});
 
         return res.render("cards/myCards", {
             myCards,
@@ -121,6 +126,8 @@ router.get(
             checkedBox,
             user,
             userSearch,
+            display,
+            getTestedCard,
         });
     })
 );
@@ -369,7 +376,7 @@ router.put(
                 $pull: { addedCard: selectedCardIdNumTest },
             });
             req.flash("success", "Removed a test Card.");
-            res.redirect("/cards/myCards");
+            res.redirect("/cards/tested");
         }
     })
 );
