@@ -162,12 +162,15 @@
             >View Card
         </a>
     </div>
+
     <form action="/cards/myCards">
+        <% let hulu = showThems._id%> <% let bye = ill.includes(hulu)%> <%
+        if(bye == false) {%>
         <div class="form-check">
             <input
                 class="form-check-input"
                 type="checkbox"
-                id="flexCheckDefault"
+                id="flexCheckDefaultz"
                 name="checkTester"
                 value="<%=showThems._id%>"
                 onchange="this.form.submit();"
@@ -175,8 +178,14 @@
             <label class="form-check-label" for="flexCheckDefault">
                 Test Card4
             </label>
-            <% console.log("isIT: " +getTestedCard)%>
         </div>
+        <% } else { %>
+        <div class="form-check">
+            <label class="form-check-label" for="flexCheckDefault">
+                Added To Test
+            </label>
+        </div>
+        <%}%>
     </form>
 
     <form

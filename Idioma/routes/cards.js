@@ -63,7 +63,7 @@ router.get(
         // console.log("u: " + getTestedCard);
 
         let user = req.user._id;
-        // console.log("user is this: " + user);
+        console.log("user is this: " + user);
         // let u = await AddedCard.find({});
         // console.log("AddedCard DB: " + u);
         // console.log("AddedCard DB nowUser: " + u.id);
@@ -106,9 +106,6 @@ router.get(
             let findUser = await User.findById(req.user._id);
             findUser.addedCard.push(findSelectedCardAgain);
 
-            let getTestedCardz = req.query.checkTester;
-            console.log("getz: " + getTestedCardz);
-
             await findUser.save();
 
             req.flash("success", "Added card to test cards!");
@@ -118,6 +115,8 @@ router.get(
         const showHim = await Idioma.find({}).populate("author");
         // console.log("shwM: " + showHim);
         const display = await User.find({});
+        const ill = req.user.addedCard;
+        console.log("JIH: " + ill);
 
         return res.render("cards/myCards", {
             myCards,
@@ -128,6 +127,7 @@ router.get(
             userSearch,
             display,
             getTestedCard,
+            ill,
         });
     })
 );
