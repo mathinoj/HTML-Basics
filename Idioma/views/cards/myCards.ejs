@@ -44,7 +44,7 @@
                 onchange="this.form.submit();"
             />
             <label class="form-check-label" for="flexCheckDefault">
-                Test Card
+                Test Card1
             </label>
             <% console.log("isTrue1: " +flexCheckDefault) %>
         </div>
@@ -77,6 +77,9 @@
         </a>
     </div>
     <form action="/cards/myCards">
+        <% let hulu = showThems._id%> <% let bye = ill.includes(hulu)%>
+        <!--  -->
+        <% if(bye == false) {%>
         <div class="form-check">
             <input
                 class="form-check-input"
@@ -87,10 +90,14 @@
                 onchange="this.form.submit();"
             />
             <label class="form-check-label" for="flexCheckDefault">
-                Test Card
+                Test Card2
             </label>
-            <% console.log("isTrue2: " +flexCheckDefault) %>
         </div>
+        <% } else { %>
+        <div class="form-check">
+            <h6>Added To Test</h6>
+        </div>
+        <%}%>
     </form>
     <form
         class="d-inline"
