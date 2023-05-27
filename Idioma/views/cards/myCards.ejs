@@ -28,9 +28,9 @@
 <!--  -->
 <% let bur = (currentUser._id == theCards.author.id) %>
 <!--  -->
-<% console.log('what is W: ' + w) %>
-<!--  -->
 <% if(currentUser._id == theCards.author.id && w){ %>
+<!--  -->
+<% console.log('what is W1: ' + w) %>
 <div class="card mb-3" style="width: 15rem">
     <div class="card-header">Card</div>
     <div class="card-body">
@@ -80,7 +80,11 @@
 <!--  -->
 <% let u = pitt.includes(userSearch) %>
 <!--  -->
-<% if((currentUser.id == o || o.includes(currentUser.id) == true) && u) { %>
+<% let abs = o.includes(currentUser.id) %>
+<!--  -->
+<% if((currentUser.id == o || abs == true) && u) { %>
+<!--  -->
+<% console.log('what is U2: ' + u) %>
 <div class="card mb-3" style="width: 15rem">
     <div class="card-header">Card</div>
     <div class="card-body">
@@ -124,6 +128,8 @@
     </form>
 </div>
 <hr />
+<% } else if (u) { %>
+<h5>Nope</h5>
 <% }} %>
 <!--  -->
 <% for(let theCards of myCards) { %>
@@ -136,6 +142,8 @@
 <!-- "whatW: " +w %> -->
 <!--  -->
 <% if (currentUser._id == theCards.author.id && w == false) { %>
+<!--  -->
+<% console.log('what is W3: ' + w) %>
 <div class="card mb-3" style="width: 15rem">
     <div class="card-header">Card</div>
     <div class="card-body">
@@ -187,6 +195,8 @@
 <% let t = o.includes(currentUser.id) %>
 <!--  -->
 <% if((currentUser.id == o || t == true) && u == false) { %>
+<!--  -->
+<% console.log('what is U4: ' + u) %>
 <div class="card mb-3" style="width: 15rem">
     <div class="card-header">Card</div>
     <div class="card-body">
