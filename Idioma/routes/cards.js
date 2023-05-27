@@ -58,9 +58,33 @@ router.get(
         // console.log("i: " + `'${userSearches}'`);
         let userSearching = `'${userSearches}'`;
         let userSearch = userSearching.toLowerCase();
+        // console.log("userSrchez: " + userSearches); THIS DOESNT ADD THE ''
+        console.log("userSEARCH: " + userSearch);
+        const srchCz = await Idioma.find({});
+        let srchToStrang = srchCz.toString();
+        // console.log("reggy: " + srchCz);
+        // console.log("strang: " + srchToStrang);
+        // for (let strang of srchToStrang) {
+        // console.log("starnge: " + strang);
+        console.log("typeO: " + typeof userSearches);
+        let you = srchToStrang.includes(userSearch);
+        // console.log("T or F: " + you);
+
+        // if (typeof userSearches == "string") {
+        if (typeof userSearches == "string") {
+            // console.log("starnge: " + strang);
+            // console.log("userSERRRCH: " + userSearch);
+            // req.flash("success", "Card found.");
+            // console.log("it duz NOOOOT");
+            console.log("it DUZUZZ");
+            // return res.redirect("/cards/myCards");
+            // } else {
+            // console.log("it DUZUZZ");
+            // console.log("it duz NOOOOT");
+        }
 
         let getTestedCard = req.query.checkTester;
-        console.log("u: " + getTestedCard);
+        // console.log("u: " + getTestedCard);
 
         let user = req.user._id;
         console.log("user is this: " + user);
@@ -114,7 +138,6 @@ router.get(
         // const showThem = await Idioma.find({});
         const showHim = await Idioma.find({}).populate("author");
         // console.log("shwM: " + showHim);
-        const display = await User.find({});
         const ill = req.user.addedCard;
 
         return res.render("cards/myCards", {
@@ -124,8 +147,7 @@ router.get(
             checkedBox,
             user,
             userSearch,
-            display,
-            getTestedCard,
+            userSearches,
             ill,
         });
     })

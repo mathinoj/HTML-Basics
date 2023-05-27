@@ -14,6 +14,7 @@
             <button class="btn btn-outline-success" type="submit">
                 Search
             </button>
+            <a href="/cards/myCards" class="btn btn-outline-success">Clear</a>
         </form>
     </div>
 </nav>
@@ -25,6 +26,10 @@
 <!--  -->
 <% let w = h.includes(userSearch)%>
 <!--  -->
+<% let bur = (currentUser._id == theCards.author.id) %>
+<!--  -->
+<% console.log('what is W: ' + w) %>
+<!--  -->
 <% if(currentUser._id == theCards.author.id && w){ %>
 <div class="card mb-3" style="width: 15rem">
     <div class="card-header">Card</div>
@@ -34,7 +39,9 @@
         <a href="/cards/<%=theCards._id%>" class="btn btn-primary">View Card</a>
     </div>
     <form action="/cards/myCards">
-        <% let zulu = theCards._id%> <% let hye = ill.includes(zulu)%>
+        <% let zulu = theCards._id%>
+        <!--  -->
+        <% let hye = ill.includes(zulu)%>
         <!--  -->
         <% if(hye == false) {%>
         <div class="form-check">
@@ -49,7 +56,6 @@
             <label class="form-check-label" for="flexCheckDefault">
                 Test Card
             </label>
-            <% console.log("isTrue1: " +flexCheckDefault) %>
         </div>
         <% } else { %>
         <div class="form-check">
@@ -85,7 +91,9 @@
         </a>
     </div>
     <form action="/cards/myCards">
-        <% let hulu = showThems._id%> <% let bye = ill.includes(hulu)%>
+        <% let hulu = showThems._id%>
+        <!--  -->
+        <% let bye = ill.includes(hulu)%>
         <!--  -->
         <% if(bye == false) {%>
         <div class="form-check">
@@ -124,7 +132,8 @@
 <!--  -->
 <% let h = hi.toLowerCase() %>
 <!--  -->
-<% let w = h.includes(userSearch)%> <% "whatW: " +w %>
+<% let w = h.includes(userSearch)%>
+<!-- "whatW: " +w %> -->
 <!--  -->
 <% if (currentUser._id == theCards.author.id && w == false) { %>
 <div class="card mb-3" style="width: 15rem">
@@ -135,7 +144,9 @@
         <a href="/cards/<%=theCards._id%>" class="btn btn-primary">View Card</a>
     </div>
     <form action="/cards/myCards">
-        <% let zulu = theCards._id%> <% let hye = ill.includes(zulu)%>
+        <% let zulu = theCards._id%>
+        <!--  -->
+        <% let hye = ill.includes(zulu)%>
         <!--  -->
         <% if(hye == false) {%>
         <div class="form-check">
@@ -173,8 +184,9 @@
 <!--  -->
 <% let u = pitt.includes(userSearch) %>
 <!--  -->
-<% if((currentUser.id == o || o.includes(currentUser.id) == true) && u == false)
-{ %>
+<% let t = o.includes(currentUser.id) %>
+<!--  -->
+<% if((currentUser.id == o || t == true) && u == false) { %>
 <div class="card mb-3" style="width: 15rem">
     <div class="card-header">Card</div>
     <div class="card-body">
@@ -184,10 +196,12 @@
             >View Card
         </a>
     </div>
-
     <form action="/cards/myCards">
-        <%console.log("getTd: " +getTestedCard)%> <% let hulu = showThems._id%>
-        <% let bye = ill.includes(hulu)%><% if(bye == false) {%>
+        <% let hulu = showThems._id%>
+        <!--  -->
+        <% let bye = ill.includes(hulu)%>
+        <!--  -->
+        <% if(bye == false) {%>
         <div class="form-check">
             <input
                 class="form-check-input"
@@ -207,7 +221,6 @@
         </div>
         <%}%>
     </form>
-
     <form
         class="d-inline"
         action="/cards/myCards/<%=showThems.id%>?_method=PUT"
