@@ -16,39 +16,18 @@
 >
 
 <% for(let randomDoc of randomDocs) { %>
-<!-- <a
-        class="btn btn-primary btn-outline-dark"
-        id="butty"
-        href="/cards/test"
-        role="button"
-        >Start Test</a
-    > -->
-<!-- % console.log("uzr: " +userIdNum) %> -->
-<!--  -->
 <!-- You had to do 'toString' cuz it wasnt iterrating. As a result it was constantly reading the includes as 'false' -->
 <% let o = randomDoc.addedCard %>
 <!--  -->
 <% let p = o.toString() %>
 <!--  -->
 <% let i = p.includes(userIdNum) %>
-<!-- % console.log("R: " +p.includes(userIdNum)) %> -->
 <br />
 <% let v = randomDoc.author %>
 <!--  -->
-<!-- < console.log("V: " +v) %> -->
-<!-- const myArr = n.toString(); console.log("myArr: " + myArr); -->
 <% let n = v.equals(userIdNum) %>
 <!--  -->
-<!-- < console.log("TRUE: " +n) %> -->
-<!--  -->
 <%= ('Herre is randoDoc: ' + randomDoc._id) %>
-<!--  -->
-<!-- if(e == true) { %> -->
-<!-- < if (i == true || n == true) { %> -->
-
-<!-- console.log("ZZZ: " +z) %> -->
-<!--  -->
-<!-- console.log("QQ: " +q) %> -->
 <div class="card" style="width: 18rem">
     <div class="card-body">
         <h5 class="card-title">Card title</h5>
@@ -67,9 +46,6 @@
         </button>
     </div>
     <ul class="list-group list-group-flush">
-        <!-- <li class="list-group-item">An item</li>
-            <li class="list-group-item">A second item</li>
-            <li class="list-group-item">A third item</li> -->
         <li class="list-group-item">
             <button
                 type="button"
@@ -92,9 +68,6 @@
                 Hint Two
             </button>
         </li>
-        <!-- <li class="list-group-item">
-                <a href="#" class="card-link">Hint One</a>
-            </li> -->
     </ul>
     <% console.log("RandD: " +randomDoc.id) %>
     <div class="card-body">
@@ -114,3 +87,13 @@
 <!-- < } %> -->
 <!-- https://www.youtube.com/watch?v=HWeU6iE9NIg
 https://getbootstrap.com/docs/5.2/components/popovers/ -->
+<br />
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+    </ul>
+</nav>

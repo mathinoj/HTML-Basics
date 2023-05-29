@@ -10,6 +10,7 @@ const {
     isAuthor,
     validateCard,
     paginate,
+    paginateTest,
 } = require("../middleware");
 
 const db = mongoose.connection;
@@ -28,6 +29,18 @@ router.get("/page/:page", (req, res, next) => {
     // https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22291784#questions/1464534
 });
 
+router.get(
+    "/tested",
+    catchAsync(async (req, res, next) => {
+        paginateTest(req, res, next);
+    })
+);
+
+// router.get("/page/:page", function (req, res, next) {
+router.get("/page/:page", (req, res, next) => {
+    paginateTest(req, res, next);
+    // https://www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22291784#questions/1464534
+});
 // router.get(
 //     "/",
 //     catchAsync(async (req, res, next) => {
@@ -67,11 +80,11 @@ router.get(
         // for (let strang of srchToStrang) {
         // console.log("starnge: " + strang);
         console.log("typeO: " + typeof userSearches);
-        let you = srchToStrang.includes(userSearch);
-        // console.log("T or F: " + you);
+        let you = srchCz.includes(userSearches);
+        console.log("T or F: " + you);
 
         // if (typeof userSearches == "string") {
-        if (typeof userSearches == "string") {
+        if (typeof userSearches == "string" || userSearches == "undefined") {
             // console.log("starnge: " + strang);
             // console.log("userSERRRCH: " + userSearch);
             // req.flash("success", "Card found.");
@@ -149,79 +162,83 @@ router.get(
             userSearch,
             userSearches,
             ill,
+            you,
         });
     })
 );
 
-router.get(
-    "/tested",
-    catchAsync(async (req, res, next) => {
-        if (!req.user) {
-            req.flash("error", "Must be logged in!");
-            return res.redirect(`/cards`);
-        }
+// router.get(
+//     "/tested",
+//     catchAsync(async (req, res, next) => {
+//         if (!req.user) {
+//             req.flash("error", "Must be logged in!");
+//             return res.redirect(`/cards`);
+//         }
 
-        res.locals.currentUser = req.user;
-        let entireUserInfo = res.locals.currentUser;
-        let userIdNum = entireUserInfo.id;
+//         res.locals.currentUser = req.user;
+//         let entireUserInfo = res.locals.currentUser;
+//         let userIdNum = entireUserInfo.id;
 
-        let randomDocsx = await User.findById(userIdNum).populate("addedCard");
-        // console.log("m: " + randomDocs.length);
-        // console.log("m addedC: " + m.addedCard);
-        // console.log("m addedC length: " + randomDocs.addedCard);
-        let c = randomDocsx.addedCard;
-        // let item = c[Math.floor(Math.random() * c.length)];
-        // console.log("item: " + item);
+//         let randomDocsx = await User.findById(userIdNum).populate("addedCard");
+//         // console.log("m: " + randomDocs.length);
+//         // console.log("m addedC: " + m.addedCard);
+//         // console.log("m addedC length: " + randomDocs.addedCard);
+//         let randomDocs = randomDocsx.addedCard;
+//         // let item = c[Math.floor(Math.random() * c.length)];
+//         // console.log("item: " + item);
 
-        let randomDocs = c
-            .sort(() => Math.random() - Math.random())
-            .slice(0, 5);
-        // https://stackoverflow.com/questions/19269545/how-to-get-a-number-of-random-elements-from-an-array
-        console.log("shfld: " + randomDocs);
+//         // let randomDocs = c
+//         //     .sort(() => Math.random() - Math.random())
+//         //     .slice(0, 5);
+//         // https://stackoverflow.com/questions/19269545/how-to-get-a-number-of-random-elements-from-an-array
+//         console.log("shfld: " + randomDocs.length);
 
-        const randomDocz = await db
-            .collection("idiomas")
-            // .aggregate([{ $sample: { size: randomRocs.length } }])
-            .aggregate([{ $sample: { size: 5 } }])
-            .toArray();
-        // https://mongoosejs.com/docs/api/aggregate.html#aggregate_Aggregate-sample
-        // https://www.mongodb.com/docs/manual/reference/operator/aggregation/sample/#pipe._S_sample
-        // https://stackoverflow.com/questions/54585939/mongodb-and-node-js-aggregate-using-sample-isnt-returning-a-document
+//         let tLength = randomDocs.length;
 
-        const randArr = Array.from(randomDocs);
+//         // const randomDocz = await db
+//         //     .collection("idiomas")
+//         //     // .aggregate([{ $sample: { size: randomRocs.length } }])
+//         //     .aggregate([{ $sample: { size: 5 } }])
+//         //     .toArray();
+//         // https://mongoosejs.com/docs/api/aggregate.html#aggregate_Aggregate-sample
+//         // https://www.mongodb.com/docs/manual/reference/operator/aggregation/sample/#pipe._S_sample
+//         // https://stackoverflow.com/questions/54585939/mongodb-and-node-js-aggregate-using-sample-isnt-returning-a-document
 
-        let k = await Idioma.find({});
+//         // const randArr = Array.from(randomDocs);
 
-        for (let attempt of randomDocs) {
-            let q = attempt.addedCard;
+//         // let k = await Idioma.find({});
 
-            let z = q.includes(userIdNum);
+//         //COMMENTED OUT BELOW ON MAY 28 @ 1810
+//         // for (let attempt of randomDocs) {
+//         //     let q = attempt.addedCard;
 
-            //THIS IS FOR FINDING AUTHOR OF CARD
-            let w = attempt.author;
+//         //     let z = q.includes(userIdNum);
 
-            let e = w.equals(userIdNum);
-            let v = attempt.author;
-            let n = attempt.addedCard;
+//         //     //THIS IS FOR FINDING AUTHOR OF CARD
+//         //     let w = attempt.author;
 
-            const myArr = n.toString();
+//         //     let e = w.equals(userIdNum);
+//         //     let v = attempt.author;
+//         //     let n = attempt.addedCard;
 
-            let x = v.equals(userIdNum);
-            let c = myArr.includes(userIdNum);
-            // console.log("Does AddedCard have User Id num: " + c);
-            if (x == true || c == true) {
-                // console.log("attmpt @@: " + attempt);
-                // console.log("length : " + randomDocs);
-            }
-        }
+//         //     const myArr = n.toString();
 
-        return res.render("cards/tested", {
-            randomDocs,
-            userIdNum,
-            // attempt,
-        });
-    })
-);
+//         //     let x = v.equals(userIdNum);
+//         //     let c = myArr.includes(userIdNum);
+//         //     // console.log("Does AddedCard have User Id num: " + c);
+//         //     if (x == true || c == true) {
+//         //         // console.log("attmpt @@: " + attempt);
+//         //         // console.log("length : " + randomDocs);
+//         //     }
+//         // }
+
+//         return res.render("cards/tested", {
+//             randomDocs,
+//             userIdNum,
+//             // attempt,
+//         });
+//     })
+// );
 
 router.get(
     "/test/start",

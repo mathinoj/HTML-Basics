@@ -80,11 +80,13 @@
 <!--  -->
 <% let u = pitt.includes(userSearch) %>
 <!--  -->
-<% let abs = o.includes(currentUser.id) %>
+<% let abs = (o.includes(currentUser.id) == true) %>
 <!--  -->
-<% if((currentUser.id == o || abs == true) && u) { %>
+<% let rage = currentUser.id == o %>
 <!--  -->
-<% console.log('what is U2: ' + u) %>
+<% if((rage || abs) && u) { %>
+<!--  -->
+<!-- console.log('what is UUUUUUUUUU2: ' + userSearch) %> -->
 <div class="card mb-3" style="width: 15rem">
     <div class="card-header">Card</div>
     <div class="card-body">
@@ -128,8 +130,6 @@
     </form>
 </div>
 <hr />
-<% } else if (u) { %>
-<h5>Nope</h5>
 <% }} %>
 <!--  -->
 <% for(let theCards of myCards) { %>

@@ -1,6 +1,7 @@
 const { cardSchema } = require("./schemas.js");
 const ExpressError = require("./utils/ExpressError");
 const Idioma = require("./models/idioma");
+const User = require("./models/user");
 const addedCards = require("./models/addedCards.js");
 
 module.exports.isLoggedIn = (req, res, next) => {
@@ -87,4 +88,47 @@ module.exports.paginate = async (req, res, next) => {
         });
     //www.udemy.com/course/the-web-developer-bootcamp/learn/lecture/22291784#questions/1464534
     // https://www.npmjs.com/package/mongodb-ejs-pagination
+};
+
+module.exports.paginateTest = async (req, res, next) => {
+    // res.locals.currentUser = req.user;
+    // let entireUserInfo = res.locals.currentUser;
+    // console.log("let: " + entireUserInfo);
+    // let userIdNum = entireUserInfo.id;
+
+    if (!req.user) {
+        req.flash("error", "Must be logged in!");
+        return res.redirect(`/cards`);
+    }
+
+    res.locals.currentUser = req.user;
+    let entireUserInfo = res.locals.currentUser;
+    let userIdNum = entireUserInfo.id;
+
+    let randomDocsx = await User.findById(userIdNum).populate("addedCard");
+    // console.log("m: " + randomDocs.length);
+    // console.log("m addedC: " + m.addedCard);
+    // console.log("m addedC length: " + randomDocs.addedCard);
+    let randomDocs = randomDocsx.addedCard;
+    // let item = c[Math.floor(Math.random() * c.length)];
+    // console.log("item: " + item);
+
+    // let randomDocs = c
+    //     .sort(() => Math.random() - Math.random())
+    //     .slice(0, 5);
+    // https://stackoverflow.com/questions/19269545/how-to-get-a-number-of-random-elements-from-an-array
+    console.log("shfld: " + randomDocs.length);
+
+    return res.render("cards/tested", {
+        // allCards: allCardsAgain,
+        // pages: Math.ceil(count / perPage),
+        // roundedD,
+        // count,
+        // page,
+        // err,
+        // current: page,
+        userIdNum,
+        randomDocs,
+    });
+    // }
 };
