@@ -19,13 +19,13 @@
 <!-- You had to do 'toString' cuz it wasnt iterrating. As a result it was constantly reading the includes as 'false' -->
 <% let o = randomDoc.addedCard %>
 <!--  -->
-<% let p = o.toString() %>
+<!-- % let p = o.toString() %> -->
 <!--  -->
-<% let i = p.includes(userIdNum) %>
+<!-- % let i = p.includes(userIdNum) %> -->
 <br />
-<% let v = randomDoc.author %>
+<!-- % let v = randomDoc.author %> -->
 <!--  -->
-<% let n = v.equals(userIdNum) %>
+<!-- % let n = v.equals(userIdNum) %> -->
 <!--  -->
 <%= ('Herre is randoDoc: ' + randomDoc._id) %>
 <div class="card" style="width: 18rem">
@@ -69,7 +69,7 @@
             </button>
         </li>
     </ul>
-    <% console.log("RandD: " +randomDoc.id) %>
+    <!-- % console.log("RandD: " +randomDoc.id) %> -->
     <div class="card-body">
         <a href="/cards" class="card-link">All Cards</a>
         <form

@@ -106,18 +106,21 @@ module.exports.paginateTest = async (req, res, next) => {
     let userIdNum = entireUserInfo.id;
 
     let randomDocsx = await User.findById(userIdNum).populate("addedCard");
+    // let randomDocsx = await User.findById(userIdNum);
+    console.log("randomDocsx: " + randomDocsx.length);
+
     // console.log("m: " + randomDocs.length);
     // console.log("m addedC: " + m.addedCard);
     // console.log("m addedC length: " + randomDocs.addedCard);
     let randomDocs = randomDocsx.addedCard;
     // let item = c[Math.floor(Math.random() * c.length)];
     // console.log("item: " + item);
-
+    let testLength = randomDocs.length;
     // let randomDocs = c
     //     .sort(() => Math.random() - Math.random())
     //     .slice(0, 5);
     // https://stackoverflow.com/questions/19269545/how-to-get-a-number-of-random-elements-from-an-array
-    console.log("shfld: " + randomDocs.length);
+    console.log("shfld: " + testLength);
 
     return res.render("cards/tested", {
         // allCards: allCardsAgain,
