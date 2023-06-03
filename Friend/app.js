@@ -1,7 +1,17 @@
 const express = require("express");
-const app = express();
-
 const path = require("path");
+const mongoose = require("mongoose");
+const Viewall = require("./models/viewAll");
+
+mongoose.connect("mongodb://localhost:27017/friend", {});
+
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error:"));
+db.once("open", () => {
+    console.log("DB Connd");
+});
+
+const app = express();
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -9,6 +19,16 @@ app.set("views", path.join(__dirname, "views"));
 app.get("/", (req, res) => {
     // res.send("test if it wrx");
     res.render("home");
+});
+
+app.get("/make", async (req, res) => {
+    const card = new Viewall({
+        title: "hello",
+        price: 5,
+        description: "hello test",
+    });
+    await card.save();
+    res.send(card);
 });
 
 app.listen(3000, () => {

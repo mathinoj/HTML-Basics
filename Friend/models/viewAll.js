@@ -7,4 +7,4 @@ const viewAllSchema = new Schema({
     description: String,
 });
 
-module.exports = mongoose.model("viewAll", "viewAllSchema");
+module.exports = mongoose.model("viewAll", viewAllSchema);
