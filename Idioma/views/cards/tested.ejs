@@ -14,8 +14,10 @@
     role="button"
     >Start Test</a
 >
-
-<% for(let randomDoc of randomDocs) { %>
+<% console.log("randoDockers Test: " +randomDockers) %>
+<!-- console.log("juh: " +juh) %> -->
+<!--  -->
+<% for(let randomDoc of randomDockers) { %>
 <!-- You had to do 'toString' cuz it wasnt iterrating. As a result it was constantly reading the includes as 'false' -->
 <% let o = randomDoc.addedCard %>
 <!--  -->
@@ -88,6 +90,7 @@
 <!-- https://www.youtube.com/watch?v=HWeU6iE9NIg
 https://getbootstrap.com/docs/5.2/components/popovers/ -->
 <br />
+<!-- < console.log("tp1: " +tPlusOne) %> -->
 <nav aria-label="Page navigation example">
     <ul class="pagination">
         <li class="page-item"><a class="page-link" href="#">Previous</a></li>
