@@ -6,5 +6,46 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>New</title>
     </head>
-    <body></body>
+    <body>
+        <h2>Make Card</h2>
+        <form action="/cards" method="POST">
+            <div>
+                <label for="title">Title</label>
+                <input
+                    name="title"
+                    class="form-control"
+                    type="text"
+                    id="makeTitle"
+                    placeholder="Title"
+                    required
+                />
+            </div>
+            <div>
+                <label for="price">Price</label>
+                <input
+                    name="price"
+                    class="form-control"
+                    type="number"
+                    id="makePrice"
+                    placeholder="Price"
+                    required
+                />
+            </div>
+            <div>
+                <label for="title">Description</label>
+                <textarea
+                    name="description"
+                    class="form-control"
+                    type="text"
+                    id="makeDescription"
+                    cols="30"
+                    rows="10"
+                    placeholder="Description"
+                    required
+                ></textarea>
+            </div>
+            <button>Submit</button>
+        </form>
+        <a href="/cards">All Cards</a>
+    </body>
 </html>
