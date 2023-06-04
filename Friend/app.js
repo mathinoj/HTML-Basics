@@ -34,7 +34,7 @@ app.get("/", (req, res) => {
 app.get("/cards", async (req, res) => {
     const allCards = await Viewall.find({});
     // console.log("allCards: " + allCards);
-    res.render("index", { allCards });
+    res.render("cards/index", { allCards });
 });
 
 app.listen(3000, () => {
