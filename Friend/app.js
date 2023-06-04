@@ -37,6 +37,14 @@ app.get("/cards", async (req, res) => {
     res.render("cards/index", { allCards });
 });
 
+app.get("/cards/:id", async (req, res) => {
+    const { id } = req.params;
+    const card = await Viewall.findById(id);
+    // console.log(card); - TEST
+    // res.send("Specific Crd Clikd"); - TEST
+    res.render("cards/show", { card });
+});
+
 app.listen(3000, () => {
     console.log("Connd to Port 3000");
 });
