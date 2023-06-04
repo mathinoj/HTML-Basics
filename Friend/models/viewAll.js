@@ -3,7 +3,10 @@ const Schema = mongoose.Schema;
 
 const viewAllSchema = new Schema({
     title: String,
-    price: Number,
+    price: {
+        type: Number,
+    },
+    // price: Number,
     description: String,
 });
 
