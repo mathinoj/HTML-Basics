@@ -47,10 +47,10 @@ const viewAllSeeds = [
     },
 ];
 
-Viewall.insertMany(viewAllSeeds)
-    .then((res) => {
-        console.log(res);
-    })
-    .catch((e) => {
-        console.log(e);
-    });
+// Viewall.insertMany(viewAllSeeds)
+//     .then((res) => {
+//         console.log(res);
+//     })
+//     .catch((e) => {
+//         console.log(e);
+//     });
