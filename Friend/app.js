@@ -33,8 +33,8 @@ app.get("/", (req, res) => {
 
 app.get("/cards", async (req, res) => {
     const allCards = await Viewall.find({});
-    console.log("allCards: " + allCards);
-    res.send("Should see ErrTing");
+    // console.log("allCards: " + allCards);
+    res.render("index", { allCards });
 });
 
 app.listen(3000, () => {
