@@ -21,14 +21,20 @@ app.get("/", (req, res) => {
     res.render("home");
 });
 
-app.get("/make", async (req, res) => {
-    const card = new Viewall({
-        title: "hello",
-        price: 5,
-        description: "hello test",
-    });
-    await card.save();
-    res.send(card);
+// app.get("/make", async (req, res) => {
+//     const card = new Viewall({
+//         title: "hello",
+//         price: 5,
+//         description: "hello test",
+//     });
+//     await card.save();
+//     res.send(card);
+// });
+
+app.get("/cards", async (req, res) => {
+    const allCards = await Viewall.find({});
+    console.log("allCards: " + allCards);
+    res.send("Should see ErrTing");
 });
 
 app.listen(3000, () => {
