@@ -49,9 +49,13 @@ app.get("/cards/new", (req, res) => {
 });
 
 app.post("/cards", async (req, res) => {
-    const newCard = new Viewall(req.body.newCard);
-    await newCard.save();
-    res.redirect(`cards/${newCard._id}`);
+    try {
+        const newCard = new Viewall(req.body.newCard);
+        await newCard.save();
+        res.redirect(`cards/${newCard._id}`);
+    } catch (e) {
+        next(e);
+    }
 });
 
 app.get("/cards/:id", async (req, res) => {
@@ -76,6 +80,10 @@ app.delete("/cards/:id", async (req, res) => {
     const { id } = req.params;
     const deletedCard = await Viewall.findByIdAndDelete(id);
     res.redirect("/cards");
+});
+
+app.use((err, req, res, next) => {
+    res.send("Sutin went wrong!");
 });
 
 app.listen(3000, () => {
