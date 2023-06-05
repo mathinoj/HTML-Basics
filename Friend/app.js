@@ -3,6 +3,7 @@ const path = require("path");
 const mongoose = require("mongoose");
 const ejsMate = require("ejs-mate");
 const Viewall = require("./models/viewAll");
+const catchAsync = require("./utils/catchAsync");
 const methodOverride = require("method-override");
 
 mongoose.connect("mongodb://localhost:27017/friend", {});
