@@ -1,6 +1,11 @@
 <% layout('/layouts/boilerplate') %>
 <h2>Edit Card</h2>
-<form action="/cards/<%= editCard._id %>?_method=PUT" method="POST">
+<form
+    action="/cards/<%= editCard._id %>?_method=PUT"
+    method="POST"
+    class="validate-form"
+    nonvalidate
+>
     <div>
         <label for="title">Title</label>
         <input
@@ -12,6 +17,7 @@
             value="<%= editCard.title%>"
             required
         />
+        <div class="valid-feedback">Good Title</div>
     </div>
     <div>
         <label for="price">Price</label>
@@ -24,6 +30,7 @@
             value="<%= editCard.price%>"
             required
         />
+        <div class="valid-feedback">Good Price</div>
     </div>
     <div>
         <label for="title">Description</label>
@@ -36,6 +43,7 @@
             value="<%= editCard.description%>"
             required
         />
+        <div class="valid-feedback">Good Description</div>
     </div>
     <button>Submit</button>
 </form>
