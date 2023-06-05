@@ -8,7 +8,7 @@
     </head>
     <body>
         <h2>Make Card</h2>
-        <form>
+        <form action="/cards" method="POST">
             <div>
                 <label for="title">Title</label>
                 <input
@@ -20,7 +20,7 @@
                     required
                 />
             </div>
-            <!-- <div>
+            <div>
                 <label for="price">Price</label>
                 <input
                     name="price"
@@ -30,7 +30,7 @@
                     placeholder="Price"
                     required
                 />
-            </div> -->
+            </div>
             <div>
                 <label for="title">Description</label>
                 <textarea

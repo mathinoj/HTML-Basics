@@ -16,7 +16,7 @@ const app = express();
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-// app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
     // res.send("test if it wrx");
@@ -51,14 +51,15 @@ app.get("/cards/:id", async (req, res) => {
     res.render("cards/show", { cardz });
 });
 
-// app.get("/cards/new", (req, res) => {
-//     res.render("cards/new");
-// });
-
-// app.post("/cards", async (req, res) => {
-//     console.log("req.body: " + req.body);
-//     res.send("makin card");
-// });
+app.post("/cards", async (req, res) => {
+    // console.log("req.body: " + req.body); - TEST 1
+    // res.send("makin card"); - TEST 1
+    const newCard = new Viewall(req.body);
+    await newCard.save();
+    // console.log("newCard: " + newCard); - TEST 2
+    // res.send("make card test2"); - TEST 2
+    res.redirect(`cards/${newCard._id}`);
+});
 
 app.listen(3000, () => {
     console.log("Connd to Port 3000");
