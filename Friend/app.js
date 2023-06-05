@@ -40,7 +40,7 @@ app.get("/", (req, res) => {
 
 app.get(
     "/cards",
-    catchAsync(async (req, res) => {
+    catchAsync(async (req, res, next) => {
         const allCards = await Viewall.find({});
         // console.log("allCards: " + allCards);
         res.render("cards/index", { allCards });
@@ -53,7 +53,7 @@ app.get("/cards/new", (req, res) => {
 
 app.post(
     "/cards",
-    catchAsync(async (req, res) => {
+    catchAsync(async (req, res, next) => {
         const newCard = new Viewall(req.body.newCard);
         await newCard.save();
         res.redirect(`cards/${newCard._id}`);
@@ -62,7 +62,7 @@ app.post(
 
 app.get(
     "/cards/:id",
-    catchAsync(async (req, res) => {
+    catchAsync(async (req, res, next) => {
         // const { id } = req.params;
         const cardz = await Viewall.findById(req.params.id);
         res.render("cards/show", { cardz });
@@ -71,7 +71,7 @@ app.get(
 
 app.get(
     "/cards/:id/edit",
-    catchAsync(async (req, res) => {
+    catchAsync(async (req, res, next) => {
         // const { id } = req.params;
         const editCard = await Viewall.findById(req.params.id);
         res.render("cards/edit", { editCard });
@@ -80,7 +80,7 @@ app.get(
 
 app.put(
     "/cards/:id",
-    catchAsync(async (req, res) => {
+    catchAsync(async (req, res, next) => {
         const { id } = req.params;
         const card = await Viewall.findByIdAndUpdate(id, {
             ...req.body.editCard,
@@ -91,7 +91,7 @@ app.put(
 
 app.delete(
     "/cards/:id",
-    catchAsync(async (req, res) => {
+    catchAsync(async (req, res, next) => {
         const { id } = req.params;
         const deletedCard = await Viewall.findByIdAndDelete(id);
         res.redirect("/cards");
