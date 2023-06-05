@@ -10,7 +10,7 @@
         <h1>View All</h1>
         <% for(let allCard of allCards){ %>
         <h4><%= allCard.title %></h4>
-        <h5><a href="/cards/<%= allCard._id%>">View</a></h5>
+        <h5><a href="/cards/<%= allCard._id%>"><%= allCard.price %></a></h5>
         <h4><%= allCard.description %></h4>
         <% } %>
         <a href="/cards/new">Make Card</a>

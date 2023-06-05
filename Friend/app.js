@@ -52,12 +52,8 @@ app.get("/cards/:id", async (req, res) => {
 });
 
 app.post("/cards", async (req, res) => {
-    // console.log("req.body: " + req.body); - TEST 1
-    // res.send("makin card"); - TEST 1
     const newCard = new Viewall(req.body);
     await newCard.save();
-    // console.log("newCard: " + newCard); - TEST 2
-    // res.send("make card test2"); - TEST 2
     res.redirect(`cards/${newCard._id}`);
 });
 

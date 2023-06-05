@@ -12,37 +12,37 @@ db.once("open", () => {
 const viewAllSeeds = [
     {
         title: "Hello",
-        // price: 1,
+        price: 1,
         description: "First One",
     },
     {
         title: "Bye",
-        // price: 2,
+        price: 2,
         description: "Second One",
     },
     {
         title: "Hola",
-        // price: 3,
+        price: 3,
         description: "Third One",
     },
     {
         title: "Adios",
-        // price: 4,
+        price: 4,
         description: "Fourth One",
     },
     {
         title: "Hi",
-        // price: 5,
+        price: 5,
         description: "Fifth One",
     },
     {
         title: "Laters",
-        // price: 6,
+        price: 6,
         description: "Sixth One",
     },
     {
         title: "Yo",
-        // price: 7,
+        price: 7,
         description: "Seventh One",
     },
 ];
