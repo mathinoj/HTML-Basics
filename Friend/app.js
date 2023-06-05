@@ -75,6 +75,12 @@ app.put("/cards/:id", async (req, res) => {
     res.redirect(`/cards/${card._id}`);
 });
 
+app.delete("/cards/:id", async (req, res) => {
+    const { id } = req.params;
+    const deletedCard = await Viewall.findByIdAndDelete(id);
+    res.redirect("/cards");
+});
+
 app.listen(3000, () => {
     console.log("Connd to Port 3000");
 });
