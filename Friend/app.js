@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const ejsMate = require("ejs-mate");
 const Viewall = require("./models/viewAll");
 const catchAsync = require("./utils/catchAsync");
+const ExpressError = require("./utils/ExpressError");
 const methodOverride = require("method-override");
 
 mongoose.connect("mongodb://localhost:27017/friend", {});
@@ -98,6 +99,11 @@ app.delete(
         res.redirect("/cards");
     })
 );
+
+app.all("*", (req, res, next) => {
+    res.send("yor get 404 TEST TEST TEST");
+    // next(new ExpressError("Page Not Found", 404));
+});
 
 app.use((err, req, res, next) => {
     res.send("Sutin went wrong!");
