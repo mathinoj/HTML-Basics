@@ -60,7 +60,18 @@ app.post("/cards", async (req, res) => {
 app.get("/cards/:id/edit", async (req, res) => {
     const { id } = req.params;
     const editCard = await Viewall.findById(id);
-    res.render("cards/edit", [editCard]);
+    res.render("cards/edit", { editCard });
+});
+
+app.put("/cards/:id", async (req, res) => {
+    console.log("req.body: " + req.body);
+    res.send("put shuld wrk");
+    // const { id } = req.params;
+    // const card = await Viewall.findByIdAndUpdate(id, req.body, {
+    //     runValidators: true,
+    //     new: true,
+    // });
+    // res.redirect(`cards/${cards._id}`);
 });
 
 app.listen(3000, () => {
