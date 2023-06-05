@@ -16,7 +16,7 @@ const app = express();
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-app.use(express.urlencoded({ extended: true }));
+// app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
     // res.send("test if it wrx");
@@ -39,17 +39,18 @@ app.get("/cards", async (req, res) => {
     res.render("cards/index", { allCards });
 });
 
-app.get("/cards/:id", async (req, res) => {
-    const { id } = req.params;
-    const card = await Viewall.findById(id);
-    // console.log(card); - TEST
-    // res.send("Specific Crd Clikd"); - TEST
-    res.render("cards/show", { card });
-});
-
-app.get("cards/new", (req, res) => {
+app.get("/cards/new", (req, res) => {
     res.render("cards/new");
 });
+
+app.get("/cards/:id", async (req, res) => {
+    const { id } = req.params;
+    const cardz = await Viewall.findById(id);
+    // console.log(card); - TEST
+    // res.send("Specific Crd Clikd"); - TEST
+    res.render("cards/show", { cardz });
+});
+
 // app.get("/cards/new", (req, res) => {
 //     res.render("cards/new");
 // });
