@@ -101,8 +101,13 @@ app.delete(
 );
 
 app.all("*", (req, res, next) => {
-    res.send("yor get 404 TEST TEST TEST");
-    // next(new ExpressError("Page Not Found", 404));
+    // res.send("yor get 404 TEST TEST TEST");
+    next(new ExpressError("Page Not Found", 404));
+});
+
+app.use((err, req, res, next) => {
+    const { statusCode = 500, message = "Somethin wrong" } = err;
+    res.status(statusCode).send(message);
 });
 
 app.use((err, req, res, next) => {
