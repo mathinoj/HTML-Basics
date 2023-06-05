@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
+const ejsMate = require("ejs-mate");
 const Viewall = require("./models/viewAll");
 const methodOverride = require("method-override");
 
@@ -15,6 +16,7 @@ db.once("open", () => {
 const app = express();
 
 app.set("views", path.join(__dirname, "views"));
+app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
 
 app.use(express.urlencoded({ extended: true }));
