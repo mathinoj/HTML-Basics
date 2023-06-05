@@ -57,6 +57,12 @@ app.post("/cards", async (req, res) => {
     res.redirect(`cards/${newCard._id}`);
 });
 
+app.get("/cards/:id/edit", async (req, res) => {
+    const { id } = req.params;
+    const editCard = await Viewall.findById(id);
+    res.render("cards/edit", [editCard]);
+});
+
 app.listen(3000, () => {
     console.log("Connd to Port 3000");
 });
