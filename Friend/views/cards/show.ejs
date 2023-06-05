@@ -12,6 +12,9 @@
             <h5><%= cardz.price %></h5>
             <h4><%= cardz.description %></h4>
         </div>
+        <form action="/cards/<%= cardz._id %>?_method=DELETE" method="POST">
+            <button>Delete</button>
+        </form>
         <a href="/cards">All Cards</a>
     </body>
 </html>
