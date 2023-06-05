@@ -66,10 +66,7 @@ app.get("/cards/:id/edit", async (req, res) => {
 
 app.put("/cards/:id", async (req, res) => {
     const { id } = req.params;
-    const card = await Viewall.findByIdAndUpdate(id, req.body, {
-        runValidators: true,
-        new: true,
-    });
+    const card = await Viewall.findByIdAndUpdate(id, { ...req.body.editCard });
     res.redirect(`/cards/${card._id}`);
 });
 
