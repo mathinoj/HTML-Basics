@@ -12,7 +12,7 @@
             <div>
                 <label for="title">Title</label>
                 <input
-                    name="title"
+                    name="editCard[title]"
                     class="form-control"
                     type="text"
                     id="makeTitle"
@@ -24,7 +24,7 @@
             <div>
                 <label for="price">Price</label>
                 <input
-                    name="price"
+                    name="editCard[price]"
                     class="form-control"
                     type="number"
                     id="makePrice"
@@ -36,7 +36,7 @@
             <div>
                 <label for="title">Description</label>
                 <input
-                    name="description"
+                    name="editCard[description]"
                     class="form-control"
                     type="text"
                     id="makeDescription"
@@ -48,5 +48,6 @@
             <button>Submit</button>
         </form>
         <a href="/cards">All Cards</a>
+        <a href="/cards/<%= editCard._id%>">Back To Card</a>
     </body>
 </html>
