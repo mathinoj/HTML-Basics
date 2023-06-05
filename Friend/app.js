@@ -46,18 +46,18 @@ app.get("/cards/new", (req, res) => {
     res.render("cards/new");
 });
 
+app.post("/cards", async (req, res) => {
+    const newCard = new Viewall(req.body.newCard);
+    await newCard.save();
+    res.redirect(`cards/${newCard._id}`);
+});
+
 app.get("/cards/:id", async (req, res) => {
-    const { id } = req.params;
-    const cardz = await Viewall.findById(id);
+    // const { id } = req.params;
+    const cardz = await Viewall.findById(req.params.id);
     // console.log(card); - TEST
     // res.send("Specific Crd Clikd"); - TEST
     res.render("cards/show", { cardz });
-});
-
-app.post("/cards", async (req, res) => {
-    const newCard = new Viewall(req.body);
-    await newCard.save();
-    res.redirect(`cards/${newCard._id}`);
 });
 
 app.get("/cards/:id/edit", async (req, res) => {
