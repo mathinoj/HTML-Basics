@@ -56,6 +56,7 @@ app.get("/cards/new", (req, res) => {
 app.post(
     "/cards",
     catchAsync(async (req, res, next) => {
+        if (!req.body.newCard) throw new ExpressError("Invalid Card Data", 400);
         const newCard = new Viewall(req.body.newCard);
         await newCard.save();
         res.redirect(`cards/${newCard._id}`);
