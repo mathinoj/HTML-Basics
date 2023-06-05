@@ -55,14 +55,12 @@ app.post("/cards", async (req, res) => {
 app.get("/cards/:id", async (req, res) => {
     // const { id } = req.params;
     const cardz = await Viewall.findById(req.params.id);
-    // console.log(card); - TEST
-    // res.send("Specific Crd Clikd"); - TEST
     res.render("cards/show", { cardz });
 });
 
 app.get("/cards/:id/edit", async (req, res) => {
-    const { id } = req.params;
-    const editCard = await Viewall.findById(id);
+    // const { id } = req.params;
+    const editCard = await Viewall.findById(req.params.id);
     res.render("cards/edit", { editCard });
 });
 
