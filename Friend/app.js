@@ -38,49 +38,65 @@ app.get("/", (req, res) => {
 //     res.send(card);
 // });
 
-app.get("/cards", async (req, res) => {
-    const allCards = await Viewall.find({});
-    // console.log("allCards: " + allCards);
-    res.render("cards/index", { allCards });
-});
+app.get(
+    "/cards",
+    catchAsync(async (req, res) => {
+        const allCards = await Viewall.find({});
+        // console.log("allCards: " + allCards);
+        res.render("cards/index", { allCards });
+    })
+);
 
 app.get("/cards/new", (req, res) => {
     res.render("cards/new");
 });
 
-app.post("/cards", async (req, res) => {
-    try {
+app.post(
+    "/cards",
+    catchAsync(async (req, res) => {
         const newCard = new Viewall(req.body.newCard);
         await newCard.save();
         res.redirect(`cards/${newCard._id}`);
-    } catch (e) {
-        next(e);
-    }
-});
+    })
+);
 
-app.get("/cards/:id", async (req, res) => {
-    // const { id } = req.params;
-    const cardz = await Viewall.findById(req.params.id);
-    res.render("cards/show", { cardz });
-});
+app.get(
+    "/cards/:id",
+    catchAsync(async (req, res) => {
+        // const { id } = req.params;
+        const cardz = await Viewall.findById(req.params.id);
+        res.render("cards/show", { cardz });
+    })
+);
 
-app.get("/cards/:id/edit", async (req, res) => {
-    // const { id } = req.params;
-    const editCard = await Viewall.findById(req.params.id);
-    res.render("cards/edit", { editCard });
-});
+app.get(
+    "/cards/:id/edit",
+    catchAsync(async (req, res) => {
+        // const { id } = req.params;
+        const editCard = await Viewall.findById(req.params.id);
+        res.render("cards/edit", { editCard });
+    })
+);
 
-app.put("/cards/:id", async (req, res) => {
-    const { id } = req.params;
-    const card = await Viewall.findByIdAndUpdate(id, { ...req.body.editCard });
-    res.redirect(`/cards/${card._id}`);
-});
+app.put(
+    "/cards/:id",
+    catchAsync(async (req, res) => {
+        const { id } = req.params;
+        const card = await Viewall.findByIdAndUpdate(id, {
+            ...req.body.editCard,
+        });
+        res.redirect(`/cards/${card._id}`);
+    })
+);
 
-app.delete("/cards/:id", async (req, res) => {
-    const { id } = req.params;
-    const deletedCard = await Viewall.findByIdAndDelete(id);
-    res.redirect("/cards");
-});
+app.delete(
+    "/cards/:id",
+    catchAsync(async (req, res) => {
+        const { id } = req.params;
+        const deletedCard = await Viewall.findByIdAndDelete(id);
+        res.redirect("/cards");
+    })
+);
 
 app.use((err, req, res, next) => {
     res.send("Sutin went wrong!");
