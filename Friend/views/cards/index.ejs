@@ -1,18 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Index</title>
-    </head>
-    <body>
-        <h1>View All</h1>
-        <% for(let allCard of allCards){ %>
-        <h4><%= allCard.title %></h4>
-        <h5><a href="/cards/<%= allCard._id%>"><%= allCard.price %></a></h5>
-        <h4><%= allCard.description %></h4>
-        <% } %>
-        <a href="/cards/new">Make Card</a>
-    </body>
-</html>
+<h1>View All</h1>
+<% for(let allCard of allCards){ %>
+<h4><%= allCard.title %></h4>
+<h5><a href="/cards/<%= allCard._id%>"><%= allCard.price %></a></h5>
+<h4><%= allCard.description %></h4>
+<% } %>
+<a href="/cards/new">Make Card</a>

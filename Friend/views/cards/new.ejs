@@ -1,49 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>New</title>
-    </head>
-    <body>
-        <h2>Make Card</h2>
-        <form action="/cards" method="POST">
-            <div>
-                <label for="title">Title</label>
-                <input
-                    name="newCard[title]"
-                    class="form-control"
-                    type="text"
-                    id="makeTitle"
-                    placeholder="Title"
-                    required
-                />
-            </div>
-            <div>
-                <label for="price">Price</label>
-                <input
-                    name="newCard[price]"
-                    class="form-control"
-                    type="number"
-                    id="makePrice"
-                    placeholder="Price"
-                    required
-                />
-            </div>
-            <div>
-                <label for="title">Description</label>
-                <textarea
-                    name="newCard[description]"
-                    class="form-control"
-                    type="text"
-                    id="makeDescription"
-                    placeholder="Description"
-                    required
-                ></textarea>
-            </div>
-            <button>Submit</button>
-        </form>
-        <a href="/cards">All Cards</a>
-    </body>
-</html>
+<h2>Make Card</h2>
+<form action="/cards" method="POST">
+    <div>
+        <label for="title">Title</label>
+        <input
+            name="newCard[title]"
+            class="form-control"
+            type="text"
+            id="makeTitle"
+            placeholder="Title"
+            required
+        />
+    </div>
+    <div>
+        <label for="price">Price</label>
+        <input
+            name="newCard[price]"
+            class="form-control"
+            type="number"
+            id="makePrice"
+            placeholder="Price"
+            required
+        />
+    </div>
+    <div>
+        <label for="title">Description</label>
+        <textarea
+            name="newCard[description]"
+            class="form-control"
+            type="text"
+            id="makeDescription"
+            placeholder="Description"
+            required
+        ></textarea>
+    </div>
+    <button>Submit</button>
+</form>
+<a href="/cards">All Cards</a>

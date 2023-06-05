@@ -1,53 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>New</title>
-    </head>
-    <body>
-        <h2>Edit Card</h2>
-        <form action="/cards/<%= editCard._id %>?_method=PUT" method="POST">
-            <div>
-                <label for="title">Title</label>
-                <input
-                    name="editCard[title]"
-                    class="form-control"
-                    type="text"
-                    id="makeTitle"
-                    placeholder="Title"
-                    value="<%= editCard.title%>"
-                    required
-                />
-            </div>
-            <div>
-                <label for="price">Price</label>
-                <input
-                    name="editCard[price]"
-                    class="form-control"
-                    type="number"
-                    id="makePrice"
-                    placeholder="Price"
-                    value="<%= editCard.price%>"
-                    required
-                />
-            </div>
-            <div>
-                <label for="title">Description</label>
-                <input
-                    name="editCard[description]"
-                    class="form-control"
-                    type="text"
-                    id="makeDescription"
-                    placeholder="Description"
-                    value="<%= editCard.description%>"
-                    required
-                />
-            </div>
-            <button>Submit</button>
-        </form>
-        <a href="/cards">All Cards</a>
-        <a href="/cards/<%= editCard._id%>">Back To Card</a>
-    </body>
-</html>
+<h2>Edit Card</h2>
+<form action="/cards/<%= editCard._id %>?_method=PUT" method="POST">
+    <div>
+        <label for="title">Title</label>
+        <input
+            name="editCard[title]"
+            class="form-control"
+            type="text"
+            id="makeTitle"
+            placeholder="Title"
+            value="<%= editCard.title%>"
+            required
+        />
+    </div>
+    <div>
+        <label for="price">Price</label>
+        <input
+            name="editCard[price]"
+            class="form-control"
+            type="number"
+            id="makePrice"
+            placeholder="Price"
+            value="<%= editCard.price%>"
+            required
+        />
+    </div>
+    <div>
+        <label for="title">Description</label>
+        <input
+            name="editCard[description]"
+            class="form-control"
+            type="text"
+            id="makeDescription"
+            placeholder="Description"
+            value="<%= editCard.description%>"
+            required
+        />
+    </div>
+    <button>Submit</button>
+</form>
+<a href="/cards">All Cards</a>
+<a href="/cards/<%= editCard._id%>">Back To Card</a>
