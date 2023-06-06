@@ -7,6 +7,7 @@ const Viewall = require("./models/viewAll");
 const catchAsync = require("./utils/catchAsync");
 const ExpressError = require("./utils/ExpressError");
 const methodOverride = require("method-override");
+const { cardSchema } = require("../Idioma/schemas");
 
 mongoose.connect("mongodb://localhost:27017/friend", {});
 
@@ -58,15 +59,18 @@ app.post(
     "/cards",
     catchAsync(async (req, res, next) => {
         // if (!req.body.newCard) throw new ExpressError("Invalid Card Data", 400);
-        // const cardSchema = Joi.object({
-        //     newCard: Joi.object({
-        //         title: Joi.string().required(),
-        //         price: Joi.number().required().min(0),
-        //         description: Joi.string().required(),
-        //     }).required(),
-        // });
-        // const result = cardSchema.validate(req.body);
-        // console.log(result);
+        const cardSchema = Joi.object({
+            newCard: Joi.object({
+                title: Joi.string().required(),
+                price: Joi.number().required().min(0),
+                description: Joi.string().required(),
+            }).required(),
+        });
+        const result = cardSchema.validate(req.body);
+        if (result.error) {
+            throw new ExpressError(result.error.details, 400);
+        }
+        console.log(result);
 
         const newCard = new Viewall(req.body.newCard);
         await newCard.save();
