@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
 const ejsMate = require("ejs-mate");
+const Joi = require("joi");
 const Viewall = require("./models/viewAll");
 const catchAsync = require("./utils/catchAsync");
 const ExpressError = require("./utils/ExpressError");
