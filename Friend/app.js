@@ -66,11 +66,12 @@ app.post(
                 description: Joi.string().required(),
             }).required(),
         });
-        const result = cardSchema.validate(req.body);
-        if (result.error) {
-            throw new ExpressError(result.error.details, 400);
+        const { error } = cardSchema.validate(req.body);
+        if (error) {
+            const msg = error.details.map((el) => el.message).join(",");
+            throw new ExpressError(msg, 400);
         }
-        console.log(result);
+        // console.log(msg);
 
         const newCard = new Viewall(req.body.newCard);
         await newCard.save();
