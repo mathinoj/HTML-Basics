@@ -58,15 +58,16 @@ app.post(
     "/cards",
     catchAsync(async (req, res, next) => {
         // if (!req.body.newCard) throw new ExpressError("Invalid Card Data", 400);
-        const cardSchema = Joi.object({
-            newCard: Joi.object({
-                title: Joi.string().required(),
-                price: Joi.number().required().min(0),
-                description: Joi.string().required(),
-            }).required(),
-        });
-        const result = cardSchema.validate(req.body);
-        console.log("result: " + result);
+        // const cardSchema = Joi.object({
+        //     newCard: Joi.object({
+        //         title: Joi.string().required(),
+        //         price: Joi.number().required().min(0),
+        //         description: Joi.string().required(),
+        //     }).required(),
+        // });
+        // const result = cardSchema.validate(req.body);
+        // console.log(result);
+
         const newCard = new Viewall(req.body.newCard);
         await newCard.save();
         res.redirect(`cards/${newCard._id}`);
