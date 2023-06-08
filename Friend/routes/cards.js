@@ -15,7 +15,7 @@ const validateCard = (req, res, next) => {
     }
 };
 
-app.get(
+router.get(
     "/cards",
     catchAsync(async (req, res, next) => {
         const allCards = await Viewall.find({});
@@ -24,11 +24,11 @@ app.get(
     })
 );
 
-app.get("/cards/new", (req, res) => {
+router.get("/cards/new", (req, res) => {
     res.render("cards/new");
 });
 
-app.post(
+router.post(
     "/cards",
     validateCard,
     catchAsync(async (req, res, next) => {
@@ -38,7 +38,7 @@ app.post(
     })
 );
 
-app.get(
+router.get(
     "/cards/:id",
     catchAsync(async (req, res, next) => {
         const cardz = await Viewall.findById(req.params.id);
@@ -46,7 +46,7 @@ app.get(
     })
 );
 
-app.get(
+router.get(
     "/cards/:id/edit",
     catchAsync(async (req, res, next) => {
         const newCard = await Viewall.findById(req.params.id);
@@ -54,7 +54,7 @@ app.get(
     })
 );
 
-app.put(
+router.put(
     "/cards/:id",
     validateCard,
     catchAsync(async (req, res, next) => {
@@ -66,7 +66,7 @@ app.put(
     })
 );
 
-app.delete(
+router.delete(
     "/cards/:id",
     catchAsync(async (req, res, next) => {
         const { id } = req.params;
