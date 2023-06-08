@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
 const ejsMate = require("ejs-mate");
+const session = require("express-session");
 const { cardSchema } = require("./schema.js");
 const Viewall = require("./models/viewAll");
 const catchAsync = require("./utils/catchAsync");
