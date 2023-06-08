@@ -15,7 +15,7 @@ const User = require("./models/user");
 
 mongoose.connect("mongodb://localhost:27017/friend", {});
 
-const userRoutes = require("./routes/usrs");
+const userRoutes = require("./routes/users");
 const cardRoutes = require("./routes/cards");
 
 const cards = require("./routes/cards");
@@ -70,6 +70,9 @@ app.use((req, res, next) => {
 // });
 
 app.use("/cards", cards);
+
+app.use("/", userRoutes);
+app.use("/cards", cardRoutes);
 
 app.get("/", (req, res) => {
     // res.send("test if it wrx");
