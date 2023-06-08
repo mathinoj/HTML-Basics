@@ -113,10 +113,10 @@ app.put(
     validateCard,
     catchAsync(async (req, res, next) => {
         const { id } = req.params;
-        const card = await Viewall.findByIdAndUpdate(id, {
+        const newCard = await Viewall.findByIdAndUpdate(id, {
             ...req.body.editCard,
         });
-        res.redirect(`/cards/${card._id}`);
+        res.redirect(`/cards/${newCard._id}`);
     })
 );
 
