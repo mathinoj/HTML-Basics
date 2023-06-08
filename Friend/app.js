@@ -15,6 +15,9 @@ const User = require("./models/user");
 
 mongoose.connect("mongodb://localhost:27017/friend", {});
 
+const userRoutes = require("./routes/usrs");
+const cardRoutes = require("./routes/cards");
+
 const cards = require("./routes/cards");
 
 const db = mongoose.connection;
@@ -59,11 +62,12 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get("/fakeUser", async (req, res, next) => {
-    const user = new User({ email: "zt@gmail.com", username: "zed" });
-    const newUser = await User.register(user, "secretpword");
-    res.send(newUser);
-});
+//TEST FROM SECTION 511
+// app.get("/fakeUser", async (req, res, next) => {
+//     const user = new User({ email: "zt@gmail.com", username: "zed" });
+//     const newUser = await User.register(user, "secretpword");
+//     res.send(newUser);
+// });
 
 app.use("/cards", cards);
 
