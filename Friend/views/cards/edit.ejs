@@ -1,7 +1,7 @@
 <% layout('/layouts/boilerplate') %>
 <h2>Edit Card</h2>
 <form
-    action="/cards/<%= editCard._id %>?_method=PUT"
+    action="/cards/<%= newCard._id %>?_method=PUT"
     method="POST"
     class="validate-form"
     nonvalidate
@@ -9,12 +9,12 @@
     <div>
         <label for="title">Title</label>
         <input
-            name="editCard[title]"
+            name="newCard[title]"
             class="form-control"
             type="text"
             id="makeTitle"
             placeholder="Title"
-            value="<%= editCard.title%>"
+            value="<%= newCard.title%>"
             required
         />
         <div class="valid-feedback">Good Title</div>
@@ -22,12 +22,12 @@
     <div>
         <label for="price">Price</label>
         <input
-            name="editCard[price]"
+            name="newCard[price]"
             class="form-control"
             type="number"
             id="makePrice"
             placeholder="Price"
-            value="<%= editCard.price%>"
+            value="<%= newCard.price%>"
             required
         />
         <div class="valid-feedback">Good Price</div>
@@ -35,12 +35,12 @@
     <div>
         <label for="title">Description</label>
         <input
-            name="editCard[description]"
+            name="newCard[description]"
             class="form-control"
             type="text"
             id="makeDescription"
             placeholder="Description"
-            value="<%= editCard.description%>"
+            value="<%= newCard.description%>"
             required
         />
         <div class="valid-feedback">Good Description</div>
@@ -48,4 +48,4 @@
     <button>Submit</button>
 </form>
 <a href="/cards">All Cards</a>
-<a href="/cards/<%= editCard._id%>">Back To Card</a>
+<a href="/cards/<%= newCard._id%>">Back To Card</a>

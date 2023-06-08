@@ -1,6 +1,6 @@
 const Joi = require("joi");
 
-model.exports.cardSchema = Joi.object({
+module.exports.cardSchema = Joi.object({
     newCard: Joi.object({
         title: Joi.string().required(),
         price: Joi.number().required().min(0),

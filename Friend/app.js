@@ -7,7 +7,6 @@ const Viewall = require("./models/viewAll");
 const catchAsync = require("./utils/catchAsync");
 const ExpressError = require("./utils/ExpressError");
 const methodOverride = require("method-override");
-const { cardSchema } = require("../Idioma/schemas");
 
 mongoose.connect("mongodb://localhost:27017/friend", {});
 
@@ -103,8 +102,8 @@ app.get(
     "/cards/:id/edit",
     catchAsync(async (req, res, next) => {
         // const { id } = req.params;
-        const editCard = await Viewall.findById(req.params.id);
-        res.render("cards/edit", { editCard });
+        const newCard = await Viewall.findById(req.params.id);
+        res.render("cards/edit", { newCard });
     })
 );
 
@@ -113,10 +112,10 @@ app.put(
     validateCard,
     catchAsync(async (req, res, next) => {
         const { id } = req.params;
-        const newCard = await Viewall.findByIdAndUpdate(id, {
-            ...req.body.editCard,
+        const card = await Viewall.findByIdAndUpdate(id, {
+            ...req.body.newCard,
         });
-        res.redirect(`/cards/${newCard._id}`);
+        res.redirect(`/cards/${card._id}`);
     })
 );
 
