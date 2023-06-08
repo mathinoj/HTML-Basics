@@ -27,6 +27,23 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(methodOverride("_method"));
 
+const validateCard = (req, res, next) => {
+    const cardSchema = Joi.object({
+        newCard: Joi.object({
+            title: Joi.string().required(),
+            price: Joi.number().required().min(0),
+            description: Joi.string().required(),
+        }).required(),
+    });
+    const { error } = cardSchema.validate(req.body);
+    if (error) {
+        const msg = error.details.map((el) => el.message).join(",");
+        throw new ExpressError(msg, 400);
+    } else {
+        next();
+    }
+};
+
 app.get("/", (req, res) => {
     // res.send("test if it wrx");
     res.render("home");
@@ -57,20 +74,21 @@ app.get("/cards/new", (req, res) => {
 
 app.post(
     "/cards",
+    validateCard,
     catchAsync(async (req, res, next) => {
         // if (!req.body.newCard) throw new ExpressError("Invalid Card Data", 400);
-        const cardSchema = Joi.object({
-            newCard: Joi.object({
-                title: Joi.string().required(),
-                price: Joi.number().required().min(0),
-                description: Joi.string().required(),
-            }).required(),
-        });
-        const { error } = cardSchema.validate(req.body);
-        if (error) {
-            const msg = error.details.map((el) => el.message).join(",");
-            throw new ExpressError(msg, 400);
-        }
+        // const cardSchema = Joi.object({
+        //     newCard: Joi.object({
+        //         title: Joi.string().required(),
+        //         price: Joi.number().required().min(0),
+        //         description: Joi.string().required(),
+        //     }).required(),
+        // });
+        // const { error } = cardSchema.validate(req.body);
+        // if (error) {
+        //     const msg = error.details.map((el) => el.message).join(",");
+        //     throw new ExpressError(msg, 400);
+        // }
         // console.log(msg);
 
         const newCard = new Viewall(req.body.newCard);
@@ -99,6 +117,7 @@ app.get(
 
 app.put(
     "/cards/:id",
+    validateCard,
     catchAsync(async (req, res, next) => {
         const { id } = req.params;
         const card = await Viewall.findByIdAndUpdate(id, {
