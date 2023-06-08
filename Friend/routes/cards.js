@@ -24,7 +24,7 @@ router.get(
     })
 );
 
-router.get("/cards/new", (req, res) => {
+router.get("/new", (req, res) => {
     res.render("cards/new");
 });
 
