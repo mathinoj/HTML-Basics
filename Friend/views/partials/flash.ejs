@@ -8,4 +8,14 @@
         aria-label="close"
     ></button>
 </div>
+<% } %> <% if(error && error.length) { %>
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <%= error %>
+    <button
+        class="btn-close"
+        type="button"
+        data-bs-dismiss="alert"
+        aria-label="close"
+    ></button>
+</div>
 <% } %>
