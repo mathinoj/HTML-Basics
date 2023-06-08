@@ -26,16 +26,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(methodOverride("_method"));
 
-const validateCard = (req, res, next) => {
-    const { error } = cardSchema.validate(req.body);
-    if (error) {
-        const msg = error.details.map((el) => el.message).join(",");
-        throw new ExpressError(msg, 400);
-    } else {
-        next();
-    }
-};
-
 app.get("/", (req, res) => {
     // res.send("test if it wrx");
     res.render("home");
