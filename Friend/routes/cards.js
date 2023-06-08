@@ -16,7 +16,7 @@ const validateCard = (req, res, next) => {
 };
 
 router.get(
-    "/cards",
+    "/",
     catchAsync(async (req, res, next) => {
         const allCards = await Viewall.find({});
         // console.log("allCards: " + allCards);
@@ -29,7 +29,7 @@ router.get("/cards/new", (req, res) => {
 });
 
 router.post(
-    "/cards",
+    "/",
     validateCard,
     catchAsync(async (req, res, next) => {
         const newCard = new Viewall(req.body.newCard);
@@ -39,7 +39,7 @@ router.post(
 );
 
 router.get(
-    "/cards/:id",
+    "/:id",
     catchAsync(async (req, res, next) => {
         const cardz = await Viewall.findById(req.params.id);
         res.render("cards/show", { cardz });
@@ -47,7 +47,7 @@ router.get(
 );
 
 router.get(
-    "/cards/:id/edit",
+    "/:id/edit",
     catchAsync(async (req, res, next) => {
         const newCard = await Viewall.findById(req.params.id);
         res.render("cards/edit", { newCard });
@@ -55,7 +55,7 @@ router.get(
 );
 
 router.put(
-    "/cards/:id",
+    "/:id",
     validateCard,
     catchAsync(async (req, res, next) => {
         const { id } = req.params;
@@ -67,7 +67,7 @@ router.put(
 );
 
 router.delete(
-    "/cards/:id",
+    "/:id",
     catchAsync(async (req, res, next) => {
         const { id } = req.params;
         const deletedCard = await Viewall.findByIdAndDelete(id);
