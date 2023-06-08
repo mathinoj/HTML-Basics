@@ -74,3 +74,5 @@ router.delete(
         res.redirect("/cards");
     })
 );
+
+module.exports = router;
