@@ -9,6 +9,7 @@ const Viewall = require("./models/viewAll");
 const catchAsync = require("./utils/catchAsync");
 const ExpressError = require("./utils/ExpressError");
 const methodOverride = require("method-override");
+const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user");
 
@@ -56,6 +57,12 @@ app.use((req, res, next) => {
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
     next();
+});
+
+app.get("/fakeUser", async (req, res, next) => {
+    const user = new User({ email: "zt@gmail.com", username: "zed" });
+    const newUser = await User.register(user, "secretpword");
+    res.send(newUser);
 });
 
 app.use("/cards", cards);
