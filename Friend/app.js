@@ -2,7 +2,7 @@ const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
 const ejsMate = require("ejs-mate");
-const Joi = require("joi");
+const { cardSchema } = require("./schema.js");
 const Viewall = require("./models/viewAll");
 const catchAsync = require("./utils/catchAsync");
 const ExpressError = require("./utils/ExpressError");
@@ -28,13 +28,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
 const validateCard = (req, res, next) => {
-    const cardSchema = Joi.object({
-        newCard: Joi.object({
-            title: Joi.string().required(),
-            price: Joi.number().required().min(0),
-            description: Joi.string().required(),
-        }).required(),
-    });
     const { error } = cardSchema.validate(req.body);
     if (error) {
         const msg = error.details.map((el) => el.message).join(",");
