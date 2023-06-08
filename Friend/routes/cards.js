@@ -55,6 +55,10 @@ router.get(
     "/:id/edit",
     catchAsync(async (req, res, next) => {
         const newCard = await Viewall.findById(req.params.id);
+        if (!newCard) {
+            req.flash("error", "Card not found, no edit allowed!");
+            return res.redirect("/cards");
+        }
         res.render("cards/edit", { newCard });
     })
 );
