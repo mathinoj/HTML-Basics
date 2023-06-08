@@ -43,6 +43,10 @@ router.get(
     "/:id",
     catchAsync(async (req, res, next) => {
         const cardz = await Viewall.findById(req.params.id);
+        if (!cardz) {
+            req.flash("error", "Card not found!");
+            return res.redirect("/cards");
+        }
         res.render("cards/show", { cardz });
     })
 );
