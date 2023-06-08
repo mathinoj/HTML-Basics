@@ -34,7 +34,7 @@ router.post(
     catchAsync(async (req, res, next) => {
         const newCard = new Viewall(req.body.newCard);
         await newCard.save();
-        // req.flash("success", "Successfully made nuevo card!");
+        req.flash("success", "Successfully made nuevo card!");
         res.redirect(`cards/${newCard._id}`);
     })
 );
@@ -63,6 +63,7 @@ router.put(
         const card = await Viewall.findByIdAndUpdate(id, {
             ...req.body.newCard,
         });
+        req.flash("success", "Updated a card!");
         res.redirect(`/cards/${card._id}`);
     })
 );
@@ -72,6 +73,7 @@ router.delete(
     catchAsync(async (req, res, next) => {
         const { id } = req.params;
         const deletedCard = await Viewall.findByIdAndDelete(id);
+        req.flash("success", "Deleted a card!");
         res.redirect("/cards");
     })
 );
