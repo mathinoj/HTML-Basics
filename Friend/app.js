@@ -10,6 +10,8 @@ const methodOverride = require("method-override");
 
 mongoose.connect("mongodb://localhost:27017/friend", {});
 
+const cards = require("./routes/cards");
+
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", () => {
@@ -25,6 +27,8 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 
 app.use(methodOverride("_method"));
+
+app.use("/cards", cards);
 
 app.get("/", (req, res) => {
     // res.send("test if it wrx");
