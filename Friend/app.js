@@ -41,6 +41,7 @@ const sessionConfig = {
     },
 };
 app.use(session(sessionConfig));
+app.use(flash());
 app.use("/cards", cards);
 
 app.get("/", (req, res) => {
