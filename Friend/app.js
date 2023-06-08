@@ -41,16 +41,6 @@ app.get("/", (req, res) => {
     res.render("home");
 });
 
-// app.get("/make", async (req, res) => {
-//     const card = new Viewall({
-//         title: "hello",
-//         price: 5,
-//         description: "hello test",
-//     });
-//     await card.save();
-//     res.send(card);
-// });
-
 app.get(
     "/cards",
     catchAsync(async (req, res, next) => {
@@ -68,21 +58,6 @@ app.post(
     "/cards",
     validateCard,
     catchAsync(async (req, res, next) => {
-        // if (!req.body.newCard) throw new ExpressError("Invalid Card Data", 400);
-        // const cardSchema = Joi.object({
-        //     newCard: Joi.object({
-        //         title: Joi.string().required(),
-        //         price: Joi.number().required().min(0),
-        //         description: Joi.string().required(),
-        //     }).required(),
-        // });
-        // const { error } = cardSchema.validate(req.body);
-        // if (error) {
-        //     const msg = error.details.map((el) => el.message).join(",");
-        //     throw new ExpressError(msg, 400);
-        // }
-        // console.log(msg);
-
         const newCard = new Viewall(req.body.newCard);
         await newCard.save();
         res.redirect(`cards/${newCard._id}`);
@@ -92,7 +67,6 @@ app.post(
 app.get(
     "/cards/:id",
     catchAsync(async (req, res, next) => {
-        // const { id } = req.params;
         const cardz = await Viewall.findById(req.params.id);
         res.render("cards/show", { cardz });
     })
@@ -101,7 +75,6 @@ app.get(
 app.get(
     "/cards/:id/edit",
     catchAsync(async (req, res, next) => {
-        // const { id } = req.params;
         const newCard = await Viewall.findById(req.params.id);
         res.render("cards/edit", { newCard });
     })
@@ -129,15 +102,12 @@ app.delete(
 );
 
 app.all("*", (req, res, next) => {
-    // res.send("yor get 404 TEST TEST TEST");
     next(new ExpressError("Page Not Found", 404));
 });
 
 app.use((err, req, res, next) => {
-    // const { statusCode = 500, message = "Somethin wrong" } = err;
     const { statusCode = 500 } = err;
     if (!err.message) err.message = "Someting wrong!";
-    // res.status(statusCode).send(message);
     res.status(statusCode).render("error", { err });
 });
 
