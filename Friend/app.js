@@ -31,66 +31,6 @@ app.get("/", (req, res) => {
     res.render("home");
 });
 
-app.get(
-    "/cards",
-    catchAsync(async (req, res, next) => {
-        const allCards = await Viewall.find({});
-        // console.log("allCards: " + allCards);
-        res.render("cards/index", { allCards });
-    })
-);
-
-app.get("/cards/new", (req, res) => {
-    res.render("cards/new");
-});
-
-app.post(
-    "/cards",
-    validateCard,
-    catchAsync(async (req, res, next) => {
-        const newCard = new Viewall(req.body.newCard);
-        await newCard.save();
-        res.redirect(`cards/${newCard._id}`);
-    })
-);
-
-app.get(
-    "/cards/:id",
-    catchAsync(async (req, res, next) => {
-        const cardz = await Viewall.findById(req.params.id);
-        res.render("cards/show", { cardz });
-    })
-);
-
-app.get(
-    "/cards/:id/edit",
-    catchAsync(async (req, res, next) => {
-        const newCard = await Viewall.findById(req.params.id);
-        res.render("cards/edit", { newCard });
-    })
-);
-
-app.put(
-    "/cards/:id",
-    validateCard,
-    catchAsync(async (req, res, next) => {
-        const { id } = req.params;
-        const card = await Viewall.findByIdAndUpdate(id, {
-            ...req.body.newCard,
-        });
-        res.redirect(`/cards/${card._id}`);
-    })
-);
-
-app.delete(
-    "/cards/:id",
-    catchAsync(async (req, res, next) => {
-        const { id } = req.params;
-        const deletedCard = await Viewall.findByIdAndDelete(id);
-        res.redirect("/cards");
-    })
-);
-
 app.all("*", (req, res, next) => {
     next(new ExpressError("Page Not Found", 404));
 });
