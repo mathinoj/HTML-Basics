@@ -34,6 +34,7 @@ router.post(
     catchAsync(async (req, res, next) => {
         const newCard = new Viewall(req.body.newCard);
         await newCard.save();
+        req.flash("success", "Successfully made nuevo card!");
         res.redirect(`cards/${newCard._id}`);
     })
 );
