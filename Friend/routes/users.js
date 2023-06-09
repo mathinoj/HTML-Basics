@@ -8,6 +8,22 @@ router.get("/register", (req, res) => {
     res.render("users/register");
 });
 
+router.get("/login", (req, res) => {
+    res.render("users/login");
+});
+
+router.post(
+    "/login",
+    passport.authenticate("local", {
+        failureFlash: true,
+        failureRedirect: "/login",
+    }),
+    (req, res) => {
+        req.flash("success", "Welcome Back!");
+        res.redirect("/cards");
+    }
+);
+
 router.post("/register", catchAsync, async (req, res) => {
     try {
         const { email, username, password } = req.body;
