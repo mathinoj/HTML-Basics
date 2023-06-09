@@ -27,12 +27,13 @@ router.get(
     })
 );
 
-router.get("/new", (req, res) => {
+router.get("/new", isLoggedIn, (req, res) => {
     res.render("cards/new");
 });
 
 router.post(
     "/",
+    isLoggedIn,
     validateCard,
     catchAsync(async (req, res, next) => {
         const newCard = new Viewall(req.body.newCard);
@@ -56,6 +57,7 @@ router.get(
 
 router.get(
     "/:id/edit",
+    isLoggedIn,
     catchAsync(async (req, res, next) => {
         const newCard = await Viewall.findById(req.params.id);
         if (!newCard) {
@@ -68,6 +70,7 @@ router.get(
 
 router.put(
     "/:id",
+    isLoggedIn,
     validateCard,
     catchAsync(async (req, res, next) => {
         const { id } = req.params;
@@ -81,6 +84,7 @@ router.put(
 
 router.delete(
     "/:id",
+    isLoggedIn,
     catchAsync(async (req, res, next) => {
         const { id } = req.params;
         const deletedCard = await Viewall.findByIdAndDelete(id);
