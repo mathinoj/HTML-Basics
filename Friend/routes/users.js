@@ -35,13 +35,15 @@ router.get("/login", (req, res) => {
 
 router.post(
     "/login",
+    checkReturnTo,
     passport.authenticate("local", {
         failureFlash: true,
         failureRedirect: "/login",
     }),
     (req, res) => {
         req.flash("success", "Welcome Back!");
-        res.redirect("/cards");
+        const redirectUrl = res.locals.returnTo || "/cards";
+        res.redirect(redirectUrl);
     }
 );
 
