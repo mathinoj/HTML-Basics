@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Viewall = require("./models/viewAll");
+const Viewall = require("../models/viewAll");
 
 mongoose.connect("mongodb://localhost:27017/friend", {});
 
