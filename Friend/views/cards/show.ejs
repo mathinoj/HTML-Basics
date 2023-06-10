@@ -5,8 +5,12 @@
     <h4><%= cardz.description %></h4>
     <h6 class="list-group-item">Card By: <%= cardz.author.username %></h6>
 </div>
-<form action="/cards/<%= cardz._id %>?_method=DELETE" method="POST">
-    <button>Delete</button>
-</form>
-<a href="/cards/<%= cardz._id%>/edit">Edit</a>
-<a href="/cards">All Cards</a>
+<div class="card-body">
+    <a href="/cards">All Cards</a>
+    <% if(currentUser && cardz.author.equals(currentUser._id)) { %>
+    <a href="/cards/<%= cardz._id%>/edit">Edit</a>
+    <form action="/cards/<%= cardz._id %>?_method=DELETE" method="POST">
+        <button>Delete</button>
+    </form>
+    <% } %>
+</div>
