@@ -8,6 +8,10 @@ const viewAllSchema = new Schema({
     },
     // price: Number,
     description: String,
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+    },
 });
 
 module.exports = mongoose.model("viewAll", viewAllSchema);
