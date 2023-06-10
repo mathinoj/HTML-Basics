@@ -47,7 +47,8 @@ router.post(
 router.get(
     "/:id",
     catchAsync(async (req, res, next) => {
-        const cardz = await Viewall.findById(req.params.id);
+        const cardz = await Viewall.findById(req.params.id).populate("author");
+        console.log(cardz);
         if (!cardz) {
             req.flash("error", "Card not found!");
             return res.redirect("/cards");
