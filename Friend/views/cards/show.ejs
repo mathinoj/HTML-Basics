@@ -3,6 +3,7 @@
     <h4><%= cardz.title %></h4>
     <h5><%= cardz.price %></h5>
     <h4><%= cardz.description %></h4>
+    <h6 class="list-group-item">Card By: <%= cardz.author.username %></h6>
 </div>
 <form action="/cards/<%= cardz._id %>?_method=DELETE" method="POST">
     <button>Delete</button>

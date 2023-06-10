@@ -38,6 +38,7 @@ router.post(
     validateCard,
     catchAsync(async (req, res, next) => {
         const newCard = new Viewall(req.body.newCard);
+        newCard.author = req.user._id;
         await newCard.save();
         req.flash("success", "Successfully made nuevo card!");
         res.redirect(`cards/${newCard._id}`);
