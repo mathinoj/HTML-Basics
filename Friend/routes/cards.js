@@ -48,6 +48,7 @@ router.post(
 router.get(
     "/:id",
     catchAsync(async (req, res, next) => {
+        // console.log("curry: " + req.user._id);
         const cardz = await Viewall.findById(req.params.id).populate("author");
         console.log(cardz);
         if (!cardz) {
@@ -62,7 +63,8 @@ router.get(
     "/:id/edit",
     isLoggedIn,
     catchAsync(async (req, res, next) => {
-        const newCard = await Viewall.findById(req.params.id);
+        const { id } = req.params;
+        const newCard = await Viewall.findById(id);
         if (!newCard) {
             req.flash("error", "Card not found, no edit allowed!");
             return res.redirect("/cards");
@@ -77,11 +79,17 @@ router.put(
     validateCard,
     catchAsync(async (req, res, next) => {
         const { id } = req.params;
-        const card = await Viewall.findByIdAndUpdate(id, {
+
+        const card = await Idioma.findById(id);
+        if (!card.author.equals(req.user._id)) {
+            req.flash("error", "Cant tocar!");
+            return res.redirect(`/cards/${id}`);
+        }
+        const cards = await Viewall.findByIdAndUpdate(id, {
             ...req.body.newCard,
         });
         req.flash("success", "Updated a card!");
-        res.redirect(`/cards/${card._id}`);
+        res.redirect(`/cards/${cards._id}`);
     })
 );
 
