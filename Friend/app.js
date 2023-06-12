@@ -17,6 +17,7 @@ mongoose.connect("mongodb://localhost:27017/friend", {});
 
 const userRoutes = require("./routes/users");
 const cardRoutes = require("./routes/cards");
+const friendRoutes = require("./routes/friends");
 
 const cards = require("./routes/cards");
 
@@ -75,6 +76,7 @@ app.use("/cards", cards);
 
 app.use("/", userRoutes);
 app.use("/cards", cardRoutes);
+app.use("/", friendRoutes);
 
 app.get("/", (req, res) => {
     // res.send("test if it wrx");
