@@ -13,3 +13,23 @@ module.exports.checkReturnTo = (req, res, next) => {
     }
     next();
 };
+
+module.exports.validateCard = (req, res, next) => {
+    const { error } = cardSchema.validate(req.body);
+    if (error) {
+        const msg = error.details.map((el) => el.message).join(",");
+        throw new ExpressError(msg, 400);
+    } else {
+        next();
+    }
+};
+
+module.exports.isAuthor = async (req, res, next) => {
+    const { id } = req.params;
+    const card = await Idioma.findById(id);
+    if (!card.author.equals(req.user._id)) {
+        req.flash("error", "Cant tocalo!");
+        return res.redirect(`/cards/${id}`);
+    }
+    next();
+};
