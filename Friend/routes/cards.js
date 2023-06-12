@@ -23,7 +23,7 @@ const isAuthor = async (req, res, next) => {
     const { id } = req.params;
     const card = await Idioma.findById(id);
     if (!card.author.equals(req.user._id)) {
-        req.flash("error", "Cant tocar!");
+        req.flash("error", "Cant tocalo!");
         return res.redirect(`/cards/${id}`);
     }
     next();
@@ -72,16 +72,13 @@ router.get(
 router.get(
     "/:id/edit",
     isLoggedIn,
+    isAuthor,
     catchAsync(async (req, res, next) => {
         const { id } = req.params;
         const newCard = await Viewall.findById(id);
         if (!newCard) {
             req.flash("error", "Card not found, no edit allowed!");
             return res.redirect("/cards");
-        }
-        if (!newCard.author.equals(req.user._id)) {
-            req.flash("error", "Not permitted!");
-            return res.redirect(`/cards/${id}`);
         }
         res.render("cards/edit", { newCard });
     })
@@ -90,20 +87,22 @@ router.get(
 router.put(
     "/:id",
     isLoggedIn,
+    isAuthor,
     validateCard,
     catchAsync(async (req, res, next) => {
         const { id } = req.params;
-        const cards = await Viewall.findByIdAndUpdate(id, {
+        const card = await Viewall.findByIdAndUpdate(id, {
             ...req.body.newCard,
         });
         req.flash("success", "Updated a card!");
-        res.redirect(`/cards/${cards._id}`);
+        res.redirect(`/cards/${card._id}`);
     })
 );
 
 router.delete(
     "/:id",
     isLoggedIn,
+    isAuthor,
     catchAsync(async (req, res, next) => {
         const { id } = req.params;
         const deletedCard = await Viewall.findByIdAndDelete(id);
