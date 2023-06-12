@@ -1,5 +1,6 @@
-const { cardSchema } = require("../schema.js");
-const ExpressError = require("../utils/ExpressError");
+const { cardSchema } = require("./schema.js");
+const ExpressError = require("./utils/ExpressError");
+const Viewall = require("./models/viewAll");
 
 module.exports.isLoggedIn = (req, res, next) => {
     if (!req.isAuthenticated()) {
@@ -29,7 +30,7 @@ module.exports.validateCard = (req, res, next) => {
 
 module.exports.isAuthor = async (req, res, next) => {
     const { id } = req.params;
-    const card = await Idioma.findById(id);
+    const card = await Viewall.findById(id);
     if (!card.author.equals(req.user._id)) {
         req.flash("error", "Cant tocalo!");
         return res.redirect(`/cards/${id}`);

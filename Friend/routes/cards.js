@@ -11,7 +11,6 @@ router.get(
     "/",
     catchAsync(async (req, res, next) => {
         const allCards = await Viewall.find({});
-        // console.log("allCards: " + allCards);
         res.render("cards/index", { allCards });
     })
 );

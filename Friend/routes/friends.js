@@ -9,6 +9,8 @@ const catchAsync = require("../utils/catchAsync");
 const db = mongoose.connection;
 
 router.get("/friend", (req, res) => {
+    console.log("friend: " + req.user.id);
+
     res.render("friends/friend");
 });
 
