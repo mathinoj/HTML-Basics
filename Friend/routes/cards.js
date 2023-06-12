@@ -19,6 +19,16 @@ const validateCard = (req, res, next) => {
     }
 };
 
+const isAuthor = async (req, res, next) => {
+    const { id } = req.params;
+    const card = await Idioma.findById(id);
+    if (!card.author.equals(req.user._id)) {
+        req.flash("error", "Cant tocar!");
+        return res.redirect(`/cards/${id}`);
+    }
+    next();
+};
+
 router.get(
     "/",
     catchAsync(async (req, res, next) => {
@@ -69,6 +79,10 @@ router.get(
             req.flash("error", "Card not found, no edit allowed!");
             return res.redirect("/cards");
         }
+        if (!newCard.author.equals(req.user._id)) {
+            req.flash("error", "Not permitted!");
+            return res.redirect(`/cards/${id}`);
+        }
         res.render("cards/edit", { newCard });
     })
 );
@@ -79,12 +93,6 @@ router.put(
     validateCard,
     catchAsync(async (req, res, next) => {
         const { id } = req.params;
-
-        const card = await Idioma.findById(id);
-        if (!card.author.equals(req.user._id)) {
-            req.flash("error", "Cant tocar!");
-            return res.redirect(`/cards/${id}`);
-        }
         const cards = await Viewall.findByIdAndUpdate(id, {
             ...req.body.newCard,
         });
