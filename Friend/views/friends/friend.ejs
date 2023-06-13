@@ -3,7 +3,10 @@
 <h1>see friend</h1>
 <br />
 <div>
+    <!--  -->
     <% for(let showUser of showUsers){ %>
+    <!--  -->
+    <% if(currentUserId != showUser.id){ %>
     <h2><%= showUser.username %></h2>
-    <% } %>
+    <% }} %>
 </div>
