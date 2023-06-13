@@ -19,40 +19,22 @@ router.post(
             const registeredUser = await User.register(user, password);
             console.log("REGD USER " + registeredUser.id);
             const regdId = registeredUser.id;
+            const regName = registeredUser.username;
+            console.log("regName: " + regName);
             // const parsedId = regdId.replace(/["]+/g, "");
             const doc = new Friend({});
             doc._id = regdId;
+            doc.userFriending = regName;
             await doc.save();
             req.login(registeredUser, (err) => {
                 if (err) return next(err);
                 req.flash("success", "You have registered successfully!");
-                // if (req.user.id) {
-                //     const doc = new Friend();
-                //     console.log("doc: " + doc);
-                //     doc._id = req.user.id;
-                //     await doc.save();
-                // }
                 res.redirect("/cards");
             });
-            // if (req.user.id) {
-            //     const doc = new Friend();
-            //     doc._id = req.user.id;
-            //     await doc.save();
-            // }
-
-            // console.log("req.user: " + req.user.id);
         } catch (e) {
             req.flash("error", e.message);
             res.redirect("register");
         }
-        // next();
-        // console.log("req.user: " + req.user.id);
-        // if (req.user.id) {
-        //     const doc = new Friend();
-        //     console.log("doc: " + doc);
-        //     doc._id = req.user.id;
-        //     await doc.save();
-        // }
     })
 );
 
