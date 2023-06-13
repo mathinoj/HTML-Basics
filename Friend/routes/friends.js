@@ -8,10 +8,23 @@ const catchAsync = require("../utils/catchAsync");
 
 const db = mongoose.connection;
 
-router.get("/friend", (req, res) => {
-    console.log("friend: " + req.user.id);
+router.get(
+    "/friend",
+    catchAsync(async (req, res, next) => {
+        const showUsers = await User.find({});
+        console.log("showUsers: " + showUsers);
+        console.log("friend: " + req.user.id);
+        res.render("friends/friend", { showUsers });
 
-    res.render("friends/friend");
-});
+        // router.get(
+        //     "/",
+        //     catchAsync(async (req, res, next) => {
+        //         const allCards = await Viewall.find({});
+        //         res.render("cards/index", { allCards });
+        //     })
+        // );
+        // res.render("cards/index", { allCards });
+    })
+);
 
 module.exports = router;

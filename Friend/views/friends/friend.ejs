@@ -1,3 +1,9 @@
 <% layout('/layouts/boilerplate') %>
 
 <h1>see friend</h1>
+<br />
+<div>
+    <% for(let showUser of showUsers){ %>
+    <h2><%= showUser.username %></h2>
+    <% } %>
+</div>
