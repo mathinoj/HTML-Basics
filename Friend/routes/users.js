@@ -17,7 +17,12 @@ router.post(
             const { email, username, password } = req.body;
             const user = new User({ email, username });
             const registeredUser = await User.register(user, password);
-            console.log(registeredUser);
+            console.log("REGD USER " + registeredUser.id);
+            const regdId = registeredUser.id;
+            // const parsedId = regdId.replace(/["]+/g, "");
+            const doc = new Friend({});
+            doc._id = regdId;
+            await doc.save();
             req.login(registeredUser, (err) => {
                 if (err) return next(err);
                 req.flash("success", "You have registered successfully!");
