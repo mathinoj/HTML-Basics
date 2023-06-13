@@ -12,6 +12,7 @@ router.get(
     "/friend",
     catchAsync(async (req, res, next) => {
         const currentUserId = req.user.id;
+        console.log("reqID: " + currentUserId);
         const showUsers = await User.find({});
         // console.log("showUsers: " + showUsers);
         // console.log("friend: " + currentUserId);

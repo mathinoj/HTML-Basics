@@ -17,15 +17,16 @@ router.post(
             const { email, username, password } = req.body;
             const user = new User({ email, username });
             const registeredUser = await User.register(user, password);
-            console.log("REGD USER " + registeredUser.id);
+            //THIS PUTS REG'D USER ID/NAME in FRIENDS SCHEMA
             const regdId = registeredUser.id;
             const regName = registeredUser.username;
-            console.log("regName: " + regName);
+            // console.log("REGD USER " + registeredUser.id);
             // const parsedId = regdId.replace(/["]+/g, "");
             const doc = new Friend({});
             doc._id = regdId;
             doc.userFriending = regName;
             await doc.save();
+            //THIS PUTS REG'D USER ID/NAME in FRIENDS SCHEMA
             req.login(registeredUser, (err) => {
                 if (err) return next(err);
                 req.flash("success", "You have registered successfully!");
