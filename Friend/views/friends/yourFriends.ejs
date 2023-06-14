@@ -3,5 +3,19 @@
 
 <% for(let yourRequests of yourRequest){ %>
 <h2><%= yourRequests.username %></h2>
+<a
+    class="btn btn-primary"
+    type="submit"
+    value="0"
+    href="/friend/<%= yourRequests.id%>"
+    >Approve Request</a
+>
+<a
+    class="btn btn-primary"
+    type="submit"
+    value="1"
+    href="/friend/<%= yourRequests.id%>"
+    >Deny Request</a
+>
 <hr />
 <% } %>
