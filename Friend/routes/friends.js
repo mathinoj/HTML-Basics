@@ -56,15 +56,8 @@ router.get(
         let yourRequesting = await Friend.findById(lookingAtRequest).populate(
             "requests"
         );
-        let yourRequestsTwo = await Friend.findById(lookingAtRequest);
-
         let yourRequest = yourRequesting.requests;
-        console.log("yourREQ: " + yourRequest);
-        console.log("yourREQ222: " + yourRequestsTwo);
-        console.log("yourREQ222pop: " + yourRequestsTwo.requests);
-
-        let x = yourRequest.requests;
-        res.render("friends/yourFriends", { yourRequest, yourRequestsTwo, x });
+        res.render("friends/yourFriends", { yourRequest });
     })
 );
 
