@@ -31,11 +31,8 @@ router.get(
         let userFriending = res.locals.currentUser;
         const requestFriend = await User.findById(req.params.id);
         if (requestFriend) {
-            // let iWantFriendId = requestFriend.id;
-            // console.log("userFriending: " + userFriending.id);
-            let findFriending = await Friend.findById(userFriending.id);
-            // console.log("findFriending: " + findFriending);
-            findFriending.requests.push(requestFriend);
+            let findFriending = await Friend.findById(requestFriend.id);
+            findFriending.requests.push(userFriending);
             await findFriending.save();
             req.flash("success", "Sent request!");
             return res.redirect("/friend");
@@ -47,6 +44,8 @@ router.get(
 router.get(
     "/yourFriends",
     catchAsync(async (req, res, next) => {
+        res.locals.currentUser = req.user;
+        let userFriending = res.locals.currentUser;
         res.render("friends/yourFriends");
     })
 );
