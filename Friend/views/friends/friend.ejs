@@ -8,6 +8,14 @@
     <!--  -->
     <% if(currentUserId != showUser.id){ %>
     <h2><%= showUser.username %></h2>
-    <input class="btn btn-primary" type="submit" value="Add Friend" />
+    <h2><%= showUser.id %></h2>
+    <h5>
+        <a
+            class="btn btn-primary"
+            type="submit"
+            href="/friend/<%= showUser.id%>"
+            >Add Friend</a
+        >
+    </h5>
     <% }} %>
 </div>
