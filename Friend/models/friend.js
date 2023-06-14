@@ -5,6 +5,10 @@ const FriendSchema = new Schema({
     _id: String,
     userFriending: String,
     // requests: String,
+    // author: {
+    //   type: Schema.Types.ObjectId,
+    //   ref: "User",
+    // },
     requests: [
         {
             type: Schema.Types.ObjectId,
@@ -18,5 +22,10 @@ const FriendSchema = new Schema({
         },
     ],
 });
+
+// author: {
+//   type: Schema.Types.ObjectId,
+//   ref: "User",
+// },
 
 module.exports = mongoose.model("Friend", FriendSchema);

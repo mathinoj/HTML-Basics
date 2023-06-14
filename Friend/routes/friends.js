@@ -2,10 +2,12 @@ const express = require("express");
 const router = express.Router();
 // const passport = require("passport");
 const mongoose = require("mongoose");
+
 const User = require("../models/user");
 const Friend = require("../models/friend");
 const { checkReturnTo } = require("../middleware");
 const catchAsync = require("../utils/catchAsync");
+const Viewall = require("../models/viewAll");
 
 const db = mongoose.connection;
 
@@ -45,8 +47,24 @@ router.get(
     "/yourFriends",
     catchAsync(async (req, res, next) => {
         res.locals.currentUser = req.user;
-        let userFriending = res.locals.currentUser;
-        res.render("friends/yourFriends");
+        let loggedInUser = res.locals.currentUser;
+        let lookingAtRequest = loggedInUser.id;
+
+        let see = await Viewall.find({});
+        console.log("see: " + see);
+        // console.log("lookingAtRequest: " + lookingAtRequest);
+        let yourRequesting = await Friend.findById(lookingAtRequest).populate(
+            "requests"
+        );
+        let yourRequestsTwo = await Friend.findById(lookingAtRequest);
+
+        let yourRequest = yourRequesting.requests;
+        console.log("yourREQ: " + yourRequest);
+        console.log("yourREQ222: " + yourRequestsTwo);
+        console.log("yourREQ222pop: " + yourRequestsTwo.requests);
+
+        let x = yourRequest.requests;
+        res.render("friends/yourFriends", { yourRequest, yourRequestsTwo, x });
     })
 );
 

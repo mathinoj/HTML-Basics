@@ -1,2 +1,7 @@
 <% layout('/layouts/boilerplate') %>
 <h1>Your Friendz</h1>
+
+<% for(let yourRequests of yourRequest){ %>
+<h2><%= yourRequests.username %></h2>
+<% } %>
+<hr />
