@@ -91,7 +91,7 @@ router.put(
                 $pull: { requests: selectedDeny },
             });
             req.flash("success", "Request DENIED!!");
-            return res.redirect("/friend");
+            return res.redirect("/yourFriends");
         }
     })
 );
