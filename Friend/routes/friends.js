@@ -51,13 +51,48 @@ router.get(
         let lookingAtRequest = loggedInUser.id;
 
         let see = await Viewall.find({});
-        console.log("see: " + see);
+        // console.log("see: " + see);
         // console.log("lookingAtRequest: " + lookingAtRequest);
         let yourRequesting = await Friend.findById(lookingAtRequest).populate(
             "requests"
         );
         let yourRequest = yourRequesting.requests;
         res.render("friends/yourFriends", { yourRequest });
+    })
+);
+
+router.put(
+    "/yourFriends/:id",
+    // isLoggedIn,
+    catchAsync(async (req, res, next) => {
+        res.locals.currentUser = req.user;
+        let entireUserInfo = res.locals.currentUser.id;
+        console.log("entire: " + entireUserInfo);
+        // let userIdNum = entireUserInfo.id;
+        // console.log("USER ID!!: " + userIdNum);
+        let selectedDeny = req.params.id;
+        console.log("selectedDeny: " + selectedDeny);
+
+        // const specificCard = await Idioma.findById(selectedCardIdNumTest);
+        // let justSpecificCardId = specificCard.id;
+
+        let personDenying = await Friend.findById(entireUserInfo);
+        console.log("personDenying: " + personDenying);
+
+        // let listOfAddedCardIds = specificCard.addedCard;
+        let listOfRequests = personDenying.requests;
+        console.log("listOfRequests: " + listOfRequests);
+
+        // let isUserInAddedCards = listOfAddedCardIds.includes(userIdNum);
+        let isItInUser = listOfRequests.includes(selectedDeny);
+        console.log("isItInUser: " + isItInUser);
+        if (isItInUser == true) {
+            await Friend.findByIdAndUpdate(entireUserInfo, {
+                $pull: { requests: selectedDeny },
+            });
+            req.flash("success", "Request DENIED!!");
+            return res.redirect("/friend");
+        }
     })
 );
 

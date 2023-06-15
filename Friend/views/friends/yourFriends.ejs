@@ -10,12 +10,32 @@
     href="/friend/<%= yourRequests.id%>"
     >Approve Request</a
 >
-<a
+<!-- <a
     class="btn btn-primary"
     type="submit"
-    value="1"
-    href="/friend/<%= yourRequests.id%>"
+    name="deny"
+    value="<=yourRequests._id%>"
     >Deny Request</a
+> -->
+<form
+    class="d-inline"
+    action="/yourFriends/<%=yourRequests._id%>?_method=PUT"
+    method="POST"
 >
+    <button class="btn btn-danger btn-outline-dark">Deny Request</button>
+</form>
 <hr />
 <% } %>
+<!--
+<div class="form-check">
+    <input
+        class="form-check-input"
+        type="submit"
+        value="<=yourRequests._id%>"
+        id="flexCheckDefault"
+        name="checkBoxer"
+        onchange="this.form.submit();"
+        hidden
+    />
+    <label class="form-check-label" for="flexCheckDefault"> </label>
+</div> -->
