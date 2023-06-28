@@ -21,6 +21,12 @@ const FriendSchema = new Schema({
             ref: "User",
         },
     ],
+    pendingRequests: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "User",
+        },
+    ],
 });
 
 // author: {

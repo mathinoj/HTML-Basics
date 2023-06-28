@@ -36,6 +36,10 @@ router.get(
             let findFriending = await Friend.findById(requestFriend.id);
             findFriending.requests.push(userFriending);
             await findFriending.save();
+            let x = await Friend.findById(userFriending.id);
+            console.log("x: " + x);
+            x.pendingRequests.push(requestFriend.id);
+            await x.save();
             req.flash("success", "Sent request!");
             return res.redirect("/friend");
         }
@@ -68,22 +72,16 @@ router.put(
         res.locals.currentUser = req.user;
         let entireUserInfo = res.locals.currentUser.id;
         console.log("entire: " + entireUserInfo);
-        // let userIdNum = entireUserInfo.id;
-        // console.log("USER ID!!: " + userIdNum);
+
         let selectedDeny = req.params.id;
         console.log("selectedDeny: " + selectedDeny);
-
-        // const specificCard = await Idioma.findById(selectedCardIdNumTest);
-        // let justSpecificCardId = specificCard.id;
 
         let personDenying = await Friend.findById(entireUserInfo);
         console.log("personDenying: " + personDenying);
 
-        // let listOfAddedCardIds = specificCard.addedCard;
         let listOfRequests = personDenying.requests;
         console.log("listOfRequests: " + listOfRequests);
 
-        // let isUserInAddedCards = listOfAddedCardIds.includes(userIdNum);
         let isItInUser = listOfRequests.includes(selectedDeny);
         console.log("isItInUser: " + isItInUser);
         if (isItInUser == true) {
