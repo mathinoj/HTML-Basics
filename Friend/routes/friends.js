@@ -61,7 +61,12 @@ router.get(
             "requests"
         );
         let yourRequest = yourRequesting.requests;
-        res.render("friends/yourFriends", { yourRequest });
+        let penders = await Friend.findById(lookingAtRequest).populate(
+            "pendingRequests"
+        );
+        let showPending = penders.pendingRequests;
+        console.log("showPending: " + showPending);
+        res.render("friends/yourFriends", { yourRequest, showPending });
     })
 );
 
