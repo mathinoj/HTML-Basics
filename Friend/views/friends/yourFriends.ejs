@@ -1,8 +1,10 @@
 <% layout('/layouts/boilerplate') %>
 <h1>Your Friendz</h1>
+<hr />
 
+<h3>Approve or Deny</h3>
 <% for(let yourRequests of yourRequest){ %>
-<h2><%= yourRequests.username %></h2>
+<h4><%= yourRequests.username %></h4>
 <a
     class="btn btn-primary"
     type="submit"
@@ -24,11 +26,19 @@
 >
     <button class="btn btn-danger btn-outline-dark">Deny Request</button>
 </form>
-<hr />
 <% } %>
 <hr />
-<h1>Pending Requests</h1>
-
+<h3>Your Pending Requests</h3>
+<% for(let showPendings of showPending){ %>
+<h4><%= showPendings.username %></h4>
+<form
+    class="d-inline"
+    action="/yourFriends/<%=showPendings._id%>?_method=PUT"
+    method="POST"
+>
+    <button class="btn btn-danger btn-outline-dark">Un-request</button>
+</form>
+<% } %>
 <!--
 <div class="form-check">
     <input
